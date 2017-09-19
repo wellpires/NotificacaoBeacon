@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="br.com.everis.notificacaobeacon.AdicionarReuniaoActivity">
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:text="Nova Reunião"
+            android:textSize="36sp"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_constraintTop_creator="1"
+            tools:layout_editor_absoluteX="80dp" />
+
+        <EditText
+            android:id="@+id/txtAssunto"
+            android:layout_width="395dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:hint="Assunto"
+            android:inputType="textPersonName"
+            app:layout_constraintTop_toBottomOf="@+id/textView7"
+            tools:layout_editor_absoluteX="8dp" />
+
+        <EditText
+            android:id="@+id/txtDataInicio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="19dp"
+            android:digits="1234567890-"
+            android:ems="10"
+            android:enabled="false"
+            android:hint="Data de inicio"
+            android:inputType="datetime"
+            android:selectAllOnFocus="false"
+            android:singleLine="true"
+            app:layout_constraintTop_toBottomOf="@+id/txtAssunto"
+            tools:layout_editor_absoluteX="8dp" />
+
+        <Button
+            android:id="@+id/btnDataInicio"
+            android:layout_width="122dp"
+            android:layout_height="54dp"
+            android:layout_marginLeft="13dp"
+            android:layout_marginStart="13dp"
+            android:layout_marginTop="8dp"
+            android:elevation="0dp"
+            android:text="Selecionar data"
+            app:layout_constraintLeft_toRightOf="@+id/txtDataInicio"
+            app:layout_constraintTop_toBottomOf="@+id/txtAssunto" />
+
+        <EditText
+            android:id="@+id/txtHoraInicio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:ems="10"
+            android:enabled="false"
+            android:hint="Hora de inicio"
+            android:inputType="time"
+            app:layout_constraintTop_toBottomOf="@+id/txtDataInicio"
+            tools:layout_editor_absoluteX="8dp" />
+
+        <Button
+            android:id="@+id/btnHoraInicio"
+            android:layout_width="122dp"
+            android:layout_height="54dp"
+            android:layout_marginLeft="13dp"
+            android:layout_marginStart="13dp"
+            android:layout_marginTop="20dp"
+            android:text="Selecionar hora"
+            app:layout_constraintLeft_toRightOf="@+id/txtHoraInicio"
+            app:layout_constraintTop_toBottomOf="@+id/txtDataInicio" />
+
+        <EditText
+            android:id="@+id/txtDataTermino"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:ems="10"
+            android:enabled="false"
+            android:hint="Data de término"
+            android:inputType="time"
+            app:layout_constraintTop_toBottomOf="@+id/txtHoraInicio"
+            tools:layout_editor_absoluteX="8dp" />
+
+        <EditText
+            android:id="@+id/txtHoraTermino"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:ems="10"
+            android:enabled="false"
+            android:hint="Hora de término"
+            android:inputType="date"
+            app:layout_constraintTop_toBottomOf="@+id/txtDataTermino"
+            tools:layout_editor_absoluteX="8dp" />
+
+        <Button
+            android:id="@+id/btnDataTermino"
+            android:layout_width="122dp"
+            android:layout_height="54dp"
+            android:layout_marginLeft="13dp"
+            android:layout_marginStart="13dp"
+            android:layout_marginTop="20dp"
+            android:text="Selecionar Data"
+            app:layout_constraintLeft_toRightOf="@+id/txtDataTermino"
+            app:layout_constraintTop_toBottomOf="@+id/btnHoraInicio" />
+
+        <Button
+            android:id="@+id/btnHoraTermino"
+            android:layout_width="122dp"
+            android:layout_height="54dp"
+            android:layout_marginLeft="13dp"
+            android:layout_marginStart="13dp"
+            android:layout_marginTop="20dp"
+            android:text="Selecionar Hora"
+            app:layout_constraintLeft_toRightOf="@+id/txtHoraTermino"
+            app:layout_constraintTop_toBottomOf="@+id/btnDataTermino" />
+
+        <EditText
+            android:id="@+id/txtOnde"
+            android:layout_width="521dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:ems="10"
+            android:hint="Onde"
+            android:inputType="textPersonName"
+            app:layout_constraintTop_toBottomOf="@+id/txtHoraTermino"
+            tools:layout_editor_absoluteX="8dp" />
+
+        <EditText
+            android:id="@+id/txtSala"
+            android:layout_width="521dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:ems="10"
+            android:hint="Sala"
+            android:inputType="textPersonName"
+            app:layout_constraintTop_toBottomOf="@+id/txtOnde"
+            tools:layout_editor_absoluteX="8dp" />
+
+        <EditText
+            android:id="@+id/txtDescricao"
+            android:layout_width="521dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:ems="10"
+            android:hint="Descrição"
+            android:inputType="textMultiLine"
+            android:singleLine="false"
+            app:layout_constraintTop_toBottomOf="@+id/txtSala"
+            tools:layout_editor_absoluteX="8dp" />
+
+        <Button
+            android:id="@+id/btnSalvar"
+            android:layout_width="188dp"
+            android:layout_height="54dp"
+            android:layout_marginTop="30dp"
+            android:text="Salvar"
+            app:layout_constraintTop_toBottomOf="@+id/txtDescricao"
+            android:layout_marginRight="8dp"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginLeft="8dp"
+            app:layout_constraintLeft_toLeftOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
+
+
+</ScrollView>

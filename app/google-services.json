@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "775853410175",
+    "firebase_url": "https://notificacaobeacon-45b2e.firebaseio.com",
+    "project_id": "notificacaobeacon-45b2e",
+    "storage_bucket": "notificacaobeacon-45b2e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:775853410175:android:6815fac1c518d5ce",
+        "android_client_info": {
+          "package_name": "br.com.everis.notificacaobeacon"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "775853410175-i6ed2n6lhjgfhfmdospvoosam2k76oj6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJMHiMFBv11gMo9cUJ-PKv5FksAn36YBc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
