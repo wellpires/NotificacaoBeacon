@@ -42,6 +42,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
+        <service
+            android:name="br.com.everis.notificacaobeacon.service.NotificacaoBeaconService"
+            android:enabled="true"
+            android:exported="true" />
+
         <activity
             android:name="br.com.everis.notificacaobeacon.NotificacaoMainActivity"
             android:label="@string/app_name"
@@ -52,13 +57,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="br.com.everis.notificacaobeacon.ReuniaoNotificacaoActivity" />
-
-        <service
-            android:name="br.com.everis.notificacaobeacon.service.NotificacaoBeaconService"
-            android:enabled="true"
-            android:exported="true" />
-
+        <activity
+            android:name="br.com.everis.notificacaobeacon.ReuniaoNotificacaoActivity"
+            android:label="@string/app_name" />
         <activity
             android:name="br.com.everis.notificacaobeacon.DetalhesReuniaoActivity"
             android:label="@string/title_activity_detalhes_reuniao"

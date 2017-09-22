@@ -22,7 +22,7 @@
             tools:layout_editor_absoluteX="80dp" />
 
         <EditText
-            android:id="@+id/txtAssunto"
+            android:id="@+id/lblAssunto"
             android:layout_width="395dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -44,7 +44,7 @@
             android:inputType="datetime"
             android:selectAllOnFocus="false"
             android:singleLine="true"
-            app:layout_constraintTop_toBottomOf="@+id/txtAssunto"
+            app:layout_constraintTop_toBottomOf="@+id/lblAssunto"
             tools:layout_editor_absoluteX="8dp" />
 
         <Button
@@ -57,7 +57,7 @@
             android:elevation="0dp"
             android:text="Selecionar data"
             app:layout_constraintLeft_toRightOf="@+id/txtDataInicio"
-            app:layout_constraintTop_toBottomOf="@+id/txtAssunto" />
+            app:layout_constraintTop_toBottomOf="@+id/lblAssunto" />
 
         <EditText
             android:id="@+id/txtHoraInicio"

@@ -3,7 +3,9 @@ package br.com.everis.notificacaobeacon;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -12,8 +14,11 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
 
+import org.joda.time.DateTime;
+
 import java.text.ParseException;
 import java.util.Calendar;
+import java.util.Date;
 
 import br.com.everis.notificacaobeacon.bd.DBAdapter;
 import br.com.everis.notificacaobeacon.bd.model.ReuniaoVO;
@@ -21,15 +26,19 @@ import br.com.everis.notificacaobeacon.utils.ReuniaoUtils;
 
 public class AdicionarReuniaoActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private DatePicker dpDataInicio = null;
     private EditText txtDataInicio = null;
     private Button btnDataInicio = null;
 
+    private TimePicker tpHoraInicio = null;
     private EditText txtHoraInicio = null;
     private Button btnHoraInicio = null;
 
+    private DatePicker dpDataTermino = null;
     private EditText txtDataTermino = null;
     private Button btnDataTermino = null;
 
+    private TimePicker tpHoraTermino = null;
     private EditText txtHoraTermino = null;
     private Button btnHoraTermino = null;
 
@@ -58,7 +67,8 @@ public class AdicionarReuniaoActivity extends AppCompatActivity implements View.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adicionar_reuniao_activity);
 
-        //TODO CRIAR UMA LISTA COM TODAS AS REUNIÕES
+        //TODO MOSTRAR ALGUM AVISO PARA SE CASO UMA REUNIÃO ESTIVER ACONTECENDO
+        //TODO MUDAR OS ÍCONES
 
         btnDataInicio = (Button) findViewById(R.id.btnDataInicio);
         btnHoraInicio = (Button) findViewById(R.id.btnHoraInicio);
@@ -70,7 +80,7 @@ public class AdicionarReuniaoActivity extends AppCompatActivity implements View.
         txtDataTermino = (EditText) findViewById(R.id.txtDataTermino);
         txtHoraTermino = (EditText) findViewById(R.id.txtHoraTermino);
 
-        txtAssunto = (EditText) findViewById(R.id.txtAssunto);
+        txtAssunto = (EditText) findViewById(R.id.lblAssunto);
         txtLocal = (EditText) findViewById(R.id.txtOnde);
         txtSala = (EditText) findViewById(R.id.txtSala);
         txtDescricao = (EditText) findViewById(R.id.txtDescricao);
@@ -84,7 +94,7 @@ public class AdicionarReuniaoActivity extends AppCompatActivity implements View.
         btnHoraTermino.setOnClickListener(this);
         btnSalvar.setOnClickListener(this);
 
-        datasource = new DBAdapter(getApplicationContext());
+        datasource = new DBAdapter(this);
 
     }
 
@@ -101,6 +111,7 @@ public class AdicionarReuniaoActivity extends AppCompatActivity implements View.
             DatePickerDialog dataInicio = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
                 @Override
                 public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                    dpDataInicio = view;
                     txtDataInicio.setText(ReuniaoUtils.zeroAEsquerda(dayOfMonth) + "/" + ReuniaoUtils.zeroAEsquerda((monthOfYear + 1)) + "/" + year);
                 }
             }, anoInicio, mesInicio, diaInicio);
@@ -114,6 +125,7 @@ public class AdicionarReuniaoActivity extends AppCompatActivity implements View.
             TimePickerDialog dpdhoraInicio = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
                 @Override
                 public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                    tpHoraInicio = view;
                     txtHoraInicio.setText(ReuniaoUtils.zeroAEsquerda(hourOfDay) + ":" + ReuniaoUtils.zeroAEsquerda(minute));
                 }
             }, horaInicio, minutoInicio, false);
@@ -127,8 +139,10 @@ public class AdicionarReuniaoActivity extends AppCompatActivity implements View.
             diaTermino = c.get(Calendar.DAY_OF_MONTH);
 
             DatePickerDialog dataTermino = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+                @RequiresApi(api = Build.VERSION_CODES.M)
                 @Override
                 public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                    dpDataTermino = view;
                     txtDataTermino.setText(ReuniaoUtils.zeroAEsquerda(dayOfMonth) + "/" + ReuniaoUtils.zeroAEsquerda((monthOfYear + 1)) + "/" + year);
                 }
             }, anoTermino, mesTermino, diaTermino);
@@ -142,6 +156,7 @@ public class AdicionarReuniaoActivity extends AppCompatActivity implements View.
             TimePickerDialog dpdHoraTermino = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
                 @Override
                 public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                    tpHoraTermino = view;
                     txtHoraTermino.setText(ReuniaoUtils.zeroAEsquerda(hourOfDay) + ":" + ReuniaoUtils.zeroAEsquerda(minute));
                 }
             }, horaTermino, minutoTermino, false);
@@ -150,8 +165,42 @@ public class AdicionarReuniaoActivity extends AppCompatActivity implements View.
         } else if (view.getId() == R.id.btnSalvar) {
             try {
 
+                if ("".equals(txtAssunto.getText().toString())) {
+                    ReuniaoUtils.mostrarAvisoDialogo(this, "Forneça o Assunto da reunião");
+                    return;
+                } else if (dpDataInicio == null) {
+                    ReuniaoUtils.mostrarAvisoDialogo(this, "Forneça a Data de Inicio da reunião");
+                    return;
+                } else if (tpHoraInicio == null) {
+                    ReuniaoUtils.mostrarAvisoDialogo(this, "Forneça a Hora de Inicio da reunião");
+                    return;
+                } else if (dpDataTermino == null) {
+                    ReuniaoUtils.mostrarAvisoDialogo(this, "Forneça a Data de Término da reunião");
+                    return;
+                } else if (tpHoraTermino == null) {
+                    ReuniaoUtils.mostrarAvisoDialogo(this, "Forneça a Hora de Término da reunião");
+                    return;
+                } else if ("".equals(txtLocal.getText().toString())) {
+                    ReuniaoUtils.mostrarAvisoDialogo(this, "Forneça o Local da reunião");
+                    return;
+                } else if ("".equals(txtDescricao.getText().toString())) {
+                    ReuniaoUtils.mostrarAvisoDialogo(this, "Forneça a Descriçao da reunião");
+                    return;
+                }
+
                 String horaInicio = txtDataInicio.getText().toString() + " " + txtHoraInicio.getText().toString();
                 String horaTermino = txtDataTermino.getText().toString() + " " + txtHoraTermino.getText().toString();
+
+                DateTime dtInicio = new DateTime(ReuniaoUtils.stringToDate(horaInicio));
+                DateTime dtTermino = new DateTime(ReuniaoUtils.stringToDate(horaTermino));
+
+                if (dtInicio.isEqual(dtTermino)) {
+                    ReuniaoUtils.mostrarAvisoDialogo(this, "A data e o horário de inicio e término devem ser diferentes");
+                    return;
+                } else if (dtInicio.isAfter(dtTermino)) {
+                    ReuniaoUtils.mostrarAvisoDialogo(this, "A data de inicio deve ser menor que a data de término");
+                    return;
+                }
 
                 ReuniaoVO r = new ReuniaoVO();
                 r.setAssunto(txtAssunto.getText().toString());

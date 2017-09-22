@@ -22,19 +22,14 @@ public class ReuniaoNotificacaoActivity extends AppCompatActivity implements Vie
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reuniao_notificacao);
-        //TODO COLOCAR O BACKBUTTON NESSA TELA
         lblMensagem = (TextView) findViewById(R.id.lblMensagem);
         btnWaze = (Button) findViewById(R.id.btnWaze);
         btnWaze.setOnClickListener(ReuniaoNotificacaoActivity.this);
         Integer tempoRestante = Integer.parseInt(String.valueOf(getIntent().getExtras().get(Constants.TEMPO_RESTANTE)));
         local = (String) getIntent().getExtras().get(Constants.LOCAL);
+        String mensagem = (String) getIntent().getExtras().get(Constants.MENSAGEM);
 
-        String hora = Constants.HORA_SINGULAR;
-        if(tempoRestante > 1){
-            hora = Constants.HORA_PLURAL;
-        }
-
-        lblMensagem.setText(Constants.MENSAGEM_REUNIAO + tempoRestante + " " + hora);
+        lblMensagem.setText(mensagem);
 
     }
 

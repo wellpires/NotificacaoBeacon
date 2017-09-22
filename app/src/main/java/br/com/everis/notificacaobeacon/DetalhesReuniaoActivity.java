@@ -31,6 +31,9 @@ public class DetalhesReuniaoActivity extends AppCompatActivity {
         lblInformacoes = (TextView) findViewById(R.id.lblInformacoes);
 
         ReuniaoVO vo = ((GlobalClass) getApplicationContext()).getReuniaoVO();
+        if(vo == null){
+            return;
+        }
 
         Minutes minutos = null;
         DateTime dtTermino = null;
@@ -40,7 +43,6 @@ public class DetalhesReuniaoActivity extends AppCompatActivity {
             dtTermino = new DateTime(ReuniaoUtils.stringToDate(vo.getHoraTermino()));
 
             minutos = Minutes.minutesBetween(dtHoje, dtInicio);
-
 
         } catch (ParseException e) {
             e.printStackTrace();

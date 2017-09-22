@@ -1,6 +1,5 @@
 package br.com.everis.notificacaobeacon.service;
 
-import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
@@ -8,30 +7,22 @@ import android.app.TaskStackBuilder;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.NotificationCompat;
 import android.util.Log;
 
-import org.altbeacon.beacon.Beacon;
-import org.altbeacon.beacon.BeaconConsumer;
 import org.altbeacon.beacon.BeaconManager;
 import org.altbeacon.beacon.BeaconParser;
 import org.altbeacon.beacon.Identifier;
-import org.altbeacon.beacon.MonitorNotifier;
-import org.altbeacon.beacon.RangeNotifier;
 import org.altbeacon.beacon.Region;
 import org.altbeacon.beacon.startup.BootstrapNotifier;
 import org.altbeacon.beacon.startup.RegionBootstrap;
 import org.joda.time.DateTime;
-import org.joda.time.Days;
-import org.joda.time.Hours;
+import org.joda.time.Minutes;
 
-import java.nio.charset.MalformedInputException;
-import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -54,6 +45,13 @@ public class NotificacaoBeaconService extends Service implements BootstrapNotifi
 
     private DBAdapter datasource = null;
 
+    private Thread threadNotificacao = null;
+
+    private boolean pararWhileTrue = false;
+
+
+    private FloatingActionButton fabNotificacaoReuniao = null;
+
     public NotificacaoBeaconService() {
     }
 
@@ -75,6 +73,8 @@ public class NotificacaoBeaconService extends Service implements BootstrapNotifi
         } catch (RemoteException e) {
             e.printStackTrace();
         }
+
+        //====================
 
         regionBootstrap = new RegionBootstrap(this, region);
 
@@ -113,14 +113,16 @@ public class NotificacaoBeaconService extends Service implements BootstrapNotifi
 
                             DateTime dtHoje = new DateTime(new Date());
                             DateTime dtInicio = new DateTime(ReuniaoUtils.stringToDate(vo.getHoraInicio()));
+                            Minutes m = Minutes.minutesBetween(dtHoje, dtInicio);
 
-                            Hours h = Hours.hoursBetween(dtHoje, dtInicio);
-
-                            if (h.getHours() == 1) {
+                            if (m.getMinutes() <= 60 && m.getMinutes() > 0) {
                                 final GlobalClass globalVariable = (GlobalClass) getApplicationContext();
                                 globalVariable.setReuniaoVO(vo);
-                                notificacaoReuniao(vo, h.getHours());
-                                break; //TODO MELHORAMENTO: FAZER COM QUE APAREÇA NOTIFICAÇÕES PARA SE CASO TIVER VÁRIAS REUNIÕES POR DIA.
+                                notificacaoReuniao(vo, m.getMinutes());
+                                break;
+                                //TODO MELHORAMENTO: FAZER COM QUE APAREÇA NOTIFICAÇÕES PARA SE CASO TIVER VÁRIAS REUNIÕES POR DIA.
+                            } else if (m.getMinutes() == 0) {
+
                             }
 
                         }
@@ -149,29 +151,64 @@ public class NotificacaoBeaconService extends Service implements BootstrapNotifi
     public void didEnterRegion(Region region) {
         Log.d(TAG, "Got a didEnterRegion call");
         Log.i(TAG, "Beacon: " + region.getBluetoothAddress());
+        pararWhileTrue = false;
 
-        Intent intent = new Intent(getApplicationContext(), NotificacaoMainActivity.class);
-        TaskStackBuilder stackBuilder = TaskStackBuilder.create(getApplicationContext());
-        stackBuilder.addParentStack(NotificacaoMainActivity.class);
-        stackBuilder.addNextIntent(intent);
-        Intent intentEmailView = new Intent(getApplicationContext(), DetalhesReuniaoActivity.class);
-        stackBuilder.addNextIntent(intentEmailView);
-        PendingIntent pendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+        threadNotificacao = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
+                    if (pararWhileTrue) {
+                        return;
+                    }
+                    try {
+                        Thread.sleep(5000);
+                        GlobalClass gc = (GlobalClass) getApplicationContext();
+                        if (gc.getReuniaoVO() != null || (gc.getReuniaoAcontecendo() != null && gc.getReuniaoAcontecendo() != false)) {
+                            if (!ReuniaoUtils.isNotificacaoAtiva(getApplicationContext(), Constants.ID_BEM_VINDO_REUNIAO)) {
+                                final GlobalClass globalVariable = (GlobalClass) getApplicationContext();
+                                globalVariable.setReuniaoAcontecendo(true);
+                                Intent intent = new Intent(getApplicationContext(), NotificacaoMainActivity.class);
+                                TaskStackBuilder stackBuilder = TaskStackBuilder.create(getApplicationContext());
+                                stackBuilder.addParentStack(NotificacaoMainActivity.class);
+                                stackBuilder.addNextIntent(intent);
+                                Intent intentEmailView = new Intent(getApplicationContext(), DetalhesReuniaoActivity.class);
+                                stackBuilder.addNextIntent(intentEmailView);
+                                PendingIntent pendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
 
-        NotificationCompat.Builder mBuilder = (NotificationCompat.Builder) new NotificationCompat.Builder(getApplicationContext())
-                .setSmallIcon(R.drawable.ic_menu_manage)
-                .setContentTitle("Bem vindo á Everis!")
-                .setContentText("Toque para ver detalhes da reunião.")
-                .setContentIntent(pendingIntent);
-        NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        mNotificationManager.notify(0, mBuilder.build());
+                                NotificationCompat.Builder mBuilder = (NotificationCompat.Builder) new NotificationCompat.Builder(getApplicationContext())
+                                        .setSmallIcon(R.mipmap.keditbookmarks)
+                                        .setContentTitle(Constants.BEM_VINDO)
+                                        .setContentText(Constants.CONTINUACAO_BEM_VINDO)
+                                        .setContentIntent(pendingIntent);
+                                NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                                mNotificationManager.notify(Constants.ID_BEM_VINDO_REUNIAO, mBuilder.build());
+                            }
 
+                        }
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+
+        threadNotificacao.start();
+
+        Log.d(TAG, "Thread ID: " + threadNotificacao.getId());
     }
 
     @Override
     public void didExitRegion(Region region) {
         Log.d(TAG, "Got a didExitRegion call");
-        //TODO APAGAR A NOTIFICAÇÃO QUANDO SAIR DA REGIÃO DO BEACON
+        Log.d(TAG, "Thread ID: " + threadNotificacao.getId());
+        pararWhileTrue = true;
+        final GlobalClass globalVariable = (GlobalClass) getApplicationContext();
+        globalVariable.setReuniaoAcontecendo(false);
+        if (threadNotificacao != null) {
+            threadNotificacao.interrupt();
+        }
+        NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        mNotificationManager.cancel(Constants.ID_BEM_VINDO_REUNIAO);
     }
 
     @Override
@@ -179,15 +216,26 @@ public class NotificacaoBeaconService extends Service implements BootstrapNotifi
 
     }
 
-    private void notificacaoReuniao(ReuniaoVO vo, int qtdeHoras) {
+    private void notificacaoReuniao(ReuniaoVO vo, int qtdeMinutos) {
+
+        int horas = qtdeMinutos / 60;
+        int minutos = qtdeMinutos % 60;
+        String mensagem = Constants.MENSAGEM_REUNIAO;
+
+        if (horas == 0) {
+            mensagem += ReuniaoUtils.zeroAEsquerda(minutos) + ReuniaoUtils.pluralString(minutos, " minuto");
+        } else if (horas > 0) {
+            mensagem += ReuniaoUtils.zeroAEsquerda(horas) + ReuniaoUtils.pluralString(horas, " hora");
+        }
 
         NotificationCompat.Builder mBuilder = (NotificationCompat.Builder) new NotificationCompat.Builder(getApplicationContext())
-                .setSmallIcon(R.drawable.ic_menu_manage)
+                .setSmallIcon(R.mipmap.stock_new_meeting)
                 .setContentTitle(Constants.REUNIAO)
-                .setContentText("Sua reunião vai começar em " + qtdeHoras + " hora");
+                .setContentText(mensagem);
 
         Intent intent = new Intent(getApplicationContext(), ReuniaoNotificacaoActivity.class);
-        intent.putExtra(Constants.TEMPO_RESTANTE, qtdeHoras);
+        intent.putExtra(Constants.TEMPO_RESTANTE, qtdeMinutos);
+        intent.putExtra(Constants.MENSAGEM, mensagem);
         intent.putExtra(Constants.LOCAL, vo.getLocal());
 
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(getApplicationContext());
@@ -196,9 +244,8 @@ public class NotificacaoBeaconService extends Service implements BootstrapNotifi
         PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
         mBuilder.setContentIntent(resultPendingIntent);
         NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        mNotificationManager.notify(1, mBuilder.build());
+        mNotificationManager.notify(Constants.ID_NOTIFICACAO_REUNIAO, mBuilder.build());
 
     }
-
 
 }

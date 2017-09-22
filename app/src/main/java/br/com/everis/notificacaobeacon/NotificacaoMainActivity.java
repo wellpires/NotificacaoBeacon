@@ -1,10 +1,20 @@
 package br.com.everis.notificacaobeacon;
 
+import android.*;
+import android.Manifest;
+import android.bluetooth.BluetoothAdapter;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.graphics.drawable.Icon;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SimpleCursorAdapter;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,12 +24,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
 
+import br.com.everis.notificacaobeacon.adapter.ReuniaoAdapter;
 import br.com.everis.notificacaobeacon.bd.DBAdapter;
 import br.com.everis.notificacaobeacon.bd.DBHelper;
+import br.com.everis.notificacaobeacon.bd.model.ReuniaoVO;
 import br.com.everis.notificacaobeacon.service.NotificacaoBeaconService;
+import br.com.everis.notificacaobeacon.utils.Constants;
+import br.com.everis.notificacaobeacon.utils.GlobalClass;
+import br.com.everis.notificacaobeacon.utils.ReuniaoUtils;
 
 public class NotificacaoMainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
@@ -30,17 +48,32 @@ public class NotificacaoMainActivity extends AppCompatActivity
     private FloatingActionButton fabNovaReuniao = null;
     private FloatingActionButton fabNotificacaoReuniao = null;
 
-    private ListAdapter reunioesAdapter = null;
+    private ListView lvReunioes = null;
 
     private DBAdapter datasource = null;
 
+    static final int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //TODO PROCURAR UMA FORMA DE IMPLEMENTAR UMA FORMA DE PERMISSÃO DO ANDROID PELO CÓDIGO
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notificacao_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                    MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
+
+        }
+
+        BluetoothAdapter bluetooth = BluetoothAdapter.getDefaultAdapter();
+        bluetooth.enable();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -57,19 +90,32 @@ public class NotificacaoMainActivity extends AppCompatActivity
         fabNotificacaoReuniao = (FloatingActionButton) findViewById(R.id.fabBell);
         fabNotificacaoReuniao.setOnClickListener(this);
 
+        lvReunioes = (ListView) findViewById(R.id.lvReunioes);
+
+        // ========== SININHO ==========
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                final GlobalClass globalVariable = (GlobalClass) getApplicationContext();
+                if (globalVariable.getReuniaoAcontecendo()) {
+                    fabNotificacaoReuniao.setImageResource(R.mipmap.bell_star);
+                } else {
+                    fabNotificacaoReuniao.setImageResource(R.mipmap.bell);
+                }
+            }
+        });
+
         // ========== START SERVICE ==========
         Intent i = new Intent(NotificacaoMainActivity.this, NotificacaoBeaconService.class);
         startService(i);
         //===========================================
 
-        datasource = new DBAdapter(this);
+        datasource = new DBAdapter(getApplicationContext());
         datasource.open();
         Cursor cursor = datasource.getReuniao();
+        ReuniaoAdapter adapter = new ReuniaoAdapter(ReuniaoUtils.cursorToList(cursor), this);
 
-        String[] colunas = new String[]{"Assunto", "Horario de Inicio"};
-        int[] row = new int[]{R.id.nome, R.id.telefone};
-
-
+        lvReunioes.setAdapter(adapter);
 
     }
 
@@ -133,12 +179,17 @@ public class NotificacaoMainActivity extends AppCompatActivity
     @Override
     public void onClick(View view) {
 
-
         if (view.getId() == R.id.fab) {
             Intent i = new Intent(getApplicationContext(), AdicionarReuniaoActivity.class);
             startActivity(i);
-        } else if(view.getId() == R.id.fabBell){
-
+        } else if (view.getId() == R.id.fabBell) {
+            final GlobalClass globalVariable = (GlobalClass) getApplicationContext();
+            if (globalVariable.getReuniaoAcontecendo()) {
+                Intent i = new Intent(getApplicationContext(), DetalhesReuniaoActivity.class);
+                startActivity(i);
+            } else {
+                Toast.makeText(this, Constants.SEM_REUNIAO_ATUAL, Toast.LENGTH_LONG).show();
+            }
         }
     }
 
