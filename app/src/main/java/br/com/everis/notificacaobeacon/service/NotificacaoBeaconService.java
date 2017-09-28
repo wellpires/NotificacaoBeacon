@@ -89,7 +89,7 @@ public class NotificacaoBeaconService extends Service implements BootstrapNotifi
                         List<ReuniaoVO> lstReunioes = new ArrayList<>();
                         datasource = new DBAdapter(getApplicationContext());
                         datasource.open();
-                        Cursor c = datasource.getReuniao();
+                        Cursor c = datasource.getReunioes();
                         c.moveToFirst();
                         while (c.isAfterLast() == false) {
 

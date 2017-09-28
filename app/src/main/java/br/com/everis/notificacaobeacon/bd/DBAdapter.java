@@ -85,7 +85,7 @@ public class DBAdapter {
 
     }
 
-    public Cursor getReuniao() {
+    public Cursor getReunioes() {
         Cursor c = database.rawQuery("SELECT " +
                 DBHelper.COLUMN_ID + ", " +
                 DBHelper.COLUMN_ASSUNTO + ", " +
@@ -99,7 +99,7 @@ public class DBAdapter {
         return c;
     }
 
-    public ReuniaoVO getReuniao(int idReuniao) throws ParseException {
+    public ReuniaoVO getReunioes(int idReuniao) throws ParseException {
         Cursor c = database.query(DBHelper.TABLE_NAME,allColumns,DBHelper.COLUMN_ID + " = " + idReuniao, null, null, null, null);
         c.moveToFirst();
         return cursorParaReuniao(c);

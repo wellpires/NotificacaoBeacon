@@ -19,7 +19,46 @@
     <string msgid="3421042268587513524" name="abc_shareactionprovider_share_with">"Trimiteți la"</string>
     <string msgid="7165123711973476752" name="abc_shareactionprovider_share_with_application">"Trimiteți la %s"</string>
     <string msgid="1603543279005712093" name="abc_toolbar_collapse_description">"Restrângeți"</string>
+    <string msgid="5319032370587661362" name="cast_notification_connected_message">"Conectat la <ns1:g id="NAME">%1$s</ns1:g>"</string>
+    <string msgid="2758865089947797888" name="cast_notification_connecting_message">"Se conectează la <ns1:g id="NAME">%1$s</ns1:g>"</string>
+    <string msgid="5232008641593292969" name="cast_notification_disconnect">"Deconectați"</string>
+    <string msgid="8585111718777012708" name="common_google_play_services_enable_button">"Activați"</string>
+    <string msgid="7045129128108380659" name="common_google_play_services_enable_text">"<ns1:g id="APP_NAME">%1$s</ns1:g> nu va funcționa decât dacă activați serviciile Google Play."</string>
+    <string msgid="3147157405986503375" name="common_google_play_services_enable_title">"Activați serviciile Google Play"</string>
+    <string msgid="9115728400623041681" name="common_google_play_services_install_button">"Instalați"</string>
+    <string msgid="8179894293032530091" name="common_google_play_services_install_text">"<ns1:g id="APP_NAME">%1$s</ns1:g> nu va rula fără serviciile Google Play, care lipsesc de pe dispozitivul dvs."</string>
+    <string msgid="7442193194585196676" name="common_google_play_services_install_title">"Descărcați serviciile Google Play"</string>
+    <string msgid="180394615667698242" name="common_google_play_services_notification_ticker">"Eroare a serviciilor Google Play"</string>
     <string msgid="2518680582564677258" name="common_google_play_services_unknown_issue">"<ns1:g id="APP_NAME">%1$s</ns1:g> întâmpină probleme privind serviciile Google Play. Încercați din nou."</string>
+    <string msgid="5501187292256987189" name="common_google_play_services_unsupported_text">"<ns1:g id="APP_NAME">%1$s</ns1:g> nu va rula fără serviciile Google Play, care nu sunt acceptate de dispozitivul dvs."</string>
+    <string msgid="8172070149091615356" name="common_google_play_services_update_button">"Actualizați"</string>
+    <string msgid="7773943415006962566" name="common_google_play_services_update_text">"<ns1:g id="APP_NAME">%1$s</ns1:g> nu va rula decât dacă actualizați serviciile Google Play."</string>
+    <string msgid="8706675115216073244" name="common_google_play_services_update_title">"Actualizați serviciile Google Play"</string>
+    <string msgid="7894275749778928941" name="common_google_play_services_updating_text">"<ns1:g id="APP_NAME">%1$s</ns1:g> nu va rula fără serviciile Google Play, care momentan se actualizează."</string>
+    <string msgid="2804989272736383918" name="common_google_play_services_wear_update_text">"Este necesară o nouă versiune a serviciilor Google Play. Se vor actualiza automat în curând."</string>
+    <string msgid="5201977337835724196" name="common_open_on_phone">"Deschideți pe telefon"</string>
+    <string msgid="3441753203274453993" name="common_signin_button_text">"Conectați-vă"</string>
+    <string msgid="669893613918351210" name="common_signin_button_text_long">"Conectați-vă cu Google"</string>
+    <string msgid="3698378085901466129" name="mr_button_content_description">"Butonul de proiecție"</string>
+    <string msgid="5088427771788648085" name="mr_cast_button_connected">"Butonul de proiecție. Conectat"</string>
+    <string msgid="2187642765091873834" name="mr_cast_button_connecting">"Butonul de proiecție. Se conectează"</string>
+    <string msgid="816305490427819240" name="mr_cast_button_disconnected">"Butonul de proiecție. Deconectat"</string>
+    <string msgid="6349900579507521956" name="mr_chooser_searching">"Se caută dispozitive"</string>
+    <string msgid="414301941546135990" name="mr_chooser_title">"Proiectați pe"</string>
+    <string msgid="6422801843540543585" name="mr_controller_album_art">"Grafica albumului"</string>
+    <string msgid="4868457957151124867" name="mr_controller_casting_screen">"Se proiectează ecranul"</string>
+    <string msgid="7333862312480583260" name="mr_controller_close_description">"Închideți"</string>
+    <string msgid="7924809056904240926" name="mr_controller_collapse_group">"Restrângeți"</string>
+    <string msgid="1227264889412989580" name="mr_controller_disconnect">"Deconectați-vă"</string>
+    <string msgid="8062427022744266907" name="mr_controller_expand_group">"Extindeți"</string>
+    <string msgid="5585418471741142924" name="mr_controller_no_info_available">"Nu sunt disponibile informații"</string>
+    <string msgid="6547130360349182381" name="mr_controller_no_media_selected">"Niciun fișier media selectat"</string>
+    <string msgid="5451884435510905406" name="mr_controller_pause">"Întrerupeți"</string>
+    <string msgid="683634565969987458" name="mr_controller_play">"Redați"</string>
+    <string msgid="4570331844078181931" name="mr_controller_stop">"Opriți proiecția"</string>
+    <string msgid="2361785992211841709" name="mr_controller_volume_slider">"Glisor pentru volum"</string>
+    <string msgid="5441529851481176817" name="mr_system_route_name">"Sistem"</string>
+    <string msgid="7498112907524977311" name="mr_user_route_category_name">"Dispozitive"</string>
     <string msgid="146198913615257606" name="search_menu_title">"Căutați"</string>
     <string msgid="2869576371154716097" name="status_bar_notification_info_overflow">"˃999"</string>
 </resources>

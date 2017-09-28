@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal"
@@ -8,10 +8,8 @@
 
     <TextView
         android:id="@+id/lblAssunto"
-        android:layout_width="368dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="4dp"
+        android:layout_width="327dp"
+        android:layout_height="29dp"
         android:text="Large Text"
         android:textColor="@android:color/black"
         android:textSize="24sp"
@@ -19,21 +17,30 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_constraintLeft_creator="1"
-        tools:layout_constraintTop_creator="1" />
+        tools:layout_constraintTop_creator="1"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp" />
 
     <TextView
         android:id="@+id/lblHorario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="0dp"
         android:text="Large Text"
         android:textAppearance="?android:attr/textAppearanceLarge"
         app:layout_constraintLeft_toLeftOf="@+id/lblAssunto"
         app:layout_constraintTop_toBottomOf="@+id/lblAssunto"
         tools:layout_constraintLeft_creator="1"
-        tools:layout_constraintTop_creator="1"
-        android:layout_marginTop="5dp"
-        android:layout_below="@+id/lblAssunto"
-        android:layout_alignStart="@+id/lblAssunto" />
+        tools:layout_constraintTop_creator="1" />
 
-</RelativeLayout>
+    <ImageButton
+        android:id="@+id/imgBtnMaisOpcoes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="showMenu"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/lblAssunto"
+        app:srcCompat="@mipmap/ic_action_more_vert"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintTop_creator="1" />
+
+</android.support.constraint.ConstraintLayout>

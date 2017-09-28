@@ -11,4 +11,9 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="item_edit_label">Editar</string>
+    <string name="item_delete_label">Excluir</string>
+
+    <string name="google_android_map_api_key">AIzaSyDolaITfO1wAceu9vAbC4zD10O8ibw3FPg</string>
+
 </resources>

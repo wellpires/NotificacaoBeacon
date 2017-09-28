@@ -1,20 +1,16 @@
 package br.com.everis.notificacaobeacon;
 
-import android.*;
 import android.Manifest;
 import android.bluetooth.BluetoothAdapter;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.graphics.drawable.Icon;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.widget.SimpleCursorAdapter;
-import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.PopupMenu;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -24,23 +20,29 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
+import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import org.joda.time.DateTime;
+
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 import br.com.everis.notificacaobeacon.adapter.ReuniaoAdapter;
 import br.com.everis.notificacaobeacon.bd.DBAdapter;
-import br.com.everis.notificacaobeacon.bd.DBHelper;
 import br.com.everis.notificacaobeacon.bd.model.ReuniaoVO;
 import br.com.everis.notificacaobeacon.service.NotificacaoBeaconService;
 import br.com.everis.notificacaobeacon.utils.Constants;
 import br.com.everis.notificacaobeacon.utils.GlobalClass;
 import br.com.everis.notificacaobeacon.utils.ReuniaoUtils;
+import br.com.everis.notificacaobeacon.utils.UpdateGUI;
 
 public class NotificacaoMainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
+        implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener, AdapterView.OnItemClickListener {
 
     private Button btnEnviar = null;
     private Button btnBeacon = null;
@@ -91,31 +93,17 @@ public class NotificacaoMainActivity extends AppCompatActivity
         fabNotificacaoReuniao.setOnClickListener(this);
 
         lvReunioes = (ListView) findViewById(R.id.lvReunioes);
+        lvReunioes.setOnItemClickListener(this);
 
         // ========== SININHO ==========
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                final GlobalClass globalVariable = (GlobalClass) getApplicationContext();
-                if (globalVariable.getReuniaoAcontecendo()) {
-                    fabNotificacaoReuniao.setImageResource(R.mipmap.bell_star);
-                } else {
-                    fabNotificacaoReuniao.setImageResource(R.mipmap.bell);
-                }
-            }
-        });
-
+        UpdateGUI updateBell = new UpdateGUI(this, 1);
+        updateBell.run();
         // ========== START SERVICE ==========
         Intent i = new Intent(NotificacaoMainActivity.this, NotificacaoBeaconService.class);
         startService(i);
         //===========================================
 
-        datasource = new DBAdapter(getApplicationContext());
-        datasource.open();
-        Cursor cursor = datasource.getReuniao();
-        ReuniaoAdapter adapter = new ReuniaoAdapter(ReuniaoUtils.cursorToList(cursor), this);
-
-        lvReunioes.setAdapter(adapter);
+        listarReunioes();
 
     }
 
@@ -190,6 +178,63 @@ public class NotificacaoMainActivity extends AppCompatActivity
             } else {
                 Toast.makeText(this, Constants.SEM_REUNIAO_ATUAL, Toast.LENGTH_LONG).show();
             }
+        }
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        PopupMenu popupMenu = new PopupMenu(NotificacaoMainActivity.this, view);
+        popupMenu.getMenuInflater().inflate(R.menu.item_menu, popupMenu.getMenu());
+        popupMenu.show();
+    }
+
+    public void showMenu(final View view) {
+        PopupMenu menu = new PopupMenu(this, view);
+        menu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                if (item.getItemId() == R.id.edit_item) {
+                    Toast.makeText(NotificacaoMainActivity.this, "EDITANDO", Toast.LENGTH_LONG).show();
+                } else if (item.getItemId() == R.id.delete_item) {
+                    ReuniaoUtils.mostrarPerguntaDialogo(NotificacaoMainActivity.this, "Você tem certeza?", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            int id = Integer.parseInt(view.getTag().toString());
+                            datasource = new DBAdapter(getApplicationContext());
+                            datasource.open();
+                            datasource.deleteReuniao(id);
+                            datasource.close();
+                            listarReunioes();
+                        }
+                    });
+                }
+                return true;
+            }
+        });
+        menu.inflate(R.menu.item_menu);
+        menu.show();
+    }
+
+    private void listarReunioes() {
+        try {
+            datasource = new DBAdapter(getApplicationContext());
+            datasource.open();
+            Cursor cursor = datasource.getReunioes();
+            List<ReuniaoVO> reunioes = ReuniaoUtils.cursorToList(cursor);
+            List<ReuniaoVO> reunioesFiltradas = new ArrayList<>();
+            for (ReuniaoVO vo : reunioes) {
+                DateTime dtInicio = new DateTime(ReuniaoUtils.stringToDate(vo.getHoraInicio()));
+                DateTime dtHoje = new DateTime(new Date());
+                if (dtInicio.isAfter(dtHoje) || dtInicio.isAfterNow()) {
+                    reunioesFiltradas.add(vo);
+                }
+            }
+
+            ReuniaoAdapter adapter = new ReuniaoAdapter(reunioesFiltradas, this);
+
+            lvReunioes.setAdapter(adapter);
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
     }
 

@@ -28,6 +28,10 @@
             android:enabled="true"
             android:exported="true" />
 
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_android_map_api_key" />
+
         <activity
             android:name=".NotificacaoMainActivity"
             android:label="@string/app_name"

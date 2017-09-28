@@ -1,11 +1,14 @@
 package br.com.everis.notificacaobeacon.utils;
 
+import android.app.Dialog;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.service.notification.StatusBarNotification;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.NotificationCompat;
+import android.view.View;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -83,6 +86,16 @@ public class ReuniaoUtils {
         dlg.setTitle(Constants.TITULO_APP);
         dlg.setMessage(message);
         dlg.setNeutralButton(Constants.LABEL_OK, null);
+        dlg.show();
+    }
+
+    public static void mostrarPerguntaDialogo(Context context, String message, DialogInterface.OnClickListener eventoSim){
+        AlertDialog.Builder dlg = new AlertDialog.Builder(context);
+        dlg.setTitle(Constants.TITULO_APP);
+        dlg.setMessage(message);
+        dlg.setNeutralButton(Constants.LABEL_OK, null);
+        dlg.setPositiveButton(Constants.LABEL_SIM, eventoSim);
+        dlg.setNegativeButton(Constants.LABEL_NAO, null);
         dlg.show();
     }
 
