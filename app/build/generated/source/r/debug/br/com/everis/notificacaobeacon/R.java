@@ -3747,7 +3747,6 @@ containing a value of this type.
         public static final int fill_horizontal=0x7f0e003f;
         public static final int fill_vertical=0x7f0e0035;
         public static final int fixed=0x7f0e0052;
-        public static final int gridLayout=0x7f0e00e2;
         public static final int home=0x7f0e0005;
         public static final int homeAsUp=0x7f0e001e;
         public static final int hybrid=0x7f0e0045;
@@ -3772,6 +3771,7 @@ containing a value of this type.
         public static final int light=0x7f0e0051;
         public static final int line1=0x7f0e00dd;
         public static final int line3=0x7f0e00df;
+        public static final int linearLayout=0x7f0e00e2;
         public static final int listMode=0x7f0e001a;
         public static final int list_item=0x7f0e005b;
         public static final int lvReunioes=0x7f0e009b;
