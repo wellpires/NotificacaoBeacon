@@ -3686,7 +3686,7 @@ containing a value of this type.
         public static final int action_mode_bar=0x7f0e0074;
         public static final int action_mode_bar_stub=0x7f0e0073;
         public static final int action_mode_close_button=0x7f0e0056;
-        public static final int action_settings=0x7f0e00ec;
+        public static final int action_settings=0x7f0e00ed;
         public static final int action_text=0x7f0e00cd;
         public static final int actions=0x7f0e00da;
         public static final int activity_chooser_view_content=0x7f0e0057;
@@ -3724,7 +3724,7 @@ containing a value of this type.
         public static final int dark=0x7f0e0050;
         public static final int decor_content_parent=0x7f0e0075;
         public static final int default_activity_button=0x7f0e005a;
-        public static final int delete_item=0x7f0e00eb;
+        public static final int delete_item=0x7f0e00ec;
         public static final int design_bottom_sheet=0x7f0e00a6;
         public static final int design_menu_item_action_area=0x7f0e00ad;
         public static final int design_menu_item_action_area_stub=0x7f0e00ac;
@@ -3732,7 +3732,7 @@ containing a value of this type.
         public static final int design_navigation_view=0x7f0e00aa;
         public static final int disableHome=0x7f0e001d;
         public static final int drawer_layout=0x7f0e0091;
-        public static final int edit_item=0x7f0e00ea;
+        public static final int edit_item=0x7f0e00eb;
         public static final int edit_query=0x7f0e0079;
         public static final int end=0x7f0e0034;
         public static final int end_padder=0x7f0e00e1;
@@ -3747,6 +3747,7 @@ containing a value of this type.
         public static final int fill_horizontal=0x7f0e003f;
         public static final int fill_vertical=0x7f0e0035;
         public static final int fixed=0x7f0e0052;
+        public static final int gridLayout=0x7f0e00e2;
         public static final int home=0x7f0e0005;
         public static final int homeAsUp=0x7f0e001e;
         public static final int hybrid=0x7f0e0045;
@@ -3756,13 +3757,13 @@ containing a value of this type.
         public static final int ifRoom=0x7f0e004a;
         public static final int image=0x7f0e0059;
         public static final int imageView=0x7f0e00c9;
-        public static final int imgBtnMaisOpcoes=0x7f0e00e3;
+        public static final int imgBtnExcluir=0x7f0e00e4;
         public static final int include=0x7f0e0097;
         public static final int info=0x7f0e00d8;
         public static final int item_touch_helper_previous_elevation=0x7f0e0006;
         public static final int largeLabel=0x7f0e00a4;
         public static final int lblAssunto=0x7f0e0087;
-        public static final int lblHorario=0x7f0e00e2;
+        public static final int lblHorario=0x7f0e00e3;
         public static final int lblInformacoes=0x7f0e009a;
         public static final int lblMensagem=0x7f0e0094;
         public static final int lblOlaFulano=0x7f0e0099;
@@ -3774,7 +3775,7 @@ containing a value of this type.
         public static final int listMode=0x7f0e001a;
         public static final int list_item=0x7f0e005b;
         public static final int lvReunioes=0x7f0e009b;
-        public static final int masked=0x7f0e00e5;
+        public static final int masked=0x7f0e00e6;
         public static final int media_actions=0x7f0e00d1;
         public static final int middle=0x7f0e0042;
         public static final int mini=0x7f0e0040;
@@ -3805,15 +3806,15 @@ containing a value of this type.
         public static final int mr_volume_slider=0x7f0e00c3;
         public static final int multiply=0x7f0e0029;
         public static final int mvMapa=0x7f0e00a2;
-        public static final int nav_camera=0x7f0e00e6;
-        public static final int nav_gallery=0x7f0e00e7;
-        public static final int nav_manage=0x7f0e00e9;
-        public static final int nav_slideshow=0x7f0e00e8;
+        public static final int nav_camera=0x7f0e00e7;
+        public static final int nav_gallery=0x7f0e00e8;
+        public static final int nav_manage=0x7f0e00ea;
+        public static final int nav_slideshow=0x7f0e00e9;
         public static final int nav_view=0x7f0e0092;
-        public static final int navigation_dashboard=0x7f0e00ee;
+        public static final int navigation_dashboard=0x7f0e00ef;
         public static final int navigation_header_container=0x7f0e00a9;
-        public static final int navigation_home=0x7f0e00ed;
-        public static final int navigation_notifications=0x7f0e00ef;
+        public static final int navigation_home=0x7f0e00ee;
+        public static final int navigation_notifications=0x7f0e00f0;
         public static final int never=0x7f0e004b;
         public static final int none=0x7f0e0019;
         public static final int normal=0x7f0e001b;
@@ -3903,7 +3904,7 @@ containing a value of this type.
         public static final int up=0x7f0e000f;
         public static final int useLogo=0x7f0e0022;
         public static final int view_offset_helper=0x7f0e0010;
-        public static final int visible=0x7f0e00e4;
+        public static final int visible=0x7f0e00e5;
         public static final int volume_item_container=0x7f0e00c1;
         public static final int wide=0x7f0e004f;
         public static final int withText=0x7f0e004c;
@@ -4022,10 +4023,11 @@ containing a value of this type.
         public static final int ic_action_more_vert=0x7f030002;
         public static final int ic_launcher=0x7f030003;
         public static final int ic_launcher_round=0x7f030004;
-        public static final int icones_everis=0x7f030005;
-        public static final int keditbookmarks=0x7f030006;
-        public static final int list_add=0x7f030007;
-        public static final int stock_new_meeting=0x7f030008;
+        public static final int ic_trash_can=0x7f030005;
+        public static final int icones_everis=0x7f030006;
+        public static final int keditbookmarks=0x7f030007;
+        public static final int list_add=0x7f030008;
+        public static final int stock_new_meeting=0x7f030009;
     }
     public static final class string {
         public static final int abc_action_bar_home_description=0x7f080000;

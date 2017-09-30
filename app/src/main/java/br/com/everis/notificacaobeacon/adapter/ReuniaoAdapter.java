@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.text.ParseException;
@@ -52,7 +53,9 @@ public class ReuniaoAdapter extends BaseAdapter {
 
             TextView lblAssunto = (TextView) view.findViewById(R.id.lblAssunto);
             TextView lblHorario = (TextView) view.findViewById(R.id.lblHorario);
-            view.findViewById(R.id.imgBtnMaisOpcoes).setTag(vo.getId());
+            ImageButton imgBtnExcluir = (ImageButton) view.findViewById(R.id.imgBtnExcluir);
+            imgBtnExcluir.setTag(vo.getId());
+            view.setTag(vo.getId());
 
             Date horaInicio = ReuniaoUtils.stringToDateTime(vo.getHoraInicio());
             Date horaTermino = ReuniaoUtils.stringToDateTime(vo.getHoraTermino());

@@ -22,6 +22,7 @@ import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -164,7 +165,7 @@ public class NotificacaoMainActivity extends AppCompatActivity
     }
 
     @Override
-    public void onClick(View view) {
+    public void onClick(final View view) {
 
         if (view.getId() == R.id.fab) {
             Intent i = new Intent(getApplicationContext(), AdicionarReuniaoActivity.class);
@@ -182,13 +183,20 @@ public class NotificacaoMainActivity extends AppCompatActivity
     }
 
     @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        PopupMenu popupMenu = new PopupMenu(NotificacaoMainActivity.this, view);
-        popupMenu.getMenuInflater().inflate(R.menu.item_menu, popupMenu.getMenu());
-        popupMenu.show();
-    }
+    public void onItemClick(AdapterView<?> adapterView, final View view, int i, long l) {
 
-    public void showMenu(final View view) {
+        ImageButton imgBtnExcluir = (ImageButton) view.findViewById(R.id.imgBtnExcluir);
+        imgBtnExcluir.setOnClickListener(this);
+
+        Intent intent = new Intent(NotificacaoMainActivity.this,AdicionarReuniaoActivity.class);
+        intent.putExtra(Constants.ID_REUNIAO_KEY, view.getTag().toString());
+        intent.putExtra(Constants.NOVA_REUNIAO_KEY, false);
+        startActivity(intent);
+
+        if(1 == 1){
+            return;
+        }
+
         PopupMenu menu = new PopupMenu(this, view);
         menu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
@@ -217,6 +225,28 @@ public class NotificacaoMainActivity extends AppCompatActivity
         });
         menu.inflate(R.menu.item_menu);
         menu.show();
+
+    }
+
+    public void alterarRegistro(View view){
+        Intent i = new Intent(NotificacaoMainActivity.this,AdicionarReuniaoActivity.class);
+        i.putExtra(Constants.ID_REUNIAO_KEY, view.getTag().toString());
+        i.putExtra(Constants.NOVA_REUNIAO_KEY, false);
+        startActivity(i);
+    }
+
+    public void excluirRegistro(final View view){
+        ReuniaoUtils.mostrarPerguntaDialogo(NotificacaoMainActivity.this, Constants.LABEL_VOCE_TEM_CERTEZA, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                int id = Integer.parseInt(view.getTag().toString());
+                datasource = new DBAdapter(getApplicationContext());
+                datasource.open();
+                datasource.deleteReuniao(id);
+                datasource.close();
+                listarReunioes();
+            }
+        });
     }
 
     //TODO QUANDO NÃO TIVER REUNIÕES NA LISTA, NÃO É PARA APARECER O PUSH DE 'BEM VINDO Á EVERIS' -> TESTAR
