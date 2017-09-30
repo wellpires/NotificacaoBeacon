@@ -11,11 +11,10 @@
         tools:context="br.com.everis.notificacaobeacon.AdicionarReuniaoActivity">
 
         <TextView
-            android:id="@+id/textView7"
+            android:id="@+id/lblTituloReuniao"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
-            android:text="Nova Reunião"
             android:textSize="36sp"
             app:layout_constraintTop_toTopOf="parent"
             tools:layout_constraintTop_creator="1"
@@ -33,122 +32,84 @@
             android:inputType="textPersonName"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView7"
+            app:layout_constraintTop_toBottomOf="@+id/lblTituloReuniao"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp" />
 
         <EditText
             android:id="@+id/txtDataInicio"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="17dp"
             android:digits="1234567890-"
             android:ems="10"
-            android:enabled="false"
-            android:hint="Data de inicio"
-            android:inputType="datetime"
+            android:hint="Selecione uma data de inicio"
+            android:inputType="none"
+            android:maxLines="1"
             android:selectAllOnFocus="false"
-            android:singleLine="true"
-            app:layout_constraintTop_toBottomOf="@+id/lblAssunto"
-            tools:layout_editor_absoluteX="8dp" />
-
-        <Button
-            android:id="@+id/btnDataInicio"
-            android:layout_width="122dp"
-            android:layout_height="54dp"
-            android:layout_marginLeft="13dp"
-            android:layout_marginStart="13dp"
-            android:layout_marginTop="8dp"
-            android:elevation="0dp"
-            android:text="Selecionar data"
-            app:layout_constraintLeft_toRightOf="@+id/txtDataInicio"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lblAssunto" />
 
         <EditText
             android:id="@+id/txtHoraInicio"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
             android:layout_marginTop="30dp"
             android:ems="10"
-            android:enabled="false"
-            android:hint="Hora de inicio"
+            android:hint="Selecione uma hora de inicio"
             android:inputType="time"
-            app:layout_constraintTop_toBottomOf="@+id/txtDataInicio"
-            tools:layout_editor_absoluteX="8dp" />
-
-        <Button
-            android:id="@+id/btnHoraInicio"
-            android:layout_width="122dp"
-            android:layout_height="54dp"
-            android:layout_marginLeft="13dp"
-            android:layout_marginStart="13dp"
-            android:layout_marginTop="20dp"
-            android:text="Selecionar hora"
-            app:layout_constraintLeft_toRightOf="@+id/txtHoraInicio"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtDataInicio" />
 
         <EditText
             android:id="@+id/txtDataTermino"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="29dp"
             android:ems="10"
-            android:enabled="false"
-            android:hint="Data de término"
+            android:hint="Selecione uma data de término"
             android:inputType="time"
-            app:layout_constraintTop_toBottomOf="@+id/txtHoraInicio"
-            tools:layout_editor_absoluteX="8dp" />
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtHoraInicio" />
 
         <EditText
             android:id="@+id/txtHoraTermino"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
             android:layout_marginTop="30dp"
             android:ems="10"
-            android:enabled="false"
-            android:hint="Hora de término"
+            android:hint="Selecione uma hora de término"
             android:inputType="date"
-            app:layout_constraintTop_toBottomOf="@+id/txtDataTermino"
-            tools:layout_editor_absoluteX="8dp" />
-
-        <Button
-            android:id="@+id/btnDataTermino"
-            android:layout_width="122dp"
-            android:layout_height="54dp"
-            android:layout_marginLeft="13dp"
-            android:layout_marginStart="13dp"
-            android:layout_marginTop="20dp"
-            android:text="Selecionar Data"
-            app:layout_constraintLeft_toRightOf="@+id/txtDataTermino"
-            app:layout_constraintTop_toBottomOf="@+id/btnHoraInicio" />
-
-        <Button
-            android:id="@+id/btnHoraTermino"
-            android:layout_width="122dp"
-            android:layout_height="54dp"
-            android:layout_marginLeft="13dp"
-            android:layout_marginStart="13dp"
-            android:layout_marginTop="20dp"
-            android:text="Selecionar Hora"
-            app:layout_constraintLeft_toRightOf="@+id/txtHoraTermino"
-            app:layout_constraintTop_toBottomOf="@+id/btnDataTermino" />
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtDataTermino" />
 
         <EditText
             android:id="@+id/txtOnde"
-            android:layout_width="237dp"
+            android:layout_width="match_parent"
             android:layout_height="46dp"
-            android:layout_marginTop="26dp"
-            android:ems="10"
-            android:hint="Onde"
-            android:inputType="textPersonName"
-            app:layout_constraintTop_toBottomOf="@+id/txtHoraTermino"
+            android:layout_marginEnd="8dp"
             android:layout_marginLeft="5dp"
-            app:layout_constraintLeft_toLeftOf="parent"
             android:layout_marginRight="8dp"
-            app:layout_constraintRight_toRightOf="@+id/btnMapa"
-            app:layout_constraintHorizontal_bias="0.076"
             android:layout_marginStart="5dp"
-            android:layout_marginEnd="8dp" />
+            android:layout_marginTop="25dp"
+            android:ems="10"
+            android:hint="Selecione um local"
+            android:inputType="textPersonName"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtHoraTermino" />
 
         <EditText
             android:id="@+id/txtSala"
@@ -179,7 +140,7 @@
             android:ems="10"
             android:hint="Descrição"
             android:inputType="textMultiLine"
-            android:singleLine="false"
+            android:maxLines="1"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtSala" />
@@ -197,20 +158,6 @@
             app:layout_constraintLeft_toLeftOf="parent"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp" />
-
-        <Button
-            android:id="@+id/btnMapa"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Mapa"
-            android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/btnHoraTermino"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/txtSala"
-            app:layout_constraintVertical_bias="0.352"
-            app:layout_constraintRight_toRightOf="parent"
-            android:layout_marginRight="26dp"
-            android:layout_marginEnd="26dp" />
 
     </android.support.constraint.ConstraintLayout>
 

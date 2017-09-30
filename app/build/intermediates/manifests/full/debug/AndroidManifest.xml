@@ -83,6 +83,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="br.com.everis.notificacaobeacon.NotificacaoMainActivity" />
         </activity>
+        <activity android:name="br.com.everis.notificacaobeacon.EditarReuniaoActivity" />
         <!--
          FirebaseMessagingService performs security checks at runtime,
              no need for explicit permissions despite exported="true"

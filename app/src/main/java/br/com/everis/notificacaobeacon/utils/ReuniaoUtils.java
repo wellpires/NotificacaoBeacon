@@ -1,5 +1,6 @@
 package br.com.everis.notificacaobeacon.utils;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.app.NotificationManager;
 import android.content.Context;
@@ -9,6 +10,7 @@ import android.service.notification.StatusBarNotification;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.NotificationCompat;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -26,25 +28,25 @@ import br.com.everis.notificacaobeacon.bd.model.ReuniaoVO;
 
 public class ReuniaoUtils {
 
-    public static void showNotification(String title, String conteudo, int icone, Context cx){
+    public static void showNotification(String title, String conteudo, int icone, Context cx) {
         NotificationCompat.Builder mBuilder = (NotificationCompat.Builder) new NotificationCompat.Builder(cx)
                 .setContentTitle(title)
                 .setContentText(conteudo)
                 .setSmallIcon(icone);
     }
 
-    public static Date stringToDate(String data) throws ParseException {
+    public static Date stringToDateTime(String data) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat(Constants.DATETIME_PATTERN);
         sdf.setTimeZone(TimeZone.getTimeZone(Constants.TIMEZONE));
         return new Date(sdf.parse(data).getTime());
     }
 
-    public static String dateToString(Date data){
+    public static String dateTimeToString(Date data) {
         SimpleDateFormat sdf = new SimpleDateFormat(Constants.DATETIME_PATTERN);
         return sdf.format(data);
     }
 
-    public static String timeToString(Date hora){
+    public static String timeToString(Date hora) {
         SimpleDateFormat sdf = new SimpleDateFormat(Constants.TIME_PATTERN);
         return sdf.format(hora);
     }
@@ -55,19 +57,35 @@ public class ReuniaoUtils {
         return new Date(sdf.parse(hora).getTime());
     }
 
-    public static String zeroAEsquerda(int numero){
+    public static Date stringToDate(String data) throws ParseException {
+        return new Date(formatDate(Constants.DATE_PATTERN, data).getTime());
+    }
+
+    public static String dateToString(Date data) {
+        return new SimpleDateFormat(Constants.DATE_PATTERN).format(data);
+    }
+
+    public static Date formatHour(String pattern, String hora) throws ParseException {
+        return new Date(new SimpleDateFormat(pattern).parse(hora).getTime());
+    }
+
+    public static Date formatDate(String pattern, String date) throws ParseException {
+        return new SimpleDateFormat(pattern).parse(date);
+    }
+
+    public static String zeroAEsquerda(int numero) {
         String numeroFinal = String.valueOf(numero);
-        if(numeroFinal.length() == 1){
+        if (numeroFinal.length() == 1) {
             numeroFinal = "0" + numeroFinal;
         }
         return numeroFinal;
     }
 
-    public static List<ReuniaoVO> cursorToList(Cursor cursor){
+    public static List<ReuniaoVO> cursorToList(Cursor cursor) {
 
         List<ReuniaoVO> lstReunioes = new ArrayList<>();
         //ursor.moveToFirst();
-        while(cursor.moveToNext()){
+        while (cursor.moveToNext()) {
             ReuniaoVO vo = new ReuniaoVO();
             vo.setId(Integer.parseInt(cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_ID))));
             vo.setAssunto(cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_ASSUNTO)));
@@ -81,7 +99,7 @@ public class ReuniaoUtils {
         return lstReunioes;
     }
 
-    public static void mostrarAvisoDialogo(Context context, String message){
+    public static void mostrarAvisoDialogo(Context context, String message) {
         AlertDialog.Builder dlg = new AlertDialog.Builder(context);
         dlg.setTitle(Constants.TITULO_APP);
         dlg.setMessage(message);
@@ -89,28 +107,41 @@ public class ReuniaoUtils {
         dlg.show();
     }
 
-    public static void mostrarPerguntaDialogo(Context context, String message, DialogInterface.OnClickListener eventoSim){
+    public static void mostrarPerguntaDialogo(Context context, String message, DialogInterface.OnClickListener eventoSim) {
         AlertDialog.Builder dlg = new AlertDialog.Builder(context);
         dlg.setTitle(Constants.TITULO_APP);
         dlg.setMessage(message);
-        dlg.setNeutralButton(Constants.LABEL_OK, null);
         dlg.setPositiveButton(Constants.LABEL_SIM, eventoSim);
         dlg.setNegativeButton(Constants.LABEL_NAO, null);
         dlg.show();
     }
 
-    public static String pluralString(int valor, String mensagem){
+    public static String pluralString(int valor, String mensagem) {
         return valor > 1 ? mensagem + "s" : mensagem;
     }
 
-    public static boolean isNotificacaoAtiva(Context c, int idNotificacao){
+    public static boolean isNotificacaoAtiva(Context c, int idNotificacao) {
         NotificationManager notificacao = (NotificationManager) c.getSystemService(Context.NOTIFICATION_SERVICE);
-        for(StatusBarNotification sbn : notificacao.getActiveNotifications()){
-            if(sbn.getId() == idNotificacao){
+        for (StatusBarNotification sbn : notificacao.getActiveNotifications()) {
+            if (sbn.getId() == idNotificacao) {
                 return true;
             }
         }
         return false;
+    }
+
+    public static void cancelarNotificacao(Context c, int idReuniao) {
+        NotificationManager mNotificationManager = (NotificationManager) c.getSystemService(Context.NOTIFICATION_SERVICE);
+        mNotificationManager.cancel(idReuniao);
+    }
+
+    public static void esconderTeclado(Activity activity) {
+        InputMethodManager inputMethodManager = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
+    }
+
+    public static boolean isEmptyOrNull(String value){
+        return value == null || "".equals(value.trim());
     }
 
 }

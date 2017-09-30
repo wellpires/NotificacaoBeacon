@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.PopupMenu;
-import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -22,6 +21,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -146,16 +146,15 @@ public class NotificacaoMainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            // Handle the camera action
+            EditText txtMsg = new EditText(this);
+            Toast toast = Toast.makeText(this, "NOVAS REUNIÕES", Toast.LENGTH_LONG);
+            toast.setView(txtMsg);
+            toast.show();
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
 
         }
 
@@ -169,6 +168,7 @@ public class NotificacaoMainActivity extends AppCompatActivity
 
         if (view.getId() == R.id.fab) {
             Intent i = new Intent(getApplicationContext(), AdicionarReuniaoActivity.class);
+            i.putExtra(Constants.NOVA_REUNIAO_KEY, true);
             startActivity(i);
         } else if (view.getId() == R.id.fabBell) {
             final GlobalClass globalVariable = (GlobalClass) getApplicationContext();
@@ -194,9 +194,13 @@ public class NotificacaoMainActivity extends AppCompatActivity
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 if (item.getItemId() == R.id.edit_item) {
-                    Toast.makeText(NotificacaoMainActivity.this, "EDITANDO", Toast.LENGTH_LONG).show();
+                    Intent i = new Intent(NotificacaoMainActivity.this,AdicionarReuniaoActivity.class);
+                    i.putExtra(Constants.ID_REUNIAO_KEY, view.getTag().toString());
+                    i.putExtra(Constants.NOVA_REUNIAO_KEY, false);
+                    startActivity(i);
+
                 } else if (item.getItemId() == R.id.delete_item) {
-                    ReuniaoUtils.mostrarPerguntaDialogo(NotificacaoMainActivity.this, "Você tem certeza?", new DialogInterface.OnClickListener() {
+                    ReuniaoUtils.mostrarPerguntaDialogo(NotificacaoMainActivity.this, Constants.LABEL_VOCE_TEM_CERTEZA, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             int id = Integer.parseInt(view.getTag().toString());
@@ -215,15 +219,20 @@ public class NotificacaoMainActivity extends AppCompatActivity
         menu.show();
     }
 
+    //TODO QUANDO NÃO TIVER REUNIÕES NA LISTA, NÃO É PARA APARECER O PUSH DE 'BEM VINDO Á EVERIS' -> TESTAR
+    //TODO ADICIONAR PARTICIPANTES PARA ENVIAR EMAILS
+
     private void listarReunioes() {
         try {
             datasource = new DBAdapter(getApplicationContext());
             datasource.open();
-            Cursor cursor = datasource.getReunioes();
+            Cursor cursor = datasource.getReuniao();
             List<ReuniaoVO> reunioes = ReuniaoUtils.cursorToList(cursor);
             List<ReuniaoVO> reunioesFiltradas = new ArrayList<>();
+
+
             for (ReuniaoVO vo : reunioes) {
-                DateTime dtInicio = new DateTime(ReuniaoUtils.stringToDate(vo.getHoraInicio()));
+                DateTime dtInicio = new DateTime(ReuniaoUtils.stringToDateTime(vo.getHoraInicio()));
                 DateTime dtHoje = new DateTime(new Date());
                 if (dtInicio.isAfter(dtHoje) || dtInicio.isAfterNow()) {
                     reunioesFiltradas.add(vo);
@@ -233,6 +242,14 @@ public class NotificacaoMainActivity extends AppCompatActivity
             ReuniaoAdapter adapter = new ReuniaoAdapter(reunioesFiltradas, this);
 
             lvReunioes.setAdapter(adapter);
+
+            if(lvReunioes.getAdapter().getCount() <= 0){
+                GlobalClass gc = (GlobalClass) getApplicationContext();
+                gc.setReuniaoAcontecendo(false);
+                ReuniaoUtils.cancelarNotificacao(this, Constants.ID_BEM_VINDO_REUNIAO);
+                ReuniaoUtils.cancelarNotificacao(this, Constants.ID_NOTIFICACAO_REUNIAO);
+            }
+
         } catch (ParseException e) {
             e.printStackTrace();
         }

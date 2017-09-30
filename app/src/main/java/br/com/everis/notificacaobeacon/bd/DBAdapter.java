@@ -55,7 +55,7 @@ public class DBAdapter {
         values.put(dbHelper.COLUMN_DETALHES, reuniao.getDetalhes());
 
         long insertId = database.insert(DBHelper.TABLE_NAME, null, values);
-        Cursor c = database.query(DBHelper.TABLE_NAME, allColumns, DBHelper.COLUMN_ID + " = " + insertId, null,null, null, null);
+        Cursor c = database.query(DBHelper.TABLE_NAME, allColumns, DBHelper.COLUMN_ID + " = " + insertId, null, null, null, null);
         c.moveToFirst();
         return cursorParaReuniao(c);
 
@@ -63,6 +63,20 @@ public class DBAdapter {
 
     public void deleteReuniao(Integer idReuniao) {
         database.delete(DBHelper.TABLE_NAME, DBHelper.COLUMN_ID + " = " + idReuniao, null);
+    }
+
+    public void updateReuniao(ReuniaoVO reuniao) {
+        ContentValues values = new ContentValues();
+
+        values.put(dbHelper.COLUMN_ASSUNTO, reuniao.getAssunto());
+        values.put(dbHelper.COLUMN_HORA_INICIO, reuniao.getHoraInicio());
+        values.put(dbHelper.COLUMN_HORA_TERMINO, reuniao.getHoraTermino());
+        values.put(dbHelper.COLUMN_LOCAL, reuniao.getLocal());
+        values.put(dbHelper.COLUMN_SALA, reuniao.getSala());
+        values.put(dbHelper.COLUMN_PARTICIPANTES, reuniao.getParticipantes());
+        values.put(dbHelper.COLUMN_DETALHES, reuniao.getDetalhes());
+
+        database.update(DBHelper.TABLE_NAME, values, dbHelper.COLUMN_ID + " = ?", new String[]{String.valueOf(reuniao.getId())});
     }
 
     public void deleteReuniao() {
@@ -85,7 +99,7 @@ public class DBAdapter {
 
     }
 
-    public Cursor getReunioes() {
+    public Cursor getReuniao() {
         Cursor c = database.rawQuery("SELECT " +
                 DBHelper.COLUMN_ID + ", " +
                 DBHelper.COLUMN_ASSUNTO + ", " +
@@ -99,17 +113,10 @@ public class DBAdapter {
         return c;
     }
 
-    public ReuniaoVO getReunioes(int idReuniao) throws ParseException {
-        Cursor c = database.query(DBHelper.TABLE_NAME,allColumns,DBHelper.COLUMN_ID + " = " + idReuniao, null, null, null, null);
+    public ReuniaoVO getReuniao(int idReuniao) throws ParseException {
+        Cursor c = database.query(DBHelper.TABLE_NAME, allColumns, DBHelper.COLUMN_ID + " = " + idReuniao, null, null, null, null);
         c.moveToFirst();
         return cursorParaReuniao(c);
-    }
-
-    public List<ReuniaoVO> getReunioes(Cursor c){
-
-
-
-        return null;
     }
 
 }

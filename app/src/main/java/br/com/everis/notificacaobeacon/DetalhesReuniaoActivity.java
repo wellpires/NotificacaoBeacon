@@ -6,7 +6,6 @@ import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
 
 import org.joda.time.DateTime;
-import org.joda.time.Hours;
 import org.joda.time.Minutes;
 
 import java.text.ParseException;
@@ -39,8 +38,8 @@ public class DetalhesReuniaoActivity extends AppCompatActivity {
         DateTime dtTermino = null;
         try {
             DateTime dtHoje = new DateTime(new Date());
-            DateTime dtInicio = new DateTime(ReuniaoUtils.stringToDate(vo.getHoraInicio()));
-            dtTermino = new DateTime(ReuniaoUtils.stringToDate(vo.getHoraTermino()));
+            DateTime dtInicio = new DateTime(ReuniaoUtils.stringToDateTime(vo.getHoraInicio()));
+            dtTermino = new DateTime(ReuniaoUtils.stringToDateTime(vo.getHoraTermino()));
 
             minutos = Minutes.minutesBetween(dtHoje, dtInicio);
 
