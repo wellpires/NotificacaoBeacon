@@ -80,6 +80,7 @@ public class AdicionarReuniaoActivity extends AppCompatActivity implements View.
         setContentView(R.layout.activity_adicionar_reuniao_activity);
 
         //TODO MOSTRAR ALGUM AVISO PARA SE CASO UMA REUNIÃO ESTIVER ACONTECENDO
+        //TODO MELHORAR DIMENSÃO DA CAIXA DE TEXTO DO MAPA
 
         lblTituloReuniao = (TextView) findViewById(R.id.lblTituloReuniao);
 
