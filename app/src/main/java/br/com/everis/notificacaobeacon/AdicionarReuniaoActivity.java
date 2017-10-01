@@ -15,7 +15,12 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
@@ -26,6 +31,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -48,7 +54,7 @@ import br.com.everis.notificacaobeacon.bd.model.ReuniaoVO;
 import br.com.everis.notificacaobeacon.utils.Constants;
 import br.com.everis.notificacaobeacon.utils.ReuniaoUtils;
 
-public class AdicionarReuniaoActivity extends AppCompatActivity implements View.OnClickListener, View.OnTouchListener {
+public class AdicionarReuniaoActivity extends AppCompatActivity implements View.OnTouchListener {
 
     private TextView lblTituloReuniao = null;
 
@@ -86,9 +92,6 @@ public class AdicionarReuniaoActivity extends AppCompatActivity implements View.
         txtLocal = (EditText) findViewById(R.id.txtOnde);
         txtSala = (EditText) findViewById(R.id.txtSala);
         txtDescricao = (EditText) findViewById(R.id.txtDescricao);
-        btnSalvar = (Button) findViewById(R.id.btnSalvar);
-
-        //TODO COLOCAR BOTÃO DE SALVAR NA ACTIONBAR
 
         txtDataInicio.setOnTouchListener(this);
         txtDataInicio.setKeyListener(null);
@@ -105,7 +108,7 @@ public class AdicionarReuniaoActivity extends AppCompatActivity implements View.
         txtLocal.setOnTouchListener(this);
         txtLocal.setKeyListener(null);
 
-        btnSalvar.setOnClickListener(this);
+
 
         datasource = new DBAdapter(this);
 
@@ -142,31 +145,39 @@ public class AdicionarReuniaoActivity extends AppCompatActivity implements View.
     }
 
     @Override
-    public void onClick(View view) {
-        if (view.getId() == R.id.btnSalvar) {
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.save_button_actionbar, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if(item.getItemId() ==  R.id.btnSalvar){
             try {
 
                 if (ReuniaoUtils.isEmptyOrNull(txtAssunto.getText().toString())) {
                     ReuniaoUtils.mostrarAvisoDialogo(this, Constants.ERRO_ASSUNTO_REUNIAO);
-                    return;
+                    return false;
                 } else if (ReuniaoUtils.isEmptyOrNull(txtDataInicio.getText().toString())) {
                     ReuniaoUtils.mostrarAvisoDialogo(this, Constants.ERRO_DATA_INICIO_REUNIAO);
-                    return;
+                    return false;
                 } else if (ReuniaoUtils.isEmptyOrNull(txtHoraInicio.getText().toString())) {
                     ReuniaoUtils.mostrarAvisoDialogo(this, Constants.ERRO_HORA_INICIO_REUNIAO);
-                    return;
+                    return false;
                 } else if (ReuniaoUtils.isEmptyOrNull(txtDataTermino.getText().toString())) {
                     ReuniaoUtils.mostrarAvisoDialogo(this, Constants.ERRO_DATA_TERMINO_REUNIAO);
-                    return;
+                    return false;
                 } else if (ReuniaoUtils.isEmptyOrNull(txtHoraTermino.getText().toString())) {
                     ReuniaoUtils.mostrarAvisoDialogo(this, Constants.ERRO_HORA_TERMINO_REUNIAO);
-                    return;
+                    return false;
                 } else if (ReuniaoUtils.isEmptyOrNull(txtLocal.getText().toString())) {
                     ReuniaoUtils.mostrarAvisoDialogo(this, Constants.ERRO_LOCAL_REUNIAO_REUNIAO);
-                    return;
+                    return false;
                 } else if (ReuniaoUtils.isEmptyOrNull(txtDescricao.getText().toString())) {
                     ReuniaoUtils.mostrarAvisoDialogo(this, Constants.ERRO_DESCRICAO_REUNIAO);
-                    return;
+                    return false;
                 }
 
                 String horaInicio = txtDataInicio.getText().toString() + " " + txtHoraInicio.getText().toString();
@@ -177,10 +188,10 @@ public class AdicionarReuniaoActivity extends AppCompatActivity implements View.
 
                 if (dtInicio.isEqual(dtTermino)) {
                     ReuniaoUtils.mostrarAvisoDialogo(this, Constants.ERRO_DATA_HORA_INICIO_TERMINO_DIFERENTES);
-                    return;
+                    return false;
                 } else if (dtInicio.isAfter(dtTermino)) {
                     ReuniaoUtils.mostrarAvisoDialogo(this, Constants.ERRO_DATA_INICIO_MENOR_TERMINO);
-                    return;
+                    return false;
                 }
 
                 final ReuniaoVO r = new ReuniaoVO();
@@ -211,8 +222,8 @@ public class AdicionarReuniaoActivity extends AppCompatActivity implements View.
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
         }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -330,13 +341,6 @@ public class AdicionarReuniaoActivity extends AppCompatActivity implements View.
 
                             LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
                             if (ActivityCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                                // TODO: Consider calling
-                                //    ActivityCompat#requestPermissions
-                                // here to request the missing permissions, and then overriding
-                                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                                //                                          int[] grantResults)
-                                // to handle the case where the user grants the permission. See the documentation
-                                // for ActivityCompat#requestPermissions for more details.
                                 return;
                             }
 
@@ -381,13 +385,6 @@ public class AdicionarReuniaoActivity extends AppCompatActivity implements View.
 
                                     LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
                                     if (ActivityCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                                        // TODO: Consider calling
-                                        //    ActivityCompat#requestPermissions
-                                        // here to request the missing permissions, and then overriding
-                                        //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                                        //                                          int[] grantResults)
-                                        // to handle the case where the user grants the permission. See the documentation
-                                        // for ActivityCompat#requestPermissions for more details.
                                         return;
                                     }
 

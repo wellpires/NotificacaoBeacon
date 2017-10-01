@@ -15,5 +15,6 @@
     <string name="item_delete_label">Excluir</string>
 
     <string name="google_android_map_api_key">AIzaSyDolaITfO1wAceu9vAbC4zD10O8ibw3FPg</string>
+    <string name="salvar_label">Salvar</string>
 
 </resources>

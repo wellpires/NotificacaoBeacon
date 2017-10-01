@@ -38,7 +38,7 @@
 
         <EditText
             android:id="@+id/txtDataInicio"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
@@ -51,11 +51,13 @@
             android:selectAllOnFocus="false"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lblAssunto" />
+            app:layout_constraintTop_toBottomOf="@+id/lblAssunto"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp" />
 
         <EditText
             android:id="@+id/txtHoraInicio"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
@@ -65,11 +67,13 @@
             android:inputType="time"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtDataInicio" />
+            app:layout_constraintTop_toBottomOf="@+id/txtDataInicio"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp" />
 
         <EditText
             android:id="@+id/txtDataTermino"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
@@ -79,11 +83,13 @@
             android:inputType="time"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtHoraInicio" />
+            app:layout_constraintTop_toBottomOf="@+id/txtHoraInicio"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp" />
 
         <EditText
             android:id="@+id/txtHoraTermino"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
@@ -93,11 +99,13 @@
             android:inputType="date"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtDataTermino" />
+            app:layout_constraintTop_toBottomOf="@+id/txtDataTermino"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp" />
 
         <EditText
             android:id="@+id/txtOnde"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="46dp"
             android:layout_marginEnd="8dp"
             android:layout_marginLeft="5dp"
@@ -144,20 +152,6 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtSala" />
-
-        <Button
-            android:id="@+id/btnSalvar"
-            android:layout_width="188dp"
-            android:layout_height="54dp"
-            android:layout_marginTop="30dp"
-            android:text="Salvar"
-            app:layout_constraintTop_toBottomOf="@+id/txtDescricao"
-            android:layout_marginRight="8dp"
-            app:layout_constraintRight_toRightOf="parent"
-            android:layout_marginLeft="8dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp" />
 
     </android.support.constraint.ConstraintLayout>
 
