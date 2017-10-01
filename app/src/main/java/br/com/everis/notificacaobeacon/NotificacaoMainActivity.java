@@ -43,7 +43,7 @@ import br.com.everis.notificacaobeacon.utils.ReuniaoUtils;
 import br.com.everis.notificacaobeacon.utils.UpdateGUI;
 
 public class NotificacaoMainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener, AdapterView.OnItemClickListener {
+        implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
     private Button btnEnviar = null;
     private Button btnBeacon = null;
@@ -94,7 +94,6 @@ public class NotificacaoMainActivity extends AppCompatActivity
         fabNotificacaoReuniao.setOnClickListener(this);
 
         lvReunioes = (ListView) findViewById(R.id.lvReunioes);
-        lvReunioes.setOnItemClickListener(this);
 
         // ========== SININHO ==========
         UpdateGUI updateBell = new UpdateGUI(this, 1);
@@ -180,52 +179,6 @@ public class NotificacaoMainActivity extends AppCompatActivity
                 Toast.makeText(this, Constants.SEM_REUNIAO_ATUAL, Toast.LENGTH_LONG).show();
             }
         }
-    }
-
-    @Override
-    public void onItemClick(AdapterView<?> adapterView, final View view, int i, long l) {
-
-        ImageButton imgBtnExcluir = (ImageButton) view.findViewById(R.id.imgBtnExcluir);
-        imgBtnExcluir.setOnClickListener(this);
-
-        Intent intent = new Intent(NotificacaoMainActivity.this,AdicionarReuniaoActivity.class);
-        intent.putExtra(Constants.ID_REUNIAO_KEY, view.getTag().toString());
-        intent.putExtra(Constants.NOVA_REUNIAO_KEY, false);
-        startActivity(intent);
-
-        if(1 == 1){
-            return;
-        }
-
-        PopupMenu menu = new PopupMenu(this, view);
-        menu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                if (item.getItemId() == R.id.edit_item) {
-                    Intent i = new Intent(NotificacaoMainActivity.this,AdicionarReuniaoActivity.class);
-                    i.putExtra(Constants.ID_REUNIAO_KEY, view.getTag().toString());
-                    i.putExtra(Constants.NOVA_REUNIAO_KEY, false);
-                    startActivity(i);
-
-                } else if (item.getItemId() == R.id.delete_item) {
-                    ReuniaoUtils.mostrarPerguntaDialogo(NotificacaoMainActivity.this, Constants.LABEL_VOCE_TEM_CERTEZA, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            int id = Integer.parseInt(view.getTag().toString());
-                            datasource = new DBAdapter(getApplicationContext());
-                            datasource.open();
-                            datasource.deleteReuniao(id);
-                            datasource.close();
-                            listarReunioes();
-                        }
-                    });
-                }
-                return true;
-            }
-        });
-        menu.inflate(R.menu.item_menu);
-        menu.show();
-
     }
 
     public void alterarRegistro(View view){

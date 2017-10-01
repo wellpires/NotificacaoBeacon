@@ -144,7 +144,6 @@ public class NotificacaoBeaconService extends Service implements BootstrapNotifi
         }).start();
 
         return Service.START_NOT_STICKY;
-        //TODO PROCURAR UMA FORMA DE CRIAR UM SERVICE EM LOOP EM BACKGROUND, POIS O DE HOJE SÓ EXECUTA UMA VEZ.
         //TODO COLOCAR UMA REGRA QUE LIMITE UMA NOIFICAÇÃO
     }
 
