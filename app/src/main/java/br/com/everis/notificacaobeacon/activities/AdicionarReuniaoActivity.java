@@ -15,6 +15,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -54,8 +55,6 @@ import br.com.everis.notificacaobeacon.utils.ReuniaoUtils;
 
 public class AdicionarReuniaoActivity extends AppCompatActivity implements View.OnTouchListener {
 
-    private TextView lblTituloReuniao = null;
-
     private EditText txtDataInicio = null;
     private EditText txtHoraInicio = null;
     private EditText txtDataTermino = null;
@@ -79,8 +78,6 @@ public class AdicionarReuniaoActivity extends AppCompatActivity implements View.
 
         //TODO MOSTRAR ALGUM AVISO PARA SE CASO UMA REUNIÃO ESTIVER ACONTECENDO
         //TODO MELHORAR DIMENSÃO DA CAIXA DE TEXTO DO MAPA
-
-        lblTituloReuniao = (TextView) findViewById(R.id.lblTituloReuniao);
 
         txtDataInicio = (EditText) findViewById(R.id.txtDataInicio);
         txtHoraInicio = (EditText) findViewById(R.id.txtHoraInicio);
@@ -111,10 +108,11 @@ public class AdicionarReuniaoActivity extends AppCompatActivity implements View.
 
         isNovoRegistro = getIntent().getBooleanExtra(Constants.NOVA_REUNIAO_KEY, true);
 
+        ActionBar actionBar = getSupportActionBar();
         if (isNovoRegistro) {
-            lblTituloReuniao.setText(Constants.TITULO_NOVA_REUNIAO);
+            actionBar.setTitle(Constants.TITULO_NOVA_REUNIAO);
         } else {
-            lblTituloReuniao.setText(Constants.TITULO_EDITAR_REUNIAO);
+            actionBar.setTitle(Constants.TITULO_EDITAR_REUNIAO);
             try {
                 idReuniao = Integer.valueOf(getIntent().getStringExtra(Constants.ID_REUNIAO_KEY));
 

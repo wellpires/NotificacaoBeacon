@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:2:1-71:12
+ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:2:1-72:12
 	package
 		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:3:5-46
 		INJECTED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml
@@ -84,7 +84,7 @@ ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src
 	android:name
 		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:15:22-77
 application
-ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:17:5-69:19
+ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:17:5-70:19
 MERGED from [com.android.support:design:26.0.0-alpha1] C:\Users\wgoncalv\.android\build-cache\55de20b63723377169e59fb786e70d38837527cb\output\AndroidManifest.xml:29:5-20
 MERGED from [com.android.support:transition:26.0.0-alpha1] C:\Users\wgoncalv\.android\build-cache\3df689382074f9a1ff04dba75b837f00d443896a\output\AndroidManifest.xml:26:5-20
 MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\wgoncalv\.android\build-cache\128c6f6844add61e1fb1424acac11ea1fae79c83\output\AndroidManifest.xml:9:5-20
@@ -185,7 +185,9 @@ ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src
 	android:name
 		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:58:19-70
 activity#br.com.everis.notificacaobeacon.activities.ReunioesActivity
-ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:64:9-68:20
+ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:64:9-69:20
+	android:label
+		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:65:13-60
 	android:name
 		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:64:19-62
 meta-data#android.support.VERSION
