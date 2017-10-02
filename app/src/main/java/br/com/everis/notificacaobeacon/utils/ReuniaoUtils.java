@@ -84,7 +84,6 @@ public class ReuniaoUtils {
     public static List<ReuniaoVO> cursorToList(Cursor cursor) {
 
         List<ReuniaoVO> lstReunioes = new ArrayList<>();
-        //ursor.moveToFirst();
         while (cursor.moveToNext()) {
             ReuniaoVO vo = new ReuniaoVO();
             vo.setId(Integer.parseInt(cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_ID))));
