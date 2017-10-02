@@ -50,9 +50,6 @@ public class NotificacaoBeaconService extends Service implements BootstrapNotifi
 
     private boolean pararWhileTrue = false;
 
-
-    private FloatingActionButton fabNotificacaoReuniao = null;
-
     public NotificacaoBeaconService() {
     }
 
@@ -182,13 +179,8 @@ public class NotificacaoBeaconService extends Service implements BootstrapNotifi
                                 stackBuilder.addNextIntent(intentEmailView);
                                 PendingIntent pendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
 
-                                NotificationCompat.Builder mBuilder = (NotificationCompat.Builder) new NotificationCompat.Builder(getApplicationContext())
-                                        .setSmallIcon(R.mipmap.keditbookmarks)
-                                        .setContentTitle(Constants.BEM_VINDO)
-                                        .setContentText(Constants.CONTINUACAO_BEM_VINDO)
-                                        .setContentIntent(pendingIntent);
-                                NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-                                mNotificationManager.notify(Constants.ID_BEM_VINDO_REUNIAO, mBuilder.build());
+                                ReuniaoUtils.mostrarNotificacao(getApplicationContext(), R.mipmap.keditbookmarks, Constants.BEM_VINDO, Constants.CONTINUACAO_BEM_VINDO, pendingIntent, Constants.ID_BEM_VINDO_REUNIAO);
+
                             }
 
                         } else if(ReuniaoUtils.isNotificacaoAtiva(getApplicationContext(), Constants.ID_BEM_VINDO_REUNIAO)){
@@ -236,23 +228,17 @@ public class NotificacaoBeaconService extends Service implements BootstrapNotifi
             mensagem += ReuniaoUtils.zeroAEsquerda(horas) + ReuniaoUtils.pluralString(horas, " hora");
         }
 
-        NotificationCompat.Builder mBuilder = (NotificationCompat.Builder) new NotificationCompat.Builder(getApplicationContext())
-                .setSmallIcon(R.mipmap.stock_new_meeting)
-                .setContentTitle(Constants.REUNIAO)
-                .setContentText(mensagem);
 
         Intent intent = new Intent(getApplicationContext(), ReuniaoNotificacaoActivity.class);
         intent.putExtra(Constants.TEMPO_RESTANTE_KEY, qtdeMinutos);
         intent.putExtra(Constants.MENSAGEM_KEY, mensagem);
         intent.putExtra(Constants.LOCAL_KEY, vo.getLocal());
-
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(getApplicationContext());
         stackBuilder.addParentStack(NotificacaoMainActivity.class);
         stackBuilder.addNextIntent(intent);
         PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
-        mBuilder.setContentIntent(resultPendingIntent);
-        NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        mNotificationManager.notify(Constants.ID_NOTIFICACAO_REUNIAO, mBuilder.build());
+
+        ReuniaoUtils.mostrarNotificacao(getApplicationContext(), R.mipmap.stock_new_meeting, Constants.REUNIAO, mensagem, resultPendingIntent, Constants.ID_NOTIFICACAO_REUNIAO);
 
     }
 

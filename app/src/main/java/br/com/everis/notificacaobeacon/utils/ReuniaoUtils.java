@@ -1,15 +1,14 @@
 package br.com.everis.notificacaobeacon.utils;
 
 import android.app.Activity;
-import android.app.Dialog;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.database.Cursor;
 import android.service.notification.StatusBarNotification;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.NotificationCompat;
-import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
 import java.text.ParseException;
@@ -139,8 +138,20 @@ public class ReuniaoUtils {
         inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
     }
 
-    public static boolean isEmptyOrNull(String value){
+    public static boolean isEmptyOrNull(String value) {
         return value == null || "".equals(value.trim());
+    }
+
+    public static void mostrarNotificacao(Context context, int icon, String title, String content, PendingIntent pendingIntent, int idNotificacao) {
+        NotificationCompat.Builder mBuilder = (NotificationCompat.Builder) new NotificationCompat.Builder(context);
+        mBuilder.setSmallIcon(icon);
+        mBuilder.setContentTitle(title);
+        mBuilder.setContentText(content);
+        if(pendingIntent != null){
+            mBuilder.setContentIntent(pendingIntent);
+        }
+        NotificationManager mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        mNotificationManager.notify(idNotificacao, mBuilder.build());
     }
 
 }
