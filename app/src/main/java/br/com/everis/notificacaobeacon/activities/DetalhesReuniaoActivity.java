@@ -1,4 +1,4 @@
-package br.com.everis.notificacaobeacon;
+package br.com.everis.notificacaobeacon.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +11,7 @@ import org.joda.time.Minutes;
 import java.text.ParseException;
 import java.util.Date;
 
+import br.com.everis.notificacaobeacon.R;
 import br.com.everis.notificacaobeacon.bd.model.ReuniaoVO;
 import br.com.everis.notificacaobeacon.utils.GlobalClass;
 import br.com.everis.notificacaobeacon.utils.ReuniaoUtils;

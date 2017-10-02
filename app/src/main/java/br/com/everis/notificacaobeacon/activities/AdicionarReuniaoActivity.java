@@ -1,4 +1,4 @@
-package br.com.everis.notificacaobeacon;
+package br.com.everis.notificacaobeacon.activities;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -15,9 +15,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -31,7 +29,6 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -48,6 +45,7 @@ import java.text.ParseException;
 import java.util.Calendar;
 import java.util.List;
 
+import br.com.everis.notificacaobeacon.R;
 import br.com.everis.notificacaobeacon.adapter.GooglePlacesAutocompleteAdapter;
 import br.com.everis.notificacaobeacon.bd.DBAdapter;
 import br.com.everis.notificacaobeacon.bd.model.ReuniaoVO;
@@ -109,8 +107,6 @@ public class AdicionarReuniaoActivity extends AppCompatActivity implements View.
         txtLocal.setOnTouchListener(this);
         txtLocal.setKeyListener(null);
 
-
-
         datasource = new DBAdapter(this);
 
         isNovoRegistro = getIntent().getBooleanExtra(Constants.NOVA_REUNIAO_KEY, true);
@@ -123,7 +119,7 @@ public class AdicionarReuniaoActivity extends AppCompatActivity implements View.
                 idReuniao = Integer.valueOf(getIntent().getStringExtra(Constants.ID_REUNIAO_KEY));
 
                 datasource.open();
-                ReuniaoVO vo = datasource.getReuniao(idReuniao);
+                ReuniaoVO vo = datasource.getReunioes(idReuniao);
                 String dataInicio[] = vo.getHoraInicio().split("\\s");
                 String dataTermino[] = vo.getHoraTermino().split("\\s");
 

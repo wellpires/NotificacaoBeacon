@@ -7,6 +7,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 
 import br.com.everis.notificacaobeacon.bd.model.ReuniaoVO;
@@ -83,7 +84,7 @@ public class DBAdapter {
         database.delete(DBHelper.TABLE_NAME, null, null);
     }
 
-    public ReuniaoVO cursorParaReuniao(Cursor c) throws ParseException {
+    private ReuniaoVO cursorParaReuniao(Cursor c) throws ParseException {
         int index = 0;
         ReuniaoVO r = new ReuniaoVO();
         r.setId(c.getInt(index++));
@@ -99,21 +100,43 @@ public class DBAdapter {
 
     }
 
-    public Cursor getReuniao() {
-        Cursor c = database.rawQuery("SELECT " +
-                DBHelper.COLUMN_ID + ", " +
-                DBHelper.COLUMN_ASSUNTO + ", " +
-                DBHelper.COLUMN_HORA_INICIO + ", " +
-                DBHelper.COLUMN_HORA_TERMINO + ", " +
-                DBHelper.COLUMN_LOCAL + ", " +
-                DBHelper.COLUMN_SALA + ", " +
-                DBHelper.COLUMN_PARTICIPANTES + ", " +
-                DBHelper.COLUMN_DETALHES +
-                " FROM " + DBHelper.TABLE_NAME, null);
-        return c;
+    private List<ReuniaoVO> cursorParaReunioes(Cursor cursor) {
+        List<ReuniaoVO> lstReunioes = new ArrayList<>();
+        while (cursor.moveToNext()) {
+            ReuniaoVO vo = new ReuniaoVO();
+            vo.setId(Integer.parseInt(cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_ID))));
+            vo.setAssunto(cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_ASSUNTO)));
+            vo.setHoraInicio(cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_HORA_INICIO)));
+            vo.setHoraTermino(cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_HORA_TERMINO)));
+            vo.setLocal(cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_LOCAL)));
+            vo.setSala(cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_SALA)));
+            vo.setDetalhes(cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_DETALHES)));
+            lstReunioes.add(vo);
+        }
+        return lstReunioes;
     }
 
-    public ReuniaoVO getReuniao(int idReuniao) throws ParseException {
+    public List<ReuniaoVO> getReunioes() {
+        open();
+        try {
+            Cursor c = database.rawQuery("SELECT " +
+                    DBHelper.COLUMN_ID + ", " +
+                    DBHelper.COLUMN_ASSUNTO + ", " +
+                    DBHelper.COLUMN_HORA_INICIO + ", " +
+                    DBHelper.COLUMN_HORA_TERMINO + ", " +
+                    DBHelper.COLUMN_LOCAL + ", " +
+                    DBHelper.COLUMN_SALA + ", " +
+                    DBHelper.COLUMN_PARTICIPANTES + ", " +
+                    DBHelper.COLUMN_DETALHES +
+                    " FROM " + DBHelper.TABLE_NAME, null);
+            return cursorParaReunioes(c);
+        } finally {
+            close();
+        }
+
+    }
+
+    public ReuniaoVO getReunioes(int idReuniao) throws ParseException {
         Cursor c = database.query(DBHelper.TABLE_NAME, allColumns, DBHelper.COLUMN_ID + " = " + idReuniao, null, null, null, null);
         c.moveToFirst();
         return cursorParaReuniao(c);

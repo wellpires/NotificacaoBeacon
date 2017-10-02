@@ -19,12 +19,12 @@ import br.com.everis.notificacaobeacon.utils.ReuniaoUtils;
  * Created by wgoncalv on 20/09/2017.
  */
 
-public class ReuniaoAdapter extends BaseAdapter {
+public class ReunioesHojeAdapter extends BaseAdapter {
 
     private final List<ReuniaoVO> lstReunioes;
     private final Activity act;
 
-    public ReuniaoAdapter(List<ReuniaoVO> lstReunioes, Activity act) {
+    public ReunioesHojeAdapter(List<ReuniaoVO> lstReunioes, Activity act) {
         this.lstReunioes = lstReunioes;
         this.act = act;
     }
@@ -48,7 +48,7 @@ public class ReuniaoAdapter extends BaseAdapter {
     public View getView(int i, View convertView, ViewGroup parent) {
         View view = null;
         try {
-            view = act.getLayoutInflater().inflate(R.layout.reuniao_list_item, parent, false);
+            view = act.getLayoutInflater().inflate(R.layout.reuniao_hoje_list_item, parent, false);
             ReuniaoVO vo = lstReunioes.get(i);
 
             TextView lblAssunto = (TextView) view.findViewById(R.id.lblAssunto);

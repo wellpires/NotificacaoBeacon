@@ -1,4 +1,4 @@
-package br.com.everis.notificacaobeacon;
+package br.com.everis.notificacaobeacon.activities;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import br.com.everis.notificacaobeacon.R;
 import br.com.everis.notificacaobeacon.utils.Constants;
 
 public class ReuniaoNotificacaoActivity extends AppCompatActivity implements View.OnClickListener {
@@ -24,7 +25,6 @@ public class ReuniaoNotificacaoActivity extends AppCompatActivity implements Vie
         lblMensagem = (TextView) findViewById(R.id.lblMensagem);
         btnWaze = (Button) findViewById(R.id.btnWaze);
         btnWaze.setOnClickListener(ReuniaoNotificacaoActivity.this);
-        Integer tempoRestante = Integer.parseInt(String.valueOf(getIntent().getExtras().get(Constants.TEMPO_RESTANTE_KEY)));
         local = (String) getIntent().getExtras().get(Constants.LOCAL_KEY);
         String mensagem = (String) getIntent().getExtras().get(Constants.MENSAGEM_KEY);
 

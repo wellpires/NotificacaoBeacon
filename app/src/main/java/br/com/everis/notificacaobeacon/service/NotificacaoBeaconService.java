@@ -1,16 +1,12 @@
 package br.com.everis.notificacaobeacon.service;
 
-import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.app.TaskStackBuilder;
-import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.IBinder;
 import android.os.RemoteException;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.NotificationCompat;
 import android.util.Log;
 
 import org.altbeacon.beacon.BeaconManager;
@@ -20,17 +16,16 @@ import org.altbeacon.beacon.Region;
 import org.altbeacon.beacon.startup.BootstrapNotifier;
 import org.altbeacon.beacon.startup.RegionBootstrap;
 import org.joda.time.DateTime;
-import org.joda.time.Days;
 import org.joda.time.Minutes;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import br.com.everis.notificacaobeacon.DetalhesReuniaoActivity;
-import br.com.everis.notificacaobeacon.NotificacaoMainActivity;
+import br.com.everis.notificacaobeacon.activities.DetalhesReuniaoActivity;
+import br.com.everis.notificacaobeacon.activities.NotificacaoMainActivity;
 import br.com.everis.notificacaobeacon.R;
-import br.com.everis.notificacaobeacon.ReuniaoNotificacaoActivity;
+import br.com.everis.notificacaobeacon.activities.ReuniaoNotificacaoActivity;
 import br.com.everis.notificacaobeacon.bd.DBAdapter;
 import br.com.everis.notificacaobeacon.bd.model.ReuniaoVO;
 import br.com.everis.notificacaobeacon.utils.Constants;
@@ -84,26 +79,9 @@ public class NotificacaoBeaconService extends Service implements BootstrapNotifi
                     try {
                         Thread.sleep(5000);
 
-                        List<ReuniaoVO> lstReunioes = new ArrayList<>();
                         datasource = new DBAdapter(getApplicationContext());
                         datasource.open();
-                        Cursor c = datasource.getReuniao();
-                        c.moveToFirst();
-                        while (c.isAfterLast() == false) {
-
-                            int indice = 0;
-                            ReuniaoVO vo = new ReuniaoVO();
-                            vo.setId(c.getInt(indice++));
-                            vo.setAssunto(c.getString(indice++));
-                            vo.setHoraInicio(c.getString(indice++));
-                            vo.setHoraTermino(c.getString(indice++));
-                            vo.setLocal(c.getString(indice++));
-                            vo.setSala(c.getString(indice++));
-                            vo.setDetalhes(c.getString(indice++));
-                            lstReunioes.add(vo);
-
-                            c.moveToNext();
-                        }
+                        List<ReuniaoVO> lstReunioes = datasource.getReunioes();
                         datasource.close();
 
                         List<ReuniaoVO> lstReunioesHoje = new ArrayList<>();
