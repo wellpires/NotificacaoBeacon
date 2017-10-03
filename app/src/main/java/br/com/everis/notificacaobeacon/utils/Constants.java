@@ -48,8 +48,14 @@ public interface Constants {
 
     String VOCE_ESTA_AQUI = "Você está aqui!";
     String ERRO_PESQUISA_ENDERECO = "Favor pesquise um endereço!";
+    String LABEL_NENHUMA_REUNIAO = "Nenhuma reunião";
+
     String UUID_BEACON = "813c5c55-3a33-4c52-bc86-22cb7d49fc5c";
     String MINOR_BEACON = "258";
     String MAJOR_BEACON = "852";
     String LAYOUT_BEACON = "m:2-3=0215,i:4-19,i:20-21,i:22-23,p:24-24,d:25-25";
+    String FLAG_NOVA_REUNIAO = "N";
+    String FLAG_ALTERAR_REUNIAO = "A";
+    String FLAG_DETALHES_REUNIAO = "D";
+    String TITULO_DETALHES_REUNIAO = "Detalhes da Reunião";
 }

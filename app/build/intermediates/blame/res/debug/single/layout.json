@@ -8,12 +8,12 @@
         "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\55de20b63723377169e59fb786e70d38837527cb\\output\\res\\layout\\design_layout_tab_text.xml"
     },
     {
-        "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\layout\\content_notificacao_main.xml",
-        "source": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\src\\main\\res\\layout\\content_notificacao_main.xml"
-    },
-    {
         "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_search_dropdown_item_icons_2line.xml",
         "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\81ece88265a75e323787b3d4e210fdc040579384\\output\\res\\layout\\abc_search_dropdown_item_icons_2line.xml"
+    },
+    {
+        "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\layout\\content_notificacao_main.xml",
+        "source": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\src\\main\\res\\layout\\content_notificacao_main.xml"
     },
     {
         "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_alert_dialog_button_bar_material.xml",
@@ -188,12 +188,12 @@
         "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\19d8a21cecd3cfacc32bef1b3e2aa5271b42a773\\output\\res\\layout\\mr_controller_volume_item.xml"
     },
     {
-        "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\layout\\mr_controller_material_dialog_b.xml",
-        "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\19d8a21cecd3cfacc32bef1b3e2aa5271b42a773\\output\\res\\layout\\mr_controller_material_dialog_b.xml"
-    },
-    {
         "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\layout\\reuniao_hoje_list_item.xml",
         "source": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\src\\main\\res\\layout\\reuniao_hoje_list_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\layout\\mr_controller_material_dialog_b.xml",
+        "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\19d8a21cecd3cfacc32bef1b3e2aa5271b42a773\\output\\res\\layout\\mr_controller_material_dialog_b.xml"
     },
     {
         "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_layout_tab_icon.xml",

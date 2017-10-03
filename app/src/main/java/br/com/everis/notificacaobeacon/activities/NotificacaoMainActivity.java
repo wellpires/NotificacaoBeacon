@@ -6,7 +6,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.view.View;
@@ -19,6 +18,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.joda.time.DateTime;
@@ -40,6 +40,8 @@ import br.com.everis.notificacaobeacon.utils.UpdateGUI;
 
 public class NotificacaoMainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
+
+    private TextView lblEmptyListMain = null;
 
     private Button btnEnviar = null;
     private Button btnBeacon = null;
@@ -82,6 +84,8 @@ public class NotificacaoMainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        lblEmptyListMain = (TextView) findViewById(R.id.lblEmptyListMain);
+
         fabNovaReuniao = (FloatingActionButton) findViewById(R.id.fab);
         fabNovaReuniao.setOnClickListener(this);
 
@@ -90,6 +94,8 @@ public class NotificacaoMainActivity extends AppCompatActivity
 
         lvReunioes = (ListView) findViewById(R.id.lvReunioes);
 
+        lblEmptyListMain.setText(Constants.LABEL_NENHUMA_REUNIAO);
+        lvReunioes.setEmptyView(lblEmptyListMain);
         // ========== SININHO ==========
         UpdateGUI updateBell = new UpdateGUI(this, 1);
         updateBell.run();
@@ -134,15 +140,9 @@ public class NotificacaoMainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_reunioes) {
             Intent i = new Intent(NotificacaoMainActivity.this, ReunioesActivity.class);
             startActivity(i);
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -155,7 +155,7 @@ public class NotificacaoMainActivity extends AppCompatActivity
 
         if (view.getId() == R.id.fab) {
             Intent i = new Intent(getApplicationContext(), AdicionarReuniaoActivity.class);
-            i.putExtra(Constants.NOVA_REUNIAO_KEY, true);
+            i.putExtra(Constants.NOVA_REUNIAO_KEY, Constants.FLAG_NOVA_REUNIAO);
             startActivity(i);
         } else if (view.getId() == R.id.fabBell) {
             final GlobalClass globalVariable = (GlobalClass) getApplicationContext();
@@ -171,7 +171,7 @@ public class NotificacaoMainActivity extends AppCompatActivity
     public void alterarRegistro(View view){
         Intent i = new Intent(NotificacaoMainActivity.this,AdicionarReuniaoActivity.class);
         i.putExtra(Constants.ID_REUNIAO_KEY, view.getTag().toString());
-        i.putExtra(Constants.NOVA_REUNIAO_KEY, false);
+        i.putExtra(Constants.NOVA_REUNIAO_KEY, Constants.FLAG_ALTERAR_REUNIAO);
         startActivity(i);
     }
 

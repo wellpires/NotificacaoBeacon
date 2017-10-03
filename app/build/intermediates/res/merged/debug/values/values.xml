@@ -833,6 +833,7 @@
     <string name="title_item_detail">Item Detail</string>
     <string name="title_item_list">Items</string>
     <string name="title_notifications">Notifications</string>
+    <string name="titulo_app">Controle de reuniões</string>
     <string name="todas_reunioes">Reuniões marcadas</string>
     <style name="AlertDialog.AppCompat" parent="Base.AlertDialog.AppCompat"/>
     <style name="AlertDialog.AppCompat.Light" parent="Base.AlertDialog.AppCompat.Light"/>

@@ -13,8 +13,10 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -64,12 +66,11 @@ public class AdicionarReuniaoActivity extends AppCompatActivity implements View.
     private EditText txtLocal = null;
     private EditText txtSala = null;
     private EditText txtDescricao = null;
-    private Button btnSalvar = null;
 
     private DBAdapter datasource = null;
 
     private Integer idReuniao = null;
-    private Boolean isNovoRegistro = null;
+    private String flagTipo = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,15 +105,37 @@ public class AdicionarReuniaoActivity extends AppCompatActivity implements View.
         txtLocal.setOnTouchListener(this);
         txtLocal.setKeyListener(null);
 
+        txtDataInicio.setEnabled(true);
+        txtHoraInicio.setEnabled(true);
+        txtDataTermino.setEnabled(true);
+        txtHoraTermino.setEnabled(true);
+        txtAssunto.setEnabled(true);
+        txtLocal.setEnabled(true);
+        txtSala.setEnabled(true);
+        txtDescricao.setEnabled(true);
+
+
         datasource = new DBAdapter(this);
 
-        isNovoRegistro = getIntent().getBooleanExtra(Constants.NOVA_REUNIAO_KEY, true);
+        flagTipo = getIntent().getStringExtra(Constants.NOVA_REUNIAO_KEY);
 
         ActionBar actionBar = getSupportActionBar();
-        if (isNovoRegistro) {
+        if (Constants.FLAG_NOVA_REUNIAO.equals(flagTipo)) {
             actionBar.setTitle(Constants.TITULO_NOVA_REUNIAO);
-        } else {
+        } else if(Constants.FLAG_ALTERAR_REUNIAO.equals(flagTipo) || Constants.FLAG_DETALHES_REUNIAO.equals(flagTipo)) {
             actionBar.setTitle(Constants.TITULO_EDITAR_REUNIAO);
+            if(Constants.FLAG_DETALHES_REUNIAO.equals(flagTipo)){
+                actionBar.setTitle(Constants.TITULO_DETALHES_REUNIAO);
+                txtDataInicio.setEnabled(false);
+                txtHoraInicio.setEnabled(false);
+                txtDataTermino.setEnabled(false);
+                txtHoraTermino.setEnabled(false);
+                txtAssunto.setEnabled(false);
+                txtLocal.setEnabled(false);
+                txtSala.setEnabled(false);
+                txtDescricao.setEnabled(false);
+            }
+
             try {
                 idReuniao = Integer.valueOf(getIntent().getStringExtra(Constants.ID_REUNIAO_KEY));
 
@@ -134,9 +157,7 @@ public class AdicionarReuniaoActivity extends AppCompatActivity implements View.
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-
         }
-
     }
 
     @Override
@@ -151,7 +172,6 @@ public class AdicionarReuniaoActivity extends AppCompatActivity implements View.
 
         if(item.getItemId() ==  R.id.btnSalvar){
             try {
-
                 if (ReuniaoUtils.isEmptyOrNull(txtAssunto.getText().toString())) {
                     ReuniaoUtils.mostrarAvisoDialogo(this, Constants.ERRO_ASSUNTO_REUNIAO);
                     return false;
@@ -199,10 +219,10 @@ public class AdicionarReuniaoActivity extends AppCompatActivity implements View.
 
                 datasource.open();
 
-                if (isNovoRegistro) {
+                if (Constants.FLAG_NOVA_REUNIAO.equals(flagTipo)){
                     datasource.createReuniao(r);
                     finalizarAcao();
-                } else {
+                } else if(Constants.FLAG_ALTERAR_REUNIAO.equals(flagTipo)) {
                     ReuniaoUtils.mostrarPerguntaDialogo(AdicionarReuniaoActivity.this, Constants.LABEL_VOCE_TEM_CERTEZA, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
@@ -217,8 +237,23 @@ public class AdicionarReuniaoActivity extends AppCompatActivity implements View.
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        } else if(item.getItemId() == android.R.id.home){
+            if(Constants.FLAG_DETALHES_REUNIAO.equals(flagTipo)){
+                finish();
+            }
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        MenuItem item = menu.findItem(R.id.btnSalvar);
+        item.setVisible(true);
+        if(Constants.FLAG_DETALHES_REUNIAO.equals(flagTipo)){
+            item.setVisible(false);
+        }
+
+        return super.onPrepareOptionsMenu(menu);
     }
 
     @Override
@@ -428,6 +463,30 @@ public class AdicionarReuniaoActivity extends AppCompatActivity implements View.
             e.printStackTrace();
         }
         return false;
+    }
+
+    @Override
+    public Intent getSupportParentActivityIntent() {
+        return getParentActivityIntentImpl();
+    }
+
+    @Override
+    public Intent getParentActivityIntent() {
+        return getParentActivityIntentImpl();
+    }
+
+    private Intent getParentActivityIntentImpl() {
+        Intent i = null;
+
+        if(Constants.FLAG_DETALHES_REUNIAO.equals(flagTipo)){
+            i = new Intent(this, ReunioesActivity.class);
+            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        } else {
+            i = new Intent(this, NotificacaoMainActivity.class);
+            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        }
+
+        return i;
     }
 
     private void finalizarAcao() {
