@@ -5,11 +5,13 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.os.Build;
 import android.service.notification.StatusBarNotification;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.NotificationCompat;
 import android.view.inputmethod.InputMethodManager;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -30,7 +32,6 @@ public class ReuniaoUtils {
 
     public static Date stringToDateTime(String data) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat(Constants.DATETIME_PATTERN);
-        sdf.setTimeZone(TimeZone.getTimeZone(Constants.TIMEZONE));
         return new Date(sdf.parse(data).getTime());
     }
 
@@ -101,9 +102,11 @@ public class ReuniaoUtils {
 
     public static boolean isNotificacaoAtiva(Context c, int idNotificacao) {
         NotificationManager notificacao = (NotificationManager) c.getSystemService(Context.NOTIFICATION_SERVICE);
-        for (StatusBarNotification sbn : notificacao.getActiveNotifications()) {
-            if (sbn.getId() == idNotificacao) {
-                return true;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            for (StatusBarNotification sbn : notificacao.getActiveNotifications()) {
+                if (sbn.getId() == idNotificacao) {
+                    return true;
+                }
             }
         }
         return false;

@@ -784,6 +784,7 @@
     <string name="common_open_on_phone">Open on phone</string>
     <string name="common_signin_button_text">Sign in</string>
     <string name="common_signin_button_text_long">Sign in with Google</string>
+    <string name="content_description_btnDeletar">Botão para deletar uma reunião</string>
     <string name="default_web_client_id" translatable="false">775853410175-i6ed2n6lhjgfhfmdospvoosam2k76oj6.apps.googleusercontent.com</string>
     <string name="fcm_fallback_notification_channel_label">Miscellaneous</string>
     <string name="firebase_database_url" translatable="false">https://notificacaobeacon-45b2e.firebaseio.com</string>
