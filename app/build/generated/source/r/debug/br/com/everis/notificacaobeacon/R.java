@@ -4025,6 +4025,7 @@ containing a value of this type.
         public static final int keditbookmarks=0x7f030008;
         public static final int list_add=0x7f030009;
         public static final int stock_new_meeting=0x7f03000a;
+        public static final int thumbs_up=0x7f03000b;
     }
     public static final class string {
         public static final int abc_action_bar_home_description=0x7f080000;

@@ -10,12 +10,23 @@ import android.service.notification.StatusBarNotification;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.NotificationCompat;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ListView;
+import android.widget.Toast;
+
+import org.joda.time.DateTime;
 
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.TimeZone;
+
+import br.com.everis.notificacaobeacon.R;
+import br.com.everis.notificacaobeacon.adapter.ReunioesHojeAdapter;
+import br.com.everis.notificacaobeacon.bd.DBAdapter;
+import br.com.everis.notificacaobeacon.bd.model.ReuniaoVO;
 
 /**
  * Created by wgoncalv on 16/09/2017.
@@ -113,8 +124,16 @@ public class ReuniaoUtils {
     }
 
     public static void cancelarNotificacao(Context c, int idReuniao) {
+        if(!isNotificacaoAtiva(c,idReuniao)){
+            return;
+        }
         NotificationManager mNotificationManager = (NotificationManager) c.getSystemService(Context.NOTIFICATION_SERVICE);
         mNotificationManager.cancel(idReuniao);
+    }
+    public static void cancelarNotificacao(Context c, int[] idReuniao) {
+        for(int id : idReuniao){
+            cancelarNotificacao(c, id);
+        }
     }
 
     public static void esconderTeclado(Activity activity) {
@@ -126,7 +145,8 @@ public class ReuniaoUtils {
         return value == null || "".equals(value.trim());
     }
 
-    public static void mostrarNotificacao(Context context, int icon, String title, String content, PendingIntent pendingIntent, int idNotificacao) {
+    public static void mostrarNotificacao(Context context, int icon, String title, String content, PendingIntent pendingIntent, int idNotificacao, boolean isNotificacaoFixa) {
+
         NotificationCompat.Builder mBuilder = (NotificationCompat.Builder) new NotificationCompat.Builder(context);
         mBuilder.setSmallIcon(icon);
         mBuilder.setContentTitle(title);
@@ -134,8 +154,41 @@ public class ReuniaoUtils {
         if(pendingIntent != null){
             mBuilder.setContentIntent(pendingIntent);
         }
+        mBuilder.setOngoing(isNotificacaoFixa);
         NotificationManager mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         mNotificationManager.notify(idNotificacao, mBuilder.build());
+    }
+
+    public static void listarReunioes(Context context) {
+        try {
+            DBAdapter datasource = new DBAdapter(context);
+            datasource.open();
+            List<ReuniaoVO> reunioes = datasource.getReunioes();
+            List<ReuniaoVO> reunioesFiltradas = new ArrayList<>();
+
+            for (ReuniaoVO vo : reunioes) {
+                DateTime dtInicio = new DateTime(ReuniaoUtils.stringToDateTime(vo.getHoraInicio()));
+                DateTime dtTermino = new DateTime(ReuniaoUtils.stringToDateTime(vo.getHoraTermino()));
+                DateTime dtAgora = new DateTime(new Date());
+                if (dtInicio.withTimeAtStartOfDay().isEqual(dtAgora.withTimeAtStartOfDay()) && dtAgora.isBefore(dtTermino)) {
+                    reunioesFiltradas.add(vo);
+                }
+            }
+
+            ReunioesHojeAdapter adapter = new ReunioesHojeAdapter(reunioesFiltradas, (Activity) context);
+
+            ListView lvReunioes = (ListView) ((Activity) context).findViewById(R.id.lvReunioes);
+            lvReunioes.setAdapter(adapter);
+
+            if(lvReunioes.getAdapter().getCount() <= 0){
+                GlobalClass gc = (GlobalClass) context.getApplicationContext();
+                gc.setReuniaoAcontecendo(false);
+                ReuniaoUtils.cancelarNotificacao(context, new int[]{Constants.ID_BEM_VINDO_REUNIAO, Constants.ID_NOTIFICACAO_REUNIAO, Constants.ID_NOTIFICACAO_REUNIAO_ACONTECENDO});
+            }
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
 }

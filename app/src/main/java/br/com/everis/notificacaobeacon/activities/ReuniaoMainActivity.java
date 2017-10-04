@@ -38,7 +38,7 @@ import br.com.everis.notificacaobeacon.utils.GlobalClass;
 import br.com.everis.notificacaobeacon.utils.ReuniaoUtils;
 import br.com.everis.notificacaobeacon.utils.UpdateGUI;
 
-public class NotificacaoMainActivity extends AppCompatActivity
+public class ReuniaoMainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
     private TextView lblEmptyListMain = null;
@@ -100,7 +100,7 @@ public class NotificacaoMainActivity extends AppCompatActivity
         UpdateGUI updateBell = new UpdateGUI(this, 1);
         updateBell.run();
         // ========== START SERVICE ==========
-        Intent i = new Intent(NotificacaoMainActivity.this, NotificacaoBeaconService.class);
+        Intent i = new Intent(ReuniaoMainActivity.this, NotificacaoBeaconService.class);
         startService(i);
         //===========================================
 
@@ -141,7 +141,7 @@ public class NotificacaoMainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_reunioes) {
-            Intent i = new Intent(NotificacaoMainActivity.this, ReunioesActivity.class);
+            Intent i = new Intent(ReuniaoMainActivity.this, ReunioesActivity.class);
             startActivity(i);
         }
 
@@ -169,14 +169,14 @@ public class NotificacaoMainActivity extends AppCompatActivity
     }
 
     public void alterarRegistro(View view){
-        Intent i = new Intent(NotificacaoMainActivity.this,AdicionarReuniaoActivity.class);
+        Intent i = new Intent(ReuniaoMainActivity.this,AdicionarReuniaoActivity.class);
         i.putExtra(Constants.ID_REUNIAO_KEY, view.getTag().toString());
         i.putExtra(Constants.NOVA_REUNIAO_KEY, Constants.FLAG_ALTERAR_REUNIAO);
         startActivity(i);
     }
 
     public void excluirRegistro(final View view){
-        ReuniaoUtils.mostrarPerguntaDialogo(NotificacaoMainActivity.this, Constants.LABEL_VOCE_TEM_CERTEZA, new DialogInterface.OnClickListener() {
+        ReuniaoUtils.mostrarPerguntaDialogo(ReuniaoMainActivity.this, Constants.LABEL_VOCE_TEM_CERTEZA, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 int id = Integer.parseInt(view.getTag().toString());
@@ -194,16 +194,20 @@ public class NotificacaoMainActivity extends AppCompatActivity
 
     private void listarReunioes() {
         try {
+            ReuniaoUtils.listarReunioes(this);
+            if(1 == 1){
+                return;
+            }
             datasource = new DBAdapter(getApplicationContext());
             datasource.open();
             List<ReuniaoVO> reunioes = datasource.getReunioes();
             List<ReuniaoVO> reunioesFiltradas = new ArrayList<>();
 
-
             for (ReuniaoVO vo : reunioes) {
                 DateTime dtInicio = new DateTime(ReuniaoUtils.stringToDateTime(vo.getHoraInicio()));
-                DateTime dtHoje = new DateTime(new Date());
-                if (dtInicio.isAfter(dtHoje) || dtInicio.isAfterNow()) {
+                DateTime dtTermino = new DateTime(ReuniaoUtils.stringToDateTime(vo.getHoraTermino()));
+                DateTime dtAgora = new DateTime(new Date());
+                if (dtInicio.withTimeAtStartOfDay().isEqual(dtAgora.withTimeAtStartOfDay()) && dtAgora.isBefore(dtTermino)) {
                     reunioesFiltradas.add(vo);
                 }
             }
@@ -215,8 +219,7 @@ public class NotificacaoMainActivity extends AppCompatActivity
             if(lvReunioes.getAdapter().getCount() <= 0){
                 GlobalClass gc = (GlobalClass) getApplicationContext();
                 gc.setReuniaoAcontecendo(false);
-                ReuniaoUtils.cancelarNotificacao(this, Constants.ID_BEM_VINDO_REUNIAO);
-                ReuniaoUtils.cancelarNotificacao(this, Constants.ID_NOTIFICACAO_REUNIAO);
+                ReuniaoUtils.cancelarNotificacao(this, new int[]{Constants.ID_BEM_VINDO_REUNIAO, Constants.ID_NOTIFICACAO_REUNIAO, Constants.ID_NOTIFICACAO_REUNIAO_ACONTECENDO});
             }
 
         } catch (ParseException e) {

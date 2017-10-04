@@ -1343,6 +1343,7 @@ int mipmap icones_everis 0x7f030007
 int mipmap keditbookmarks 0x7f030008
 int mipmap list_add 0x7f030009
 int mipmap stock_new_meeting 0x7f03000a
+int mipmap thumbs_up 0x7f03000b
 int string abc_action_bar_home_description 0x7f080000
 int string abc_action_bar_home_description_format 0x7f080001
 int string abc_action_bar_home_subtitle_description_format 0x7f080002

@@ -13,10 +13,8 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -30,7 +28,6 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -482,7 +479,7 @@ public class AdicionarReuniaoActivity extends AppCompatActivity implements View.
             i = new Intent(this, ReunioesActivity.class);
             i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         } else {
-            i = new Intent(this, NotificacaoMainActivity.class);
+            i = new Intent(this, ReuniaoMainActivity.class);
             i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         }
 
@@ -501,7 +498,7 @@ public class AdicionarReuniaoActivity extends AppCompatActivity implements View.
         txtSala.getText().clear();
         txtDescricao.getText().clear();
 
-        Intent i = new Intent(getApplicationContext(), NotificacaoMainActivity.class);
+        Intent i = new Intent(getApplicationContext(), ReuniaoMainActivity.class);
         startActivity(i);
     }
 

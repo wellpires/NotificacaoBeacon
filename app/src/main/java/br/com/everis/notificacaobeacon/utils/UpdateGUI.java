@@ -39,8 +39,16 @@ public class UpdateGUI extends TimerTask {
                 //ATUALIZANDO O ÍCONE DO SININHO
                 atualizarIconeNotificacao();
 
+                atualizarListaReunioes();
+
             }
         });
+    }
+
+    private void atualizarListaReunioes() {
+
+
+
     }
 
     private void atualizarIconeNotificacao(){
@@ -63,4 +71,6 @@ public class UpdateGUI extends TimerTask {
         }
 
     }
+
+
 }

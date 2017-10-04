@@ -57,7 +57,7 @@
             android:value="@string/google_android_map_api_key" />
 
         <activity
-            android:name="br.com.everis.notificacaobeacon.activities.NotificacaoMainActivity"
+            android:name="br.com.everis.notificacaobeacon.activities.ReuniaoMainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" >
             <intent-filter>
@@ -72,23 +72,23 @@
         <activity
             android:name="br.com.everis.notificacaobeacon.activities.DetalhesReuniaoActivity"
             android:label="@string/title_activity_detalhes_reuniao"
-            android:parentActivityName="br.com.everis.notificacaobeacon.activities.NotificacaoMainActivity"
+            android:parentActivityName="br.com.everis.notificacaobeacon.activities.ReuniaoMainActivity"
             android:theme="@style/AppTheme.NoActionBar" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="br.com.everis.notificacaobeacon.activities.NotificacaoMainActivity" />
+                android:value="br.com.everis.notificacaobeacon.activities.ReuniaoMainActivity" />
         </activity>
         <activity android:name="br.com.everis.notificacaobeacon.activities.AdicionarReuniaoActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="br.com.everis.notificacaobeacon.activities.NotificacaoMainActivity" />
+                android:value="br.com.everis.notificacaobeacon.activities.ReuniaoMainActivity" />
         </activity>
         <activity
             android:name="br.com.everis.notificacaobeacon.activities.ReunioesActivity"
             android:label="@string/title_activity_reunioes" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="br.com.everis.notificacaobeacon.activities.NotificacaoMainActivity" />
+                android:value="br.com.everis.notificacaobeacon.activities.ReuniaoMainActivity" />
         </activity>
         <!--
          FirebaseMessagingService performs security checks at runtime,

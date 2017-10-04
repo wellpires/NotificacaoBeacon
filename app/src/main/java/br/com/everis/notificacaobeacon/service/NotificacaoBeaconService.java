@@ -4,10 +4,11 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.app.TaskStackBuilder;
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.widget.Toast;
 
 import org.altbeacon.beacon.BeaconManager;
 import org.altbeacon.beacon.BeaconParser;
@@ -23,7 +24,7 @@ import java.util.Date;
 import java.util.List;
 
 import br.com.everis.notificacaobeacon.activities.DetalhesReuniaoActivity;
-import br.com.everis.notificacaobeacon.activities.NotificacaoMainActivity;
+import br.com.everis.notificacaobeacon.activities.ReuniaoMainActivity;
 import br.com.everis.notificacaobeacon.R;
 import br.com.everis.notificacaobeacon.activities.ReuniaoNotificacaoActivity;
 import br.com.everis.notificacaobeacon.bd.DBAdapter;
@@ -89,22 +90,45 @@ public class NotificacaoBeaconService extends Service implements BootstrapNotifi
 
                             DateTime dtHoje = new DateTime(new Date());
                             DateTime dtInicio = new DateTime(ReuniaoUtils.stringToDateTime(vo.getHoraInicio()));
-                            Minutes m = Minutes.minutesBetween(dtHoje, dtInicio);
-
-                            if(dtHoje.withTimeAtStartOfDay().isEqual(dtInicio.withTimeAtStartOfDay())){
-                                if (m.getMinutes() <= 60 && m.getMinutes() > 0) {
+                            DateTime dtTermino = new DateTime(ReuniaoUtils.stringToDateTime(vo.getHoraTermino()));
+                            Minutes mInicio = Minutes.minutesBetween(dtHoje, dtInicio);
+                            Minutes mTermino = Minutes.minutesBetween(dtHoje, dtTermino);
+                            vo.getHoraTermino();
+                            ReuniaoUtils.dateTimeToString(new Date());
+                            if(dtHoje.withTimeAtStartOfDay().isEqual(dtInicio.withTimeAtStartOfDay()) &&
+                                    (dtHoje.isBefore(dtInicio) || dtHoje.isBefore(dtTermino))){
+                                if (mInicio.getMinutes() <= 60 && mInicio.getMinutes() > 0) {
                                     final GlobalClass globalVariable = (GlobalClass) getApplicationContext();
                                     globalVariable.setReuniaoVO(vo);
                                     globalVariable.setReuniaoAcontecendo(true);
-                                    notificacaoReuniao(vo, m.getMinutes());
+                                    notificacaoReuniao(vo, mInicio.getMinutes());
                                     break;
                                     //TODO MELHORAMENTO: FAZER COM QUE APAREÇA NOTIFICAÇÕES PARA SE CASO TIVER VÁRIAS REUNIÕES POR DIA.
-                                } else if (m.getMinutes() == 0) {
+                                } else if (mInicio.getMinutes() <= 0 && mTermino.getMinutes() > 0) {
                                     //TODO REUNIÃO ACONTECENDO
-                                } else if(m.getMinutes() > 60){
+                                    final GlobalClass globalVariable = (GlobalClass) getApplicationContext();
+                                    globalVariable.setReuniaoAcontecendo(true);
+
+                                    String mensagem = Constants.REUNIAO_TERMINARA;
+                                    int horas = mTermino.getMinutes() / 60;
+                                    int minutos = mTermino.getMinutes() % 60;
+
+                                    if (horas == 0) {
+                                        mensagem += ReuniaoUtils.zeroAEsquerda(minutos) + ReuniaoUtils.pluralString(minutos, Constants.MINUTOS_LABEL);
+                                    } else if (horas > 0) {
+                                        mensagem += ReuniaoUtils.zeroAEsquerda(horas) + ReuniaoUtils.pluralString(horas, Constants.HORAS_LABEL);
+                                    }
+
+                                    ReuniaoUtils.mostrarNotificacao(getApplicationContext(), R.mipmap.ic_meet_table, Constants.REUNIAO_ACONTECENDO, mensagem, null, Constants.ID_NOTIFICACAO_REUNIAO_ACONTECENDO, Constants.NOTIFICACAO_FIXA);
+                                } else if(mInicio.getMinutes() > 60){
                                     GlobalClass gc = (GlobalClass) getApplicationContext();
                                     gc.setReuniaoAcontecendo(false);
-                                    ReuniaoUtils.cancelarNotificacao(NotificacaoBeaconService.this, Constants.ID_NOTIFICACAO_REUNIAO);
+                                    ReuniaoUtils.cancelarNotificacao(NotificacaoBeaconService.this, new int[]{Constants.ID_NOTIFICACAO_REUNIAO_ACONTECENDO, Constants.ID_NOTIFICACAO_REUNIAO});
+                                } else if(mTermino.getMinutes() <= 0){
+                                    ReuniaoUtils.cancelarNotificacao(NotificacaoBeaconService.this, Constants.ID_NOTIFICACAO_REUNIAO_ACONTECENDO);
+
+                                    ReuniaoUtils.mostrarNotificacao(getApplicationContext(), R.mipmap.thumbs_up, Constants.REUNIÃO_FINALIZADA, Constants.VOLTE_SEMPRE, null, Constants.ID_NOTIFICACAO_REUNIAO_FINALIZOU, !Constants.NOTIFICACAO_FIXA);
+
                                 }
                             }
                         }
@@ -149,15 +173,15 @@ public class NotificacaoBeaconService extends Service implements BootstrapNotifi
                             if (!ReuniaoUtils.isNotificacaoAtiva(getApplicationContext(), Constants.ID_BEM_VINDO_REUNIAO)) {
                                 final GlobalClass globalVariable = (GlobalClass) getApplicationContext();
                                 globalVariable.setReuniaoAcontecendo(true);
-                                Intent intent = new Intent(getApplicationContext(), NotificacaoMainActivity.class);
+                                Intent intent = new Intent(getApplicationContext(), ReuniaoMainActivity.class);
                                 TaskStackBuilder stackBuilder = TaskStackBuilder.create(getApplicationContext());
-                                stackBuilder.addParentStack(NotificacaoMainActivity.class);
+                                stackBuilder.addParentStack(ReuniaoMainActivity.class);
                                 stackBuilder.addNextIntent(intent);
                                 Intent intentEmailView = new Intent(getApplicationContext(), DetalhesReuniaoActivity.class);
                                 stackBuilder.addNextIntent(intentEmailView);
                                 PendingIntent pendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
 
-                                ReuniaoUtils.mostrarNotificacao(getApplicationContext(), R.mipmap.keditbookmarks, Constants.BEM_VINDO, Constants.CONTINUACAO_BEM_VINDO, pendingIntent, Constants.ID_BEM_VINDO_REUNIAO);
+                                ReuniaoUtils.mostrarNotificacao(getApplicationContext(), R.mipmap.keditbookmarks, Constants.BEM_VINDO, Constants.CONTINUACAO_BEM_VINDO, pendingIntent, Constants.ID_BEM_VINDO_REUNIAO, !Constants.NOTIFICACAO_FIXA);
 
                             }
 
@@ -201,22 +225,21 @@ public class NotificacaoBeaconService extends Service implements BootstrapNotifi
         String mensagem = Constants.MENSAGEM_REUNIAO;
 
         if (horas == 0) {
-            mensagem += ReuniaoUtils.zeroAEsquerda(minutos) + ReuniaoUtils.pluralString(minutos, " minuto");
+            mensagem += ReuniaoUtils.zeroAEsquerda(minutos) + ReuniaoUtils.pluralString(minutos, Constants.MINUTOS_LABEL);
         } else if (horas > 0) {
-            mensagem += ReuniaoUtils.zeroAEsquerda(horas) + ReuniaoUtils.pluralString(horas, " hora");
+            mensagem += ReuniaoUtils.zeroAEsquerda(horas) + ReuniaoUtils.pluralString(horas, Constants.HORAS_LABEL);
         }
-
 
         Intent intent = new Intent(getApplicationContext(), ReuniaoNotificacaoActivity.class);
         intent.putExtra(Constants.TEMPO_RESTANTE_KEY, qtdeMinutos);
         intent.putExtra(Constants.MENSAGEM_KEY, mensagem);
         intent.putExtra(Constants.LOCAL_KEY, vo.getLocal());
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(getApplicationContext());
-        stackBuilder.addParentStack(NotificacaoMainActivity.class);
+        stackBuilder.addParentStack(ReuniaoMainActivity.class);
         stackBuilder.addNextIntent(intent);
         PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
 
-        ReuniaoUtils.mostrarNotificacao(getApplicationContext(), R.mipmap.stock_new_meeting, Constants.REUNIAO, mensagem, resultPendingIntent, Constants.ID_NOTIFICACAO_REUNIAO);
+        ReuniaoUtils.mostrarNotificacao(getApplicationContext(), R.mipmap.stock_new_meeting, Constants.REUNIAO, mensagem, resultPendingIntent, Constants.ID_NOTIFICACAO_REUNIAO, !Constants.NOTIFICACAO_FIXA);
 
     }
 

@@ -20,6 +20,8 @@ public interface Constants {
     String LABEL_OK = "OK";
     String LABEL_SIM = "Sim";
 
+    boolean NOTIFICACAO_FIXA = true;
+
     String LABEL_NAO = "Não";
     String TITULO_APP = "Controle de Reunião";
 
@@ -31,6 +33,8 @@ public interface Constants {
 
     int ID_BEM_VINDO_REUNIAO = 0;
     int ID_NOTIFICACAO_REUNIAO = 1;
+    int ID_NOTIFICACAO_REUNIAO_ACONTECENDO = 2;
+    int ID_NOTIFICACAO_REUNIAO_FINALIZOU = 3;
 
 
     String ERRO_ASSUNTO_REUNIAO = "Forneça o Assunto da reunião";
@@ -58,4 +62,10 @@ public interface Constants {
     String FLAG_ALTERAR_REUNIAO = "A";
     String FLAG_DETALHES_REUNIAO = "D";
     String TITULO_DETALHES_REUNIAO = "Detalhes da Reunião";
+    String REUNIAO_ACONTECENDO = "Reunião acontecendo agora";
+    String REUNIAO_TERMINARA = "Sua reunião terminará em ";
+    String MINUTOS_LABEL = " minuto";
+    String HORAS_LABEL = " hora";
+    String REUNIÃO_FINALIZADA = "A reunião finalizou";
+    String VOLTE_SEMPRE = "Volte sempre!";
 }
