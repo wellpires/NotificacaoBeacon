@@ -1013,7 +1013,14 @@
                     "endOffset": 7036
                 },
                 "from": {
-                    "file": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\src\\main\\res\\values\\colors.xml"
+                    "file": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\src\\main\\res\\values\\colors.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 157,
+                        "endColumn": 45,
+                        "endOffset": 198
+                    }
                 }
             },
             {
@@ -5357,14 +5364,7 @@
                     "endOffset": 71666
                 },
                 "from": {
-                    "file": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\src\\main\\res\\values\\strings.xml",
-                    "position": {
-                        "startLine": 2,
-                        "startColumn": 4,
-                        "startOffset": 76,
-                        "endColumn": 59,
-                        "endOffset": 131
-                    }
+                    "file": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\src\\main\\res\\values\\strings.xml"
                 }
             },
             {
