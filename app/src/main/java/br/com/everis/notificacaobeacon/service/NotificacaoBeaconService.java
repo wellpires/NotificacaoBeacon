@@ -97,14 +97,16 @@ public class NotificacaoBeaconService extends Service implements BootstrapNotifi
 
                             if(dtAgora.withTimeAtStartOfDay().isEqual(dtInicio.withTimeAtStartOfDay()) &&
                                     (dtAgora.isBefore(dtInicio) || dtAgora.isBefore(dtTermino))){
-                                if (mInicio.getMinutes() <= 60 && mInicio.getMinutes() > 0) {
+                                Duration duration = new Duration(dtAgora, dtInicio);
+                                if (dtAgora.isBefore(dtInicio) && ((duration.getStandardMinutes() % 60) == 0 && (duration.getStandardMinutes() / 60) == 1)) {
+//                                if (mInicio.getMinutes() <= 60 && mInicio.getMinutes() > 0) {
                                     //REUNIÃO IRÁ COMEÇAR
 
                                     final GlobalClass globalVariable = (GlobalClass) getApplicationContext();
                                     globalVariable.setReuniaoVO(vo);
                                     globalVariable.setReuniaoAcontecera(true);
                                     globalVariable.setReuniaoAcontecendo(false);
-                                    notificacaoReuniao(vo, mInicio.getMinutes());
+                                    notificacaoReuniao(vo, duration.getStandardMinutes());
                                     ReuniaoUtils.cancelarNotificacao(getApplicationContext(), Constants.ID_NOTIFICACAO_REUNIAO_ACONTECENDO);
                                     break;
                                     //TODO MELHORAMENTO: FAZER COM QUE APAREÇA NOTIFICAÇÕES PARA SE CASO TIVER VÁRIAS REUNIÕES POR DIA.
@@ -224,10 +226,10 @@ public class NotificacaoBeaconService extends Service implements BootstrapNotifi
 
     }
 
-    private void notificacaoReuniao(ReuniaoVO vo, int qtdeMinutos) {
+    private void notificacaoReuniao(ReuniaoVO vo, long qtdeMinutos) {
 
-        int horas = qtdeMinutos / 60;
-        int minutos = qtdeMinutos % 60;
+        int horas = (int) (qtdeMinutos / 60);
+        int minutos = (int) (qtdeMinutos % 60);
         String mensagem = Constants.MENSAGEM_REUNIAO;
 
         if (horas == 0) {
