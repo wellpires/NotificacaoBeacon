@@ -120,7 +120,6 @@ public class NotificacaoBeaconService extends Service implements BootstrapNotifi
                                         GlobalClass gc = (GlobalClass) getApplicationContext();
                                         gc.setReuniaoAcontecera(false);
                                         ReuniaoUtils.cancelarTodasNotificacoes(getApplicationContext());
-//                                        ReuniaoUtils.cancelarNotificacao(NotificacaoBeaconService.this, new int[]{Constants.ID_NOTIFICACAO_REUNIAO_ACONTECENDO, Constants.ID_NOTIFICACAO_REUNIAO, Constants.ID_BEM_VINDO_REUNIAO});
                                     }
                                 } else if (dtTermino.isBeforeNow() && new Duration(dtAgora, dtTermino).getStandardMinutes() == 0) {
                                     //VERIFICAR SE O HORÁRIO DE TERMINO É DEPOIS DE AGORA E SE A DIFERENÇA EM MINUTOS DO TERMINO PARA O INICIO SEJA IGUAL A 0
