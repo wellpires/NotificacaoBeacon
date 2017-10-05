@@ -11,6 +11,7 @@ import br.com.everis.notificacaobeacon.bd.model.ReuniaoVO;
 public class GlobalClass extends Application {
 
     private ReuniaoVO reuniaoVO = null;
+    private Boolean isReuniaoAcontecera = false;
     private Boolean isReuniaoAcontecendo = false;
 
     public ReuniaoVO getReuniaoVO() {
@@ -19,6 +20,14 @@ public class GlobalClass extends Application {
 
     public void setReuniaoVO(ReuniaoVO reuniaoVO) {
         this.reuniaoVO = reuniaoVO;
+    }
+
+    public Boolean getReuniaoAcontecera() {
+        return isReuniaoAcontecera;
+    }
+
+    public void setReuniaoAcontecera(Boolean reuniaoAcontecera) {
+        isReuniaoAcontecera = reuniaoAcontecera;
     }
 
     public Boolean getReuniaoAcontecendo() {

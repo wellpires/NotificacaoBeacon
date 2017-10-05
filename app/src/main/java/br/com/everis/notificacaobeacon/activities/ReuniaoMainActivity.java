@@ -159,7 +159,7 @@ public class ReuniaoMainActivity extends AppCompatActivity
             startActivity(i);
         } else if (view.getId() == R.id.fabBell) {
             final GlobalClass globalVariable = (GlobalClass) getApplicationContext();
-            if (globalVariable.getReuniaoAcontecendo()) {
+            if (globalVariable.getReuniaoAcontecera()) {
                 Intent i = new Intent(getApplicationContext(), DetalhesReuniaoActivity.class);
                 startActivity(i);
             } else {
@@ -218,7 +218,7 @@ public class ReuniaoMainActivity extends AppCompatActivity
 
             if(lvReunioes.getAdapter().getCount() <= 0){
                 GlobalClass gc = (GlobalClass) getApplicationContext();
-                gc.setReuniaoAcontecendo(false);
+                gc.setReuniaoAcontecera(false);
                 ReuniaoUtils.cancelarNotificacao(this, new int[]{Constants.ID_BEM_VINDO_REUNIAO, Constants.ID_NOTIFICACAO_REUNIAO, Constants.ID_NOTIFICACAO_REUNIAO_ACONTECENDO});
             }
 

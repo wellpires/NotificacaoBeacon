@@ -7,8 +7,6 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.widget.Toast;
 
 import org.altbeacon.beacon.BeaconManager;
 import org.altbeacon.beacon.BeaconParser;
@@ -17,6 +15,9 @@ import org.altbeacon.beacon.Region;
 import org.altbeacon.beacon.startup.BootstrapNotifier;
 import org.altbeacon.beacon.startup.RegionBootstrap;
 import org.joda.time.DateTime;
+import org.joda.time.DateTimeField;
+import org.joda.time.DateTimeFieldType;
+import org.joda.time.Duration;
 import org.joda.time.Minutes;
 
 import java.util.ArrayList;
@@ -88,25 +89,30 @@ public class NotificacaoBeaconService extends Service implements BootstrapNotifi
                         List<ReuniaoVO> lstReunioesHoje = new ArrayList<>();
                         for (ReuniaoVO vo : lstReunioes) {
 
-                            DateTime dtHoje = new DateTime(new Date());
+                            DateTime dtAgora = new DateTime(new Date());
                             DateTime dtInicio = new DateTime(ReuniaoUtils.stringToDateTime(vo.getHoraInicio()));
                             DateTime dtTermino = new DateTime(ReuniaoUtils.stringToDateTime(vo.getHoraTermino()));
-                            Minutes mInicio = Minutes.minutesBetween(dtHoje, dtInicio);
-                            Minutes mTermino = Minutes.minutesBetween(dtHoje, dtTermino);
-                            vo.getHoraTermino();
-                            ReuniaoUtils.dateTimeToString(new Date());
-                            if(dtHoje.withTimeAtStartOfDay().isEqual(dtInicio.withTimeAtStartOfDay()) &&
-                                    (dtHoje.isBefore(dtInicio) || dtHoje.isBefore(dtTermino))){
+                            Minutes mInicio = Minutes.minutesBetween(dtAgora, dtInicio);
+                            Minutes mTermino = Minutes.minutesBetween(dtAgora, dtTermino);
+
+                            if(dtAgora.withTimeAtStartOfDay().isEqual(dtInicio.withTimeAtStartOfDay()) &&
+                                    (dtAgora.isBefore(dtInicio) || dtAgora.isBefore(dtTermino))){
                                 if (mInicio.getMinutes() <= 60 && mInicio.getMinutes() > 0) {
+                                    //REUNIÃO IRÁ COMEÇAR
+
                                     final GlobalClass globalVariable = (GlobalClass) getApplicationContext();
                                     globalVariable.setReuniaoVO(vo);
-                                    globalVariable.setReuniaoAcontecendo(true);
+                                    globalVariable.setReuniaoAcontecera(true);
+                                    globalVariable.setReuniaoAcontecendo(false);
                                     notificacaoReuniao(vo, mInicio.getMinutes());
+                                    ReuniaoUtils.cancelarNotificacao(getApplicationContext(), Constants.ID_NOTIFICACAO_REUNIAO_ACONTECENDO);
                                     break;
                                     //TODO MELHORAMENTO: FAZER COM QUE APAREÇA NOTIFICAÇÕES PARA SE CASO TIVER VÁRIAS REUNIÕES POR DIA.
                                 } else if (mInicio.getMinutes() <= 0 && mTermino.getMinutes() > 0) {
                                     //TODO REUNIÃO ACONTECENDO
+                                    ReuniaoUtils.cancelarNotificacao(getApplicationContext(), new int[]{Constants.ID_NOTIFICACAO_REUNIAO, Constants.ID_BEM_VINDO_REUNIAO});
                                     final GlobalClass globalVariable = (GlobalClass) getApplicationContext();
+                                    globalVariable.setReuniaoAcontecera(true);
                                     globalVariable.setReuniaoAcontecendo(true);
 
                                     String mensagem = Constants.REUNIAO_TERMINARA;
@@ -122,9 +128,9 @@ public class NotificacaoBeaconService extends Service implements BootstrapNotifi
                                     ReuniaoUtils.mostrarNotificacao(getApplicationContext(), R.mipmap.ic_meet_table, Constants.REUNIAO_ACONTECENDO, mensagem, null, Constants.ID_NOTIFICACAO_REUNIAO_ACONTECENDO, Constants.NOTIFICACAO_FIXA);
                                 } else if(mInicio.getMinutes() > 60){
                                     GlobalClass gc = (GlobalClass) getApplicationContext();
-                                    gc.setReuniaoAcontecendo(false);
+                                    gc.setReuniaoAcontecera(false);
                                     ReuniaoUtils.cancelarNotificacao(NotificacaoBeaconService.this, new int[]{Constants.ID_NOTIFICACAO_REUNIAO_ACONTECENDO, Constants.ID_NOTIFICACAO_REUNIAO});
-                                } else if(mTermino.getMinutes() <= 0){
+                                } else if(mTermino.getMinutes() <= 0 ){
                                     ReuniaoUtils.cancelarNotificacao(NotificacaoBeaconService.this, Constants.ID_NOTIFICACAO_REUNIAO_ACONTECENDO);
 
                                     ReuniaoUtils.mostrarNotificacao(getApplicationContext(), R.mipmap.thumbs_up, Constants.REUNIÃO_FINALIZADA, Constants.VOLTE_SEMPRE, null, Constants.ID_NOTIFICACAO_REUNIAO_FINALIZOU, !Constants.NOTIFICACAO_FIXA);
@@ -169,10 +175,10 @@ public class NotificacaoBeaconService extends Service implements BootstrapNotifi
                     try {
                         Thread.sleep(5000);
                         GlobalClass gc = (GlobalClass) getApplicationContext();
-                        if (gc.getReuniaoVO() != null && (gc.getReuniaoAcontecendo() != null && gc.getReuniaoAcontecendo())) {
+                        if (gc.getReuniaoVO() != null && (gc.getReuniaoAcontecera() != null && gc.getReuniaoAcontecera()) && !gc.getReuniaoAcontecendo()) {
                             if (!ReuniaoUtils.isNotificacaoAtiva(getApplicationContext(), Constants.ID_BEM_VINDO_REUNIAO)) {
                                 final GlobalClass globalVariable = (GlobalClass) getApplicationContext();
-                                globalVariable.setReuniaoAcontecendo(true);
+                                globalVariable.setReuniaoAcontecera(true);
                                 Intent intent = new Intent(getApplicationContext(), ReuniaoMainActivity.class);
                                 TaskStackBuilder stackBuilder = TaskStackBuilder.create(getApplicationContext());
                                 stackBuilder.addParentStack(ReuniaoMainActivity.class);
@@ -206,7 +212,7 @@ public class NotificacaoBeaconService extends Service implements BootstrapNotifi
         Log.d(TAG, "Thread ID: " + threadNotificacao.getId());
         pararWhileTrue = true;
         final GlobalClass globalVariable = (GlobalClass) getApplicationContext();
-        globalVariable.setReuniaoAcontecendo(false);
+        globalVariable.setReuniaoAcontecera(false);
         if (threadNotificacao != null) {
             threadNotificacao.interrupt();
         }

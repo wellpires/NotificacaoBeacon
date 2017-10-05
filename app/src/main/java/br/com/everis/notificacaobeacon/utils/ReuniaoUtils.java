@@ -11,11 +11,9 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.NotificationCompat;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import org.joda.time.DateTime;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -182,7 +180,7 @@ public class ReuniaoUtils {
 
             if(lvReunioes.getAdapter().getCount() <= 0){
                 GlobalClass gc = (GlobalClass) context.getApplicationContext();
-                gc.setReuniaoAcontecendo(false);
+                gc.setReuniaoAcontecera(false);
                 ReuniaoUtils.cancelarNotificacao(context, new int[]{Constants.ID_BEM_VINDO_REUNIAO, Constants.ID_NOTIFICACAO_REUNIAO, Constants.ID_NOTIFICACAO_REUNIAO_ACONTECENDO});
             }
 

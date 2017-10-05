@@ -2,9 +2,7 @@ package br.com.everis.notificacaobeacon.utils;
 
 import android.app.Activity;
 import android.support.design.widget.FloatingActionButton;
-import android.widget.Toast;
 
-import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -60,7 +58,7 @@ public class UpdateGUI extends TimerTask {
 
         try {
             final GlobalClass globalVariable = (GlobalClass) context.getApplicationContext();
-            if (globalVariable.getReuniaoAcontecendo() && notificacaoAtiva) {
+            if (globalVariable.getReuniaoAcontecera() && notificacaoAtiva) {
                 fabNotificacaoReuniao.setImageResource(R.mipmap.bell_star);
             } else {
                 fabNotificacaoReuniao.setImageResource(R.mipmap.bell);

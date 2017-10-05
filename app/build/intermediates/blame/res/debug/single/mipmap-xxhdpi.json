@@ -10,5 +10,9 @@
     {
         "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi\\ic_action_more_vert.png",
         "source": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_action_more_vert.png"
+    },
+    {
+        "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi\\ic_meet_table.png",
+        "source": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_meet_table.png"
     }
 ]
