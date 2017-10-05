@@ -194,12 +194,7 @@ public class ReuniaoMainActivity extends AppCompatActivity
 
     private void listarReunioes() {
         try {
-            ReuniaoUtils.listarReunioes(this);
-            if(1 == 1){
-                return;
-            }
             datasource = new DBAdapter(getApplicationContext());
-            datasource.open();
             List<ReuniaoVO> reunioes = datasource.getReunioes();
             List<ReuniaoVO> reunioesFiltradas = new ArrayList<>();
 

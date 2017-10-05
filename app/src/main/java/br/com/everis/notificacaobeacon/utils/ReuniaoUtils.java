@@ -175,8 +175,8 @@ public class ReuniaoUtils {
             List<ReuniaoVO> reunioesFiltradas = new ArrayList<>();
 
             for (ReuniaoVO vo : reunioes) {
-                DateTime dtInicio = new DateTime(ReuniaoUtils.stringToDateTime(vo.getHoraInicio()));
-                DateTime dtTermino = new DateTime(ReuniaoUtils.stringToDateTime(vo.getHoraTermino()));
+                DateTime dtInicio = new DateTime(stringToDateTime(vo.getHoraInicio()));
+                DateTime dtTermino = new DateTime(stringToDateTime(vo.getHoraTermino()));
                 DateTime dtAgora = new DateTime(new Date());
                 if (dtInicio.withTimeAtStartOfDay().isEqual(dtAgora.withTimeAtStartOfDay()) && dtAgora.isBefore(dtTermino)) {
                     reunioesFiltradas.add(vo);
@@ -191,7 +191,7 @@ public class ReuniaoUtils {
             if(lvReunioes.getAdapter().getCount() <= 0){
                 GlobalClass gc = (GlobalClass) context.getApplicationContext();
                 gc.setReuniaoAcontecera(false);
-                ReuniaoUtils.cancelarNotificacao(context, new int[]{Constants.ID_BEM_VINDO_REUNIAO, Constants.ID_NOTIFICACAO_REUNIAO, Constants.ID_NOTIFICACAO_REUNIAO_ACONTECENDO});
+                cancelarTodasNotificacoes(context);
             }
 
         } catch (ParseException e) {
