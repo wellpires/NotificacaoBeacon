@@ -121,6 +121,15 @@ public class ReuniaoUtils {
         return false;
     }
 
+    public static void cancelarTodasNotificacoes(Context c){
+        NotificationManager notificacao = (NotificationManager) c.getSystemService(Context.NOTIFICATION_SERVICE);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            for (StatusBarNotification sbn : notificacao.getActiveNotifications()) {
+                cancelarNotificacao(c, sbn.getId());
+            }
+        }
+    }
+
     public static void cancelarNotificacao(Context c, int idReuniao) {
         if(!isNotificacaoAtiva(c,idReuniao)){
             return;
@@ -128,6 +137,7 @@ public class ReuniaoUtils {
         NotificationManager mNotificationManager = (NotificationManager) c.getSystemService(Context.NOTIFICATION_SERVICE);
         mNotificationManager.cancel(idReuniao);
     }
+
     public static void cancelarNotificacao(Context c, int[] idReuniao) {
         for(int id : idReuniao){
             cancelarNotificacao(c, id);

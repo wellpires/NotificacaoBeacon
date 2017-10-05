@@ -68,4 +68,6 @@ public interface Constants {
     String HORAS_LABEL = " hora";
     String REUNIÃO_FINALIZADA = "A reunião finalizou";
     String VOLTE_SEMPRE = "Volte sempre!";
+
+    int TEMPO_LIMITE_MINUTOS = 120;
 }

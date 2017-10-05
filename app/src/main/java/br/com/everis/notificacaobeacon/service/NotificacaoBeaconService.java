@@ -82,9 +82,7 @@ public class NotificacaoBeaconService extends Service implements BootstrapNotifi
                         Thread.sleep(5000);
 
                         datasource = new DBAdapter(getApplicationContext());
-                        datasource.open();
                         List<ReuniaoVO> lstReunioes = datasource.getReunioes();
-                        datasource.close();
 
                         List<ReuniaoVO> lstReunioesHoje = new ArrayList<>();
                         for (ReuniaoVO vo : lstReunioes) {
@@ -92,51 +90,43 @@ public class NotificacaoBeaconService extends Service implements BootstrapNotifi
                             DateTime dtAgora = new DateTime(new Date());
                             DateTime dtInicio = new DateTime(ReuniaoUtils.stringToDateTime(vo.getHoraInicio()));
                             DateTime dtTermino = new DateTime(ReuniaoUtils.stringToDateTime(vo.getHoraTermino()));
-                            Minutes mInicio = Minutes.minutesBetween(dtAgora, dtInicio);
                             Minutes mTermino = Minutes.minutesBetween(dtAgora, dtTermino);
 
-                            if(dtAgora.withTimeAtStartOfDay().isEqual(dtInicio.withTimeAtStartOfDay()) &&
-                                    (dtAgora.isBefore(dtInicio) || dtAgora.isBefore(dtTermino))){
+                            if (dtAgora.withTimeAtStartOfDay().isEqual(dtInicio.withTimeAtStartOfDay())) {
                                 Duration duration = new Duration(dtAgora, dtInicio);
-                                if (dtAgora.isBefore(dtInicio) && ((duration.getStandardMinutes() % 60) == 0 && (duration.getStandardMinutes() / 60) == 1)) {
-//                                if (mInicio.getMinutes() <= 60 && mInicio.getMinutes() > 0) {
-                                    //REUNIÃO IRÁ COMEÇAR
+                                if (dtAgora.isBefore(dtInicio) || dtAgora.isBefore(dtTermino)) {
+                                    if (dtAgora.isBefore(dtInicio) && duration.getStandardMinutes() < Constants.TEMPO_LIMITE_MINUTOS) {
+                                        //REUNIÃO IRÁ COMEÇAR
+                                        final GlobalClass globalVariable = (GlobalClass) getApplicationContext();
+                                        globalVariable.setReuniaoVO(vo);
+                                        globalVariable.setReuniaoAcontecera(true);
+                                        globalVariable.setReuniaoAcontecendo(false);
+                                        notificacaoReuniao(vo, duration.getStandardMinutes());
+                                        ReuniaoUtils.cancelarNotificacao(getApplicationContext(), Constants.ID_NOTIFICACAO_REUNIAO_ACONTECENDO);
+                                        break;
+                                        //TODO MELHORAMENTO: FAZER COM QUE APAREÇA NOTIFICAÇÕES PARA SE CASO TIVER VÁRIAS REUNIÕES POR DIA.
+                                    } else if ((dtInicio.isEqualNow() || dtAgora.isAfter(dtInicio)) && (dtTermino.isEqualNow() || dtAgora.isBefore(dtTermino))) {
+                                        //REUNIÃO ACONTECENDO
+                                        ReuniaoUtils.cancelarNotificacao(getApplicationContext(), new int[]{Constants.ID_NOTIFICACAO_REUNIAO, Constants.ID_BEM_VINDO_REUNIAO});
+                                        final GlobalClass globalVariable = (GlobalClass) getApplicationContext();
+                                        globalVariable.setReuniaoAcontecera(true);
+                                        globalVariable.setReuniaoAcontecendo(true);
 
-                                    final GlobalClass globalVariable = (GlobalClass) getApplicationContext();
-                                    globalVariable.setReuniaoVO(vo);
-                                    globalVariable.setReuniaoAcontecera(true);
-                                    globalVariable.setReuniaoAcontecendo(false);
-                                    notificacaoReuniao(vo, duration.getStandardMinutes());
-                                    ReuniaoUtils.cancelarNotificacao(getApplicationContext(), Constants.ID_NOTIFICACAO_REUNIAO_ACONTECENDO);
-                                    break;
-                                    //TODO MELHORAMENTO: FAZER COM QUE APAREÇA NOTIFICAÇÕES PARA SE CASO TIVER VÁRIAS REUNIÕES POR DIA.
-                                } else if (mInicio.getMinutes() <= 0 && mTermino.getMinutes() > 0) {
-                                    //TODO REUNIÃO ACONTECENDO
-                                    ReuniaoUtils.cancelarNotificacao(getApplicationContext(), new int[]{Constants.ID_NOTIFICACAO_REUNIAO, Constants.ID_BEM_VINDO_REUNIAO});
-                                    final GlobalClass globalVariable = (GlobalClass) getApplicationContext();
-                                    globalVariable.setReuniaoAcontecera(true);
-                                    globalVariable.setReuniaoAcontecendo(true);
+                                        String mensagem = formatarMensagem(mTermino.getMinutes(), Constants.REUNIAO_TERMINARA);
 
-                                    String mensagem = Constants.REUNIAO_TERMINARA;
-                                    int horas = mTermino.getMinutes() / 60;
-                                    int minutos = mTermino.getMinutes() % 60;
-
-                                    if (horas == 0) {
-                                        mensagem += ReuniaoUtils.zeroAEsquerda(minutos) + ReuniaoUtils.pluralString(minutos, Constants.MINUTOS_LABEL);
-                                    } else if (horas > 0) {
-                                        mensagem += ReuniaoUtils.zeroAEsquerda(horas) + ReuniaoUtils.pluralString(horas, Constants.HORAS_LABEL);
+                                        ReuniaoUtils.mostrarNotificacao(getApplicationContext(), R.mipmap.ic_meet_table, Constants.REUNIAO_ACONTECENDO, mensagem, null, Constants.ID_NOTIFICACAO_REUNIAO_ACONTECENDO, Constants.NOTIFICACAO_FIXA);
+                                    } else if (duration.getStandardMinutes() > Constants.TEMPO_LIMITE_MINUTOS) {
+                                        //REUNIÃO AINDA NÃO COMEÇOU
+                                        GlobalClass gc = (GlobalClass) getApplicationContext();
+                                        gc.setReuniaoAcontecera(false);
+                                        ReuniaoUtils.cancelarTodasNotificacoes(getApplicationContext());
+//                                        ReuniaoUtils.cancelarNotificacao(NotificacaoBeaconService.this, new int[]{Constants.ID_NOTIFICACAO_REUNIAO_ACONTECENDO, Constants.ID_NOTIFICACAO_REUNIAO, Constants.ID_BEM_VINDO_REUNIAO});
                                     }
-
-                                    ReuniaoUtils.mostrarNotificacao(getApplicationContext(), R.mipmap.ic_meet_table, Constants.REUNIAO_ACONTECENDO, mensagem, null, Constants.ID_NOTIFICACAO_REUNIAO_ACONTECENDO, Constants.NOTIFICACAO_FIXA);
-                                } else if(mInicio.getMinutes() > 60){
-                                    GlobalClass gc = (GlobalClass) getApplicationContext();
-                                    gc.setReuniaoAcontecera(false);
-                                    ReuniaoUtils.cancelarNotificacao(NotificacaoBeaconService.this, new int[]{Constants.ID_NOTIFICACAO_REUNIAO_ACONTECENDO, Constants.ID_NOTIFICACAO_REUNIAO});
-                                } else if(mTermino.getMinutes() <= 0 ){
+                                } else if (dtTermino.isBeforeNow() && new Duration(dtAgora, dtTermino).getStandardMinutes() == 0) {
+                                    //VERIFICAR SE O HORÁRIO DE TERMINO É DEPOIS DE AGORA E SE A DIFERENÇA EM MINUTOS DO TERMINO PARA O INICIO SEJA IGUAL A 0
+                                    //REUNIÃO TERMINOU
                                     ReuniaoUtils.cancelarNotificacao(NotificacaoBeaconService.this, Constants.ID_NOTIFICACAO_REUNIAO_ACONTECENDO);
-
                                     ReuniaoUtils.mostrarNotificacao(getApplicationContext(), R.mipmap.thumbs_up, Constants.REUNIÃO_FINALIZADA, Constants.VOLTE_SEMPRE, null, Constants.ID_NOTIFICACAO_REUNIAO_FINALIZOU, !Constants.NOTIFICACAO_FIXA);
-
                                 }
                             }
                         }
@@ -193,7 +183,7 @@ public class NotificacaoBeaconService extends Service implements BootstrapNotifi
 
                             }
 
-                        } else if(ReuniaoUtils.isNotificacaoAtiva(getApplicationContext(), Constants.ID_BEM_VINDO_REUNIAO)){
+                        } else if (ReuniaoUtils.isNotificacaoAtiva(getApplicationContext(), Constants.ID_BEM_VINDO_REUNIAO)) {
                             ReuniaoUtils.cancelarNotificacao(NotificacaoBeaconService.this, Constants.ID_BEM_VINDO_REUNIAO);
                         }
                     } catch (InterruptedException e) {
@@ -228,15 +218,7 @@ public class NotificacaoBeaconService extends Service implements BootstrapNotifi
 
     private void notificacaoReuniao(ReuniaoVO vo, long qtdeMinutos) {
 
-        int horas = (int) (qtdeMinutos / 60);
-        int minutos = (int) (qtdeMinutos % 60);
-        String mensagem = Constants.MENSAGEM_REUNIAO;
-
-        if (horas == 0) {
-            mensagem += ReuniaoUtils.zeroAEsquerda(minutos) + ReuniaoUtils.pluralString(minutos, Constants.MINUTOS_LABEL);
-        } else if (horas > 0) {
-            mensagem += ReuniaoUtils.zeroAEsquerda(horas) + ReuniaoUtils.pluralString(horas, Constants.HORAS_LABEL);
-        }
+        String mensagem = formatarMensagem((int) (qtdeMinutos), Constants.MENSAGEM_REUNIAO);
 
         Intent intent = new Intent(getApplicationContext(), ReuniaoNotificacaoActivity.class);
         intent.putExtra(Constants.TEMPO_RESTANTE_KEY, qtdeMinutos);
@@ -249,6 +231,29 @@ public class NotificacaoBeaconService extends Service implements BootstrapNotifi
 
         ReuniaoUtils.mostrarNotificacao(getApplicationContext(), R.mipmap.stock_new_meeting, Constants.REUNIAO, mensagem, resultPendingIntent, Constants.ID_NOTIFICACAO_REUNIAO, !Constants.NOTIFICACAO_FIXA);
 
+    }
+
+    private String formatarMensagem(int m, String mensagem) {
+
+        int horas = m / 60;
+        int minutos = m % 60;
+
+        if (horas < 1) {
+            mensagem += ReuniaoUtils.zeroAEsquerda(minutos) + ReuniaoUtils.pluralString(minutos, Constants.MINUTOS_LABEL);
+        } else if (horas == 1) {
+            if (minutos == 0) {
+                mensagem += ReuniaoUtils.zeroAEsquerda(horas) + ReuniaoUtils.pluralString(horas, Constants.HORAS_LABEL);
+            } else if (minutos > 0) {
+                mensagem += ReuniaoUtils.zeroAEsquerda(horas) + ReuniaoUtils.pluralString(horas, Constants.HORAS_LABEL) + " e " + ReuniaoUtils.zeroAEsquerda(minutos) + ReuniaoUtils.pluralString(minutos, Constants.MINUTOS_LABEL);
+            }
+        } else {
+            if (minutos == 0) {
+                mensagem += ReuniaoUtils.zeroAEsquerda(horas) + ReuniaoUtils.pluralString(horas, Constants.HORAS_LABEL);
+            } else if (minutos > 0) {
+                mensagem += ReuniaoUtils.zeroAEsquerda(horas) + ReuniaoUtils.pluralString(horas, Constants.HORAS_LABEL) + " e " + ReuniaoUtils.zeroAEsquerda(minutos) + ReuniaoUtils.pluralString(minutos, Constants.MINUTOS_LABEL);
+            }
+        }
+        return mensagem;
     }
 
 }
