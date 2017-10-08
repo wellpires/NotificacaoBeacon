@@ -1,12 +1,15 @@
 package br.com.everis.notificacaobeacon.utils;
 
 import android.app.Activity;
+import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Build;
+import android.service.notification.NotificationListenerService;
 import android.service.notification.StatusBarNotification;
+import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.NotificationCompat;
 import android.view.inputmethod.InputMethodManager;
@@ -121,17 +124,16 @@ public class ReuniaoUtils {
         return false;
     }
 
-    public static void cancelarTodasNotificacoes(Context c){
+    public static void cancelarTodasNotificacoes(Context c) {
         NotificationManager notificacao = (NotificationManager) c.getSystemService(Context.NOTIFICATION_SERVICE);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            for (StatusBarNotification sbn : notificacao.getActiveNotifications()) {
-                cancelarNotificacao(c, sbn.getId());
-            }
+            NotificationManager mNotificationManager = (NotificationManager) c.getSystemService(Context.NOTIFICATION_SERVICE);
+            mNotificationManager.cancelAll();
         }
     }
 
     public static void cancelarNotificacao(Context c, int idReuniao) {
-        if(!isNotificacaoAtiva(c,idReuniao)){
+        if (!isNotificacaoAtiva(c, idReuniao)) {
             return;
         }
         NotificationManager mNotificationManager = (NotificationManager) c.getSystemService(Context.NOTIFICATION_SERVICE);
@@ -139,7 +141,7 @@ public class ReuniaoUtils {
     }
 
     public static void cancelarNotificacao(Context c, int[] idReuniao) {
-        for(int id : idReuniao){
+        for (int id : idReuniao) {
             cancelarNotificacao(c, id);
         }
     }
@@ -155,22 +157,26 @@ public class ReuniaoUtils {
 
     public static void mostrarNotificacao(Context context, int icon, String title, String content, PendingIntent pendingIntent, int idNotificacao, boolean isNotificacaoFixa) {
 
-        NotificationCompat.Builder mBuilder = (NotificationCompat.Builder) new NotificationCompat.Builder(context);
-        mBuilder.setSmallIcon(icon);
-        mBuilder.setContentTitle(title);
-        mBuilder.setContentText(content);
-        if(pendingIntent != null){
-            mBuilder.setContentIntent(pendingIntent);
+        NotificationCompat.Builder notificationBuilder = (NotificationCompat.Builder) new NotificationCompat.Builder(context);
+        notificationBuilder.setSmallIcon(icon);
+        notificationBuilder.setContentTitle(title);
+        notificationBuilder.setContentText(content);
+        notificationBuilder.setOngoing(isNotificacaoFixa);
+        if (!isNotificacaoAtiva(context, idNotificacao)) {
+            long[] v = {1000, 2000};
+            notificationBuilder.setVibrate(v);
+            notificationBuilder.setPriority(Notification.PRIORITY_MAX);
         }
-        mBuilder.setOngoing(isNotificacaoFixa);
+        if (pendingIntent != null) {
+            notificationBuilder.setContentIntent(pendingIntent);
+        }
         NotificationManager mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-        mNotificationManager.notify(idNotificacao, mBuilder.build());
+        mNotificationManager.notify(idNotificacao, notificationBuilder.build());
     }
 
     public static void listarReunioes(Context context) {
         try {
             DBAdapter datasource = new DBAdapter(context);
-            datasource.open();
             List<ReuniaoVO> reunioes = datasource.getReunioes();
             List<ReuniaoVO> reunioesFiltradas = new ArrayList<>();
 
@@ -188,7 +194,7 @@ public class ReuniaoUtils {
             ListView lvReunioes = (ListView) ((Activity) context).findViewById(R.id.lvReunioes);
             lvReunioes.setAdapter(adapter);
 
-            if(lvReunioes.getAdapter().getCount() <= 0){
+            if (lvReunioes.getAdapter().getCount() <= 0) {
                 GlobalClass gc = (GlobalClass) context.getApplicationContext();
                 gc.setReuniaoAcontecera(false);
                 cancelarTodasNotificacoes(context);

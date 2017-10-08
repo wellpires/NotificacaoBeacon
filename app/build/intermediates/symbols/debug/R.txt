@@ -1016,7 +1016,7 @@ int id action_mode_bar_stub 0x7f0e0073
 int id action_mode_close_button 0x7f0e0056
 int id action_settings 0x7f0e00ec
 int id action_text 0x7f0e00d1
-int id actions 0x7f0e00de
+int id actions 0x7f0e00df
 int id activity_chooser_view_content 0x7f0e0057
 int id add 0x7f0e0028
 int id adjust_height 0x7f0e0043
@@ -1080,7 +1080,7 @@ int id home 0x7f0e0005
 int id homeAsUp 0x7f0e001e
 int id hybrid 0x7f0e0045
 int id icon 0x7f0e005c
-int id icon_group 0x7f0e00df
+int id icon_group 0x7f0e00e0
 int id icon_only 0x7f0e004d
 int id ifRoom 0x7f0e004a
 int id image 0x7f0e0059
@@ -1154,7 +1154,7 @@ int id progress_circular 0x7f0e0007
 int id progress_horizontal 0x7f0e0008
 int id radio 0x7f0e0070
 int id right 0x7f0e0037
-int id right_icon 0x7f0e00e0
+int id right_icon 0x7f0e00de
 int id right_side 0x7f0e00d9
 int id rlLayoutMaps 0x7f0e00a4
 int id satellite 0x7f0e0046

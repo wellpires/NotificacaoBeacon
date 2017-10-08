@@ -1,6 +1,9 @@
 package br.com.everis.notificacaobeacon.utils;
 
 import android.app.Application;
+import android.service.notification.StatusBarNotification;
+
+import java.util.List;
 
 import br.com.everis.notificacaobeacon.bd.model.ReuniaoVO;
 
@@ -37,4 +40,5 @@ public class GlobalClass extends Application {
     public void setReuniaoAcontecendo(Boolean reuniaoAcontecendo) {
         isReuniaoAcontecendo = reuniaoAcontecendo;
     }
+
 }
