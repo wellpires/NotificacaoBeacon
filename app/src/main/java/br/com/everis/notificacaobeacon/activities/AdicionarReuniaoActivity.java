@@ -1,5 +1,6 @@
 package br.com.everis.notificacaobeacon.activities;
 
+import android.Manifest;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
@@ -69,6 +70,8 @@ public class AdicionarReuniaoActivity extends AppCompatActivity implements View.
     private Integer idReuniao = null;
     private String flagTipo = null;
 
+    private LocationManager mLocationManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -119,9 +122,9 @@ public class AdicionarReuniaoActivity extends AppCompatActivity implements View.
         ActionBar actionBar = getSupportActionBar();
         if (Constants.FLAG_NOVA_REUNIAO.equals(flagTipo)) {
             actionBar.setTitle(Constants.TITULO_NOVA_REUNIAO);
-        } else if(Constants.FLAG_ALTERAR_REUNIAO.equals(flagTipo) || Constants.FLAG_DETALHES_REUNIAO.equals(flagTipo)) {
+        } else if (Constants.FLAG_ALTERAR_REUNIAO.equals(flagTipo) || Constants.FLAG_DETALHES_REUNIAO.equals(flagTipo)) {
             actionBar.setTitle(Constants.TITULO_EDITAR_REUNIAO);
-            if(Constants.FLAG_DETALHES_REUNIAO.equals(flagTipo)){
+            if (Constants.FLAG_DETALHES_REUNIAO.equals(flagTipo)) {
                 actionBar.setTitle(Constants.TITULO_DETALHES_REUNIAO);
                 txtDataInicio.setEnabled(false);
                 txtHoraInicio.setEnabled(false);
@@ -167,7 +170,7 @@ public class AdicionarReuniaoActivity extends AppCompatActivity implements View.
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        if(item.getItemId() ==  R.id.btnSalvar){
+        if (item.getItemId() == R.id.btnSalvar) {
             try {
                 if (ReuniaoUtils.isEmptyOrNull(txtAssunto.getText().toString())) {
                     ReuniaoUtils.mostrarAvisoDialogo(this, Constants.ERRO_ASSUNTO_REUNIAO);
@@ -216,10 +219,10 @@ public class AdicionarReuniaoActivity extends AppCompatActivity implements View.
 
                 datasource.open();
 
-                if (Constants.FLAG_NOVA_REUNIAO.equals(flagTipo)){
+                if (Constants.FLAG_NOVA_REUNIAO.equals(flagTipo)) {
                     datasource.createReuniao(r);
                     finalizarAcao();
-                } else if(Constants.FLAG_ALTERAR_REUNIAO.equals(flagTipo)) {
+                } else if (Constants.FLAG_ALTERAR_REUNIAO.equals(flagTipo)) {
                     ReuniaoUtils.mostrarPerguntaDialogo(AdicionarReuniaoActivity.this, Constants.LABEL_VOCE_TEM_CERTEZA, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
@@ -234,8 +237,8 @@ public class AdicionarReuniaoActivity extends AppCompatActivity implements View.
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        } else if(item.getItemId() == android.R.id.home){
-            if(Constants.FLAG_DETALHES_REUNIAO.equals(flagTipo)){
+        } else if (item.getItemId() == android.R.id.home) {
+            if (Constants.FLAG_DETALHES_REUNIAO.equals(flagTipo)) {
                 finish();
             }
         }
@@ -246,7 +249,7 @@ public class AdicionarReuniaoActivity extends AppCompatActivity implements View.
     public boolean onPrepareOptionsMenu(Menu menu) {
         MenuItem item = menu.findItem(R.id.btnSalvar);
         item.setVisible(true);
-        if(Constants.FLAG_DETALHES_REUNIAO.equals(flagTipo)){
+        if (Constants.FLAG_DETALHES_REUNIAO.equals(flagTipo)) {
             item.setVisible(false);
         }
 
@@ -372,10 +375,14 @@ public class AdicionarReuniaoActivity extends AppCompatActivity implements View.
                             }
 
                             Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                            if(location == null){
+                                location = lm.getLastKnownLocation(LocationManager.PASSIVE_PROVIDER);
+                            }
+
                             double longitude = location.getLongitude();
                             double latitude = location.getLatitude();
 
-                            LatLng posisiabsen = new LatLng(latitude, longitude); ////your lat lng
+                            LatLng posisiabsen = new LatLng(latitude, longitude);
                             map.addMarker(new MarkerOptions().position(posisiabsen).title(Constants.VOCE_ESTA_AQUI));
                             map.moveCamera(CameraUpdateFactory.newLatLng(posisiabsen));
                             map.getUiSettings().setZoomControlsEnabled(true);
@@ -475,7 +482,7 @@ public class AdicionarReuniaoActivity extends AppCompatActivity implements View.
     private Intent getParentActivityIntentImpl() {
         Intent i = null;
 
-        if(Constants.FLAG_DETALHES_REUNIAO.equals(flagTipo)){
+        if (Constants.FLAG_DETALHES_REUNIAO.equals(flagTipo)) {
             i = new Intent(this, ReunioesActivity.class);
             i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         } else {

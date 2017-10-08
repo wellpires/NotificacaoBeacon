@@ -36,12 +36,20 @@
         "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\81ece88265a75e323787b3d4e210fdc040579384\\output\\res\\anim\\abc_grow_fade_in_from_bottom.xml"
     },
     {
+        "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\anim\\design_bottom_sheet_slide_out.xml",
+        "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\55de20b63723377169e59fb786e70d38837527cb\\output\\res\\anim\\design_bottom_sheet_slide_out.xml"
+    },
+    {
         "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_popup_enter.xml",
         "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\81ece88265a75e323787b3d4e210fdc040579384\\output\\res\\anim\\abc_popup_enter.xml"
     },
     {
         "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_slide_in_bottom.xml",
         "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\81ece88265a75e323787b3d4e210fdc040579384\\output\\res\\anim\\abc_slide_in_bottom.xml"
+    },
+    {
+        "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\anim\\design_bottom_sheet_slide_in.xml",
+        "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\55de20b63723377169e59fb786e70d38837527cb\\output\\res\\anim\\design_bottom_sheet_slide_in.xml"
     },
     {
         "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_popup_exit.xml",

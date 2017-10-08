@@ -30,13 +30,15 @@ public interface Constants {
     String NOVA_REUNIAO_KEY = "NOVO_REGISTRO";
     String LOCAL_KEY = "LOCAL";
     String MENSAGEM_KEY = "MENSAGEM";
+    String COMANDO_KEY = "COMANDO_NOTIFICACAO";
+    String LISTAR_NOTIFICATION_KEY = "LISTAR_NOTIFICACAO";
 
     int ID_BEM_VINDO_REUNIAO = 0;
     int ID_NOTIFICACAO_REUNIAO = 1;
     int ID_NOTIFICACAO_REUNIAO_ACONTECENDO = 2;
+
+
     int ID_NOTIFICACAO_REUNIAO_FINALIZOU = 3;
-
-
     String ERRO_ASSUNTO_REUNIAO = "Forneça o Assunto da reunião";
     String ERRO_DATA_INICIO_REUNIAO = "Forneça a Data de Inicio da reunião";
     String ERRO_HORA_INICIO_REUNIAO = "Forneça a Hora de Inicio da reunião";
@@ -48,12 +50,12 @@ public interface Constants {
     String ERRO_DATA_INICIO_MENOR_TERMINO = "A data de inicio deve ser menor que a data de término";
     String LABEL_VOCE_TEM_CERTEZA = "Você tem certeza?";
     String TITULO_NOVA_REUNIAO = "Nova Reunião";
-    String TITULO_EDITAR_REUNIAO = "Editar Reunião";
 
+    String TITULO_EDITAR_REUNIAO = "Editar Reunião";
     String VOCE_ESTA_AQUI = "Você está aqui!";
     String ERRO_PESQUISA_ENDERECO = "Favor pesquise um endereço!";
-    String LABEL_NENHUMA_REUNIAO = "Nenhuma reunião";
 
+    String LABEL_NENHUMA_REUNIAO = "Nenhuma reunião";
     String UUID_BEACON = "813c5c55-3a33-4c52-bc86-22cb7d49fc5c";
     String MINOR_BEACON = "258";
     String MAJOR_BEACON = "852";
@@ -67,7 +69,8 @@ public interface Constants {
     String MINUTOS_LABEL = " minuto";
     String HORAS_LABEL = " hora";
     String REUNIÃO_FINALIZADA = "A reunião finalizou";
-    String VOLTE_SEMPRE = "Volte sempre!";
 
-    int TEMPO_LIMITE_MINUTOS = 120;
+    String VOLTE_SEMPRE = "Volte sempre!";
+    int TEMPO_LIMITE_MINUTOS = 60;
+    String ACTION_SERVICE = "br.com.everis.notificacaobeacon.service.NOTIFICATION_LISTENER_SERVICE_EXAMPLE";
 }

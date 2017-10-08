@@ -28,6 +28,10 @@
         "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\81ece88265a75e323787b3d4e210fdc040579384\\output\\res\\drawable\\abc_seekbar_tick_mark_material.xml"
     },
     {
+        "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\design_bottom_navigation_item_background.xml",
+        "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\55de20b63723377169e59fb786e70d38837527cb\\output\\res\\drawable\\design_bottom_navigation_item_background.xml"
+    },
+    {
         "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ratingbar_small_material.xml",
         "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\81ece88265a75e323787b3d4e210fdc040579384\\output\\res\\drawable\\abc_ratingbar_small_material.xml"
     },
@@ -88,6 +92,10 @@
         "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\f3ec86f2390119fc45c7411d742938688931365a\\output\\res\\drawable\\common_google_signin_btn_text_light_normal.xml"
     },
     {
+        "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\design_password_eye.xml",
+        "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\55de20b63723377169e59fb786e70d38837527cb\\output\\res\\drawable\\design_password_eye.xml"
+    },
+    {
         "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\mr_media_pause_dark.xml",
         "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\19d8a21cecd3cfacc32bef1b3e2aa5271b42a773\\output\\res\\drawable\\mr_media_pause_dark.xml"
     },
@@ -130,6 +138,10 @@
     {
         "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ic_go_search_api_material.xml",
         "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\81ece88265a75e323787b3d4e210fdc040579384\\output\\res\\drawable\\abc_ic_go_search_api_material.xml"
+    },
+    {
+        "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_edit_text_material.xml",
+        "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\81ece88265a75e323787b3d4e210fdc040579384\\output\\res\\drawable\\abc_edit_text_material.xml"
     },
     {
         "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\mr_media_pause_light.xml",
@@ -214,6 +226,10 @@
     {
         "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_cab_background_top_material.xml",
         "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\81ece88265a75e323787b3d4e210fdc040579384\\output\\res\\drawable\\abc_cab_background_top_material.xml"
+    },
+    {
+        "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_btn_colored_material.xml",
+        "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\81ece88265a75e323787b3d4e210fdc040579384\\output\\res\\drawable\\abc_btn_colored_material.xml"
     },
     {
         "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ic_voice_search_api_material.xml",

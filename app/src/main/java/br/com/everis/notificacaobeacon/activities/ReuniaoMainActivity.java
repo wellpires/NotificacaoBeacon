@@ -100,8 +100,8 @@ public class ReuniaoMainActivity extends AppCompatActivity
         UpdateGUI updateBell = new UpdateGUI(this, 1);
         updateBell.run();
         // ========== START SERVICE ==========
-        Intent i = new Intent(ReuniaoMainActivity.this, NotificacaoBeaconService.class);
-        startService(i);
+        Intent iService = new Intent(ReuniaoMainActivity.this, NotificacaoBeaconService.class);
+        startService(iService);
         //===========================================
 
         listarReunioes();
@@ -202,7 +202,7 @@ public class ReuniaoMainActivity extends AppCompatActivity
                 DateTime dtInicio = new DateTime(ReuniaoUtils.stringToDateTime(vo.getHoraInicio()));
                 DateTime dtTermino = new DateTime(ReuniaoUtils.stringToDateTime(vo.getHoraTermino()));
                 DateTime dtAgora = new DateTime(new Date());
-                if (dtInicio.withTimeAtStartOfDay().isEqual(dtAgora.withTimeAtStartOfDay()) && dtAgora.isBefore(dtTermino)) {
+                if (dtInicio.isAfter(dtAgora) && dtAgora.isBefore(dtTermino)) {
                     reunioesFiltradas.add(vo);
                 }
             }

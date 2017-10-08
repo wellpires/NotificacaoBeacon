@@ -608,12 +608,12 @@
         "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\19d8a21cecd3cfacc32bef1b3e2aa5271b42a773\\output\\res\\drawable-xhdpi-v4\\ic_mr_button_connecting_11_dark.png"
     },
     {
-        "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\ic_mr_button_connecting_02_light.png",
-        "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\19d8a21cecd3cfacc32bef1b3e2aa5271b42a773\\output\\res\\drawable-xhdpi-v4\\ic_mr_button_connecting_02_light.png"
-    },
-    {
         "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_full_open_on_phone.png",
         "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\f3ec86f2390119fc45c7411d742938688931365a\\output\\res\\drawable-xhdpi-v4\\common_full_open_on_phone.png"
+    },
+    {
+        "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\ic_mr_button_connecting_02_light.png",
+        "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\19d8a21cecd3cfacc32bef1b3e2aa5271b42a773\\output\\res\\drawable-xhdpi-v4\\ic_mr_button_connecting_02_light.png"
     },
     {
         "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\ic_mr_button_connected_06_dark.png",

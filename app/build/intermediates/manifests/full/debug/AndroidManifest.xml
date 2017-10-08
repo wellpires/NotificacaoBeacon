@@ -5,7 +5,7 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="23"
+        android:minSdkVersion="19"
         android:targetSdkVersion="25" />
 
     <uses-permission android:name="android.permission.BLUETOOTH" />
@@ -51,6 +51,13 @@
             android:name="br.com.everis.notificacaobeacon.service.NotificacaoBeaconService"
             android:enabled="true"
             android:exported="true" />
+        <service
+            android:name="br.com.everis.notificacaobeacon.service.NotificacaoService"
+            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE" >
+            <intent-filter>
+                <action android:name="android.service.notification.NotificationListenerService" />
+            </intent-filter>
+        </service>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
