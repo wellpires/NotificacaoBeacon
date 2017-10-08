@@ -51,13 +51,6 @@
             android:name="br.com.everis.notificacaobeacon.service.NotificacaoBeaconService"
             android:enabled="true"
             android:exported="true" />
-        <service
-            android:name="br.com.everis.notificacaobeacon.service.NotificacaoService"
-            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE" >
-            <intent-filter>
-                <action android:name="android.service.notification.NotificationListenerService" />
-            </intent-filter>
-        </service>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

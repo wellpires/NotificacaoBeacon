@@ -168,14 +168,14 @@ public class ReuniaoMainActivity extends AppCompatActivity
         }
     }
 
-    public void alterarRegistro(View view){
-        Intent i = new Intent(ReuniaoMainActivity.this,AdicionarReuniaoActivity.class);
+    public void alterarRegistro(View view) {
+        Intent i = new Intent(ReuniaoMainActivity.this, AdicionarReuniaoActivity.class);
         i.putExtra(Constants.ID_REUNIAO_KEY, view.getTag().toString());
         i.putExtra(Constants.NOVA_REUNIAO_KEY, Constants.FLAG_ALTERAR_REUNIAO);
         startActivity(i);
     }
 
-    public void excluirRegistro(final View view){
+    public void excluirRegistro(final View view) {
         ReuniaoUtils.mostrarPerguntaDialogo(ReuniaoMainActivity.this, Constants.LABEL_VOCE_TEM_CERTEZA, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
@@ -202,8 +202,10 @@ public class ReuniaoMainActivity extends AppCompatActivity
                 DateTime dtInicio = new DateTime(ReuniaoUtils.stringToDateTime(vo.getHoraInicio()));
                 DateTime dtTermino = new DateTime(ReuniaoUtils.stringToDateTime(vo.getHoraTermino()));
                 DateTime dtAgora = new DateTime(new Date());
-                if (dtInicio.isAfter(dtAgora) && dtAgora.isBefore(dtTermino)) {
-                    reunioesFiltradas.add(vo);
+                if (dtInicio.withTimeAtStartOfDay().isEqual(dtAgora.withTimeAtStartOfDay())) {
+                    if (dtAgora.isBefore(dtTermino)) {
+                        reunioesFiltradas.add(vo);
+                    }
                 }
             }
 
@@ -211,7 +213,7 @@ public class ReuniaoMainActivity extends AppCompatActivity
 
             lvReunioes.setAdapter(adapter);
 
-            if(lvReunioes.getAdapter().getCount() <= 0){
+            if (lvReunioes.getAdapter().getCount() <= 0) {
                 GlobalClass gc = (GlobalClass) getApplicationContext();
                 gc.setReuniaoAcontecera(false);
                 ReuniaoUtils.cancelarNotificacao(this, new int[]{Constants.ID_BEM_VINDO_REUNIAO, Constants.ID_NOTIFICACAO_REUNIAO, Constants.ID_NOTIFICACAO_REUNIAO_ACONTECENDO});
