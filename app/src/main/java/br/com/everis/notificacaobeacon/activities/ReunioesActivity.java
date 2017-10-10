@@ -1,7 +1,6 @@
 package br.com.everis.notificacaobeacon.activities;
 
 import android.app.DatePickerDialog;
-import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -15,11 +14,8 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.TimePicker;
-import android.widget.Toast;
 
 import org.joda.time.DateTime;
-import org.joda.time.DateTimeUtils;
 
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -128,7 +124,7 @@ public class ReunioesActivity extends AppCompatActivity implements View.OnTouchL
         List<ReuniaoVO> lstReunioesFiltradas = new ArrayList<>();
 
         for (ReuniaoVO item : lstReunioes) {
-            DateTime dtInicio = new DateTime(ReuniaoUtils.stringToDateTime(item.getHoraInicio()));
+            DateTime dtInicio = new DateTime(ReuniaoUtils.stringToDateTime(item.getDtInicio()));
             if (dtInicio.withTimeAtStartOfDay().equals(inicio)) {
                 lstReunioesFiltradas.add(item);
             }

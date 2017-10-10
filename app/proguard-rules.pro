@@ -24,3 +24,5 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 -keep class com.google.android.gms.ads.identifier.** { *; }
+-dontwarn okio.**
+-dontwarn javax.annotation.**

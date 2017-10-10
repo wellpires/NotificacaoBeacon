@@ -7,9 +7,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Build;
-import android.service.notification.NotificationListenerService;
 import android.service.notification.StatusBarNotification;
-import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.NotificationCompat;
 import android.view.inputmethod.InputMethodManager;
@@ -181,8 +179,8 @@ public class ReuniaoUtils {
             List<ReuniaoVO> reunioesFiltradas = new ArrayList<>();
 
             for (ReuniaoVO vo : reunioes) {
-                DateTime dtInicio = new DateTime(stringToDateTime(vo.getHoraInicio()));
-                DateTime dtTermino = new DateTime(stringToDateTime(vo.getHoraTermino()));
+                DateTime dtInicio = new DateTime(stringToDateTime(vo.getDtInicio()));
+                DateTime dtTermino = new DateTime(stringToDateTime(vo.getDtTermino()));
                 DateTime dtAgora = new DateTime(new Date());
                 if (dtInicio.withTimeAtStartOfDay().isEqual(dtAgora.withTimeAtStartOfDay()) && dtAgora.isBefore(dtTermino)) {
                     reunioesFiltradas.add(vo);

@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.List;
@@ -54,7 +53,7 @@ public class ReunioesAdapter extends BaseAdapter {
             TextView lblHorario = (TextView) view.findViewById(R.id.lblHorario);
 
             lblAssunto.setText(vo.getAssunto());
-            lblHorario.setText(ReuniaoUtils.formatDate(Constants.DATETIME_CUSTOM_PATTERN, ReuniaoUtils.stringToDateTime(vo.getHoraInicio())));
+            lblHorario.setText(ReuniaoUtils.formatDate(Constants.DATETIME_CUSTOM_PATTERN, ReuniaoUtils.stringToDateTime(vo.getDtInicio())));
 
         }catch (Exception e){
 

@@ -206,8 +206,8 @@ public class ReuniaoMainActivity extends AppCompatActivity
             List<ReuniaoVO> reunioesFiltradas = new ArrayList<>();
 
             for (ReuniaoVO vo : reunioes) {
-                DateTime dtInicio = new DateTime(ReuniaoUtils.stringToDateTime(vo.getHoraInicio()));
-                DateTime dtTermino = new DateTime(ReuniaoUtils.stringToDateTime(vo.getHoraTermino()));
+                DateTime dtInicio = new DateTime(ReuniaoUtils.stringToDateTime(vo.getDtInicio()));
+                DateTime dtTermino = new DateTime(ReuniaoUtils.stringToDateTime(vo.getDtTermino()));
                 DateTime dtAgora = new DateTime(new Date());
                 if (dtInicio.withTimeAtStartOfDay().isEqual(dtAgora.withTimeAtStartOfDay())) {
                     if (dtAgora.isBefore(dtTermino)) {

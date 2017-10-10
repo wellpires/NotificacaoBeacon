@@ -39,10 +39,13 @@ dependencies {
     compile 'com.google.android.gms:play-services-cast:10.2.6'
     compile 'com.google.android.gms:play-services-maps:10.2.6'
     compile 'com.google.android.gms:play-services-location:10.2.6'
+    compile 'com.google.android.gms:play-services-ads:10.2.6'
+    compile 'com.squareup.retrofit2:retrofit:2.3.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.4.1'
     compile ('io.branch.sdk.android:library:2.+') {
         exclude module: 'answers-shim'
     }
-    compile 'com.google.android.gms:play-services-ads:10.2.6'
     testCompile 'junit:junit:4.12'
 }
 apply plugin: 'com.google.gms.google-services'

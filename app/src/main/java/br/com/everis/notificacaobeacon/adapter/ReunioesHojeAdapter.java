@@ -57,8 +57,8 @@ public class ReunioesHojeAdapter extends BaseAdapter {
             imgBtnExcluir.setTag(vo.getId());
             view.setTag(vo.getId());
 
-            Date horaInicio = ReuniaoUtils.stringToDateTime(vo.getHoraInicio());
-            Date horaTermino = ReuniaoUtils.stringToDateTime(vo.getHoraTermino());
+            Date horaInicio = ReuniaoUtils.stringToDateTime(vo.getDtInicio());
+            Date horaTermino = ReuniaoUtils.stringToDateTime(vo.getDtTermino());
 
             lblAssunto.setText(vo.getAssunto());
             lblHorario.setText(ReuniaoUtils.timeToString(horaInicio) + " - " + ReuniaoUtils.timeToString(horaTermino));

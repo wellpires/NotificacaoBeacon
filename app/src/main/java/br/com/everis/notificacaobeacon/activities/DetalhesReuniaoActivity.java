@@ -39,8 +39,8 @@ public class DetalhesReuniaoActivity extends AppCompatActivity {
         DateTime dtTermino = null;
         try {
             DateTime dtHoje = new DateTime(new Date());
-            DateTime dtInicio = new DateTime(ReuniaoUtils.stringToDateTime(vo.getHoraInicio()));
-            dtTermino = new DateTime(ReuniaoUtils.stringToDateTime(vo.getHoraTermino()));
+            DateTime dtInicio = new DateTime(ReuniaoUtils.stringToDateTime(vo.getDtInicio()));
+            dtTermino = new DateTime(ReuniaoUtils.stringToDateTime(vo.getDtTermino()));
 
             minutos = Minutes.minutesBetween(dtHoje, dtInicio);
 

@@ -1,6 +1,5 @@
 package br.com.everis.notificacaobeacon.activities;
 
-import android.Manifest;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
@@ -50,6 +49,7 @@ import br.com.everis.notificacaobeacon.R;
 import br.com.everis.notificacaobeacon.adapter.GooglePlacesAutocompleteAdapter;
 import br.com.everis.notificacaobeacon.bd.DBAdapter;
 import br.com.everis.notificacaobeacon.bd.model.ReuniaoVO;
+import br.com.everis.notificacaobeacon.service.ReuniaoService;
 import br.com.everis.notificacaobeacon.utils.Constants;
 import br.com.everis.notificacaobeacon.utils.ReuniaoUtils;
 
@@ -141,17 +141,17 @@ public class AdicionarReuniaoActivity extends AppCompatActivity implements View.
 
                 datasource.open();
                 ReuniaoVO vo = datasource.getReunioes(idReuniao);
-                String dataInicio[] = vo.getHoraInicio().split("\\s");
-                String dataTermino[] = vo.getHoraTermino().split("\\s");
+                String dataInicio[] = vo.getDtInicio().split("\\s");
+                String dataTermino[] = vo.getDtTermino().split("\\s");
 
                 txtAssunto.setText(vo.getAssunto());
                 txtDataInicio.setText(dataInicio[0]);
                 txtHoraInicio.setText(dataInicio[1]);
                 txtDataTermino.setText(dataTermino[0]);
                 txtHoraTermino.setText(dataTermino[1]);
-                txtLocal.setText(vo.getLocal());
+                txtLocal.setText(vo.getEndereco());
                 txtSala.setText(vo.getSala());
-                txtDescricao.setText(vo.getDetalhes());
+                txtDescricao.setText(vo.getPauta());
                 datasource.close();
 
             } catch (ParseException e) {
@@ -211,16 +211,18 @@ public class AdicionarReuniaoActivity extends AppCompatActivity implements View.
 
                 final ReuniaoVO r = new ReuniaoVO();
                 r.setAssunto(txtAssunto.getText().toString());
-                r.setHoraInicio(horaInicio);
-                r.setHoraTermino(horaTermino);
-                r.setLocal(txtLocal.getText().toString());
+                r.setDtInicio(horaInicio);
+                r.setDtTermino(horaTermino);
+                r.setEndereco(txtLocal.getText().toString());
                 r.setSala(txtSala.getText().toString());
-                r.setDetalhes(txtDescricao.getText().toString());
+                r.setPauta(txtDescricao.getText().toString());
 
                 datasource.open();
 
                 if (Constants.FLAG_NOVA_REUNIAO.equals(flagTipo)) {
-                    datasource.createReuniao(r);
+                    ReuniaoService reuniaoService = new ReuniaoService();
+                    reuniaoService.gravar(r);
+//                    datasource.createReuniao(r);
                     finalizarAcao();
                 } else if (Constants.FLAG_ALTERAR_REUNIAO.equals(flagTipo)) {
                     ReuniaoUtils.mostrarPerguntaDialogo(AdicionarReuniaoActivity.this, Constants.LABEL_VOCE_TEM_CERTEZA, new DialogInterface.OnClickListener() {

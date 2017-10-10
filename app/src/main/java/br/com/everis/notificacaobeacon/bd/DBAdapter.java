@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.everis.notificacaobeacon.bd.model.ReuniaoVO;
-import br.com.everis.notificacaobeacon.utils.ReuniaoUtils;
 
 /**
  * Created by wgoncalv on 18/09/2017.
@@ -48,12 +47,11 @@ public class DBAdapter {
         ContentValues values = new ContentValues();
 
         values.put(dbHelper.COLUMN_ASSUNTO, reuniao.getAssunto());
-        values.put(dbHelper.COLUMN_HORA_INICIO, reuniao.getHoraInicio());
-        values.put(dbHelper.COLUMN_HORA_TERMINO, reuniao.getHoraTermino());
-        values.put(dbHelper.COLUMN_LOCAL, reuniao.getLocal());
+        values.put(dbHelper.COLUMN_HORA_INICIO, reuniao.getDtInicio());
+        values.put(dbHelper.COLUMN_HORA_TERMINO, reuniao.getDtTermino());
+        values.put(dbHelper.COLUMN_LOCAL, reuniao.getEndereco());
         values.put(dbHelper.COLUMN_SALA, reuniao.getSala());
-        values.put(dbHelper.COLUMN_PARTICIPANTES, reuniao.getParticipantes());
-        values.put(dbHelper.COLUMN_DETALHES, reuniao.getDetalhes());
+        values.put(dbHelper.COLUMN_DETALHES, reuniao.getPauta());
 
         long insertId = database.insert(DBHelper.TABLE_NAME, null, values);
         Cursor c = database.query(DBHelper.TABLE_NAME, allColumns, DBHelper.COLUMN_ID + " = " + insertId, null, null, null, null);
@@ -70,12 +68,11 @@ public class DBAdapter {
         ContentValues values = new ContentValues();
 
         values.put(dbHelper.COLUMN_ASSUNTO, reuniao.getAssunto());
-        values.put(dbHelper.COLUMN_HORA_INICIO, reuniao.getHoraInicio());
-        values.put(dbHelper.COLUMN_HORA_TERMINO, reuniao.getHoraTermino());
-        values.put(dbHelper.COLUMN_LOCAL, reuniao.getLocal());
+        values.put(dbHelper.COLUMN_HORA_INICIO, reuniao.getDtInicio());
+        values.put(dbHelper.COLUMN_HORA_TERMINO, reuniao.getDtTermino());
+        values.put(dbHelper.COLUMN_LOCAL, reuniao.getEndereco());
         values.put(dbHelper.COLUMN_SALA, reuniao.getSala());
-        values.put(dbHelper.COLUMN_PARTICIPANTES, reuniao.getParticipantes());
-        values.put(dbHelper.COLUMN_DETALHES, reuniao.getDetalhes());
+        values.put(dbHelper.COLUMN_DETALHES, reuniao.getPauta());
 
         database.update(DBHelper.TABLE_NAME, values, dbHelper.COLUMN_ID + " = ?", new String[]{String.valueOf(reuniao.getId())});
     }
@@ -89,12 +86,11 @@ public class DBAdapter {
         ReuniaoVO r = new ReuniaoVO();
         r.setId(c.getInt(index++));
         r.setAssunto(c.getString(index++));
-        r.setHoraInicio(c.getString(index++));
-        r.setHoraTermino(c.getString(index++));
-        r.setLocal(c.getString(index++));
+        r.setDtInicio(c.getString(index++));
+        r.setDtTermino(c.getString(index++));
+        r.setEndereco(c.getString(index++));
         r.setSala(c.getString(index++));
-        r.setParticipantes(c.getString(index++));
-        r.setDetalhes(c.getString(index++));
+        r.setPauta(c.getString(index++));
 
         return r;
 
@@ -106,11 +102,11 @@ public class DBAdapter {
             ReuniaoVO vo = new ReuniaoVO();
             vo.setId(Integer.parseInt(cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_ID))));
             vo.setAssunto(cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_ASSUNTO)));
-            vo.setHoraInicio(cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_HORA_INICIO)));
-            vo.setHoraTermino(cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_HORA_TERMINO)));
-            vo.setLocal(cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_LOCAL)));
+            vo.setDtInicio(cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_HORA_INICIO)));
+            vo.setDtTermino(cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_HORA_TERMINO)));
+            vo.setEndereco(cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_LOCAL)));
             vo.setSala(cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_SALA)));
-            vo.setDetalhes(cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_DETALHES)));
+            vo.setPauta(cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_DETALHES)));
             lstReunioes.add(vo);
         }
         return lstReunioes;

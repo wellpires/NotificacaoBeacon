@@ -15,8 +15,6 @@ import org.altbeacon.beacon.Region;
 import org.altbeacon.beacon.startup.BootstrapNotifier;
 import org.altbeacon.beacon.startup.RegionBootstrap;
 import org.joda.time.DateTime;
-import org.joda.time.DateTimeField;
-import org.joda.time.DateTimeFieldType;
 import org.joda.time.Duration;
 import org.joda.time.Minutes;
 
@@ -88,8 +86,8 @@ public class NotificacaoBeaconService extends Service implements BootstrapNotifi
                         for (ReuniaoVO vo : lstReunioes) {
 
                             DateTime dtAgora = new DateTime(new Date());
-                            DateTime dtInicio = new DateTime(ReuniaoUtils.stringToDateTime(vo.getHoraInicio()));
-                            DateTime dtTermino = new DateTime(ReuniaoUtils.stringToDateTime(vo.getHoraTermino()));
+                            DateTime dtInicio = new DateTime(ReuniaoUtils.stringToDateTime(vo.getDtInicio()));
+                            DateTime dtTermino = new DateTime(ReuniaoUtils.stringToDateTime(vo.getDtTermino()));
                             Minutes mTermino = Minutes.minutesBetween(dtAgora, dtTermino);
 
                             if (dtAgora.withTimeAtStartOfDay().isEqual(dtInicio.withTimeAtStartOfDay())) {
@@ -222,7 +220,7 @@ public class NotificacaoBeaconService extends Service implements BootstrapNotifi
         Intent intent = new Intent(getApplicationContext(), ReuniaoNotificacaoActivity.class);
         intent.putExtra(Constants.TEMPO_RESTANTE_KEY, qtdeMinutos);
         intent.putExtra(Constants.MENSAGEM_KEY, mensagem);
-        intent.putExtra(Constants.LOCAL_KEY, vo.getLocal());
+        intent.putExtra(Constants.LOCAL_KEY, vo.getEndereco());
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(getApplicationContext());
         stackBuilder.addParentStack(ReuniaoMainActivity.class);
         stackBuilder.addNextIntent(intent);

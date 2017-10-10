@@ -31,12 +31,12 @@ MERGED from [com.android.support:support-vector-drawable:25.3.1] C:\Users\wgonca
 MERGED from [com.android.support:palette-v7:25.2.0] C:\Users\wgoncalv\.android\build-cache\515f496dcf054affcbd49420b746141cc64d3004\output\AndroidManifest.xml:20:5-43
 MERGED from [com.google.android.gms:play-services-maps:10.2.6] C:\Users\wgoncalv\.android\build-cache\74aabbe4b01ff8b8560fadd50583d7d4904947e7\output\AndroidManifest.xml:23:5-43
 MERGED from [com.google.android.gms:play-services-location:10.2.6] C:\Users\wgoncalv\.android\build-cache\b44aa2ffee75ebcbf62bf224c810764dad36bc16\output\AndroidManifest.xml:3:5-43
-MERGED from [io.branch.sdk.android:library:2.12.1] C:\Users\wgoncalv\.android\build-cache\9ff86e2a324c8291b80a925fdc5e96b5346c635b\output\AndroidManifest.xml:7:5-9:41
 MERGED from [com.google.android.gms:play-services-ads:10.2.6] C:\Users\wgoncalv\.android\build-cache\11109bea174aff48bccb481fe54accc652f23843\output\AndroidManifest.xml:17:5-43
 MERGED from [com.google.android.gms:play-services-ads-lite:10.2.6] C:\Users\wgoncalv\.android\build-cache\7b9e8426595e0d55ef79df8f41c3967a3535978d\output\AndroidManifest.xml:22:5-43
 MERGED from [com.google.android.gms:play-services-clearcut:10.2.6] C:\Users\wgoncalv\.android\build-cache\da5601f35815a1b2ffd0d087775a2542e75a29d4\output\AndroidManifest.xml:17:5-43
 MERGED from [com.google.android.gms:play-services-base:10.2.6] C:\Users\wgoncalv\.android\build-cache\f3ec86f2390119fc45c7411d742938688931365a\output\AndroidManifest.xml:17:5-43
 MERGED from [com.google.android.gms:play-services-gass:10.2.6] C:\Users\wgoncalv\.android\build-cache\e32b8a6a5ba7a521304b7a254720b5181a118d9d\output\AndroidManifest.xml:3:5-43
+MERGED from [io.branch.sdk.android:library:2.12.1] C:\Users\wgoncalv\.android\build-cache\9ff86e2a324c8291b80a925fdc5e96b5346c635b\output\AndroidManifest.xml:7:5-9:41
 MERGED from [com.google.firebase:firebase-core:10.2.6] C:\Users\wgoncalv\.android\build-cache\b7a122d46260a5e9866b15707712f20398c33476\output\AndroidManifest.xml:4:5-43
 MERGED from [com.google.firebase:firebase-analytics:10.2.6] C:\Users\wgoncalv\.android\build-cache\a67aad4f306f714ffabbbc35e94ab954acdfcbf0\output\AndroidManifest.xml:17:5-43
 MERGED from [com.google.firebase:firebase-analytics-impl:10.2.6] C:\Users\wgoncalv\.android\build-cache\6dedb8390f491c455fde6167d0bdad6d346daecd\output\AndroidManifest.xml:17:5-43

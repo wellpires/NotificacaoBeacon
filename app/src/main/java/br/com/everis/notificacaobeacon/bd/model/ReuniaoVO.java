@@ -1,7 +1,6 @@
 package br.com.everis.notificacaobeacon.bd.model;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * Created by wgoncalv on 18/09/2017.
@@ -11,12 +10,11 @@ public class ReuniaoVO implements Serializable {
 
     private Integer id = null;
     private String assunto = null;
-    private String horaInicio = null;
-    private String horaTermino = null;
-    private String local = null;
+    private String dtInicio = null;
+    private String dtTermino = null;
+    private String endereco = null;
     private String sala = null;
-    private String participantes = null;
-    private String detalhes = null;
+    private String pauta = null;
 
     public Integer getId() {
         return id;
@@ -34,28 +32,28 @@ public class ReuniaoVO implements Serializable {
         this.assunto = assunto;
     }
 
-    public String getHoraInicio() {
-        return horaInicio;
+    public String getDtInicio() {
+        return dtInicio;
     }
 
-    public void setHoraInicio(String horaInicio) {
-        this.horaInicio = horaInicio;
+    public void setDtInicio(String dtInicio) {
+        this.dtInicio = dtInicio;
     }
 
-    public String getHoraTermino() {
-        return horaTermino;
+    public String getDtTermino() {
+        return dtTermino;
     }
 
-    public void setHoraTermino(String horaTermino) {
-        this.horaTermino = horaTermino;
+    public void setDtTermino(String dtTermino) {
+        this.dtTermino = dtTermino;
     }
 
-    public String getLocal() {
-        return local;
+    public String getEndereco() {
+        return endereco;
     }
 
-    public void setLocal(String local) {
-        this.local = local;
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
     }
 
     public String getSala() {
@@ -66,20 +64,12 @@ public class ReuniaoVO implements Serializable {
         this.sala = sala;
     }
 
-    public String getParticipantes() {
-        return participantes;
+    public String getPauta() {
+        return pauta;
     }
 
-    public void setParticipantes(String participantes) {
-        this.participantes = participantes;
-    }
-
-    public String getDetalhes() {
-        return detalhes;
-    }
-
-    public void setDetalhes(String detalhes) {
-        this.detalhes = detalhes;
+    public void setPauta(String pauta) {
+        this.pauta = pauta;
     }
 
     @Override
@@ -87,12 +77,11 @@ public class ReuniaoVO implements Serializable {
         return "ReuniaoVO{" +
                 "id=" + id +
                 ", assunto='" + assunto + '\'' +
-                ", horaInicio=" + horaInicio +
-                ", horaTermino=" + horaTermino +
-                ", local='" + local + '\'' +
+                ", dtInicio=" + dtInicio +
+                ", dtTermino=" + dtTermino +
+                ", endereco='" + endereco + '\'' +
                 ", sala='" + sala + '\'' +
-                ", participantes='" + participantes + '\'' +
-                ", detalhes='" + detalhes + '\'' +
+                ", pauta='" + pauta + '\'' +
                 '}';
     }
 }
