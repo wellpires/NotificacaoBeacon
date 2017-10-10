@@ -19,6 +19,7 @@
     <string msgid="3421042268587513524" name="abc_shareactionprovider_share_with">"選擇分享對象"</string>
     <string msgid="7165123711973476752" name="abc_shareactionprovider_share_with_application">"與「%s」分享"</string>
     <string msgid="1603543279005712093" name="abc_toolbar_collapse_description">"收合"</string>
+    <string msgid="5835639618285370804" name="accept">"接受"</string>
     <string msgid="5319032370587661362" name="cast_notification_connected_message">"已連線至「<ns1:g id="NAME">%1$s</ns1:g>」"</string>
     <string msgid="2758865089947797888" name="cast_notification_connecting_message">"正在連線至「<ns1:g id="NAME">%1$s</ns1:g>」"</string>
     <string msgid="5232008641593292969" name="cast_notification_disconnect">"中斷連線"</string>
@@ -39,6 +40,13 @@
     <string msgid="5201977337835724196" name="common_open_on_phone">"在手機上開啟"</string>
     <string msgid="3441753203274453993" name="common_signin_button_text">"登入"</string>
     <string msgid="669893613918351210" name="common_signin_button_text_long">"使用 Google 帳戶登入"</string>
+    <string msgid="6155048007205742679" name="create_calendar_message">"要允許廣告建立日曆活動嗎？"</string>
+    <string msgid="7967007864778154790" name="create_calendar_title">"建立日曆活動"</string>
+    <string msgid="4722375419392727435" name="debug_menu_ad_information">"廣告資訊"</string>
+    <string msgid="1605938743055376690" name="debug_menu_creative_preview">"廣告素材預覽"</string>
+    <string msgid="2039274714455389140" name="debug_menu_title">"選取偵錯模式"</string>
+    <string msgid="1173358804935285568" name="debug_menu_troubleshooting">"疑難排解"</string>
+    <string msgid="6099173376375995052" name="decline">"拒絕"</string>
     <string msgid="3698378085901466129" name="mr_button_content_description">"投放按鈕"</string>
     <string msgid="5088427771788648085" name="mr_cast_button_connected">"投放按鈕；已連線"</string>
     <string msgid="2187642765091873834" name="mr_cast_button_connecting">"投放按鈕；連線中"</string>
@@ -61,4 +69,6 @@
     <string msgid="7498112907524977311" name="mr_user_route_category_name">"裝置"</string>
     <string msgid="146198913615257606" name="search_menu_title">"搜尋"</string>
     <string msgid="2869576371154716097" name="status_bar_notification_info_overflow">"999+"</string>
+    <string msgid="8020323581538738027" name="store_picture_message">"要允許廣告將圖片儲存在「相片庫」中嗎？"</string>
+    <string msgid="4180630057627064606" name="store_picture_title">"儲存圖片"</string>
 </resources>

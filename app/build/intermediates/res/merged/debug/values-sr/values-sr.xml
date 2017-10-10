@@ -19,6 +19,7 @@
     <string msgid="3421042268587513524" name="abc_shareactionprovider_share_with">"Дели са"</string>
     <string msgid="7165123711973476752" name="abc_shareactionprovider_share_with_application">"Дели са апликацијом %s"</string>
     <string msgid="1603543279005712093" name="abc_toolbar_collapse_description">"Скупи"</string>
+    <string msgid="5835639618285370804" name="accept">"Прихвати"</string>
     <string msgid="5319032370587661362" name="cast_notification_connected_message">"Повезано је са <ns1:g id="NAME">%1$s</ns1:g>"</string>
     <string msgid="2758865089947797888" name="cast_notification_connecting_message">"Повезивање са <ns1:g id="NAME">%1$s</ns1:g>"</string>
     <string msgid="5232008641593292969" name="cast_notification_disconnect">"Прекини везу"</string>
@@ -39,6 +40,13 @@
     <string msgid="5201977337835724196" name="common_open_on_phone">"Отвори на телефону"</string>
     <string msgid="3441753203274453993" name="common_signin_button_text">"Пријави ме"</string>
     <string msgid="669893613918351210" name="common_signin_button_text_long">"Пријави ме на Google"</string>
+    <string msgid="6155048007205742679" name="create_calendar_message">"Желите ли да дозволите да оглас направи догађај у календару?"</string>
+    <string msgid="7967007864778154790" name="create_calendar_title">"Прављење догађаја у календару"</string>
+    <string msgid="4722375419392727435" name="debug_menu_ad_information">"Информације о огласу"</string>
+    <string msgid="1605938743055376690" name="debug_menu_creative_preview">"Преглед елемента огласа"</string>
+    <string msgid="2039274714455389140" name="debug_menu_title">"Изаберите Режим отклањања грешака"</string>
+    <string msgid="1173358804935285568" name="debug_menu_troubleshooting">"Решавање проблема"</string>
+    <string msgid="6099173376375995052" name="decline">"Одбиј"</string>
     <string msgid="3698378085901466129" name="mr_button_content_description">"Дугме Пребаци"</string>
     <string msgid="5088427771788648085" name="mr_cast_button_connected">"Дугме Пребаци. Повезан је"</string>
     <string msgid="2187642765091873834" name="mr_cast_button_connecting">"Дугме Пребаци. Повезује се"</string>
@@ -61,4 +69,6 @@
     <string msgid="7498112907524977311" name="mr_user_route_category_name">"Уређаји"</string>
     <string msgid="146198913615257606" name="search_menu_title">"Претражи"</string>
     <string msgid="2869576371154716097" name="status_bar_notification_info_overflow">">999"</string>
+    <string msgid="8020323581538738027" name="store_picture_message">"Желите ли да дозволите да оглас сачува слику у Галерији слика?"</string>
+    <string msgid="4180630057627064606" name="store_picture_title">"Чување слике"</string>
 </resources>

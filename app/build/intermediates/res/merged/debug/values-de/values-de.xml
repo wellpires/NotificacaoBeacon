@@ -19,6 +19,7 @@
     <string msgid="3421042268587513524" name="abc_shareactionprovider_share_with">"Freigeben für"</string>
     <string msgid="7165123711973476752" name="abc_shareactionprovider_share_with_application">"Freigeben für %s"</string>
     <string msgid="1603543279005712093" name="abc_toolbar_collapse_description">"Minimieren"</string>
+    <string msgid="5835639618285370804" name="accept">"Akzeptieren"</string>
     <string msgid="5319032370587661362" name="cast_notification_connected_message">"Verbunden mit <ns1:g id="NAME">%1$s</ns1:g>"</string>
     <string msgid="2758865089947797888" name="cast_notification_connecting_message">"Verbindung mit <ns1:g id="NAME">%1$s</ns1:g> wird hergestellt"</string>
     <string msgid="5232008641593292969" name="cast_notification_disconnect">"Verbindung aufheben"</string>
@@ -39,6 +40,13 @@
     <string msgid="5201977337835724196" name="common_open_on_phone">"Auf Smartphone öffnen"</string>
     <string msgid="3441753203274453993" name="common_signin_button_text">"Anmelden"</string>
     <string msgid="669893613918351210" name="common_signin_button_text_long">"Über Google anmelden"</string>
+    <string msgid="6155048007205742679" name="create_calendar_message">"Anzeige erlauben, einen Kalendertermin zu erstellen?"</string>
+    <string msgid="7967007864778154790" name="create_calendar_title">"Kalendertermin erstellen"</string>
+    <string msgid="4722375419392727435" name="debug_menu_ad_information">"Informationen zur Anzeige"</string>
+    <string msgid="1605938743055376690" name="debug_menu_creative_preview">"Creative-Vorschau"</string>
+    <string msgid="2039274714455389140" name="debug_menu_title">"Fehlerbehebungsmodus auswählen"</string>
+    <string msgid="1173358804935285568" name="debug_menu_troubleshooting">"Fehlerbehebung"</string>
+    <string msgid="6099173376375995052" name="decline">"Ablehnen"</string>
     <string msgid="3698378085901466129" name="mr_button_content_description">"Cast-Symbol"</string>
     <string msgid="5088427771788648085" name="mr_cast_button_connected">"Streaming-Schaltfläche. Verbunden"</string>
     <string msgid="2187642765091873834" name="mr_cast_button_connecting">"Streaming-Schaltfläche. Verbindung wird hergestellt"</string>
@@ -61,4 +69,6 @@
     <string msgid="7498112907524977311" name="mr_user_route_category_name">"Geräte"</string>
     <string msgid="146198913615257606" name="search_menu_title">"Suchen"</string>
     <string msgid="2869576371154716097" name="status_bar_notification_info_overflow">"999+"</string>
+    <string msgid="8020323581538738027" name="store_picture_message">"Anzeige erlauben, das Bild in der Bildergalerie zu speichern?"</string>
+    <string msgid="4180630057627064606" name="store_picture_title">"Bild speichern"</string>
 </resources>

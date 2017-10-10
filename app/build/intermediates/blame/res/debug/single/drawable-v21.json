@@ -1,11 +1,11 @@
 [
     {
         "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\design_bottom_navigation_item_background.xml",
-        "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\55de20b63723377169e59fb786e70d38837527cb\\output\\res\\drawable-v21\\design_bottom_navigation_item_background.xml"
+        "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\985498013d4f89c44568b1364256c5b8058c9a56\\output\\res\\drawable-v21\\design_bottom_navigation_item_background.xml"
     },
     {
         "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\notification_action_background.xml",
-        "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\81ece88265a75e323787b3d4e210fdc040579384\\output\\res\\drawable-v21\\notification_action_background.xml"
+        "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\53d6b259b10dbb60a8be601361a972314c119b61\\output\\res\\drawable-v21\\notification_action_background.xml"
     },
     {
         "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\ic_menu_slideshow.xml",
@@ -17,7 +17,7 @@
     },
     {
         "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\abc_action_bar_item_background_material.xml",
-        "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\81ece88265a75e323787b3d4e210fdc040579384\\output\\res\\drawable-v21\\abc_action_bar_item_background_material.xml"
+        "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\53d6b259b10dbb60a8be601361a972314c119b61\\output\\res\\drawable-v21\\abc_action_bar_item_background_material.xml"
     },
     {
         "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\ic_menu_send.xml",
@@ -29,7 +29,7 @@
     },
     {
         "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\avd_hide_password.xml",
-        "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\55de20b63723377169e59fb786e70d38837527cb\\output\\res\\drawable-v21\\avd_hide_password.xml"
+        "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\985498013d4f89c44568b1364256c5b8058c9a56\\output\\res\\drawable-v21\\avd_hide_password.xml"
     },
     {
         "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\ic_menu_camera.xml",
@@ -41,18 +41,18 @@
     },
     {
         "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\abc_btn_colored_material.xml",
-        "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\81ece88265a75e323787b3d4e210fdc040579384\\output\\res\\drawable-v21\\abc_btn_colored_material.xml"
+        "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\53d6b259b10dbb60a8be601361a972314c119b61\\output\\res\\drawable-v21\\abc_btn_colored_material.xml"
     },
     {
         "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\abc_edit_text_material.xml",
-        "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\81ece88265a75e323787b3d4e210fdc040579384\\output\\res\\drawable-v21\\abc_edit_text_material.xml"
+        "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\53d6b259b10dbb60a8be601361a972314c119b61\\output\\res\\drawable-v21\\abc_edit_text_material.xml"
     },
     {
         "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\design_password_eye.xml",
-        "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\55de20b63723377169e59fb786e70d38837527cb\\output\\res\\drawable-v21\\design_password_eye.xml"
+        "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\985498013d4f89c44568b1364256c5b8058c9a56\\output\\res\\drawable-v21\\design_password_eye.xml"
     },
     {
         "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\avd_show_password.xml",
-        "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\55de20b63723377169e59fb786e70d38837527cb\\output\\res\\drawable-v21\\avd_show_password.xml"
+        "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\985498013d4f89c44568b1364256c5b8058c9a56\\output\\res\\drawable-v21\\avd_show_password.xml"
     }
 ]
