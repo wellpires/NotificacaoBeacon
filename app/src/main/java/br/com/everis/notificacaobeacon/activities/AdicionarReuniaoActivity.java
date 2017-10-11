@@ -49,7 +49,11 @@ import br.com.everis.notificacaobeacon.R;
 import br.com.everis.notificacaobeacon.adapter.GooglePlacesAutocompleteAdapter;
 import br.com.everis.notificacaobeacon.bd.DBAdapter;
 import br.com.everis.notificacaobeacon.bd.model.ReuniaoVO;
-import br.com.everis.notificacaobeacon.service.ReuniaoService;
+import br.com.everis.notificacaobeacon.component.DaggerReuniaoComponent;
+import br.com.everis.notificacaobeacon.component.ReuniaoComponent;
+import br.com.everis.notificacaobeacon.module.ReuniaoModule;
+import br.com.everis.notificacaobeacon.service.IReuniaoService;
+import br.com.everis.notificacaobeacon.service.impl.ReuniaoServiceImpl;
 import br.com.everis.notificacaobeacon.utils.Constants;
 import br.com.everis.notificacaobeacon.utils.ReuniaoUtils;
 
@@ -71,6 +75,8 @@ public class AdicionarReuniaoActivity extends AppCompatActivity implements View.
     private String flagTipo = null;
 
     private LocationManager mLocationManager;
+
+    private IReuniaoService reuniaoService = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,6 +120,8 @@ public class AdicionarReuniaoActivity extends AppCompatActivity implements View.
         txtSala.setEnabled(true);
         txtDescricao.setEnabled(true);
 
+        ReuniaoComponent component = DaggerReuniaoComponent.builder().reuniaoModule(new ReuniaoModule()).build();
+        reuniaoService = component.provideReuniaoService();
 
         datasource = new DBAdapter(this);
 
@@ -220,9 +228,7 @@ public class AdicionarReuniaoActivity extends AppCompatActivity implements View.
                 datasource.open();
 
                 if (Constants.FLAG_NOVA_REUNIAO.equals(flagTipo)) {
-                    ReuniaoService reuniaoService = new ReuniaoService();
                     reuniaoService.gravar(r);
-//                    datasource.createReuniao(r);
                     finalizarAcao();
                 } else if (Constants.FLAG_ALTERAR_REUNIAO.equals(flagTipo)) {
                     ReuniaoUtils.mostrarPerguntaDialogo(AdicionarReuniaoActivity.this, Constants.LABEL_VOCE_TEM_CERTEZA, new DialogInterface.OnClickListener() {

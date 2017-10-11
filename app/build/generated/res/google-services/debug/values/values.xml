@@ -7,5 +7,4 @@
     <string name="google_app_id" translatable="false">1:775853410175:android:6815fac1c518d5ce</string>
     <string name="google_crash_reporting_api_key" translatable="false">AIzaSyBJMHiMFBv11gMo9cUJ-PKv5FksAn36YBc</string>
     <string name="google_storage_bucket" translatable="false">notificacaobeacon-45b2e.appspot.com</string>
-    <string name="project_id" translatable="false">notificacaobeacon-45b2e</string>
 </resources>

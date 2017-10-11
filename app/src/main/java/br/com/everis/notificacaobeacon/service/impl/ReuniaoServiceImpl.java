@@ -1,33 +1,26 @@
-package br.com.everis.notificacaobeacon.service;
-
-import android.content.Context;
-import android.widget.Toast;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+package br.com.everis.notificacaobeacon.service.impl;
 
 import java.io.IOException;
 
 import br.com.everis.notificacaobeacon.bd.model.ReuniaoVO;
+import br.com.everis.notificacaobeacon.service.IReuniaoService;
 import br.com.everis.notificacaobeacon.service.api.ReuniaoAPI;
 import br.com.everis.notificacaobeacon.utils.APIClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by wgoncalv on 10/10/2017.
  */
 
-public class ReuniaoService implements Callback<ReuniaoVO> {
+public class ReuniaoServiceImpl implements IReuniaoService, Callback<ReuniaoVO> {
 
     private ReuniaoAPI reuniaoAPI = null;
 
+    @Override
     public void gravar(ReuniaoVO reuniao) throws IOException {
         reuniaoAPI = APIClient.getClient().create(ReuniaoAPI.class);
-
         Call call = reuniaoAPI.criarReuniao(reuniao);
         call.enqueue(this);
     }

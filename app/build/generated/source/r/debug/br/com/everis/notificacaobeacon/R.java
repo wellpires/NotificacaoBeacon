@@ -4111,21 +4111,20 @@ containing a value of this type.
         public static final int path_password_eye_mask_strike_through=0x7f080068;
         public static final int path_password_eye_mask_visible=0x7f080069;
         public static final int path_password_strike_through=0x7f08006a;
-        public static final int project_id=0x7f08006b;
-        public static final int salvar_label=0x7f08006c;
+        public static final int salvar_label=0x7f08006b;
         public static final int search_menu_title=0x7f080043;
         public static final int status_bar_notification_info_overflow=0x7f080044;
         public static final int store_picture_message=0x7f080045;
         public static final int store_picture_title=0x7f080046;
-        public static final int title_activity_detalhes_reuniao=0x7f08006d;
-        public static final int title_activity_reunioes=0x7f08006e;
-        public static final int title_dashboard=0x7f08006f;
-        public static final int title_home=0x7f080070;
-        public static final int title_item_detail=0x7f080071;
-        public static final int title_item_list=0x7f080072;
-        public static final int title_notifications=0x7f080073;
-        public static final int titulo_app=0x7f080074;
-        public static final int todas_reunioes=0x7f080075;
+        public static final int title_activity_detalhes_reuniao=0x7f08006c;
+        public static final int title_activity_reunioes=0x7f08006d;
+        public static final int title_dashboard=0x7f08006e;
+        public static final int title_home=0x7f08006f;
+        public static final int title_item_detail=0x7f080070;
+        public static final int title_item_list=0x7f080071;
+        public static final int title_notifications=0x7f080072;
+        public static final int titulo_app=0x7f080073;
+        public static final int todas_reunioes=0x7f080074;
     }
     public static final class style {
         public static final int AlertDialog_AppCompat=0x7f0a00a1;
