@@ -7,34 +7,34 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.ActivityCompat;
-import android.util.Log;
-import android.view.View;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.joda.time.DateTime;
 import org.json.JSONObject;
 
-import java.text.ParseException;
-import java.util.ArrayList;
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
 import br.com.everis.notificacaobeacon.R;
 import br.com.everis.notificacaobeacon.adapter.ReunioesHojeAdapter;
 import br.com.everis.notificacaobeacon.bd.DBAdapter;
-import br.com.everis.notificacaobeacon.bd.model.ReuniaoVO;
+import br.com.everis.notificacaobeacon.listener.ReuniaoPresenterListener;
+import br.com.everis.notificacaobeacon.model.ReuniaoVO;
 import br.com.everis.notificacaobeacon.service.NotificacaoBeaconService;
+import br.com.everis.notificacaobeacon.service.impl.ReuniaoServiceImpl;
 import br.com.everis.notificacaobeacon.utils.Constants;
 import br.com.everis.notificacaobeacon.utils.GlobalClass;
 import br.com.everis.notificacaobeacon.utils.ReuniaoUtils;
@@ -43,7 +43,7 @@ import io.branch.referral.Branch;
 import io.branch.referral.BranchError;
 
 public class ReuniaoMainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
+        implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener, ReuniaoPresenterListener {
 
     private TextView lblEmptyListMain = null;
 
@@ -58,6 +58,8 @@ public class ReuniaoMainActivity extends AppCompatActivity
     private DBAdapter datasource = null;
 
     static final int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
+
+    private ReuniaoServiceImpl reuniaoService = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,7 +110,10 @@ public class ReuniaoMainActivity extends AppCompatActivity
         startService(iService);
         //===========================================
 
-        listarReunioes();
+        ReuniaoVO r = new ReuniaoVO();
+        r.setDtInicio(ReuniaoUtils.dateTimeToString(new Date()));
+        reuniaoService = new ReuniaoServiceImpl(this, this);
+        reuniaoService.buscarReunioes(r);
 
         Branch.setPlayStoreReferrerCheckTimeout(0);
         Branch.getAutoInstance(this);
@@ -187,11 +192,13 @@ public class ReuniaoMainActivity extends AppCompatActivity
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 int id = Integer.parseInt(view.getTag().toString());
-                datasource = new DBAdapter(getApplicationContext());
-                datasource.open();
-                datasource.deleteReuniao(id);
-                datasource.close();
-                listarReunioes();
+                ReuniaoVO r = new ReuniaoVO();
+                r.setIdReuniao(id);
+                try {
+                    reuniaoService.removerReuniao(r);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
@@ -199,35 +206,16 @@ public class ReuniaoMainActivity extends AppCompatActivity
     //TODO QUANDO NÃO TIVER REUNIÕES NA LISTA, NÃO É PARA APARECER O PUSH DE 'BEM VINDO Á EVERIS' -> TESTAR
     //TODO ADICIONAR PARTICIPANTES PARA ENVIAR EMAILS
 
-    private void listarReunioes() {
-        try {
-            datasource = new DBAdapter(getApplicationContext());
-            List<ReuniaoVO> reunioes = datasource.getReunioes();
-            List<ReuniaoVO> reunioesFiltradas = new ArrayList<>();
+    private void listarReunioes(List<ReuniaoVO> lstReunioes) {
+        ReunioesHojeAdapter adapter = new ReunioesHojeAdapter(lstReunioes, this);
+        lvReunioes.setAdapter(adapter);
 
-            for (ReuniaoVO vo : reunioes) {
-                DateTime dtInicio = new DateTime(ReuniaoUtils.stringToDateTime(vo.getDtInicio()));
-                DateTime dtTermino = new DateTime(ReuniaoUtils.stringToDateTime(vo.getDtTermino()));
-                DateTime dtAgora = new DateTime(new Date());
-                if (dtInicio.withTimeAtStartOfDay().isEqual(dtAgora.withTimeAtStartOfDay())) {
-                    if (dtAgora.isBefore(dtTermino)) {
-                        reunioesFiltradas.add(vo);
-                    }
-                }
-            }
-
-            ReunioesHojeAdapter adapter = new ReunioesHojeAdapter(reunioesFiltradas, this);
-            lvReunioes.setAdapter(adapter);
-
-            if (lvReunioes.getAdapter().getCount() <= 0) {
-                GlobalClass gc = (GlobalClass) getApplicationContext();
-                gc.setReuniaoAcontecera(false);
-                ReuniaoUtils.cancelarNotificacao(this, new int[]{Constants.ID_BEM_VINDO_REUNIAO, Constants.ID_NOTIFICACAO_REUNIAO, Constants.ID_NOTIFICACAO_REUNIAO_ACONTECENDO});
-            }
-
-        } catch (ParseException e) {
-            e.printStackTrace();
+        if (lvReunioes.getAdapter().getCount() <= 0) {
+            GlobalClass gc = (GlobalClass) getApplicationContext();
+            gc.setReuniaoAcontecera(false);
+            ReuniaoUtils.cancelarNotificacao(this, new int[]{Constants.ID_BEM_VINDO_REUNIAO, Constants.ID_NOTIFICACAO_REUNIAO, Constants.ID_NOTIFICACAO_REUNIAO_ACONTECENDO});
         }
+
     }
 
     @Override
@@ -251,5 +239,15 @@ public class ReuniaoMainActivity extends AppCompatActivity
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
+    }
+
+    @Override
+    public void reunioesReady(List<ReuniaoVO> lstReunioes) {
+        listarReunioes(lstReunioes);
+    }
+
+    @Override
+    public void reuniaoReady(ReuniaoVO reuniaoVO) {
+
     }
 }

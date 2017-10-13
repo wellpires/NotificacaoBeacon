@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin:'com.neenbedankt.android-apt'
 
 android {
     compileSdkVersion 25
@@ -45,11 +44,6 @@ dependencies {
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
     compile 'com.squareup.okhttp3:logging-interceptor:3.4.1'
 
-    compile 'javax.inject:javax.inject:1'
-    compile 'javax.annotation:javax.annotation-api:1.2'
-    compile 'com.google.dagger:dagger:2.0.1'
-    apt 'com.google.dagger:dagger-compiler:2.0.1'
-    provided 'org.glassfish:javax.annotation:10.0-b28'
 
     compile ('io.branch.sdk.android:library:2.+') {
         exclude module: 'answers-shim'

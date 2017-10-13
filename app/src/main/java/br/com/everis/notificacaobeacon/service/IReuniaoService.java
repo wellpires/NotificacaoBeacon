@@ -2,11 +2,7 @@ package br.com.everis.notificacaobeacon.service;
 
 import java.io.IOException;
 
-import javax.inject.Singleton;
-
-import br.com.everis.notificacaobeacon.bd.model.ReuniaoVO;
-import br.com.everis.notificacaobeacon.module.ReuniaoModule;
-import dagger.Component;
+import br.com.everis.notificacaobeacon.model.ReuniaoVO;
 
 /**
  * Created by wgoncalv on 11/10/2017.
@@ -14,5 +10,10 @@ import dagger.Component;
 
 
 public interface IReuniaoService{
-    void gravar(ReuniaoVO reuniao) throws IOException;
+    void gravarReuniao(ReuniaoVO reuniao) throws IOException;
+    void editarReuniao(ReuniaoVO reuniao) throws IOException;
+    void removerReuniao(ReuniaoVO reuniao) throws IOException;
+    void buscarReuniao(ReuniaoVO reuniao) throws Exception;
+    void buscarReunioes(ReuniaoVO reuniao) throws Exception;
+    void listarReunioes() throws Exception;
 }

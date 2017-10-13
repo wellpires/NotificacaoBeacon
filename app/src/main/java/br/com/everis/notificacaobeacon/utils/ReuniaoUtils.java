@@ -25,7 +25,7 @@ import java.util.TimeZone;
 import br.com.everis.notificacaobeacon.R;
 import br.com.everis.notificacaobeacon.adapter.ReunioesHojeAdapter;
 import br.com.everis.notificacaobeacon.bd.DBAdapter;
-import br.com.everis.notificacaobeacon.bd.model.ReuniaoVO;
+import br.com.everis.notificacaobeacon.model.ReuniaoVO;
 
 /**
  * Created by wgoncalv on 16/09/2017.
@@ -201,6 +201,13 @@ public class ReuniaoUtils {
         } catch (ParseException e) {
             e.printStackTrace();
         }
+    }
+
+    public static Long stringToLong(String value){
+        if(isEmptyOrNull(value)){
+            value = "0";
+        }
+        return Long.valueOf(value);
     }
 
 }

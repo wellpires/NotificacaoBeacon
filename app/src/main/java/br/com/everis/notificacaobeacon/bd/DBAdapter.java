@@ -10,7 +10,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.everis.notificacaobeacon.bd.model.ReuniaoVO;
+import br.com.everis.notificacaobeacon.model.ReuniaoVO;
 
 /**
  * Created by wgoncalv on 18/09/2017.
@@ -74,7 +74,7 @@ public class DBAdapter {
         values.put(dbHelper.COLUMN_SALA, reuniao.getSala());
         values.put(dbHelper.COLUMN_DETALHES, reuniao.getPauta());
 
-        database.update(DBHelper.TABLE_NAME, values, dbHelper.COLUMN_ID + " = ?", new String[]{String.valueOf(reuniao.getId())});
+        database.update(DBHelper.TABLE_NAME, values, dbHelper.COLUMN_ID + " = ?", new String[]{String.valueOf(reuniao.getIdReuniao())});
     }
 
     public void deleteReuniao() {
@@ -84,7 +84,7 @@ public class DBAdapter {
     private ReuniaoVO cursorParaReuniao(Cursor c) throws ParseException {
         int index = 0;
         ReuniaoVO r = new ReuniaoVO();
-        r.setId(c.getInt(index++));
+        r.setIdReuniao(c.getInt(index++));
         r.setAssunto(c.getString(index++));
         r.setDtInicio(c.getString(index++));
         r.setDtTermino(c.getString(index++));
@@ -100,7 +100,7 @@ public class DBAdapter {
         List<ReuniaoVO> lstReunioes = new ArrayList<>();
         while (cursor.moveToNext()) {
             ReuniaoVO vo = new ReuniaoVO();
-            vo.setId(Integer.parseInt(cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_ID))));
+            vo.setIdReuniao(Integer.parseInt(cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_ID))));
             vo.setAssunto(cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_ASSUNTO)));
             vo.setDtInicio(cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_HORA_INICIO)));
             vo.setDtTermino(cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_HORA_TERMINO)));

@@ -12,7 +12,7 @@ import java.util.Date;
 import java.util.List;
 
 import br.com.everis.notificacaobeacon.R;
-import br.com.everis.notificacaobeacon.bd.model.ReuniaoVO;
+import br.com.everis.notificacaobeacon.model.ReuniaoVO;
 import br.com.everis.notificacaobeacon.utils.ReuniaoUtils;
 
 /**
@@ -41,7 +41,7 @@ public class ReunioesHojeAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int i) {
-        return lstReunioes.get(i).getId();
+        return lstReunioes.get(i).getIdReuniao();
     }
 
     @Override
@@ -54,8 +54,8 @@ public class ReunioesHojeAdapter extends BaseAdapter {
             TextView lblAssunto = (TextView) view.findViewById(R.id.lblAssunto);
             TextView lblHorario = (TextView) view.findViewById(R.id.lblHorario);
             ImageButton imgBtnExcluir = (ImageButton) view.findViewById(R.id.imgBtnExcluir);
-            imgBtnExcluir.setTag(vo.getId());
-            view.setTag(vo.getId());
+            imgBtnExcluir.setTag(vo.getIdReuniao());
+            view.setTag(vo.getIdReuniao());
 
             Date horaInicio = ReuniaoUtils.stringToDateTime(vo.getDtInicio());
             Date horaTermino = ReuniaoUtils.stringToDateTime(vo.getDtTermino());

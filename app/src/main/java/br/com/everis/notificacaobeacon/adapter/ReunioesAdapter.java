@@ -9,7 +9,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import br.com.everis.notificacaobeacon.R;
-import br.com.everis.notificacaobeacon.bd.model.ReuniaoVO;
+import br.com.everis.notificacaobeacon.model.ReuniaoVO;
 import br.com.everis.notificacaobeacon.utils.Constants;
 import br.com.everis.notificacaobeacon.utils.ReuniaoUtils;
 
@@ -39,7 +39,7 @@ public class ReunioesAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int position) {
-        return lstReuniaoVO.get(position).getId();
+        return lstReuniaoVO.get(position).getIdReuniao();
     }
 
     @Override

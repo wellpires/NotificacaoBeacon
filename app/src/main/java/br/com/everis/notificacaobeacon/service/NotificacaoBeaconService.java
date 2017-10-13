@@ -27,7 +27,7 @@ import br.com.everis.notificacaobeacon.activities.ReuniaoMainActivity;
 import br.com.everis.notificacaobeacon.R;
 import br.com.everis.notificacaobeacon.activities.ReuniaoNotificacaoActivity;
 import br.com.everis.notificacaobeacon.bd.DBAdapter;
-import br.com.everis.notificacaobeacon.bd.model.ReuniaoVO;
+import br.com.everis.notificacaobeacon.model.ReuniaoVO;
 import br.com.everis.notificacaobeacon.utils.Constants;
 import br.com.everis.notificacaobeacon.utils.GlobalClass;
 import br.com.everis.notificacaobeacon.utils.ReuniaoUtils;

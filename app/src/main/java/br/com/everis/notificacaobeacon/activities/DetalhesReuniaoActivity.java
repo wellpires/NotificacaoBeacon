@@ -12,7 +12,7 @@ import java.text.ParseException;
 import java.util.Date;
 
 import br.com.everis.notificacaobeacon.R;
-import br.com.everis.notificacaobeacon.bd.model.ReuniaoVO;
+import br.com.everis.notificacaobeacon.model.ReuniaoVO;
 import br.com.everis.notificacaobeacon.utils.GlobalClass;
 import br.com.everis.notificacaobeacon.utils.ReuniaoUtils;
 

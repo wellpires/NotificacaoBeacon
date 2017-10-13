@@ -1,4 +1,4 @@
-package br.com.everis.notificacaobeacon.bd.model;
+package br.com.everis.notificacaobeacon.model;
 
 import java.io.Serializable;
 
@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 public class ReuniaoVO implements Serializable {
 
-    private Integer id = null;
+    private Integer idReuniao = null;
     private String assunto = null;
     private String dtInicio = null;
     private String dtTermino = null;
@@ -16,12 +16,12 @@ public class ReuniaoVO implements Serializable {
     private String sala = null;
     private String pauta = null;
 
-    public Integer getId() {
-        return id;
+    public Integer getIdReuniao() {
+        return idReuniao;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIdReuniao(Integer idReuniao) {
+        this.idReuniao = idReuniao;
     }
 
     public String getAssunto() {
@@ -75,7 +75,7 @@ public class ReuniaoVO implements Serializable {
     @Override
     public String toString() {
         return "ReuniaoVO{" +
-                "id=" + id +
+                "id=" + idReuniao +
                 ", assunto='" + assunto + '\'' +
                 ", dtInicio=" + dtInicio +
                 ", dtTermino=" + dtTermino +

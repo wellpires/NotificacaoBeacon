@@ -1,11 +1,8 @@
 package br.com.everis.notificacaobeacon.utils;
 
 import android.app.Application;
-import android.service.notification.StatusBarNotification;
 
-import java.util.List;
-
-import br.com.everis.notificacaobeacon.bd.model.ReuniaoVO;
+import br.com.everis.notificacaobeacon.model.ReuniaoVO;
 
 /**
  * Created by wgoncalv on 19/09/2017.

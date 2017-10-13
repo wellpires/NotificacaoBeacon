@@ -20,16 +20,19 @@ import org.joda.time.DateTime;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import br.com.everis.notificacaobeacon.R;
 import br.com.everis.notificacaobeacon.adapter.ReunioesAdapter;
 import br.com.everis.notificacaobeacon.bd.DBAdapter;
-import br.com.everis.notificacaobeacon.bd.model.ReuniaoVO;
+import br.com.everis.notificacaobeacon.listener.ReuniaoPresenterListener;
+import br.com.everis.notificacaobeacon.model.ReuniaoVO;
+import br.com.everis.notificacaobeacon.service.impl.ReuniaoServiceImpl;
 import br.com.everis.notificacaobeacon.utils.Constants;
 import br.com.everis.notificacaobeacon.utils.ReuniaoUtils;
 
-public class ReunioesActivity extends AppCompatActivity implements View.OnTouchListener, TextWatcher, View.OnClickListener, AdapterView.OnItemClickListener {
+public class ReunioesActivity extends AppCompatActivity implements View.OnTouchListener, TextWatcher, View.OnClickListener, AdapterView.OnItemClickListener, ReuniaoPresenterListener {
 
     private TextView txtEmptyList = null;
     private EditText txtDataInicio = null;
@@ -38,29 +41,36 @@ public class ReunioesActivity extends AppCompatActivity implements View.OnTouchL
 
     private DBAdapter dbAdapter = null;
 
+    private ReuniaoServiceImpl reuniaoService = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reunioes);
 
-        txtEmptyList = (TextView) findViewById(R.id.txtEmptyList);
-        txtDataInicio = (EditText) findViewById(R.id.txtDtInicio);
-        lvReunioes = (ListView) findViewById(R.id.lvTodasReunioes);
-        btnLimparFiltro = (Button) findViewById(R.id.btnLimparFiltro);
 
-        txtDataInicio.setOnTouchListener(this);
-        txtDataInicio.setKeyListener(null);
-        txtDataInicio.addTextChangedListener(this);
+        try {
+            txtEmptyList = (TextView) findViewById(R.id.txtEmptyList);
+            txtDataInicio = (EditText) findViewById(R.id.txtDtInicio);
+            lvReunioes = (ListView) findViewById(R.id.lvTodasReunioes);
+            btnLimparFiltro = (Button) findViewById(R.id.btnLimparFiltro);
 
-        lvReunioes.setOnItemClickListener(this);
+            txtDataInicio.setOnTouchListener(this);
+            txtDataInicio.setKeyListener(null);
+            txtDataInicio.addTextChangedListener(this);
 
-        btnLimparFiltro.setOnClickListener(this);
+            lvReunioes.setOnItemClickListener(this);
 
-        txtEmptyList.setText(Constants.LABEL_NENHUMA_REUNIAO);
-        lvReunioes.setEmptyView(txtEmptyList);
+            btnLimparFiltro.setOnClickListener(this);
 
-        dbAdapter = new DBAdapter(getApplicationContext());
-        criarAdapter(dbAdapter.getReunioes());
+            txtEmptyList.setText(Constants.LABEL_NENHUMA_REUNIAO);
+            lvReunioes.setEmptyView(txtEmptyList);
+
+            reuniaoService = new ReuniaoServiceImpl(this, this);
+            reuniaoService.listarReunioes();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -118,30 +128,26 @@ public class ReunioesActivity extends AppCompatActivity implements View.OnTouchL
     }
 
     private void filtrarLista(String filtro) throws ParseException {
-        DateTime inicio = new DateTime();
-        inicio = new DateTime(ReuniaoUtils.stringToDate(filtro));
-        List<ReuniaoVO> lstReunioes = dbAdapter.getReunioes();
-        List<ReuniaoVO> lstReunioesFiltradas = new ArrayList<>();
-
-        for (ReuniaoVO item : lstReunioes) {
-            DateTime dtInicio = new DateTime(ReuniaoUtils.stringToDateTime(item.getDtInicio()));
-            if (dtInicio.withTimeAtStartOfDay().equals(inicio)) {
-                lstReunioesFiltradas.add(item);
-            }
-        }
-        criarAdapter(lstReunioesFiltradas);
+        ReuniaoVO r = new ReuniaoVO();
+        Date dateTime = new DateTime(ReuniaoUtils.stringToDate(filtro)).withTimeAtStartOfDay().toDate();
+        r.setDtInicio(ReuniaoUtils.dateTimeToString(dateTime));
+        reuniaoService.buscarReunioes(r);
     }
 
-    private void criarAdapter(List<ReuniaoVO> reunioes){
+    private void criarAdapter(List<ReuniaoVO> reunioes) {
         ReunioesAdapter reuniaoAdapter = new ReunioesAdapter(reunioes, ReunioesActivity.this);
         lvReunioes.setAdapter(reuniaoAdapter);
     }
 
     @Override
     public void onClick(View v) {
-        if(v.getId() == R.id.btnLimparFiltro){
-            txtDataInicio.getText().clear();
-            criarAdapter(dbAdapter.getReunioes());
+        if (v.getId() == R.id.btnLimparFiltro) {
+            try {
+                reuniaoService.listarReunioes();
+                txtDataInicio.getText().clear();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -151,5 +157,15 @@ public class ReunioesActivity extends AppCompatActivity implements View.OnTouchL
         i.putExtra(Constants.NOVA_REUNIAO_KEY, Constants.FLAG_DETALHES_REUNIAO);
         i.putExtra(Constants.ID_REUNIAO_KEY, String.valueOf(id));
         startActivity(i);
+    }
+
+    @Override
+    public void reunioesReady(List<ReuniaoVO> lstReunioes) {
+        criarAdapter(lstReunioes);
+    }
+
+    @Override
+    public void reuniaoReady(ReuniaoVO reuniaoVO) {
+
     }
 }

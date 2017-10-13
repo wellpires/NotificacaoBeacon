@@ -48,16 +48,14 @@ import java.util.List;
 import br.com.everis.notificacaobeacon.R;
 import br.com.everis.notificacaobeacon.adapter.GooglePlacesAutocompleteAdapter;
 import br.com.everis.notificacaobeacon.bd.DBAdapter;
-import br.com.everis.notificacaobeacon.bd.model.ReuniaoVO;
-import br.com.everis.notificacaobeacon.component.DaggerReuniaoComponent;
-import br.com.everis.notificacaobeacon.component.ReuniaoComponent;
-import br.com.everis.notificacaobeacon.module.ReuniaoModule;
+import br.com.everis.notificacaobeacon.listener.ReuniaoPresenterListener;
+import br.com.everis.notificacaobeacon.model.ReuniaoVO;
 import br.com.everis.notificacaobeacon.service.IReuniaoService;
 import br.com.everis.notificacaobeacon.service.impl.ReuniaoServiceImpl;
 import br.com.everis.notificacaobeacon.utils.Constants;
 import br.com.everis.notificacaobeacon.utils.ReuniaoUtils;
 
-public class AdicionarReuniaoActivity extends AppCompatActivity implements View.OnTouchListener {
+public class AdicionarReuniaoActivity extends AppCompatActivity implements View.OnTouchListener, ReuniaoPresenterListener {
 
     private EditText txtDataInicio = null;
     private EditText txtHoraInicio = null;
@@ -120,10 +118,9 @@ public class AdicionarReuniaoActivity extends AppCompatActivity implements View.
         txtSala.setEnabled(true);
         txtDescricao.setEnabled(true);
 
-        ReuniaoComponent component = DaggerReuniaoComponent.builder().reuniaoModule(new ReuniaoModule()).build();
-        reuniaoService = component.provideReuniaoService();
-
         datasource = new DBAdapter(this);
+
+        reuniaoService = new ReuniaoServiceImpl(this, this);
 
         flagTipo = getIntent().getStringExtra(Constants.NOVA_REUNIAO_KEY);
 
@@ -146,23 +143,12 @@ public class AdicionarReuniaoActivity extends AppCompatActivity implements View.
 
             try {
                 idReuniao = Integer.valueOf(getIntent().getStringExtra(Constants.ID_REUNIAO_KEY));
-
-                datasource.open();
-                ReuniaoVO vo = datasource.getReunioes(idReuniao);
-                String dataInicio[] = vo.getDtInicio().split("\\s");
-                String dataTermino[] = vo.getDtTermino().split("\\s");
-
-                txtAssunto.setText(vo.getAssunto());
-                txtDataInicio.setText(dataInicio[0]);
-                txtHoraInicio.setText(dataInicio[1]);
-                txtDataTermino.setText(dataTermino[0]);
-                txtHoraTermino.setText(dataTermino[1]);
-                txtLocal.setText(vo.getEndereco());
-                txtSala.setText(vo.getSala());
-                txtDescricao.setText(vo.getPauta());
-                datasource.close();
-
+                ReuniaoVO r = new ReuniaoVO();
+                r.setIdReuniao(idReuniao);
+                reuniaoService.buscarReuniao(r);
             } catch (ParseException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
@@ -228,14 +214,18 @@ public class AdicionarReuniaoActivity extends AppCompatActivity implements View.
                 datasource.open();
 
                 if (Constants.FLAG_NOVA_REUNIAO.equals(flagTipo)) {
-                    reuniaoService.gravar(r);
+                    reuniaoService.gravarReuniao(r);
                     finalizarAcao();
                 } else if (Constants.FLAG_ALTERAR_REUNIAO.equals(flagTipo)) {
                     ReuniaoUtils.mostrarPerguntaDialogo(AdicionarReuniaoActivity.this, Constants.LABEL_VOCE_TEM_CERTEZA, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-                            r.setId(idReuniao);
-                            datasource.updateReuniao(r);
+                            try {
+                                r.setIdReuniao(idReuniao);
+                                reuniaoService.editarReuniao(r);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
                             finalizarAcao();
                         }
                     });
@@ -517,4 +507,27 @@ public class AdicionarReuniaoActivity extends AppCompatActivity implements View.
         startActivity(i);
     }
 
+    @Override
+    public void reunioesReady(List<ReuniaoVO> lstReunioes) {
+
+    }
+
+    @Override
+    public void reuniaoReady(ReuniaoVO reuniaoVO) {
+        try {
+            DateTime dtInicio = new DateTime(ReuniaoUtils.stringToDateTime(reuniaoVO.getDtInicio()));
+            DateTime dtTermino = new DateTime(ReuniaoUtils.stringToDateTime(reuniaoVO.getDtTermino()));
+
+            txtAssunto.setText(reuniaoVO.getAssunto());
+            txtDataInicio.setText(ReuniaoUtils.dateToString(dtInicio.toDate()));
+            txtHoraInicio.setText(ReuniaoUtils.timeToString(dtInicio.toDate()));
+            txtDataTermino.setText(ReuniaoUtils.dateToString(dtTermino.toDate()));
+            txtHoraTermino.setText(ReuniaoUtils.timeToString(dtTermino.toDate()));
+            txtLocal.setText(reuniaoVO.getEndereco());
+            txtSala.setText(reuniaoVO.getSala());
+            txtDescricao.setText(reuniaoVO.getPauta());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
 }
