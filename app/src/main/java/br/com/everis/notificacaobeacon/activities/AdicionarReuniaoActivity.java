@@ -2,6 +2,7 @@ package br.com.everis.notificacaobeacon.activities;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -28,6 +29,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TimePicker;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -66,6 +68,8 @@ public class AdicionarReuniaoActivity extends AppCompatActivity implements View.
     private EditText txtLocal = null;
     private EditText txtSala = null;
     private EditText txtDescricao = null;
+
+    private ProgressDialog barraProgresso = null;
 
     private DBAdapter datasource = null;
 
@@ -213,9 +217,13 @@ public class AdicionarReuniaoActivity extends AppCompatActivity implements View.
 
                 datasource.open();
 
+                barraProgresso = new ProgressDialog(this);
+                barraProgresso.setMessage("Aguarde!");
+                barraProgresso.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                barraProgresso.setIndeterminate(true);
+                barraProgresso.show();
                 if (Constants.FLAG_NOVA_REUNIAO.equals(flagTipo)) {
                     reuniaoService.gravarReuniao(r);
-                    finalizarAcao();
                 } else if (Constants.FLAG_ALTERAR_REUNIAO.equals(flagTipo)) {
                     ReuniaoUtils.mostrarPerguntaDialogo(AdicionarReuniaoActivity.this, Constants.LABEL_VOCE_TEM_CERTEZA, new DialogInterface.OnClickListener() {
                         @Override
@@ -226,7 +234,6 @@ public class AdicionarReuniaoActivity extends AppCompatActivity implements View.
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
-                            finalizarAcao();
                         }
                     });
                 }
@@ -505,11 +512,16 @@ public class AdicionarReuniaoActivity extends AppCompatActivity implements View.
 
         Intent i = new Intent(getApplicationContext(), ReuniaoMainActivity.class);
         startActivity(i);
+        barraProgresso.cancel();
     }
 
     @Override
     public void reunioesReady(List<ReuniaoVO> lstReunioes) {
-
+        try {
+            ReuniaoUtils.popularBancoLocal(getApplicationContext(),lstReunioes);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -529,5 +541,15 @@ public class AdicionarReuniaoActivity extends AppCompatActivity implements View.
         } catch (ParseException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void reuniaoReady() {
+        try {
+            reuniaoService.listarReunioes();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        finalizarAcao();
     }
 }

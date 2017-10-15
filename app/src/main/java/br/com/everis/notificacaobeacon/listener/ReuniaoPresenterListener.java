@@ -11,4 +11,6 @@ import br.com.everis.notificacaobeacon.model.ReuniaoVO;
 public interface ReuniaoPresenterListener {
     void reunioesReady(List<ReuniaoVO> lstReunioes);
     void reuniaoReady(ReuniaoVO reuniaoVO);
+    void reuniaoReady();
+
 }

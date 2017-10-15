@@ -203,11 +203,18 @@ public class ReuniaoUtils {
         }
     }
 
-    public static Long stringToLong(String value){
-        if(isEmptyOrNull(value)){
+    public static Long stringToLong(String value) {
+        if (isEmptyOrNull(value)) {
             value = "0";
         }
         return Long.valueOf(value);
     }
 
+    public static void popularBancoLocal(Context c, List<ReuniaoVO> lstReunioes) throws ParseException {
+        DBAdapter datasource = new DBAdapter(c);
+        datasource.deleteReuniao();
+        for (ReuniaoVO vo : lstReunioes) {
+            datasource.createReuniao(vo);
+        }
+    }
 }

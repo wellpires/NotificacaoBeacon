@@ -37,7 +37,7 @@ public class ReuniaoServiceImpl implements IReuniaoService {
         call.enqueue(new Callback() {
             @Override
             public void onResponse(Call call, Response response) {
-
+                reuniaoListener.reuniaoReady();
             }
 
             @Override
@@ -53,7 +53,7 @@ public class ReuniaoServiceImpl implements IReuniaoService {
         call.enqueue(new Callback() {
             @Override
             public void onResponse(Call call, Response response) {
-
+                reuniaoListener.reuniaoReady();
             }
 
             @Override
@@ -71,7 +71,7 @@ public class ReuniaoServiceImpl implements IReuniaoService {
         call.enqueue(new Callback() {
             @Override
             public void onResponse(Call call, Response response) {
-
+                reuniaoListener.reuniaoReady();
             }
 
             @Override

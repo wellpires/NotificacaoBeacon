@@ -1,6 +1,7 @@
 package br.com.everis.notificacaobeacon.activities;
 
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -39,6 +40,8 @@ public class ReunioesActivity extends AppCompatActivity implements View.OnTouchL
     private ListView lvReunioes = null;
     private Button btnLimparFiltro = null;
 
+    private ProgressDialog barraProgresso = null;
+
     private DBAdapter dbAdapter = null;
 
     private ReuniaoServiceImpl reuniaoService = null;
@@ -66,6 +69,11 @@ public class ReunioesActivity extends AppCompatActivity implements View.OnTouchL
             txtEmptyList.setText(Constants.LABEL_NENHUMA_REUNIAO);
             lvReunioes.setEmptyView(txtEmptyList);
 
+            barraProgresso = new ProgressDialog(this);
+            barraProgresso.setMessage("Aguarde!");
+            barraProgresso.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            barraProgresso.setIndeterminate(true);
+            barraProgresso.show();
             reuniaoService = new ReuniaoServiceImpl(this, this);
             reuniaoService.listarReunioes();
         } catch (Exception e) {
@@ -137,6 +145,7 @@ public class ReunioesActivity extends AppCompatActivity implements View.OnTouchL
     private void criarAdapter(List<ReuniaoVO> reunioes) {
         ReunioesAdapter reuniaoAdapter = new ReunioesAdapter(reunioes, ReunioesActivity.this);
         lvReunioes.setAdapter(reuniaoAdapter);
+        barraProgresso.cancel();
     }
 
     @Override
@@ -166,6 +175,11 @@ public class ReunioesActivity extends AppCompatActivity implements View.OnTouchL
 
     @Override
     public void reuniaoReady(ReuniaoVO reuniaoVO) {
+
+    }
+
+    @Override
+    public void reuniaoReady() {
 
     }
 }

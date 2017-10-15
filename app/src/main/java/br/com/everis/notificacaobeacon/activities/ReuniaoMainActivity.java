@@ -1,6 +1,7 @@
 package br.com.everis.notificacaobeacon.activities;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -25,6 +26,7 @@ import android.widget.Toast;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 
@@ -54,6 +56,8 @@ public class ReuniaoMainActivity extends AppCompatActivity
     private FloatingActionButton fabNotificacaoReuniao = null;
 
     private ListView lvReunioes = null;
+
+    private ProgressDialog barraProgresso = null;
 
     private DBAdapter datasource = null;
 
@@ -110,10 +114,13 @@ public class ReuniaoMainActivity extends AppCompatActivity
         startService(iService);
         //===========================================
 
-        ReuniaoVO r = new ReuniaoVO();
-        r.setDtInicio(ReuniaoUtils.dateTimeToString(new Date()));
-        reuniaoService = new ReuniaoServiceImpl(this, this);
-        reuniaoService.buscarReunioes(r);
+        barraProgresso = new ProgressDialog(this);
+        barraProgresso.setMessage("Aguarde!");
+        barraProgresso.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        barraProgresso.setIndeterminate(true);
+        barraProgresso.show();
+
+        buscarReunioes();
 
         Branch.setPlayStoreReferrerCheckTimeout(0);
         Branch.getAutoInstance(this);
@@ -191,6 +198,10 @@ public class ReuniaoMainActivity extends AppCompatActivity
         ReuniaoUtils.mostrarPerguntaDialogo(ReuniaoMainActivity.this, Constants.LABEL_VOCE_TEM_CERTEZA, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+                barraProgresso.setMessage("Aguarde!");
+                barraProgresso.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                barraProgresso.setIndeterminate(true);
+                barraProgresso.show();
                 int id = Integer.parseInt(view.getTag().toString());
                 ReuniaoVO r = new ReuniaoVO();
                 r.setIdReuniao(id);
@@ -207,15 +218,26 @@ public class ReuniaoMainActivity extends AppCompatActivity
     //TODO ADICIONAR PARTICIPANTES PARA ENVIAR EMAILS
 
     private void listarReunioes(List<ReuniaoVO> lstReunioes) {
-        ReunioesHojeAdapter adapter = new ReunioesHojeAdapter(lstReunioes, this);
-        lvReunioes.setAdapter(adapter);
-
-        if (lvReunioes.getAdapter().getCount() <= 0) {
-            GlobalClass gc = (GlobalClass) getApplicationContext();
-            gc.setReuniaoAcontecera(false);
-            ReuniaoUtils.cancelarNotificacao(this, new int[]{Constants.ID_BEM_VINDO_REUNIAO, Constants.ID_NOTIFICACAO_REUNIAO, Constants.ID_NOTIFICACAO_REUNIAO_ACONTECENDO});
+        try {
+            ReunioesHojeAdapter adapter = new ReunioesHojeAdapter(lstReunioes, this);
+            lvReunioes.setAdapter(adapter);
+            ReuniaoUtils.popularBancoLocal(getApplicationContext(), lstReunioes);
+            if (lvReunioes.getAdapter().getCount() <= 0) {
+                GlobalClass gc = (GlobalClass) getApplicationContext();
+                gc.setReuniaoAcontecera(false);
+                ReuniaoUtils.cancelarNotificacao(this, new int[]{Constants.ID_BEM_VINDO_REUNIAO, Constants.ID_NOTIFICACAO_REUNIAO, Constants.ID_NOTIFICACAO_REUNIAO_ACONTECENDO});
+            }
+            barraProgresso.cancel();
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
+    }
 
+    private void buscarReunioes() {
+        ReuniaoVO r = new ReuniaoVO();
+        r.setDtInicio(ReuniaoUtils.dateTimeToString(new Date()));
+        reuniaoService = new ReuniaoServiceImpl(this, this);
+        reuniaoService.buscarReunioes(r);
     }
 
     @Override
@@ -226,9 +248,9 @@ public class ReuniaoMainActivity extends AppCompatActivity
         b.initSession(new Branch.BranchReferralInitListener() {
             @Override
             public void onInitFinished(JSONObject referringParams, BranchError error) {
-                if(error == null){
+                if (error == null) {
                     Log.i("MyApp", referringParams.toString());
-                } else{
+                } else {
                     Log.i("MyApp", error.getMessage());
                 }
 
@@ -249,5 +271,10 @@ public class ReuniaoMainActivity extends AppCompatActivity
     @Override
     public void reuniaoReady(ReuniaoVO reuniaoVO) {
 
+    }
+
+    @Override
+    public void reuniaoReady() {
+        buscarReunioes();
     }
 }

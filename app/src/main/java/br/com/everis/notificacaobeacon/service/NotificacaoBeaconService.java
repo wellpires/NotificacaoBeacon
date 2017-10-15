@@ -6,6 +6,7 @@ import android.app.TaskStackBuilder;
 import android.content.Intent;
 import android.os.IBinder;
 import android.os.RemoteException;
+import android.service.notification.NotificationListenerService;
 import android.util.Log;
 
 import org.altbeacon.beacon.BeaconManager;
@@ -18,6 +19,7 @@ import org.joda.time.DateTime;
 import org.joda.time.Duration;
 import org.joda.time.Minutes;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -27,12 +29,14 @@ import br.com.everis.notificacaobeacon.activities.ReuniaoMainActivity;
 import br.com.everis.notificacaobeacon.R;
 import br.com.everis.notificacaobeacon.activities.ReuniaoNotificacaoActivity;
 import br.com.everis.notificacaobeacon.bd.DBAdapter;
+import br.com.everis.notificacaobeacon.listener.ReuniaoPresenterListener;
 import br.com.everis.notificacaobeacon.model.ReuniaoVO;
+import br.com.everis.notificacaobeacon.service.impl.ReuniaoServiceImpl;
 import br.com.everis.notificacaobeacon.utils.Constants;
 import br.com.everis.notificacaobeacon.utils.GlobalClass;
 import br.com.everis.notificacaobeacon.utils.ReuniaoUtils;
 
-public class NotificacaoBeaconService extends Service implements BootstrapNotifier {
+public class NotificacaoBeaconService extends Service implements BootstrapNotifier, ReuniaoPresenterListener {
 
     protected static final String TAG = "NotificacaoActivity";
     private BeaconManager beaconManager = null;
@@ -44,6 +48,8 @@ public class NotificacaoBeaconService extends Service implements BootstrapNotifi
     private Thread threadNotificacao = null;
 
     private boolean pararWhileTrue = false;
+
+    private ReuniaoServiceImpl reuniaoService = null;
 
     public NotificacaoBeaconService() {
     }
@@ -63,11 +69,29 @@ public class NotificacaoBeaconService extends Service implements BootstrapNotifi
             beaconManager.updateScanPeriods();
 
             beaconManager.startRangingBeaconsInRegion(region);
+            reuniaoService = new ReuniaoServiceImpl(this, this);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
 
         //====================
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
+                    try {
+                        //5 MINUTOS
+                        Thread.sleep(300000);
+                        reuniaoService.listarReunioes();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }).start();
 
         regionBootstrap = new RegionBootstrap(this, region);
 
@@ -253,4 +277,22 @@ public class NotificacaoBeaconService extends Service implements BootstrapNotifi
         return mensagem;
     }
 
+    @Override
+    public void reunioesReady(List<ReuniaoVO> lstReunioes) {
+        try {
+            ReuniaoUtils.popularBancoLocal(getApplicationContext(),lstReunioes);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void reuniaoReady(ReuniaoVO reuniaoVO) {
+
+    }
+
+    @Override
+    public void reuniaoReady() {
+
+    }
 }

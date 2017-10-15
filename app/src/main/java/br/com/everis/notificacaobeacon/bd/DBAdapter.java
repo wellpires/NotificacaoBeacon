@@ -3,6 +3,7 @@ package br.com.everis.notificacaobeacon.bd;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
@@ -44,6 +45,7 @@ public class DBAdapter {
     }
 
     public ReuniaoVO createReuniao(ReuniaoVO reuniao) throws ParseException {
+        open();
         ContentValues values = new ContentValues();
 
         values.put(dbHelper.COLUMN_ASSUNTO, reuniao.getAssunto());
@@ -56,6 +58,7 @@ public class DBAdapter {
         long insertId = database.insert(DBHelper.TABLE_NAME, null, values);
         Cursor c = database.query(DBHelper.TABLE_NAME, allColumns, DBHelper.COLUMN_ID + " = " + insertId, null, null, null, null);
         c.moveToFirst();
+        close();
         return cursorParaReuniao(c);
 
     }
@@ -78,7 +81,9 @@ public class DBAdapter {
     }
 
     public void deleteReuniao() {
+        open();
         database.delete(DBHelper.TABLE_NAME, null, null);
+        close();
     }
 
     private ReuniaoVO cursorParaReuniao(Cursor c) throws ParseException {
