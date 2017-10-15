@@ -183,6 +183,7 @@ public class NotificacaoBeaconService extends Service implements BootstrapNotifi
                 while (true) {
                     if (pararWhileTrue) {
                         //ESTE IF É USADO POIS NÃO ESTAVA CONSEGUINDO PARAR A THREAD DE OUTRA FORMA
+                        //FIXME:  ALTERAR PARA QUE NÃO PRECISE DAR ESSE RETORNO, MAS ALTERE O VALOR DA VARIÁVEL pararWhileTrue PARA FALSE ASSIM, PODENDO RETORNAR PARA O LOOPING QUANDO A VÁRIAVEL FOR NOVAMENTE TRUE.
                         return;
                     }
                     try {
