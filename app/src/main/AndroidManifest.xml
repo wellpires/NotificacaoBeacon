@@ -25,7 +25,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <meta-data
             android:name="io.branch.sdk.BranchKey"
             android:value="key_live_cmyUnP8hqHRDrxA5ulDTHagbxya0t69W" />
@@ -60,7 +59,6 @@
         <activity
             android:name=".activities.ReuniaoNotificacaoActivity"
             android:label="@string/app_name" />
-
         <activity
             android:name=".activities.DetalhesReuniaoActivity"
             android:label="@string/title_activity_detalhes_reuniao"
@@ -70,24 +68,33 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="br.com.everis.notificacaobeacon.activities.ReuniaoMainActivity" />
         </activity>
-
         <activity android:name=".activities.AdicionarReuniaoActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="br.com.everis.notificacaobeacon.activities.ReuniaoMainActivity" />
 
             <intent-filter>
-                <data android:scheme="reuniaoapp" android:host="open" />
+                <data
+                    android:host="open"
+                    android:scheme="reuniaoapp" />
+
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
             </intent-filter>
-
         </activity>
-
         <activity
             android:name=".activities.ReunioesActivity"
             android:label="@string/title_activity_reunioes">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="br.com.everis.notificacaobeacon.activities.ReuniaoMainActivity" />
+        </activity>
+        <activity
+            android:name=".activities.AdicionarEditarReuniao"
+            android:label="@string/title_activity_adicionar_editar_reuniao"
+            android:parentActivityName=".activities.ReuniaoMainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="br.com.everis.notificacaobeacon.activities.ReuniaoMainActivity" />

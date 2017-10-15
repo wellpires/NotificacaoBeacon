@@ -27,14 +27,19 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.+'
-    compile 'com.android.support:design:25.+'
+
+
+    compile('io.branch.sdk.android:library:2.+') {
+        exclude module: 'answers-shim'
+    }
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support:design:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.google.firebase:firebase-messaging:10.2.6'
     compile 'org.altbeacon:android-beacon-library:2.7'
-    compile 'com.android.support:support-v4:25.+'
-    compile 'com.android.support:recyclerview-v7:25.+'
-    compile 'com.android.support:support-vector-drawable:25.+'
+    compile 'com.android.support:support-v4:25.3.1'
+    compile 'com.android.support:recyclerview-v7:25.3.1'
+    compile 'com.android.support:support-vector-drawable:25.3.1'
     compile 'joda-time:joda-time:2.9.9'
     compile 'com.google.android.gms:play-services-cast:10.2.6'
     compile 'com.google.android.gms:play-services-maps:10.2.6'
@@ -43,11 +48,6 @@ dependencies {
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
     compile 'com.squareup.okhttp3:logging-interceptor:3.4.1'
-
-
-    compile ('io.branch.sdk.android:library:2.+') {
-        exclude module: 'answers-shim'
-    }
     testCompile 'junit:junit:4.12'
 }
 apply plugin: 'com.google.gms.google-services'

@@ -833,6 +833,7 @@
     <string name="status_bar_notification_info_overflow">999+</string>
     <string name="store_picture_message">"Allow Ad to store image in Picture gallery?"</string>
     <string name="store_picture_title">Save image</string>
+    <string name="title_activity_adicionar_editar_reuniao">AdicionarEditarReuniao</string>
     <string name="title_activity_detalhes_reuniao">Detalhes da reunião</string>
     <string name="title_activity_reunioes">Reuniões marcadas</string>
     <string name="title_dashboard">Dashboard</string>

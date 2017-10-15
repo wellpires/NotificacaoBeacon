@@ -60,6 +60,10 @@
         "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\985498013d4f89c44568b1364256c5b8058c9a56\\output\\res\\layout\\design_menu_item_action_area.xml"
     },
     {
+        "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_adicionar_editar_reuniao.xml",
+        "source": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\src\\main\\res\\layout\\activity_adicionar_editar_reuniao.xml"
+    },
+    {
         "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\layout\\select_dialog_item_material.xml",
         "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\53d6b259b10dbb60a8be601361a972314c119b61\\output\\res\\layout\\select_dialog_item_material.xml"
     },
