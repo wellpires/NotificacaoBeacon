@@ -10,8 +10,8 @@
     <string name="title_item_detail">Item Detail</string>
     <string name="title_activity_detalhes_reuniao">Detalhes da reunião</string>
     <string name="title_activity_reunioes">Reuniões marcadas</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
+    <string name="title_reuniao">Reuniao</string>
+    <string name="title_participantes">Participantes</string>
     <string name="title_notifications">Notifications</string>
     <string name="item_edit_label">Editar</string>
     <string name="item_delete_label">Excluir</string>
@@ -23,4 +23,7 @@
 
     <string name="content_description_btnDeletar">Botão para deletar uma reunião</string>
     <string name="title_activity_adicionar_editar_reuniao">AdicionarEditarReuniao</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

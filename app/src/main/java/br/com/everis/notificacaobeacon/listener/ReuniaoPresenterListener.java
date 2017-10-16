@@ -12,5 +12,4 @@ public interface ReuniaoPresenterListener {
     void reunioesReady(List<ReuniaoVO> lstReunioes);
     void reuniaoReady(ReuniaoVO reuniaoVO);
     void reuniaoReady();
-
 }

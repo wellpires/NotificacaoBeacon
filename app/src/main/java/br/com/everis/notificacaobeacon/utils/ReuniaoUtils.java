@@ -24,7 +24,7 @@ import java.util.TimeZone;
 
 import br.com.everis.notificacaobeacon.R;
 import br.com.everis.notificacaobeacon.adapter.ReunioesHojeAdapter;
-import br.com.everis.notificacaobeacon.bd.DBAdapter;
+import br.com.everis.notificacaobeacon.bd.ReuniaoDAO;
 import br.com.everis.notificacaobeacon.model.ReuniaoVO;
 
 /**
@@ -174,7 +174,7 @@ public class ReuniaoUtils {
 
     public static void listarReunioes(Context context) {
         try {
-            DBAdapter datasource = new DBAdapter(context);
+            ReuniaoDAO datasource = new ReuniaoDAO(context);
             List<ReuniaoVO> reunioes = datasource.getReunioes();
             List<ReuniaoVO> reunioesFiltradas = new ArrayList<>();
 
@@ -211,7 +211,7 @@ public class ReuniaoUtils {
     }
 
     public static void popularBancoLocal(Context c, List<ReuniaoVO> lstReunioes) throws ParseException {
-        DBAdapter datasource = new DBAdapter(c);
+        ReuniaoDAO datasource = new ReuniaoDAO(c);
         datasource.deleteReuniao();
         for (ReuniaoVO vo : lstReunioes) {
             datasource.createReuniao(vo);

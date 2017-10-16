@@ -73,4 +73,5 @@ public interface Constants {
     String VOLTE_SEMPRE = "Volte sempre!";
     int TEMPO_LIMITE_MINUTOS = 60;
     String ACTION_SERVICE = "br.com.everis.notificacaobeacon.service.NOTIFICATION_LISTENER_SERVICE_EXAMPLE";
+    String LABEL_ADICIONAR_PARTI = "Adicionar";
 }

@@ -29,7 +29,6 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.TimePicker;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -49,7 +48,7 @@ import java.util.List;
 
 import br.com.everis.notificacaobeacon.R;
 import br.com.everis.notificacaobeacon.adapter.GooglePlacesAutocompleteAdapter;
-import br.com.everis.notificacaobeacon.bd.DBAdapter;
+import br.com.everis.notificacaobeacon.bd.ReuniaoDAO;
 import br.com.everis.notificacaobeacon.listener.ReuniaoPresenterListener;
 import br.com.everis.notificacaobeacon.model.ReuniaoVO;
 import br.com.everis.notificacaobeacon.service.IReuniaoService;
@@ -71,7 +70,7 @@ public class AdicionarReuniaoActivity extends AppCompatActivity implements View.
 
     private ProgressDialog barraProgresso = null;
 
-    private DBAdapter datasource = null;
+    private ReuniaoDAO datasource = null;
 
     private Integer idReuniao = null;
     private String flagTipo = null;
@@ -122,7 +121,7 @@ public class AdicionarReuniaoActivity extends AppCompatActivity implements View.
         txtSala.setEnabled(true);
         txtDescricao.setEnabled(true);
 
-        datasource = new DBAdapter(this);
+        datasource = new ReuniaoDAO(this);
 
         reuniaoService = new ReuniaoServiceImpl(this, this);
 
@@ -214,8 +213,6 @@ public class AdicionarReuniaoActivity extends AppCompatActivity implements View.
                 r.setEndereco(txtLocal.getText().toString());
                 r.setSala(txtSala.getText().toString());
                 r.setPauta(txtDescricao.getText().toString());
-
-                datasource.open();
 
                 barraProgresso = new ProgressDialog(this);
                 barraProgresso.setMessage("Aguarde!");
@@ -499,8 +496,6 @@ public class AdicionarReuniaoActivity extends AppCompatActivity implements View.
     }
 
     private void finalizarAcao() {
-        datasource.close();
-
         txtAssunto.getText().clear();
         txtDataInicio.getText().clear();
         txtHoraInicio.getText().clear();

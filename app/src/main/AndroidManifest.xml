@@ -92,7 +92,7 @@
                 android:value="br.com.everis.notificacaobeacon.activities.ReuniaoMainActivity" />
         </activity>
         <activity
-            android:name=".activities.AdicionarEditarReuniao"
+            android:name=".activities.AdicionarEditarReuniaoActivity"
             android:label="@string/title_activity_adicionar_editar_reuniao"
             android:parentActivityName=".activities.ReuniaoMainActivity">
             <meta-data

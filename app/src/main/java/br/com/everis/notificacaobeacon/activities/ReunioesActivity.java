@@ -19,14 +19,13 @@ import android.widget.TextView;
 import org.joda.time.DateTime;
 
 import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 import br.com.everis.notificacaobeacon.R;
 import br.com.everis.notificacaobeacon.adapter.ReunioesAdapter;
-import br.com.everis.notificacaobeacon.bd.DBAdapter;
+import br.com.everis.notificacaobeacon.bd.ReuniaoDAO;
 import br.com.everis.notificacaobeacon.listener.ReuniaoPresenterListener;
 import br.com.everis.notificacaobeacon.model.ReuniaoVO;
 import br.com.everis.notificacaobeacon.service.impl.ReuniaoServiceImpl;
@@ -42,7 +41,7 @@ public class ReunioesActivity extends AppCompatActivity implements View.OnTouchL
 
     private ProgressDialog barraProgresso = null;
 
-    private DBAdapter dbAdapter = null;
+    private ReuniaoDAO reuniaoDAO = null;
 
     private ReuniaoServiceImpl reuniaoService = null;
 

@@ -6,7 +6,6 @@ import android.app.TaskStackBuilder;
 import android.content.Intent;
 import android.os.IBinder;
 import android.os.RemoteException;
-import android.service.notification.NotificationListenerService;
 import android.util.Log;
 
 import org.altbeacon.beacon.BeaconManager;
@@ -28,7 +27,7 @@ import br.com.everis.notificacaobeacon.activities.DetalhesReuniaoActivity;
 import br.com.everis.notificacaobeacon.activities.ReuniaoMainActivity;
 import br.com.everis.notificacaobeacon.R;
 import br.com.everis.notificacaobeacon.activities.ReuniaoNotificacaoActivity;
-import br.com.everis.notificacaobeacon.bd.DBAdapter;
+import br.com.everis.notificacaobeacon.bd.ReuniaoDAO;
 import br.com.everis.notificacaobeacon.listener.ReuniaoPresenterListener;
 import br.com.everis.notificacaobeacon.model.ReuniaoVO;
 import br.com.everis.notificacaobeacon.service.impl.ReuniaoServiceImpl;
@@ -43,7 +42,7 @@ public class NotificacaoBeaconService extends Service implements BootstrapNotifi
     private Region region = null;
     private RegionBootstrap regionBootstrap = null;
 
-    private DBAdapter datasource = null;
+    private ReuniaoDAO datasource = null;
 
     private Thread threadNotificacao = null;
 
@@ -103,7 +102,7 @@ public class NotificacaoBeaconService extends Service implements BootstrapNotifi
                     try {
                         Thread.sleep(5000);
 
-                        datasource = new DBAdapter(getApplicationContext());
+                        datasource = new ReuniaoDAO(getApplicationContext());
                         List<ReuniaoVO> lstReunioes = datasource.getReunioes();
 
                         List<ReuniaoVO> lstReunioesHoje = new ArrayList<>();

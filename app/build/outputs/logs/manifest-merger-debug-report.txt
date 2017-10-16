@@ -247,14 +247,14 @@ ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src
 		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:89:13-60
 	android:name
 		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:88:13-56
-activity#br.com.everis.notificacaobeacon.activities.AdicionarEditarReuniao
+activity#br.com.everis.notificacaobeacon.activities.AdicionarEditarReuniaoActivity
 ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:94:9-101:20
 	android:label
 		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:96:13-76
 	android:parentActivityName
 		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:97:13-73
 	android:name
-		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:95:13-62
+		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:95:13-70
 meta-data#android.support.VERSION
 ADDED from [com.android.support:design:25.3.1] C:\Users\wgoncalv\.android\build-cache\985498013d4f89c44568b1364256c5b8058c9a56\output\AndroidManifest.xml:25:5-27:34
 MERGED from [com.android.support:transition:25.3.1] C:\Users\wgoncalv\.android\build-cache\fd08c003ac8ff804c25ee3f3b718c541dd3f7ffc\output\AndroidManifest.xml:22:5-24:34

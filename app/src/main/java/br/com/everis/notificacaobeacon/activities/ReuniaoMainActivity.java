@@ -32,7 +32,7 @@ import java.util.List;
 
 import br.com.everis.notificacaobeacon.R;
 import br.com.everis.notificacaobeacon.adapter.ReunioesHojeAdapter;
-import br.com.everis.notificacaobeacon.bd.DBAdapter;
+import br.com.everis.notificacaobeacon.bd.ReuniaoDAO;
 import br.com.everis.notificacaobeacon.listener.ReuniaoPresenterListener;
 import br.com.everis.notificacaobeacon.model.ReuniaoVO;
 import br.com.everis.notificacaobeacon.service.NotificacaoBeaconService;
@@ -59,7 +59,7 @@ public class ReuniaoMainActivity extends AppCompatActivity
 
     private ProgressDialog barraProgresso = null;
 
-    private DBAdapter datasource = null;
+    private ReuniaoDAO datasource = null;
 
     static final int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
 
@@ -173,7 +173,8 @@ public class ReuniaoMainActivity extends AppCompatActivity
     public void onClick(final View view) {
 
         if (view.getId() == R.id.fab) {
-            Intent i = new Intent(getApplicationContext(), AdicionarReuniaoActivity.class);
+            Intent i = new Intent(getApplicationContext(), AdicionarEditarReuniaoActivity.class);
+//            Intent i = new Intent(getApplicationContext(), AdicionarReuniaoActivity.class);
             i.putExtra(Constants.NOVA_REUNIAO_KEY, Constants.FLAG_NOVA_REUNIAO);
             startActivity(i);
         } else if (view.getId() == R.id.fabBell) {
