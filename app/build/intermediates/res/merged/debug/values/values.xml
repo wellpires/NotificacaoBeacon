@@ -837,9 +837,9 @@
     <string name="title_activity_adicionar_editar_reuniao">AdicionarEditarReuniao</string>
     <string name="title_activity_detalhes_reuniao">Detalhes da reunião</string>
     <string name="title_activity_reunioes">Reuniões marcadas</string>
+    <string name="title_anexos">Anexos</string>
     <string name="title_item_detail">Item Detail</string>
     <string name="title_item_list">Items</string>
-    <string name="title_notifications">Notifications</string>
     <string name="title_participantes">Participantes</string>
     <string name="title_reuniao">Reuniao</string>
     <string name="titulo_app">Controle de reuniões</string>

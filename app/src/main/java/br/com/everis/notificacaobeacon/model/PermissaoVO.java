@@ -9,6 +9,14 @@ public class PermissaoVO {
     private Long idPermissao = null;
     private String permissao = null;
 
+    public PermissaoVO(Long idPermissao, String permissao) {
+        this.permissao = permissao;
+        this.idPermissao = idPermissao;
+    }
+
+    public PermissaoVO() {
+    }
+
     public Long getIdPermissao() {
         return idPermissao;
     }

@@ -54,23 +54,27 @@ public class UsuarioDAO {
         close();
     }
 
-    public List<UsuarioVO> listarUsuarios(){
-        open();
-        Cursor cursor = database.rawQuery("SELECT * FROM " + DBHelper.USUARIO_TABLE_NAME, null);
-        close();
-        return cursorParaUsuarios(cursor);
+    public List<UsuarioVO> listarUsuarios() {
+        try{
+            open();
+            Cursor cursor = database.rawQuery("SELECT * FROM " + DBHelper.USUARIO_TABLE_NAME, null);
+            return cursorParaUsuarios(cursor);
+        }finally {
+            close();
+        }
     }
 
     private List<UsuarioVO> cursorParaUsuarios(Cursor cursor) {
         List<UsuarioVO> lstUsuarios = new ArrayList<>();
         while (cursor.moveToNext()) {
             UsuarioVO vo = new UsuarioVO();
-            vo.setNomeCompleto(cursor.getColumnName(cursor.getColumnIndex(DBHelper.USUARIO_COLUMN_NOME)));
-            vo.setEmail(cursor.getColumnName(cursor.getColumnIndex(DBHelper.USUARIO_COLUMN_EMAIL)));
+            vo.setIdUsuario(0L);
+            vo.setNomeCompleto(cursor.getString(cursor.getColumnIndex(DBHelper.USUARIO_COLUMN_NOME)));
+            vo.setEmail(cursor.getString(cursor.getColumnIndex(DBHelper.USUARIO_COLUMN_EMAIL)));
             vo.setCargoVO(new CargoVO());
-            vo.getCargoVO().setIdCargo(Long.parseLong(cursor.getColumnName(cursor.getColumnIndex(DBHelper.USUARIO_COLUMN_CARGO_FK))));
+            vo.getCargoVO().setIdCargo(cursor.getLong(cursor.getColumnIndex(DBHelper.USUARIO_COLUMN_CARGO_FK)));
             vo.setPermissao(new PermissaoVO());
-            vo.getPermissao().setIdPermissao(Long.parseLong(cursor.getColumnName(cursor.getColumnIndex(DBHelper.USUARIO_COLUMN_PERMISSAO_FK))));
+            vo.getPermissao().setIdPermissao(cursor.getLong((cursor.getColumnIndex(DBHelper.USUARIO_COLUMN_PERMISSAO_FK))));
             lstUsuarios.add(vo);
         }
         return lstUsuarios;

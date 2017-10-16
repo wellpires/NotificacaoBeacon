@@ -94,4 +94,5 @@ public class PermissaoSpinnerAdapter implements SpinnerAdapter {
     public boolean isEmpty() {
         return lstPermissoes.isEmpty();
     }
+
 }

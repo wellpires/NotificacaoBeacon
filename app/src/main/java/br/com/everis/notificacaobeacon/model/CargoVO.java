@@ -9,6 +9,14 @@ public class CargoVO {
     private Long idCargo = null;
     private String cargo = null;
 
+    public CargoVO(Long idCargo, String cargo) {
+        this.idCargo = idCargo;
+        this.cargo = cargo;
+    }
+
+    public CargoVO() {
+    }
+
     public Long getIdCargo() {
         return idCargo;
     }

@@ -12,7 +12,7 @@ import android.util.Log;
 public class DBHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "reuniao.db";
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 3;
 
     public static final String REUNIAO_TABLE_NAME = "tblReuniao";
     public static final String REUNIAO_COLUMN_ID = "id";
@@ -35,7 +35,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String QUALIFICACAO_COLUMN_ID = "idQualificacao";
     public static final String QUALIFICACAO_COLUMN_ID_USUARIO = "idUsuario";
 
-    private static final String CREATE_TABLES =
+    private static final String CREATE_REUNIAO_TABLE =
             "CREATE TABLE " + REUNIAO_TABLE_NAME + "(" +
                     REUNIAO_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     REUNIAO_COLUMN_ASSUNTO + " TEXT NOT NULL," +
@@ -44,16 +44,18 @@ public class DBHelper extends SQLiteOpenHelper {
                     REUNIAO_COLUMN_LOCAL + " TEXT NOT NULL, " +
                     REUNIAO_COLUMN_SALA + " TEXT NOT NULL, " +
                     REUNIAO_COLUMN_PARTICIPANTES + " TEXT, " +
-                    REUNIAO_COLUMN_DETALHES + " TEXT NOT NULL );" +
+                    REUNIAO_COLUMN_DETALHES + " TEXT NOT NULL );";
 
-                    "CREATE TABLE " + USUARIO_TABLE_NAME + "(" +
+    private static final String CREATE_USUARIO_TABLE =
+            "CREATE TABLE " + USUARIO_TABLE_NAME + "(" +
                     USUARIO_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                     USUARIO_COLUMN_NOME + " TEXT NOT NULL," +
-                    USUARIO_COLUMN_EMAIL + " TEXT NOT NULL" +
-                    USUARIO_COLUMN_PERMISSAO_FK + " TEXT NOT NULL" +
-                    USUARIO_COLUMN_CARGO_FK + " TEXT );" +
+                    USUARIO_COLUMN_EMAIL + " TEXT NOT NULL," +
+                    USUARIO_COLUMN_PERMISSAO_FK + " TEXT NOT NULL," +
+                    USUARIO_COLUMN_CARGO_FK + " TEXT );";
 
-                    "CREATE TABLE " + QUALIFICACAO_TABLE_NAME + "(" +
+    private static final String CREATE_QUALIFICACAO_TABLE =
+            "CREATE TABLE " + QUALIFICACAO_TABLE_NAME + "(" +
                     QUALIFICACAO_COLUMN_ID + " INTEGER PRIMARY KEY," +
                     QUALIFICACAO_COLUMN_ID_USUARIO + " INTEGER PRIMARY KEY );";
 
@@ -64,7 +66,13 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(CREATE_TABLES);
+        try{
+            db.execSQL(CREATE_REUNIAO_TABLE);
+            db.execSQL(CREATE_USUARIO_TABLE);
+//            db.execSQL(CREATE_QUALIFICACAO_TABLE);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     @Override

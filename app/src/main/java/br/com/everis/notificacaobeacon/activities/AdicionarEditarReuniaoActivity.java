@@ -1,6 +1,5 @@
 package br.com.everis.notificacaobeacon.activities;
 
-import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -11,23 +10,13 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Spinner;
 
 import java.util.List;
 
 import br.com.everis.notificacaobeacon.R;
-import br.com.everis.notificacaobeacon.adapter.PermissaoSpinnerAdapter;
 import br.com.everis.notificacaobeacon.bd.UsuarioDAO;
-import br.com.everis.notificacaobeacon.listener.PermissaoPresenterListener;
 import br.com.everis.notificacaobeacon.listener.ReuniaoPresenterListener;
-import br.com.everis.notificacaobeacon.model.CargoVO;
-import br.com.everis.notificacaobeacon.model.PermissaoVO;
 import br.com.everis.notificacaobeacon.model.ReuniaoVO;
-import br.com.everis.notificacaobeacon.model.UsuarioVO;
-import br.com.everis.notificacaobeacon.service.impl.PermissaoServiceImpl;
-import br.com.everis.notificacaobeacon.utils.Constants;
 
 public class AdicionarEditarReuniaoActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener,View.OnClickListener, ReuniaoPresenterListener{
 
@@ -57,9 +46,10 @@ public class AdicionarEditarReuniaoActivity extends AppCompatActivity implements
                 selectedFragment = ReuniaoFragment.newInstance();
                 break;
             case R.id.navigation_participantes:
-                selectedFragment = ParticipanteFragment.newInstance(menu, getSupportActionBar());
+                selectedFragment = ParticipanteFragment.newInstance(getSupportActionBar());
                 break;
-            case R.id.navigation_notifications:
+            case R.id.navigation_anexos:
+                selectedFragment = AnexoFragment.newInstance();
                 break;
         }
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
