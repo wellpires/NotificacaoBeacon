@@ -51,7 +51,7 @@ public class ReunioesHojeAdapter extends BaseAdapter {
             view = act.getLayoutInflater().inflate(R.layout.reuniao_hoje_list_item, parent, false);
             ReuniaoVO vo = lstReunioes.get(i);
 
-            TextView lblAssunto = (TextView) view.findViewById(R.id.lblAssunto);
+            TextView lblAssunto = (TextView) view.findViewById(R.id.txtAssunto);
             TextView lblHorario = (TextView) view.findViewById(R.id.lblHorario);
             ImageButton imgBtnExcluir = (ImageButton) view.findViewById(R.id.imgBtnExcluir);
             imgBtnExcluir.setTag(vo.getIdReuniao());

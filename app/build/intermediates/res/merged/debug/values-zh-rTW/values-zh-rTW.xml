@@ -20,9 +20,11 @@
     <string msgid="7165123711973476752" name="abc_shareactionprovider_share_with_application">"與「%s」分享"</string>
     <string msgid="1603543279005712093" name="abc_toolbar_collapse_description">"收合"</string>
     <string msgid="5835639618285370804" name="accept">"接受"</string>
+    <string name="cancel_button_label">取消</string>
     <string msgid="5319032370587661362" name="cast_notification_connected_message">"已連線至「<ns1:g id="NAME">%1$s</ns1:g>」"</string>
     <string msgid="2758865089947797888" name="cast_notification_connecting_message">"正在連線至「<ns1:g id="NAME">%1$s</ns1:g>」"</string>
     <string msgid="5232008641593292969" name="cast_notification_disconnect">"中斷連線"</string>
+    <string name="choose_button_label">選擇</string>
     <string msgid="8585111718777012708" name="common_google_play_services_enable_button">"啟用"</string>
     <string msgid="7045129128108380659" name="common_google_play_services_enable_text">"您必須啟用 Google Play 服務，才能執行「<ns1:g id="APP_NAME">%1$s</ns1:g>」。"</string>
     <string msgid="3147157405986503375" name="common_google_play_services_enable_title">"啟用 Google Play 服務"</string>
@@ -47,6 +49,9 @@
     <string msgid="2039274714455389140" name="debug_menu_title">"選取偵錯模式"</string>
     <string msgid="1173358804935285568" name="debug_menu_troubleshooting">"疑難排解"</string>
     <string msgid="6099173376375995052" name="decline">"拒絕"</string>
+    <string name="error_dir_access">Directory cannot be accessed</string>
+    <string name="label_parent_directory">上層資料夾</string>
+    <string name="last_edit">最後修改：</string>
     <string msgid="3698378085901466129" name="mr_button_content_description">"投放按鈕"</string>
     <string msgid="5088427771788648085" name="mr_cast_button_connected">"投放按鈕；已連線"</string>
     <string msgid="2187642765091873834" name="mr_cast_button_connecting">"投放按鈕；連線中"</string>

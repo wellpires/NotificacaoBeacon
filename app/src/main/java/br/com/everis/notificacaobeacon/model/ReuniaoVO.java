@@ -2,12 +2,16 @@ package br.com.everis.notificacaobeacon.model;
 
 import java.io.Serializable;
 
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
+
 /**
  * Created by wgoncalv on 18/09/2017.
  */
 
-public class ReuniaoVO implements Serializable {
+public class ReuniaoVO extends RealmObject {
 
+    @PrimaryKey
     private Integer idReuniao = null;
     private String assunto = null;
     private String dtInicio = null;
@@ -72,16 +76,4 @@ public class ReuniaoVO implements Serializable {
         this.pauta = pauta;
     }
 
-    @Override
-    public String toString() {
-        return "ReuniaoVO{" +
-                "id=" + idReuniao +
-                ", assunto='" + assunto + '\'' +
-                ", dtInicio=" + dtInicio +
-                ", dtTermino=" + dtTermino +
-                ", endereco='" + endereco + '\'' +
-                ", sala='" + sala + '\'' +
-                ", pauta='" + pauta + '\'' +
-                '}';
-    }
 }

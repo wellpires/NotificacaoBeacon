@@ -20,9 +20,11 @@
     <string msgid="7165123711973476752" name="abc_shareactionprovider_share_with_application">"Freigeben für %s"</string>
     <string msgid="1603543279005712093" name="abc_toolbar_collapse_description">"Minimieren"</string>
     <string msgid="5835639618285370804" name="accept">"Akzeptieren"</string>
+    <string name="cancel_button_label">Abbrechen</string>
     <string msgid="5319032370587661362" name="cast_notification_connected_message">"Verbunden mit <ns1:g id="NAME">%1$s</ns1:g>"</string>
     <string msgid="2758865089947797888" name="cast_notification_connecting_message">"Verbindung mit <ns1:g id="NAME">%1$s</ns1:g> wird hergestellt"</string>
     <string msgid="5232008641593292969" name="cast_notification_disconnect">"Verbindung aufheben"</string>
+    <string name="choose_button_label">Auswählen</string>
     <string msgid="8585111718777012708" name="common_google_play_services_enable_button">"Aktivieren"</string>
     <string msgid="7045129128108380659" name="common_google_play_services_enable_text">"<ns1:g id="APP_NAME">%1$s</ns1:g> funktioniert erst nach der Aktivierung der Google Play-Dienste."</string>
     <string msgid="3147157405986503375" name="common_google_play_services_enable_title">"Google Play-Dienste aktivieren"</string>
@@ -47,6 +49,9 @@
     <string msgid="2039274714455389140" name="debug_menu_title">"Fehlerbehebungsmodus auswählen"</string>
     <string msgid="1173358804935285568" name="debug_menu_troubleshooting">"Fehlerbehebung"</string>
     <string msgid="6099173376375995052" name="decline">"Ablehnen"</string>
+    <string name="error_dir_access">Verzeichnis kann nicht zugegriffen werden</string>
+    <string name="label_parent_directory">Verzeichnis hoch</string>
+    <string name="last_edit">Zuletzt bearbeitet: </string>
     <string msgid="3698378085901466129" name="mr_button_content_description">"Cast-Symbol"</string>
     <string msgid="5088427771788648085" name="mr_cast_button_connected">"Streaming-Schaltfläche. Verbunden"</string>
     <string msgid="2187642765091873834" name="mr_cast_button_connecting">"Streaming-Schaltfläche. Verbindung wird hergestellt"</string>

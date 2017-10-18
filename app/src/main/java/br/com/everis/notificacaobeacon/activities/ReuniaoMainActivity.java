@@ -110,8 +110,8 @@ public class ReuniaoMainActivity extends AppCompatActivity
         UpdateGUI updateBell = new UpdateGUI(this, 1);
         updateBell.run();
         // ========== START SERVICE ==========
-        Intent iService = new Intent(ReuniaoMainActivity.this, NotificacaoBeaconService.class);
-        startService(iService);
+//        Intent iService = new Intent(ReuniaoMainActivity.this, NotificacaoBeaconService.class);
+//        startService(iService);
         //===========================================
 
         barraProgresso = new ProgressDialog(this);
@@ -174,7 +174,6 @@ public class ReuniaoMainActivity extends AppCompatActivity
 
         if (view.getId() == R.id.fab) {
             Intent i = new Intent(getApplicationContext(), AdicionarEditarReuniaoActivity.class);
-//            Intent i = new Intent(getApplicationContext(), AdicionarReuniaoActivity.class);
             i.putExtra(Constants.NOVA_REUNIAO_KEY, Constants.FLAG_NOVA_REUNIAO);
             startActivity(i);
         } else if (view.getId() == R.id.fabBell) {

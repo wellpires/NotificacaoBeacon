@@ -10,7 +10,8 @@ public class ArquivoVO {
     private String arquivo = null;
     private ReuniaoVO reuniao = null;
 
-    public ArquivoVO(String arquivo) {
+    public ArquivoVO(Long idArquivo, String arquivo) {
+        this.idArquivo = idArquivo;
         this.arquivo = arquivo;
     }
 

@@ -67,8 +67,8 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         try{
-            db.execSQL(CREATE_REUNIAO_TABLE);
-            db.execSQL(CREATE_USUARIO_TABLE);
+//            db.execSQL(CREATE_REUNIAO_TABLE);
+//            db.execSQL(CREATE_USUARIO_TABLE);
 //            db.execSQL(CREATE_QUALIFICACAO_TABLE);
         }catch (Exception e){
             e.printStackTrace();
@@ -77,11 +77,11 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        Log.w(DBHelper.class.getName(), "Upgrading database from version " + oldVersion + " to " + newVersion +
-                ", which will destroy all old data");
-        db.execSQL("DROP TABLE IF EXISTS " + REUNIAO_TABLE_NAME);
-        db.execSQL("DROP TABLE IF EXISTS " + USUARIO_TABLE_NAME);
-        db.execSQL("DROP TABLE IF EXISTS " + QUALIFICACAO_TABLE_NAME);
-        onCreate(db);
+//        Log.w(DBHelper.class.getName(), "Upgrading database from version " + oldVersion + " to " + newVersion +
+//                ", which will destroy all old data");
+//        db.execSQL("DROP TABLE IF EXISTS " + REUNIAO_TABLE_NAME);
+//        db.execSQL("DROP TABLE IF EXISTS " + USUARIO_TABLE_NAME);
+//        db.execSQL("DROP TABLE IF EXISTS " + QUALIFICACAO_TABLE_NAME);
+//        onCreate(db);
     }
 }

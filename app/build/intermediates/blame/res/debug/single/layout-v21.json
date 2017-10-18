@@ -1,5 +1,9 @@
 [
     {
+        "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\layout-v21\\dialog_file_list_item.xml",
+        "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\263b9965a8788f83300ecda3b67bf4f429d09b0d\\output\\res\\layout-v21\\dialog_file_list_item.xml"
+    },
+    {
         "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\layout-v21\\notification_template_custom_big.xml",
         "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\53d6b259b10dbb60a8be601361a972314c119b61\\output\\res\\layout-v21\\notification_template_custom_big.xml"
     },

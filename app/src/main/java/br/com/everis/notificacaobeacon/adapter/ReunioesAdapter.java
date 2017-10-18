@@ -49,7 +49,7 @@ public class ReunioesAdapter extends BaseAdapter {
             view = activity.getLayoutInflater().inflate(R.layout.reuniao_item_list, parent, false);
             ReuniaoVO vo = lstReuniaoVO.get(position);
 
-            TextView lblAssunto = (TextView) view.findViewById(R.id.lblAssunto);
+            TextView lblAssunto = (TextView) view.findViewById(R.id.txtAssunto);
             TextView lblHorario = (TextView) view.findViewById(R.id.lblHorario);
 
             lblAssunto.setText(vo.getAssunto());

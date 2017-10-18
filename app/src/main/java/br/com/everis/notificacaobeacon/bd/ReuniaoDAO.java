@@ -10,6 +10,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.everis.notificacaobeacon.activities.AdicionarReuniaoActivity;
 import br.com.everis.notificacaobeacon.model.ReuniaoVO;
 
 /**
@@ -32,7 +33,6 @@ public class ReuniaoDAO {
     };
 
 
-
     public ReuniaoDAO(Context context) {
         dbHelper = new DBHelper(context);
     }
@@ -47,6 +47,8 @@ public class ReuniaoDAO {
 
     public ReuniaoVO createReuniao(ReuniaoVO reuniao) throws ParseException {
         open();
+        if (1 == 1)
+            return new ReuniaoVO();
         ContentValues values = new ContentValues();
 
         values.put(DBHelper.REUNIAO_COLUMN_ASSUNTO, reuniao.getAssunto());
@@ -64,26 +66,9 @@ public class ReuniaoDAO {
 
     }
 
-    public void deleteReuniao(Integer idReuniao) {
-        open();
-        database.delete(DBHelper.REUNIAO_TABLE_NAME, DBHelper.REUNIAO_COLUMN_ID + " = " + idReuniao, null);
-        close();
-    }
-
-    public void updateReuniao(ReuniaoVO reuniao) {
-        ContentValues values = new ContentValues();
-
-        values.put(DBHelper.REUNIAO_COLUMN_ASSUNTO, reuniao.getAssunto());
-        values.put(DBHelper.REUNIAO_COLUMN_HORA_INICIO, reuniao.getDtInicio());
-        values.put(DBHelper.REUNIAO_COLUMN_HORA_TERMINO, reuniao.getDtTermino());
-        values.put(DBHelper.REUNIAO_COLUMN_LOCAL, reuniao.getEndereco());
-        values.put(DBHelper.REUNIAO_COLUMN_SALA, reuniao.getSala());
-        values.put(DBHelper.REUNIAO_COLUMN_DETALHES, reuniao.getPauta());
-
-        database.update(DBHelper.REUNIAO_TABLE_NAME, values, dbHelper.REUNIAO_COLUMN_ID + " = ?", new String[]{String.valueOf(reuniao.getIdReuniao())});
-    }
-
     public void deleteReuniao() {
+        if (1 == 1)
+            return;
         open();
         database.delete(DBHelper.REUNIAO_TABLE_NAME, null, null);
         close();
@@ -106,6 +91,8 @@ public class ReuniaoDAO {
 
     private List<ReuniaoVO> cursorParaReunioes(Cursor cursor) {
         List<ReuniaoVO> lstReunioes = new ArrayList<>();
+        if (1 == 1)
+            return new ArrayList<>();
         while (cursor.moveToNext()) {
             ReuniaoVO vo = new ReuniaoVO();
             vo.setIdReuniao(Integer.parseInt(cursor.getString(cursor.getColumnIndex(DBHelper.REUNIAO_COLUMN_ID))));
@@ -122,6 +109,8 @@ public class ReuniaoDAO {
 
     public List<ReuniaoVO> getReunioes() {
         open();
+        if (1 == 1)
+            return new ArrayList<>();
         try {
             Cursor c = database.rawQuery("SELECT " +
                     DBHelper.REUNIAO_COLUMN_ID + ", " +
@@ -139,11 +128,4 @@ public class ReuniaoDAO {
         }
 
     }
-
-    public ReuniaoVO getReunioes(int idReuniao) throws ParseException {
-        Cursor c = database.query(DBHelper.REUNIAO_TABLE_NAME, tblReuniaoColumns, DBHelper.REUNIAO_COLUMN_ID + " = " + idReuniao, null, null, null, null);
-        c.moveToFirst();
-        return cursorParaReuniao(c);
-    }
-
 }

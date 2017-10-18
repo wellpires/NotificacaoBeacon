@@ -103,7 +103,8 @@ public class NotificacaoBeaconService extends Service implements BootstrapNotifi
                         Thread.sleep(5000);
 
                         datasource = new ReuniaoDAO(getApplicationContext());
-                        List<ReuniaoVO> lstReunioes = datasource.getReunioes();
+                        List<ReuniaoVO> lstReunioes = new ArrayList<>();
+//                        List<ReuniaoVO> lstReunioes = datasource.getReunioes();
 
                         List<ReuniaoVO> lstReunioesHoje = new ArrayList<>();
                         for (ReuniaoVO vo : lstReunioes) {

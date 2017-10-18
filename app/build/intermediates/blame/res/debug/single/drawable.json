@@ -220,6 +220,10 @@
         "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\19d8a21cecd3cfacc32bef1b3e2aa5271b42a773\\output\\res\\drawable\\mr_button_connecting_dark.xml"
     },
     {
+        "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\bottom_shadow.9.png",
+        "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\263b9965a8788f83300ecda3b67bf4f429d09b0d\\output\\res\\drawable\\bottom_shadow.9.png"
+    },
+    {
         "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\mr_group_expand.xml",
         "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\19d8a21cecd3cfacc32bef1b3e2aa5271b42a773\\output\\res\\drawable\\mr_group_expand.xml"
     },

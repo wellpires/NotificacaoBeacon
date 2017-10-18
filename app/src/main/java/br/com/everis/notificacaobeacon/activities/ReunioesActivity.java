@@ -53,7 +53,7 @@ public class ReunioesActivity extends AppCompatActivity implements View.OnTouchL
 
         try {
             txtEmptyList = (TextView) findViewById(R.id.txtEmptyList);
-            txtDataInicio = (EditText) findViewById(R.id.txtDtInicio);
+            txtDataInicio = (EditText) findViewById(R.id.txtDataInicio);
             lvReunioes = (ListView) findViewById(R.id.lvTodasReunioes);
             btnLimparFiltro = (Button) findViewById(R.id.btnLimparFiltro);
 
@@ -85,7 +85,7 @@ public class ReunioesActivity extends AppCompatActivity implements View.OnTouchL
     public boolean onTouch(View v, MotionEvent event) {
         try {
             if (event.getAction() == MotionEvent.ACTION_UP) {
-                if (v.getId() == R.id.txtDtInicio) {
+                if (v.getId() == R.id.txtDataInicio) {
                     int anoInicio = 0;
                     int mesInicio = 0;
                     int diaInicio = 0;

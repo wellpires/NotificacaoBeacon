@@ -92,7 +92,7 @@ public class AdicionarReuniaoActivity extends AppCompatActivity implements View.
         txtDataTermino = (EditText) findViewById(R.id.txtDataTermino);
         txtHoraTermino = (EditText) findViewById(R.id.txtHoraTermino);
 
-        txtAssunto = (EditText) findViewById(R.id.lblAssunto);
+        txtAssunto = (EditText) findViewById(R.id.txtAssunto);
         txtLocal = (EditText) findViewById(R.id.txtOnde);
         txtSala = (EditText) findViewById(R.id.txtSala);
         txtDescricao = (EditText) findViewById(R.id.txtDescricao);
@@ -121,7 +121,6 @@ public class AdicionarReuniaoActivity extends AppCompatActivity implements View.
         txtSala.setEnabled(true);
         txtDescricao.setEnabled(true);
 
-        datasource = new ReuniaoDAO(this);
 
         reuniaoService = new ReuniaoServiceImpl(this, this);
 

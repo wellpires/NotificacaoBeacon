@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -33,7 +34,7 @@ public class AdicionarEditarReuniaoActivity extends AppCompatActivity implements
         navigation.setOnNavigationItemSelectedListener(this);
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.frame_layout, ReuniaoFragment.newInstance());
+        transaction.replace(R.id.frame_layout, ReuniaoFragment.newInstance(getSupportActionBar()));
         transaction.commit();
 
     }
@@ -43,13 +44,13 @@ public class AdicionarEditarReuniaoActivity extends AppCompatActivity implements
         Fragment selectedFragment = null;
         switch (item.getItemId()) {
             case R.id.navigation_reuniao:
-                selectedFragment = ReuniaoFragment.newInstance();
+                selectedFragment = ReuniaoFragment.newInstance(getSupportActionBar());
                 break;
             case R.id.navigation_participantes:
                 selectedFragment = ParticipanteFragment.newInstance(getSupportActionBar());
                 break;
             case R.id.navigation_anexos:
-                selectedFragment = AnexoFragment.newInstance();
+                selectedFragment = AnexoFragment.newInstance(getSupportActionBar());
                 break;
         }
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();

@@ -3,6 +3,8 @@ package br.com.everis.notificacaobeacon.utils;
 import android.app.Application;
 
 import br.com.everis.notificacaobeacon.model.ReuniaoVO;
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
 
 /**
  * Created by wgoncalv on 19/09/2017.
@@ -36,6 +38,13 @@ public class GlobalClass extends Application {
 
     public void setReuniaoAcontecendo(Boolean reuniaoAcontecendo) {
         isReuniaoAcontecendo = reuniaoAcontecendo;
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        RealmConfiguration config = new RealmConfiguration.Builder(this).deleteRealmIfMigrationNeeded().build();
+        Realm.setDefaultConfiguration(config);
     }
 
 }

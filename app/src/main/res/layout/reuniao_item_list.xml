@@ -8,7 +8,7 @@
     android:orientation="horizontal">
 
     <TextView
-        android:id="@+id/lblAssunto"
+        android:id="@+id/txtAssunto"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="0dp"
@@ -33,8 +33,8 @@
         android:layout_marginTop="0dp"
         android:text="Large Text"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        app:layout_constraintLeft_toLeftOf="@+id/lblAssunto"
-        app:layout_constraintTop_toBottomOf="@+id/lblAssunto"
+        app:layout_constraintLeft_toLeftOf="@+id/txtAssunto"
+        app:layout_constraintTop_toBottomOf="@+id/txtAssunto"
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintTop_creator="1"
         app:layout_constraintRight_toRightOf="parent" />
