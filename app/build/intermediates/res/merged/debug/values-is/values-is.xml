@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2">
-    <string msgid="5835639618285370804" name="accept">"Samþykkja"</string>
     <string msgid="5319032370587661362" name="cast_notification_connected_message">"Tengt við <ns1:g id="NAME">%1$s</ns1:g>"</string>
     <string msgid="2758865089947797888" name="cast_notification_connecting_message">"Tengist <ns1:g id="NAME">%1$s</ns1:g>"</string>
     <string msgid="5232008641593292969" name="cast_notification_disconnect">"Aftengjast"</string>
@@ -21,13 +20,11 @@
     <string msgid="5201977337835724196" name="common_open_on_phone">"Opna í símanum"</string>
     <string msgid="3441753203274453993" name="common_signin_button_text">"Skrá inn"</string>
     <string msgid="669893613918351210" name="common_signin_button_text_long">"Skrá inn með Google"</string>
-    <string msgid="6155048007205742679" name="create_calendar_message">"Leyfa auglýsingu að búa til dagatalsviðburð?"</string>
-    <string msgid="7967007864778154790" name="create_calendar_title">"Búa til dagatalsviðburð"</string>
-    <string msgid="4722375419392727435" name="debug_menu_ad_information">"Upplýsingar um auglýsingu"</string>
-    <string msgid="1605938743055376690" name="debug_menu_creative_preview">"Creative Preview"</string>
-    <string msgid="2039274714455389140" name="debug_menu_title">"Veldu villuleitarstillingu"</string>
-    <string msgid="1173358804935285568" name="debug_menu_troubleshooting">"Úrræðaleit"</string>
-    <string msgid="6099173376375995052" name="decline">"Hafna"</string>
-    <string msgid="8020323581538738027" name="store_picture_message">"Leyfa auglýsingu að vista mynd í myndasafninu?"</string>
-    <string msgid="4180630057627064606" name="store_picture_title">"Vista mynd"</string>
+    <string msgid="4133737464567140336" name="fcm_fallback_notification_channel_label">"Ýmislegt"</string>
+    <string msgid="368094699078615544" name="s1">"Vista mynd"</string>
+    <string msgid="4550830452390689489" name="s2">"Leyfa auglýsingu að vista mynd í myndasafninu?"</string>
+    <string msgid="2435407834265420668" name="s3">"Samþykkja"</string>
+    <string msgid="9167523597401839819" name="s4">"Hafna"</string>
+    <string msgid="1566682516266724847" name="s5">"Búa til dagatalsviðburð"</string>
+    <string msgid="5996672174517137271" name="s6">"Leyfa auglýsingu að búa til dagatalsviðburð?"</string>
 </resources>

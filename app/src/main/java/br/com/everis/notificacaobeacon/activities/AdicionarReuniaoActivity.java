@@ -219,7 +219,7 @@ public class AdicionarReuniaoActivity extends AppCompatActivity implements View.
                 barraProgresso.setIndeterminate(true);
                 barraProgresso.show();
                 if (Constants.FLAG_NOVA_REUNIAO.equals(flagTipo)) {
-                    reuniaoService.gravarReuniao(r);
+//                    reuniaoService.gravarReuniao(r);
                 } else if (Constants.FLAG_ALTERAR_REUNIAO.equals(flagTipo)) {
                     ReuniaoUtils.mostrarPerguntaDialogo(AdicionarReuniaoActivity.this, Constants.LABEL_VOCE_TEM_CERTEZA, new DialogInterface.OnClickListener() {
                         @Override

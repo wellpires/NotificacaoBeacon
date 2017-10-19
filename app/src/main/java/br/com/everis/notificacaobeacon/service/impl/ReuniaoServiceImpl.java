@@ -5,6 +5,7 @@ import android.content.Context;
 import java.io.IOException;
 import java.util.List;
 
+import br.com.everis.notificacaobeacon.model.ReuniaoArquivoUsuarioVO;
 import br.com.everis.notificacaobeacon.model.ReuniaoVO;
 import br.com.everis.notificacaobeacon.listener.ReuniaoPresenterListener;
 import br.com.everis.notificacaobeacon.service.IReuniaoService;
@@ -32,16 +33,16 @@ public class ReuniaoServiceImpl implements IReuniaoService {
     }
 
     @Override
-    public void gravarReuniao(ReuniaoVO reuniao) throws IOException {
-        Call call = reuniaoAPI.criarReuniao(reuniao);
-        call.enqueue(new Callback() {
+    public void gravarReuniao(ReuniaoArquivoUsuarioVO reuniao) throws IOException {
+        Call<Void> call = reuniaoAPI.criarReuniao(reuniao);
+        call.enqueue(new Callback<Void>() {
             @Override
-            public void onResponse(Call call, Response response) {
+            public void onResponse(Call<Void> call, Response<Void> response) {
                 reuniaoListener.reuniaoReady();
             }
 
             @Override
-            public void onFailure(Call call, Throwable t) {
+            public void onFailure(Call<Void> call, Throwable t) {
 
             }
         });

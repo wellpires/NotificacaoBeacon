@@ -20,6 +20,13 @@ public class ReuniaoVO extends RealmObject {
     private String sala = null;
     private String pauta = null;
 
+    public ReuniaoVO(Integer idReuniao) {
+        this.idReuniao = idReuniao;
+    }
+
+    public ReuniaoVO() {
+    }
+
     public Integer getIdReuniao() {
         return idReuniao;
     }

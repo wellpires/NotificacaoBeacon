@@ -6,8 +6,9 @@ package br.com.everis.notificacaobeacon.utils;
 
 public interface APIUrls {
 
-    String BASE_URL = "http://192.168.0.25:8080/ControleReunioesWS/";
+    String BASE_URL = "http://10.213.118.155:8080/ControleReunioesWS/";
 
+    //REUNIÃO
     String POST_GRAVAR_REUNIAO = "reuniao/gravarReuniao";
     String PUT_EDITAR_REUNIAO = "reuniao/editarReuniao";
     String DELETE_REMOVER_REUNIAO = "reuniao/removerReuniao";
@@ -15,8 +16,15 @@ public interface APIUrls {
     String GET_BUSCAR_REUNIOES = "reuniao/buscarReunioes";
     String GET_LISTAR_REUNIOES = "reuniao/listarReunioes";
 
+    //PERMISSÃO
     String GET_PERMISSAO_LISTAR = "permissao/listarPermissoes";
 
+    //CARGOS
     String GET_CARGO_LISTAR = "cargo/listarCargos";
 
+    //ARQUIVO
+    String POST_GRAVAR_ARQUIVOS = "arquivo/gravarArquivos";
+
+    //USUÁRIO
+    String POST_GRAVAR_USUARIOS = "usuario/gravarUsuarios";
 }

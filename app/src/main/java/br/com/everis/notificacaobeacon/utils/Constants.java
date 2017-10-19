@@ -81,4 +81,8 @@ public interface Constants {
     String TITULO_REUNIAO = "Reunião";
     String TITULO_ANEXO = "Anexos";
     String LABEL_SALVAR = "Salvar";
+    String ERRO_FALTA_PARTICIPANTE = "Favor adicione ao menos um participante";
+    String ERRO_FALTA_ANEXO = "Selecione ao menos um anexo";
+    String LABEL_FINALIZAR = "Finalizar";
+    String LABEL_PROXIMO = "Próximo";
 }

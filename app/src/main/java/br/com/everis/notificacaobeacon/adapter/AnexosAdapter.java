@@ -31,6 +31,11 @@ public class AnexosAdapter extends BaseAdapter {
         notifyDataSetChanged();
     }
 
+    public void addAll(List<ArquivoVO> arquivoVOs){
+        lstArquivos.addAll(arquivoVOs);
+        notifyDataSetChanged();
+    }
+
     @Override
     public int getCount() {
         return lstArquivos.size();
@@ -50,7 +55,7 @@ public class AnexosAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         TextView lblParticipante = new TextView(activity);
-        lblParticipante.setText(lstArquivos.get(position).getArquivo());
+        lblParticipante.setText(lstArquivos.get(position).getCaminhoArquivo());
         lblParticipante.setTextColor(Color.BLACK);
         lblParticipante.setTextSize(20f);
 

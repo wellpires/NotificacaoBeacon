@@ -101,6 +101,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="br.com.everis.notificacaobeacon.activities.ReuniaoMainActivity" />
         </activity>
+        <activity android:name=".activities.ReuniaoMarcada"></activity>
     </application>
 
 </manifest>

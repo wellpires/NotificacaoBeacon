@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2">
-    <string msgid="5835639618285370804" name="accept">"လက်ခံရန်"</string>
     <string msgid="5319032370587661362" name="cast_notification_connected_message">"<ns1:g id="NAME">%1$s</ns1:g> သို့ ချိတ်ဆက်ပြီးပါပြီ"</string>
     <string msgid="2758865089947797888" name="cast_notification_connecting_message">"<ns1:g id="NAME">%1$s</ns1:g> သို့ချိတ်ဆက်နေသည်"</string>
     <string msgid="5232008641593292969" name="cast_notification_disconnect">"ချိတ်ဆက်မှုဖြုတ်ပါ"</string>
@@ -21,13 +20,11 @@
     <string msgid="5201977337835724196" name="common_open_on_phone">"ဖုန်းပေါ်မှာ ဖွင့်ပါ"</string>
     <string msgid="3441753203274453993" name="common_signin_button_text">"လက်မှတ်ထိုး ဝင်ရန်"</string>
     <string msgid="669893613918351210" name="common_signin_button_text_long">"Google ဖြင့် လက်မှတ်ထိုးဝင်ရေ"</string>
-    <string msgid="6155048007205742679" name="create_calendar_message">"Ad အား ပြက္ခဒိန်ပေါ်၌ ပွဲအစီအစဉ်တစ်ခုကို ဖန်တီးခွင့်ပြုမှာလား။"</string>
-    <string msgid="7967007864778154790" name="create_calendar_title">"ပြက္ခဒိန်ပေါ်တွင် ပွဲအစီအစဉ် ဖန်တီးပါ"</string>
-    <string msgid="4722375419392727435" name="debug_menu_ad_information">"ကြော်ငြာအချက်အလက်များ"</string>
-    <string msgid="1605938743055376690" name="debug_menu_creative_preview">"တီထွင်ဖန်တီးစွမ်းရှိသည့် အစမ်းကြည့်ရှုမှု"</string>
-    <string msgid="2039274714455389140" name="debug_menu_title">"အမှားရှာပြင်သည့် စနစ်တစ်ခုကို ရွေးချယ်ပါ"</string>
-    <string msgid="1173358804935285568" name="debug_menu_troubleshooting">"ပြဿနာရှာဖွေဖြေရှင်းခြင်း"</string>
-    <string msgid="6099173376375995052" name="decline">"ငြင်းပယ်ရန်"</string>
-    <string msgid="8020323581538738027" name="store_picture_message">"Ad အား ဓာတ်ပုံကို ရုပ်ပုံပြခန်းတွင် သိမ်းခွင့်ပြုမှာလား။"</string>
-    <string msgid="4180630057627064606" name="store_picture_title">"ဓာတ်ပုံကို သိမ်းပါ"</string>
+    <string msgid="4133737464567140336" name="fcm_fallback_notification_channel_label">"အထွေထွေ"</string>
+    <string msgid="368094699078615544" name="s1">"ဓာတ်ပုံကို သိမ်းရန်"</string>
+    <string msgid="4550830452390689489" name="s2">"ကြော်ငြာအား ဓာတ်ပုံပြခန်းတွင် ပုံကိုသိမ်းဆည်းခွင့် ပြုလိုပါသလား။"</string>
+    <string msgid="2435407834265420668" name="s3">"လက်ခံရန်"</string>
+    <string msgid="9167523597401839819" name="s4">"ငြင်းပယ်ရန်"</string>
+    <string msgid="1566682516266724847" name="s5">"ပြက္ခဒိန်တွင် အစီအစဉ်ထည့်သွင်းရန်"</string>
+    <string msgid="5996672174517137271" name="s6">"ကြော်ငြာအား ပြက္ခဒိန်တွင် အစီအစဉ်ထည့်သွင်းခွင့် ပြုပါသလား။"</string>
 </resources>

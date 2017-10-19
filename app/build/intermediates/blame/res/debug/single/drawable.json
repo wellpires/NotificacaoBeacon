@@ -41,7 +41,7 @@
     },
     {
         "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\common_google_signin_btn_icon_light_focused.xml",
-        "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\f3ec86f2390119fc45c7411d742938688931365a\\output\\res\\drawable\\common_google_signin_btn_icon_light_focused.xml"
+        "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\204f9450603310d6994f7664edf1aea8c4ddc8ce\\output\\res\\drawable\\common_google_signin_btn_icon_light_focused.xml"
     },
     {
         "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_cab_background_internal_bg.xml",
@@ -77,11 +77,11 @@
     },
     {
         "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\common_google_signin_btn_text_light.xml",
-        "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\f3ec86f2390119fc45c7411d742938688931365a\\output\\res\\drawable\\common_google_signin_btn_text_light.xml"
+        "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\204f9450603310d6994f7664edf1aea8c4ddc8ce\\output\\res\\drawable\\common_google_signin_btn_text_light.xml"
     },
     {
         "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\common_google_signin_btn_text_dark_focused.xml",
-        "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\f3ec86f2390119fc45c7411d742938688931365a\\output\\res\\drawable\\common_google_signin_btn_text_dark_focused.xml"
+        "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\204f9450603310d6994f7664edf1aea8c4ddc8ce\\output\\res\\drawable\\common_google_signin_btn_text_dark_focused.xml"
     },
     {
         "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\mr_button_connected_light.xml",
@@ -89,7 +89,7 @@
     },
     {
         "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\common_google_signin_btn_text_light_normal.xml",
-        "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\f3ec86f2390119fc45c7411d742938688931365a\\output\\res\\drawable\\common_google_signin_btn_text_light_normal.xml"
+        "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\204f9450603310d6994f7664edf1aea8c4ddc8ce\\output\\res\\drawable\\common_google_signin_btn_text_light_normal.xml"
     },
     {
         "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\design_password_eye.xml",
@@ -125,11 +125,11 @@
     },
     {
         "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\common_google_signin_btn_icon_dark.xml",
-        "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\f3ec86f2390119fc45c7411d742938688931365a\\output\\res\\drawable\\common_google_signin_btn_icon_dark.xml"
+        "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\204f9450603310d6994f7664edf1aea8c4ddc8ce\\output\\res\\drawable\\common_google_signin_btn_icon_dark.xml"
     },
     {
         "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\common_google_signin_btn_icon_disabled.xml",
-        "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\f3ec86f2390119fc45c7411d742938688931365a\\output\\res\\drawable\\common_google_signin_btn_icon_disabled.xml"
+        "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\204f9450603310d6994f7664edf1aea8c4ddc8ce\\output\\res\\drawable\\common_google_signin_btn_icon_disabled.xml"
     },
     {
         "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ic_ab_back_material.xml",
@@ -157,7 +157,7 @@
     },
     {
         "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\common_google_signin_btn_icon_light.xml",
-        "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\f3ec86f2390119fc45c7411d742938688931365a\\output\\res\\drawable\\common_google_signin_btn_icon_light.xml"
+        "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\204f9450603310d6994f7664edf1aea8c4ddc8ce\\output\\res\\drawable\\common_google_signin_btn_icon_light.xml"
     },
     {
         "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_btn_borderless_material.xml",
@@ -169,7 +169,7 @@
     },
     {
         "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\cast_ic_notification_connecting.xml",
-        "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\627432ce69fa0765aa1b4c6b7cd0040c15c65885\\output\\res\\drawable\\cast_ic_notification_connecting.xml"
+        "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\c71ed83109f9b3cdc3f928004ea5d91353097d1e\\output\\res\\drawable\\cast_ic_notification_connecting.xml"
     },
     {
         "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\mr_button_connected_dark.xml",
@@ -181,7 +181,7 @@
     },
     {
         "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\common_google_signin_btn_text_dark.xml",
-        "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\f3ec86f2390119fc45c7411d742938688931365a\\output\\res\\drawable\\common_google_signin_btn_text_dark.xml"
+        "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\204f9450603310d6994f7664edf1aea8c4ddc8ce\\output\\res\\drawable\\common_google_signin_btn_text_dark.xml"
     },
     {
         "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\navigation_empty_icon.xml",
@@ -213,7 +213,7 @@
     },
     {
         "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\common_google_signin_btn_icon_dark_normal.xml",
-        "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\f3ec86f2390119fc45c7411d742938688931365a\\output\\res\\drawable\\common_google_signin_btn_icon_dark_normal.xml"
+        "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\204f9450603310d6994f7664edf1aea8c4ddc8ce\\output\\res\\drawable\\common_google_signin_btn_icon_dark_normal.xml"
     },
     {
         "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\mr_button_connecting_dark.xml",
@@ -241,11 +241,11 @@
     },
     {
         "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\common_google_signin_btn_icon_dark_focused.xml",
-        "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\f3ec86f2390119fc45c7411d742938688931365a\\output\\res\\drawable\\common_google_signin_btn_icon_dark_focused.xml"
+        "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\204f9450603310d6994f7664edf1aea8c4ddc8ce\\output\\res\\drawable\\common_google_signin_btn_icon_dark_focused.xml"
     },
     {
         "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\common_google_signin_btn_text_light_focused.xml",
-        "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\f3ec86f2390119fc45c7411d742938688931365a\\output\\res\\drawable\\common_google_signin_btn_text_light_focused.xml"
+        "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\204f9450603310d6994f7664edf1aea8c4ddc8ce\\output\\res\\drawable\\common_google_signin_btn_text_light_focused.xml"
     },
     {
         "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\mr_dialog_close_dark.xml",
@@ -253,7 +253,7 @@
     },
     {
         "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\common_google_signin_btn_icon_light_normal.xml",
-        "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\f3ec86f2390119fc45c7411d742938688931365a\\output\\res\\drawable\\common_google_signin_btn_icon_light_normal.xml"
+        "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\204f9450603310d6994f7664edf1aea8c4ddc8ce\\output\\res\\drawable\\common_google_signin_btn_icon_light_normal.xml"
     },
     {
         "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ratingbar_indicator_material.xml",
@@ -293,7 +293,7 @@
     },
     {
         "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\common_google_signin_btn_text_dark_normal.xml",
-        "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\f3ec86f2390119fc45c7411d742938688931365a\\output\\res\\drawable\\common_google_signin_btn_text_dark_normal.xml"
+        "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\204f9450603310d6994f7664edf1aea8c4ddc8ce\\output\\res\\drawable\\common_google_signin_btn_text_dark_normal.xml"
     },
     {
         "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\mr_media_play_dark.xml",
@@ -301,7 +301,7 @@
     },
     {
         "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\common_google_signin_btn_text_disabled.xml",
-        "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\f3ec86f2390119fc45c7411d742938688931365a\\output\\res\\drawable\\common_google_signin_btn_text_disabled.xml"
+        "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\204f9450603310d6994f7664edf1aea8c4ddc8ce\\output\\res\\drawable\\common_google_signin_btn_text_disabled.xml"
     },
     {
         "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\mr_dialog_close_light.xml",

@@ -1,18 +1,29 @@
 package br.com.everis.notificacaobeacon.model;
 
+import io.realm.RealmObject;
+import io.realm.annotations.Ignore;
+import io.realm.annotations.PrimaryKey;
+
 /**
  * Created by wgoncalv on 16/10/2017.
  */
 
-public class UsuarioVO {
+public class UsuarioVO extends RealmObject {
 
+    @PrimaryKey
     private Long idUsuario = null;
     private String usuario = null;
     private String senha = null;
     private String nomeCompleto = null;
     private String email = null;
+    private Long permissaoFK = null;
+    private Long cargoFK = null;
+
+    @Ignore
     private PermissaoVO permissao = null;
-    private CargoVO cargoVO = null;
+
+    @Ignore
+    private CargoVO cargo = null;
 
     public Long getIdUsuario() {
         return idUsuario;
@@ -54,6 +65,22 @@ public class UsuarioVO {
         this.email = email;
     }
 
+    public Long getPermissaoFK() {
+        return permissaoFK;
+    }
+
+    public void setPermissaoFK(Long permissaoFK) {
+        this.permissaoFK = permissaoFK;
+    }
+
+    public Long getCargoFK() {
+        return cargoFK;
+    }
+
+    public void setCargoFK(Long cargoFK) {
+        this.cargoFK = cargoFK;
+    }
+
     public PermissaoVO getPermissao() {
         return permissao;
     }
@@ -62,12 +89,12 @@ public class UsuarioVO {
         this.permissao = permissao;
     }
 
-    public CargoVO getCargoVO() {
-        return cargoVO;
+    public CargoVO getCargo() {
+        return cargo;
     }
 
-    public void setCargoVO(CargoVO cargoVO) {
-        this.cargoVO = cargoVO;
+    public void setCargo(CargoVO cargo) {
+        this.cargo = cargo;
     }
 
     @Override
@@ -85,9 +112,13 @@ public class UsuarioVO {
         if (nomeCompleto != null ? !nomeCompleto.equals(usuarioVO.nomeCompleto) : usuarioVO.nomeCompleto != null)
             return false;
         if (email != null ? !email.equals(usuarioVO.email) : usuarioVO.email != null) return false;
+        if (permissaoFK != null ? !permissaoFK.equals(usuarioVO.permissaoFK) : usuarioVO.permissaoFK != null)
+            return false;
+        if (cargoFK != null ? !cargoFK.equals(usuarioVO.cargoFK) : usuarioVO.cargoFK != null)
+            return false;
         if (permissao != null ? !permissao.equals(usuarioVO.permissao) : usuarioVO.permissao != null)
             return false;
-        return cargoVO != null ? cargoVO.equals(usuarioVO.cargoVO) : usuarioVO.cargoVO == null;
+        return cargo != null ? cargo.equals(usuarioVO.cargo) : usuarioVO.cargo == null;
 
     }
 
@@ -98,8 +129,10 @@ public class UsuarioVO {
         result = 31 * result + (senha != null ? senha.hashCode() : 0);
         result = 31 * result + (nomeCompleto != null ? nomeCompleto.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);
+        result = 31 * result + (permissaoFK != null ? permissaoFK.hashCode() : 0);
+        result = 31 * result + (cargoFK != null ? cargoFK.hashCode() : 0);
         result = 31 * result + (permissao != null ? permissao.hashCode() : 0);
-        result = 31 * result + (cargoVO != null ? cargoVO.hashCode() : 0);
+        result = 31 * result + (cargo != null ? cargo.hashCode() : 0);
         return result;
     }
 }

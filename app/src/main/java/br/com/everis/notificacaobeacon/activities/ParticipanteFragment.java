@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
@@ -17,6 +18,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -24,10 +26,12 @@ import br.com.everis.notificacaobeacon.R;
 import br.com.everis.notificacaobeacon.adapter.CargoSpinnerAdapter;
 import br.com.everis.notificacaobeacon.adapter.PermissaoSpinnerAdapter;
 import br.com.everis.notificacaobeacon.adapter.UsuarioAdapter;
+import br.com.everis.notificacaobeacon.bd.DAOHelper;
 import br.com.everis.notificacaobeacon.listener.CargoPresenterListener;
 import br.com.everis.notificacaobeacon.listener.PermissaoPresenterListener;
 import br.com.everis.notificacaobeacon.model.CargoVO;
 import br.com.everis.notificacaobeacon.model.PermissaoVO;
+import br.com.everis.notificacaobeacon.model.ReuniaoVO;
 import br.com.everis.notificacaobeacon.model.UsuarioVO;
 import br.com.everis.notificacaobeacon.service.ICargoService;
 import br.com.everis.notificacaobeacon.service.IPermissaoService;
@@ -54,6 +58,7 @@ public class ParticipanteFragment extends Fragment implements PermissaoPresenter
     private IPermissaoService permissaoService = null;
 
     private UsuarioAdapter usuarioAdapter = null;
+    private DAOHelper<UsuarioVO> usuarioDAO = null;
 
     public ParticipanteFragment() {
     }
@@ -76,28 +81,51 @@ public class ParticipanteFragment extends Fragment implements PermissaoPresenter
         context = v.getContext();
 
         usuarioAdapter = new UsuarioAdapter(getActivity());
-
+        usuarioDAO = new DAOHelper<>();
         lvParticipantes = (ListView) v.findViewById(R.id.lvParticipantes);
         fabAddParticipante = (FloatingActionButton) v.findViewById(R.id.fabAddParticipante);
         fabAddParticipante.setOnClickListener(this);
-
         lvParticipantes.setAdapter(usuarioAdapter);
+
+        List<UsuarioVO> usuarios = usuarioDAO.findAll(UsuarioVO.class);
+        usuarioAdapter.addAll(usuarios);
+
         return v;
     }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
+        MenuItem item = menu.findItem(R.id.btnSalvar);
+        item.setTitle(Constants.LABEL_PROXIMO);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
+        if (item.getItemId() == R.id.btnSalvar) {
+            if(usuarioAdapter.getCount() == 0){
+                Toast.makeText(context, Constants.ERRO_FALTA_PARTICIPANTE, Toast.LENGTH_LONG).show();
+                return false;
+            }
+            usuarioDAO.deleteAll(UsuarioVO.class);
+
+            for (int i = 0; i < usuarioAdapter.getCount(); i++) {
+                UsuarioVO vo = (UsuarioVO) usuarioAdapter.getItem(i);
+                vo.setIdUsuario(usuarioDAO.getNextId(UsuarioVO.class));
+                usuarioDAO.insert(vo);
+            }
+
+            AdicionarEditarReuniaoActivity adicionarEditarReuniaoActivity = (AdicionarEditarReuniaoActivity) getActivity();
+            BottomNavigationView bnvNavegacao = (BottomNavigationView) adicionarEditarReuniaoActivity.findViewById(R.id.navigation);
+            bnvNavegacao.setSelectedItemId(R.id.navigation_anexos);
+        }
         return super.onOptionsItemSelected(item);
     }
 
     @Override
     public void permissaoReady(List<PermissaoVO> lstPermissao) {
-        lstPermissao.add(0,new PermissaoVO(0L, "Selecione uma permissão"));
+        lstPermissao.add(0, new PermissaoVO(0L, "Selecione uma permissão"));
         PermissaoSpinnerAdapter adapter = new PermissaoSpinnerAdapter(this.getContext(), lstPermissao);
         cbPermissao.setAdapter(adapter);
         if (cbCargo.getAdapter() != null) {
@@ -107,7 +135,7 @@ public class ParticipanteFragment extends Fragment implements PermissaoPresenter
 
     @Override
     public void cargosReady(List<CargoVO> lstCargos) {
-        lstCargos.add(0,new CargoVO(0L, "Selecione um cargo"));
+        lstCargos.add(0, new CargoVO(0L, "Selecione um cargo"));
         CargoSpinnerAdapter adapter = new CargoSpinnerAdapter(this.getContext(), lstCargos);
         cbCargo.setAdapter(adapter);
         if (cbPermissao.getAdapter() != null) {
@@ -118,7 +146,7 @@ public class ParticipanteFragment extends Fragment implements PermissaoPresenter
     @Override
     public void onClick(View v) {
 
-        if(v.getId() == R.id.fabAddParticipante){
+        if (v.getId() == R.id.fabAddParticipante) {
             v.setEnabled(false);
             final Dialog dlgAdcParticipantes = new Dialog(getContext());
             dlgAdcParticipantes.setContentView(R.layout.custom_adicionar_participantes);
@@ -136,10 +164,8 @@ public class ParticipanteFragment extends Fragment implements PermissaoPresenter
                     vo.setIdUsuario(0L);
                     vo.setNomeCompleto(txtNomeCompleto.getText().toString());
                     vo.setEmail(txtEmail.getText().toString());
-                    vo.setCargoVO(new CargoVO());
-                    vo.getCargoVO().setIdCargo((Long) cbCargo.getSelectedView().getTag());
-                    vo.setPermissao(new PermissaoVO());
-                    vo.getPermissao().setIdPermissao((Long) cbPermissao.getSelectedView().getTag());
+                    vo.setCargoFK((Long) cbCargo.getSelectedView().getTag());
+                    vo.setPermissaoFK((Long) cbPermissao.getSelectedView().getTag());
                     usuarioAdapter.addItem(vo);
 
                     dlgAdcParticipantes.dismiss();
@@ -166,6 +192,5 @@ public class ParticipanteFragment extends Fragment implements PermissaoPresenter
             cargoService.listarCargos();
             v.setEnabled(true);
         }
-
     }
 }

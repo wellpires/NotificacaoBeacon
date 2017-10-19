@@ -32,22 +32,27 @@ dependencies {
     compile('io.branch.sdk.android:library:2.+') {
         exclude module: 'answers-shim'
     }
+
+
+
+
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support:design:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'com.google.firebase:firebase-messaging:10.2.6'
-    compile 'org.altbeacon:android-beacon-library:2.7'
     compile 'com.android.support:support-v4:25.3.1'
     compile 'com.android.support:recyclerview-v7:25.3.1'
     compile 'com.android.support:support-vector-drawable:25.3.1'
-    compile 'joda-time:joda-time:2.9.9'
-    compile 'com.google.android.gms:play-services-cast:10.2.6'
-    compile 'com.google.android.gms:play-services-maps:10.2.6'
-    compile 'com.google.android.gms:play-services-location:10.2.6'
-    compile 'com.google.android.gms:play-services-ads:10.2.6'
+    compile 'com.google.android.gms:play-services-cast:11.4.0'
+    compile 'com.google.android.gms:play-services-maps:11.4.0'
+    compile 'com.google.android.gms:play-services-location:11.4.0'
+    compile 'com.google.android.gms:play-services-ads:11.4.0'
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
     compile 'com.squareup.okhttp3:logging-interceptor:3.4.1'
+    compile 'com.google.firebase:firebase-messaging:11.4.0'
+    compile 'com.google.firebase:firebase-storage:11.4.0'
+    compile 'org.altbeacon:android-beacon-library:2.7'
+    compile 'joda-time:joda-time:2.9.9'
     compile 'com.github.angads25:filepicker:1.1.1'
     testCompile 'junit:junit:4.12'
 }

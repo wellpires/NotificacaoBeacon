@@ -19,34 +19,27 @@
     <string msgid="3421042268587513524" name="abc_shareactionprovider_share_with">"Comparteix amb"</string>
     <string msgid="7165123711973476752" name="abc_shareactionprovider_share_with_application">"Comparteix amb %s"</string>
     <string msgid="1603543279005712093" name="abc_toolbar_collapse_description">"Replega"</string>
-    <string msgid="5835639618285370804" name="accept">"Accepta"</string>
     <string msgid="5319032370587661362" name="cast_notification_connected_message">"S\'ha connectat a <ns1:g id="NAME">%1$s</ns1:g>"</string>
     <string msgid="2758865089947797888" name="cast_notification_connecting_message">"S\'està connectant a <ns1:g id="NAME">%1$s</ns1:g>"</string>
     <string msgid="5232008641593292969" name="cast_notification_disconnect">"Desconnecta"</string>
     <string msgid="8585111718777012708" name="common_google_play_services_enable_button">"Activa"</string>
-    <string msgid="7045129128108380659" name="common_google_play_services_enable_text">"<ns1:g id="APP_NAME">%1$s</ns1:g> no funcionarà si no actives els Serveis de Google Play."</string>
-    <string msgid="3147157405986503375" name="common_google_play_services_enable_title">"Activa els Serveis de Google Play"</string>
+    <string msgid="7045129128108380659" name="common_google_play_services_enable_text">"<ns1:g id="APP_NAME">%1$s</ns1:g> no funcionarà si no actives Serveis de Google Play."</string>
+    <string msgid="3147157405986503375" name="common_google_play_services_enable_title">"Activa Serveis de Google Play"</string>
     <string msgid="9115728400623041681" name="common_google_play_services_install_button">"Instal·la"</string>
-    <string msgid="8179894293032530091" name="common_google_play_services_install_text">"<ns1:g id="APP_NAME">%1$s</ns1:g> no s\'executarà si el dispositiu no té instal·lats els serveis de Google Play."</string>
-    <string msgid="7442193194585196676" name="common_google_play_services_install_title">"Obtén els Serveis de Google Play"</string>
-    <string msgid="180394615667698242" name="common_google_play_services_notification_ticker">"Error dels Serveis de Google Play"</string>
-    <string msgid="2518680582564677258" name="common_google_play_services_unknown_issue">"<ns1:g id="APP_NAME">%1$s</ns1:g> té problemes amb els serveis de Google Play. Torna-ho a provar."</string>
-    <string msgid="5501187292256987189" name="common_google_play_services_unsupported_text">"<ns1:g id="APP_NAME">%1$s</ns1:g> no es pot executar sense els serveis de Google Play, però no són compatibles amb el teu dispositiu."</string>
+    <string msgid="8179894293032530091" name="common_google_play_services_install_text">"<ns1:g id="APP_NAME">%1$s</ns1:g> no s\'executarà si el dispositiu no té instal·lada l\'aplicació Serveis de Google Play."</string>
+    <string msgid="7442193194585196676" name="common_google_play_services_install_title">"Obtén l\'aplicació Serveis de Google Play"</string>
+    <string msgid="180394615667698242" name="common_google_play_services_notification_ticker">"Error de Serveis de Google Play"</string>
+    <string msgid="2518680582564677258" name="common_google_play_services_unknown_issue">"<ns1:g id="APP_NAME">%1$s</ns1:g> té problemes amb Serveis de Google Play. Torna-ho a provar."</string>
+    <string msgid="5501187292256987189" name="common_google_play_services_unsupported_text">"<ns1:g id="APP_NAME">%1$s</ns1:g> no es pot executar sense l\'aplicació Serveis de Google Play, però no és compatible amb el teu dispositiu."</string>
     <string msgid="8172070149091615356" name="common_google_play_services_update_button">"Actualitza"</string>
-    <string msgid="7773943415006962566" name="common_google_play_services_update_text">"<ns1:g id="APP_NAME">%1$s</ns1:g> no s\'executarà si no actualitzes els Serveis de Google Play."</string>
-    <string msgid="8706675115216073244" name="common_google_play_services_update_title">"Actualitza els Serveis de Google Play"</string>
-    <string msgid="7894275749778928941" name="common_google_play_services_updating_text">"<ns1:g id="APP_NAME">%1$s</ns1:g> no s\'executarà sense els Serveis de Google Play, que s\'estan actualitzant en aquest moment."</string>
-    <string msgid="2804989272736383918" name="common_google_play_services_wear_update_text">"Cal una nova versió dels Serveis de Google Play. S\'actualitzaran automàticament aviat."</string>
+    <string msgid="7773943415006962566" name="common_google_play_services_update_text">"<ns1:g id="APP_NAME">%1$s</ns1:g> no s\'executarà si no actualitzes l\'aplicació Serveis de Google Play."</string>
+    <string msgid="8706675115216073244" name="common_google_play_services_update_title">"Actualitza l\'aplicació Serveis de Google Play"</string>
+    <string msgid="7894275749778928941" name="common_google_play_services_updating_text">"<ns1:g id="APP_NAME">%1$s</ns1:g> no s\'executarà sense l\'aplicació Serveis de Google Play, que s\'està actualitzant en aquest moment."</string>
+    <string msgid="2804989272736383918" name="common_google_play_services_wear_update_text">"Cal una nova versió de l\'aplicació Serveis de Google Play. S\'actualitzarà automàticament aviat."</string>
     <string msgid="5201977337835724196" name="common_open_on_phone">"Obre al telèfon"</string>
     <string msgid="3441753203274453993" name="common_signin_button_text">"Inicia sessió"</string>
     <string msgid="669893613918351210" name="common_signin_button_text_long">"Inicia la sessió amb Google"</string>
-    <string msgid="6155048007205742679" name="create_calendar_message">"Vols permetre que l\'anunci creï un esdeveniment de calendari?"</string>
-    <string msgid="7967007864778154790" name="create_calendar_title">"Crea un esdeveniment de calendari"</string>
-    <string msgid="4722375419392727435" name="debug_menu_ad_information">"Informació de l\'anunci"</string>
-    <string msgid="1605938743055376690" name="debug_menu_creative_preview">"Previsualització de creativitats"</string>
-    <string msgid="2039274714455389140" name="debug_menu_title">"Selecciona un mode de depuració"</string>
-    <string msgid="1173358804935285568" name="debug_menu_troubleshooting">"Resolució de problemes"</string>
-    <string msgid="6099173376375995052" name="decline">"Rebutja"</string>
+    <string msgid="4133737464567140336" name="fcm_fallback_notification_channel_label">"Altres"</string>
     <string msgid="3698378085901466129" name="mr_button_content_description">"Botó d\'emetre"</string>
     <string msgid="5088427771788648085" name="mr_cast_button_connected">"Botó Emet. Connectat."</string>
     <string msgid="2187642765091873834" name="mr_cast_button_connecting">"Botó Emet. S\'està connectant."</string>
@@ -67,8 +60,12 @@
     <string msgid="2361785992211841709" name="mr_controller_volume_slider">"Control lliscant de volum"</string>
     <string msgid="5441529851481176817" name="mr_system_route_name">"Sistema"</string>
     <string msgid="7498112907524977311" name="mr_user_route_category_name">"Dispositius"</string>
+    <string msgid="368094699078615544" name="s1">"Desa la imatge"</string>
+    <string msgid="4550830452390689489" name="s2">"Vols permetre que l\'anunci desi imatges a la galeria d\'imatges?"</string>
+    <string msgid="2435407834265420668" name="s3">"Accepta"</string>
+    <string msgid="9167523597401839819" name="s4">"Rebutja"</string>
+    <string msgid="1566682516266724847" name="s5">"Crea un esdeveniment de calendari"</string>
+    <string msgid="5996672174517137271" name="s6">"Vols permetre que l\'anunci creï un esdeveniment de calendari?"</string>
     <string msgid="146198913615257606" name="search_menu_title">"Cerca"</string>
     <string msgid="2869576371154716097" name="status_bar_notification_info_overflow">"+999"</string>
-    <string msgid="8020323581538738027" name="store_picture_message">"Vols permetre que l\'anunci desi imatges a la galeria d\'imatges?"</string>
-    <string msgid="4180630057627064606" name="store_picture_title">"Desa la imatge"</string>
 </resources>

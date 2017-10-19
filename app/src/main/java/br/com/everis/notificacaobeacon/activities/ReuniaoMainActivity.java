@@ -110,8 +110,8 @@ public class ReuniaoMainActivity extends AppCompatActivity
         UpdateGUI updateBell = new UpdateGUI(this, 1);
         updateBell.run();
         // ========== START SERVICE ==========
-//        Intent iService = new Intent(ReuniaoMainActivity.this, NotificacaoBeaconService.class);
-//        startService(iService);
+        Intent iService = new Intent(ReuniaoMainActivity.this, NotificacaoBeaconService.class);
+        startService(iService);
         //===========================================
 
         barraProgresso = new ProgressDialog(this);

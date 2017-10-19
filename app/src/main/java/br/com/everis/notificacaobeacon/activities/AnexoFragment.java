@@ -2,6 +2,7 @@ package br.com.everis.notificacaobeacon.activities;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -9,6 +10,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
@@ -24,30 +26,53 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.angads25.filepicker.controller.DialogSelectionListener;
 import com.github.angads25.filepicker.model.DialogConfigs;
 import com.github.angads25.filepicker.model.DialogProperties;
 import com.github.angads25.filepicker.view.FilePickerDialog;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.UploadTask;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import br.com.everis.notificacaobeacon.R;
 import br.com.everis.notificacaobeacon.adapter.AnexosAdapter;
+import br.com.everis.notificacaobeacon.bd.DAOHelper;
+import br.com.everis.notificacaobeacon.listener.ReuniaoPresenterListener;
 import br.com.everis.notificacaobeacon.model.ArquivoVO;
+import br.com.everis.notificacaobeacon.model.CargoVO;
+import br.com.everis.notificacaobeacon.model.PermissaoVO;
+import br.com.everis.notificacaobeacon.model.ReuniaoArquivoUsuarioVO;
+import br.com.everis.notificacaobeacon.model.ReuniaoVO;
+import br.com.everis.notificacaobeacon.model.UsuarioVO;
+import br.com.everis.notificacaobeacon.service.IReuniaoService;
+import br.com.everis.notificacaobeacon.service.impl.ReuniaoServiceImpl;
 import br.com.everis.notificacaobeacon.utils.Constants;
+import br.com.everis.notificacaobeacon.utils.FirebaseUtils;
 
-public class AnexoFragment extends Fragment implements DialogSelectionListener, AdapterView.OnItemLongClickListener, View.OnClickListener {
+public class AnexoFragment extends Fragment implements DialogSelectionListener, AdapterView.OnItemLongClickListener, View.OnClickListener, OnSuccessListener<UploadTask.TaskSnapshot>, OnFailureListener{
     private static final int CAMERA_REQUEST = 1888;
-    private static final int DOCS_REQUEST = 1999;
 
     private View view = null;
     private Context context = null;
 
     private FloatingActionButton fabAddAnexo = null;
     private ListView lvAnexos = null;
+    private ProgressDialog barraProgresso = null;
 
-    private AnexosAdapter adapter = null;
+    private AnexosAdapter anexosAdapter = null;
+    private DAOHelper<ArquivoVO> arquivoDAO = null;
+    private HashMap<String, Boolean> hmArquivosEnviados = null;
+    private HashMap<String, String> hmCaminhoArquivos = null;
+    private IReuniaoService reuniaoService = null;
 
     public AnexoFragment() {
     }
@@ -75,9 +100,14 @@ public class AnexoFragment extends Fragment implements DialogSelectionListener, 
         fabAddAnexo.setOnClickListener(this);
 
 
-        adapter = new AnexosAdapter(getActivity());
-        lvAnexos.setAdapter(adapter);
+        anexosAdapter = new AnexosAdapter(getActivity());
+        lvAnexos.setAdapter(anexosAdapter);
         lvAnexos.setOnItemLongClickListener(this);
+
+        arquivoDAO = new DAOHelper<>();
+
+        List<ArquivoVO> all = arquivoDAO.findAll(ArquivoVO.class);
+        anexosAdapter.addAll(all);
 
         return view;
     }
@@ -85,10 +115,42 @@ public class AnexoFragment extends Fragment implements DialogSelectionListener, 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
+        MenuItem item = menu.findItem(R.id.btnSalvar);
+        item.setTitle(Constants.LABEL_FINALIZAR);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.btnSalvar) {
+            hmArquivosEnviados = new HashMap<>();
+            hmCaminhoArquivos = new HashMap<>();
+            FirebaseUtils fsUtils = new FirebaseUtils();
+            try {
+                if (anexosAdapter.getCount() == 0) {
+                    Toast.makeText(context, Constants.ERRO_FALTA_ANEXO, Toast.LENGTH_LONG).show();
+                    return false;
+                }
+
+                barraProgresso = new ProgressDialog(context);
+                barraProgresso.setMessage("Aguarde!");
+                barraProgresso.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                barraProgresso.setIndeterminate(true);
+                barraProgresso.show();
+
+                arquivoDAO.deleteAll(ArquivoVO.class);
+
+                for (int i = 0; i < anexosAdapter.getCount(); i++) {
+                    ArquivoVO vo = (ArquivoVO) anexosAdapter.getItem(i);
+                    File arquivoEnviado = fsUtils.uploadFile(new File(vo.getCaminhoArquivo()), AnexoFragment.this, AnexoFragment.this);
+                    hmArquivosEnviados.put(arquivoEnviado.getName(), false);
+                    hmCaminhoArquivos.put(arquivoEnviado.getName(), arquivoEnviado.getAbsolutePath());
+                }
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -106,17 +168,16 @@ public class AnexoFragment extends Fragment implements DialogSelectionListener, 
                     } while (cursor.moveToNext());
                     cursor.close();
                 }
-                adapter.addItem(new ArquivoVO(0L, caminhoImagem));
+                anexosAdapter.addItem(new ArquivoVO(0L, caminhoImagem));
             }
         }
-
         super.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override
     public void onSelectedFilePaths(String[] files) {
         for (String file : files) {
-            adapter.addItem(new ArquivoVO(0L, file));
+            anexosAdapter.addItem(new ArquivoVO(0L, file));
         }
     }
 
@@ -192,4 +253,81 @@ public class AnexoFragment extends Fragment implements DialogSelectionListener, 
         }
 
     }
+
+    @Override
+    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+        ArquivoVO vo = new ArquivoVO();
+        vo.setIdArquivo(arquivoDAO.getNextId(ArquivoVO.class));
+        vo.setArquivo(String.valueOf(taskSnapshot.getDownloadUrl()));
+        for (Map.Entry<String, String> entry : hmCaminhoArquivos.entrySet()) {
+            if(entry.getKey().equals(taskSnapshot.getStorage().getName())){
+                vo.setCaminhoArquivo(entry.getValue());
+                break;
+            }
+        }
+        arquivoDAO.insert(vo);
+        for (Map.Entry<String, Boolean> entry : hmArquivosEnviados.entrySet()) {
+            if(entry.getKey().equals(taskSnapshot.getStorage().getName())){
+                entry.setValue(true);
+            }
+        }
+
+        for (Map.Entry<String, Boolean> entry : hmArquivosEnviados.entrySet()) {
+            if(!entry.getValue()){
+                return;
+            }
+        }
+
+        DAOHelper<ReuniaoVO> reuniaoDAO = new DAOHelper<>();
+        DAOHelper<UsuarioVO> usuarioDAO = new DAOHelper<>();
+
+        ReuniaoVO reuniao = reuniaoDAO.find(ReuniaoVO.class);
+        List<UsuarioVO> usuarios = usuarioDAO.findAll(UsuarioVO.class);
+        List<ArquivoVO> arquivos = arquivoDAO.findAll(ArquivoVO.class);
+
+
+        usuarios = usuarioDAO.detachFromRealm(usuarios);
+        arquivos = arquivoDAO.detachFromRealm(arquivos);
+        reuniao = reuniaoDAO.detachFromRealm(reuniao);
+
+        for (UsuarioVO usuario : usuarios) {
+            usuario.setPermissao(new PermissaoVO(usuario.getPermissaoFK(), ""));
+            usuario.setCargo(new CargoVO(usuario.getCargoFK(), ""));
+        }
+
+        ReuniaoArquivoUsuarioVO rau = new ReuniaoArquivoUsuarioVO();
+        rau.setListUsuarios(usuarios);
+        rau.setListArquivos(arquivos);
+        rau.setReuniao(reuniao);
+
+        reuniaoService = new ReuniaoServiceImpl(context, new ReuniaoPresenterListener() {
+            @Override
+            public void reunioesReady(List<ReuniaoVO> lstReunioes) {
+
+            }
+
+            @Override
+            public void reuniaoReady(ReuniaoVO reuniaoVO) {
+
+            }
+
+            @Override
+            public void reuniaoReady() {
+                barraProgresso.dismiss();
+                Intent i = new Intent(context, ReuniaoMarcada.class);
+                startActivity(i);
+            }
+        });
+        try {
+            reuniaoService.gravarReuniao(rau);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onFailure(@NonNull Exception e) {
+        barraProgresso.dismiss();
+    }
+
 }

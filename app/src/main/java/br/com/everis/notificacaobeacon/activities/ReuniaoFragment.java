@@ -30,6 +30,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -82,7 +83,7 @@ public class ReuniaoFragment extends Fragment implements View.OnTouchListener, R
     }
 
     private void buscarRegistroAdicionado() throws ParseException {
-        ReuniaoVO reuniaoVO = daoHelper.selectOne(ReuniaoVO.class);
+        ReuniaoVO reuniaoVO = daoHelper.find(ReuniaoVO.class);
         if (reuniaoVO == null) {
             voExistente = null;
             return;
@@ -149,6 +150,8 @@ public class ReuniaoFragment extends Fragment implements View.OnTouchListener, R
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
+        MenuItem item = menu.findItem(R.id.btnSalvar);
+        item.setTitle(Constants.LABEL_PROXIMO);
     }
 
     @Override
@@ -156,25 +159,25 @@ public class ReuniaoFragment extends Fragment implements View.OnTouchListener, R
 
         try {
             if (ReuniaoUtils.isEmptyOrNull(txtAssunto.getText().toString())) {
-                ReuniaoUtils.mostrarAvisoDialogo(context, Constants.ERRO_ASSUNTO_REUNIAO);
+                Toast.makeText(context, Constants.ERRO_ASSUNTO_REUNIAO, Toast.LENGTH_SHORT).show();
                 return false;
             } else if (ReuniaoUtils.isEmptyOrNull(txtDtInicio.getText().toString())) {
-                ReuniaoUtils.mostrarAvisoDialogo(context, Constants.ERRO_DATA_INICIO_REUNIAO);
+                Toast.makeText(context, Constants.ERRO_DATA_INICIO_REUNIAO, Toast.LENGTH_SHORT).show();
                 return false;
             } else if (ReuniaoUtils.isEmptyOrNull(txtHrInicio.getText().toString())) {
-                ReuniaoUtils.mostrarAvisoDialogo(context, Constants.ERRO_HORA_INICIO_REUNIAO);
+                Toast.makeText(context, Constants.ERRO_HORA_INICIO_REUNIAO, Toast.LENGTH_SHORT).show();
                 return false;
             } else if (ReuniaoUtils.isEmptyOrNull(txtDtTermino.getText().toString())) {
-                ReuniaoUtils.mostrarAvisoDialogo(context, Constants.ERRO_DATA_TERMINO_REUNIAO);
+                Toast.makeText(context, Constants.ERRO_DATA_TERMINO_REUNIAO, Toast.LENGTH_SHORT).show();
                 return false;
             } else if (ReuniaoUtils.isEmptyOrNull(txtHrTermino.getText().toString())) {
-                ReuniaoUtils.mostrarAvisoDialogo(context, Constants.ERRO_HORA_TERMINO_REUNIAO);
+                Toast.makeText(context, Constants.ERRO_HORA_TERMINO_REUNIAO, Toast.LENGTH_SHORT).show();
                 return false;
             } else if (ReuniaoUtils.isEmptyOrNull(txtEndereco.getText().toString())) {
-                ReuniaoUtils.mostrarAvisoDialogo(context, Constants.ERRO_LOCAL_REUNIAO_REUNIAO);
+                Toast.makeText(context, Constants.ERRO_LOCAL_REUNIAO_REUNIAO, Toast.LENGTH_SHORT).show();
                 return false;
             } else if (ReuniaoUtils.isEmptyOrNull(txtDescricao.getText().toString())) {
-                ReuniaoUtils.mostrarAvisoDialogo(context, Constants.ERRO_DESCRICAO_REUNIAO);
+                Toast.makeText(context, Constants.ERRO_DESCRICAO_REUNIAO, Toast.LENGTH_SHORT).show();
                 return false;
             }
 
@@ -187,10 +190,10 @@ public class ReuniaoFragment extends Fragment implements View.OnTouchListener, R
 
 
             if (dtInicio.isEqual(dtTermino)) {
-                ReuniaoUtils.mostrarAvisoDialogo(context, Constants.ERRO_DATA_HORA_INICIO_TERMINO_DIFERENTES);
+                Toast.makeText(context, Constants.ERRO_DATA_HORA_INICIO_TERMINO_DIFERENTES, Toast.LENGTH_SHORT).show();
                 return false;
             } else if (dtInicio.isAfter(dtTermino)) {
-                ReuniaoUtils.mostrarAvisoDialogo(context, Constants.ERRO_DATA_INICIO_MENOR_TERMINO);
+                Toast.makeText(context, Constants.ERRO_DATA_INICIO_MENOR_TERMINO, Toast.LENGTH_SHORT).show();
                 return false;
             }
 
@@ -199,6 +202,7 @@ public class ReuniaoFragment extends Fragment implements View.OnTouchListener, R
                 vo = voExistente;
                 daoHelper.open();
             }
+            vo.setIdReuniao(Integer.parseInt(daoHelper.getNextId(ReuniaoVO.class).toString()));
             vo.setAssunto(txtAssunto.getText().toString());
             vo.setDtInicio(txtDtInicio.getText().toString() + " " + txtHrInicio.getText().toString());
             vo.setDtTermino(txtDtTermino.getText().toString() + " " + txtHrTermino.getText().toString());
@@ -360,7 +364,7 @@ public class ReuniaoFragment extends Fragment implements View.OnTouchListener, R
                         @Override
                         public void onClick(View view) {
                             if (txtPesquisar.getText().toString().trim().isEmpty()) {
-                                ReuniaoUtils.mostrarAvisoDialogo(context, Constants.ERRO_PESQUISA_ENDERECO);
+                                Toast.makeText(context, Constants.ERRO_PESQUISA_ENDERECO, Toast.LENGTH_SHORT).show();
                                 return;
                             }
                             txtEndereco.setText(txtPesquisar.getText().toString());
@@ -414,10 +418,8 @@ public class ReuniaoFragment extends Fragment implements View.OnTouchListener, R
                                     }
 
                                     ReuniaoUtils.esconderTeclado(getActivity());
-
                                 }
                             });
-
                         }
                     });
 

@@ -32,6 +32,15 @@ public class UsuarioAdapter extends BaseAdapter {
         notifyDataSetChanged();
     }
 
+    public void addAll(List<UsuarioVO> usuarios){
+        lstUsuarios.addAll(usuarios);
+        notifyDataSetChanged();
+    }
+
+    public List<UsuarioVO> getUsuarios(){
+        return this.lstUsuarios;
+    }
+
     @Override
     public int getCount() {
         return lstUsuarios.size();
@@ -57,4 +66,5 @@ public class UsuarioAdapter extends BaseAdapter {
 
         return lblParticipante;
     }
+
 }

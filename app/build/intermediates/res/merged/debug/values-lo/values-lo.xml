@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2">
-    <string msgid="5835639618285370804" name="accept">"ຍອມຮັບ"</string>
     <string msgid="5319032370587661362" name="cast_notification_connected_message">"ເຊື່ອມຕໍ່ຫາ <ns1:g id="NAME">%1$s</ns1:g> ແລ້ວ"</string>
     <string msgid="2758865089947797888" name="cast_notification_connecting_message">"ກຳລັງເຊື່ອມຕໍ່ຫາ <ns1:g id="NAME">%1$s</ns1:g>"</string>
     <string msgid="5232008641593292969" name="cast_notification_disconnect">"ຕັດການເຊື່ອມຕໍ່"</string>
@@ -21,13 +20,11 @@
     <string msgid="5201977337835724196" name="common_open_on_phone">"​ເປີດ​ໃນ​ໂທ​ລະ​ສັບ"</string>
     <string msgid="3441753203274453993" name="common_signin_button_text">"ລົງຊື່ເຂົ້າໃຊ້"</string>
     <string msgid="669893613918351210" name="common_signin_button_text_long">"ລົງຊື່ເຂົ້າໃຊ້ດ້ວຍ Google"</string>
-    <string msgid="6155048007205742679" name="create_calendar_message">"ອະນຸຍາດໃຫ້ໂຄສະນາສ້າງນັດໝາຍປະຕິທິນໄດ້ບໍ?"</string>
-    <string msgid="7967007864778154790" name="create_calendar_title">"ສ້າງນັດໝາຍປະຕິທິນ"</string>
-    <string msgid="4722375419392727435" name="debug_menu_ad_information">"ຂໍ້ມູນໂຄສະນາ"</string>
-    <string msgid="1605938743055376690" name="debug_menu_creative_preview">"ຕົວຢ່າງໂຄສະນາ"</string>
-    <string msgid="2039274714455389140" name="debug_menu_title">"ເລືອກໂໝດດີບັກ"</string>
-    <string msgid="1173358804935285568" name="debug_menu_troubleshooting">"ການແກ້ໄຂບັນຫາ"</string>
-    <string msgid="6099173376375995052" name="decline">"ປະຕິເສດ"</string>
-    <string msgid="8020323581538738027" name="store_picture_message">"ອະນຸຍາດໃຫ້ໂຄສະນາບັນທຶກຮູບພາບໃສ່ຫ້ອງສະໝຸດພາບໄດ້ບໍ່?"</string>
-    <string msgid="4180630057627064606" name="store_picture_title">"ບັນທຶກຮູບພາບ"</string>
+    <string msgid="4133737464567140336" name="fcm_fallback_notification_channel_label">"ອື່ນໆ"</string>
+    <string msgid="368094699078615544" name="s1">"ບັນທຶກຮູບພາບ"</string>
+    <string msgid="4550830452390689489" name="s2">"ອະນຸຍາດໃຫ້ໂຄສະນາບັນທຶກຮູບພາບໃສ່ຫ້ອງສະໝຸດພາບໄດ້ບໍ່?"</string>
+    <string msgid="2435407834265420668" name="s3">"ຍອມຮັບ"</string>
+    <string msgid="9167523597401839819" name="s4">"ປະຕິເສດ"</string>
+    <string msgid="1566682516266724847" name="s5">"ສ້າງນັດໝາຍປະຕິທິນ"</string>
+    <string msgid="5996672174517137271" name="s6">"ອະນຸຍາດໃຫ້ໂຄສະນາສ້າງນັດໝາຍປະຕິທິນໄດ້ບໍ?"</string>
 </resources>

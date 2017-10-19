@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2">
-    <string msgid="5835639618285370804" name="accept">"ஏற்கிறேன்"</string>
     <string msgid="5319032370587661362" name="cast_notification_connected_message">"<ns1:g id="NAME">%1$s</ns1:g> உடன் இணைக்கப்பட்டது"</string>
     <string msgid="2758865089947797888" name="cast_notification_connecting_message">"<ns1:g id="NAME">%1$s</ns1:g> உடன் இணைக்கிறது"</string>
     <string msgid="5232008641593292969" name="cast_notification_disconnect">"இணைப்பைத் துண்டி"</string>
@@ -21,13 +20,11 @@
     <string msgid="5201977337835724196" name="common_open_on_phone">"மொபைலில் திற"</string>
     <string msgid="3441753203274453993" name="common_signin_button_text">"உள்நுழைக"</string>
     <string msgid="669893613918351210" name="common_signin_button_text_long">"Google மூலம் உள்நுழைக"</string>
-    <string msgid="6155048007205742679" name="create_calendar_message">"கேலெண்டர் நிகழ்வை உருவாக்க, விளம்பரத்தை அனுமதிக்கவா?"</string>
-    <string msgid="7967007864778154790" name="create_calendar_title">"கேலெண்டர் நிகழ்வை உருவாக்கு"</string>
-    <string msgid="4722375419392727435" name="debug_menu_ad_information">"விளம்பரத் தகவல்"</string>
-    <string msgid="1605938743055376690" name="debug_menu_creative_preview">"விளம்பரத்தின் மாதிரிக்காட்சி"</string>
-    <string msgid="2039274714455389140" name="debug_menu_title">"பிழைத் திருத்தப் பயன்முறையைத் தேர்ந்தெடுக்கவும்"</string>
-    <string msgid="1173358804935285568" name="debug_menu_troubleshooting">"பிழைகாண்"</string>
-    <string msgid="6099173376375995052" name="decline">"நிராகரி"</string>
-    <string msgid="8020323581538738027" name="store_picture_message">"பட கேலரியில் படத்தைச் சேமிக்க, விளம்பரத்தை அனுமதிக்கவா?"</string>
-    <string msgid="4180630057627064606" name="store_picture_title">"படத்தைச் சேமி"</string>
+    <string msgid="4133737464567140336" name="fcm_fallback_notification_channel_label">"மற்றவை"</string>
+    <string msgid="368094699078615544" name="s1">"படத்தைச் சேமி"</string>
+    <string msgid="4550830452390689489" name="s2">"பட கேலரியில் படத்தைச் சேமிக்க, விளம்பரத்தை அனுமதிக்கவா?"</string>
+    <string msgid="2435407834265420668" name="s3">"அனுமதி"</string>
+    <string msgid="9167523597401839819" name="s4">"நிராகரி"</string>
+    <string msgid="1566682516266724847" name="s5">"கேலெண்டர் நிகழ்வை உருவாக்கு"</string>
+    <string msgid="5996672174517137271" name="s6">"கேலெண்டர் நிகழ்வை உருவாக்க, விளம்பரத்தை அனுமதிக்கவா?"</string>
 </resources>
