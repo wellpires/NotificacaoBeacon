@@ -278,7 +278,7 @@ public class AnexoFragment extends Fragment implements DialogSelectionListener, 
             }
         }
 
-        DAOHelper<ReuniaoVO> reuniaoDAO = new DAOHelper<>();
+        final DAOHelper<ReuniaoVO> reuniaoDAO = new DAOHelper<>();
         DAOHelper<UsuarioVO> usuarioDAO = new DAOHelper<>();
 
         ReuniaoVO reuniao = reuniaoDAO.find(ReuniaoVO.class);
@@ -300,6 +300,16 @@ public class AnexoFragment extends Fragment implements DialogSelectionListener, 
         rau.setListArquivos(arquivos);
         rau.setReuniao(reuniao);
 
+        for (UsuarioVO usuarioVO : rau.getListUsuarios()) {
+            usuarioVO.setIdUsuario(0L);
+        }
+
+        for (ArquivoVO arquivoVO : rau.getListArquivos()) {
+            arquivoVO.setIdArquivo(0L);
+        }
+
+        rau.getReuniao().setIdReuniao(0);
+
         reuniaoService = new ReuniaoServiceImpl(context, new ReuniaoPresenterListener() {
             @Override
             public void reunioesReady(List<ReuniaoVO> lstReunioes) {
@@ -313,6 +323,7 @@ public class AnexoFragment extends Fragment implements DialogSelectionListener, 
 
             @Override
             public void reuniaoReady() {
+                arquivoDAO.deleteAll();
                 barraProgresso.dismiss();
                 Intent i = new Intent(context, ReuniaoMarcada.class);
                 startActivity(i);

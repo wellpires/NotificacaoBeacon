@@ -42,7 +42,7 @@ public class AnexosAdapter extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int position) {
+    public ArquivoVO getItem(int position) {
         return lstArquivos.get(position);
     }
 
