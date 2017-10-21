@@ -46,6 +46,7 @@ import java.util.Map;
 import br.com.everis.notificacaobeacon.R;
 import br.com.everis.notificacaobeacon.adapter.AnexosAdapter;
 import br.com.everis.notificacaobeacon.bd.DAOHelper;
+import br.com.everis.notificacaobeacon.exception.RestException;
 import br.com.everis.notificacaobeacon.listener.ReuniaoPresenterListener;
 import br.com.everis.notificacaobeacon.model.ArquivoVO;
 import br.com.everis.notificacaobeacon.model.CargoVO;
@@ -327,6 +328,12 @@ public class AnexoFragment extends Fragment implements DialogSelectionListener, 
                 barraProgresso.dismiss();
                 Intent i = new Intent(context, ReuniaoMarcada.class);
                 startActivity(i);
+            }
+
+            @Override
+            public void reuniaoFailed(RestException exception) {
+                barraProgresso.dismiss();
+                Toast.makeText(context, exception.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
         try {

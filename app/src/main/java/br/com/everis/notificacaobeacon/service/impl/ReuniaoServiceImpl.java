@@ -5,6 +5,7 @@ import android.content.Context;
 import java.io.IOException;
 import java.util.List;
 
+import br.com.everis.notificacaobeacon.exception.RestException;
 import br.com.everis.notificacaobeacon.model.ReuniaoArquivoUsuarioVO;
 import br.com.everis.notificacaobeacon.model.ReuniaoVO;
 import br.com.everis.notificacaobeacon.listener.ReuniaoPresenterListener;
@@ -43,7 +44,7 @@ public class ReuniaoServiceImpl implements IReuniaoService {
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-
+                reuniaoListener.reuniaoFailed(new RestException(t.getMessage()));
             }
         });
     }
@@ -117,7 +118,7 @@ public class ReuniaoServiceImpl implements IReuniaoService {
 
             @Override
             public void onFailure(Call<List<ReuniaoVO>> call, Throwable t) {
-                t.printStackTrace();
+                reuniaoListener.reuniaoFailed(new RestException(t.getMessage(), t));
             }
         });
     }

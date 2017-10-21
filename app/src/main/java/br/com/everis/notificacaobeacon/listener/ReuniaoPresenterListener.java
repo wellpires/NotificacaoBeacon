@@ -2,6 +2,7 @@ package br.com.everis.notificacaobeacon.listener;
 
 import java.util.List;
 
+import br.com.everis.notificacaobeacon.exception.RestException;
 import br.com.everis.notificacaobeacon.model.ReuniaoVO;
 
 /**
@@ -12,4 +13,6 @@ public interface ReuniaoPresenterListener {
     void reunioesReady(List<ReuniaoVO> lstReunioes);
     void reuniaoReady(ReuniaoVO reuniaoVO);
     void reuniaoReady();
+
+    void reuniaoFailed(RestException exception);
 }

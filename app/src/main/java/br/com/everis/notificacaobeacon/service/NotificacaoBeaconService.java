@@ -28,6 +28,7 @@ import br.com.everis.notificacaobeacon.activities.ReuniaoMainActivity;
 import br.com.everis.notificacaobeacon.R;
 import br.com.everis.notificacaobeacon.activities.ReuniaoNotificacaoActivity;
 import br.com.everis.notificacaobeacon.bd.ReuniaoDAO;
+import br.com.everis.notificacaobeacon.exception.RestException;
 import br.com.everis.notificacaobeacon.listener.ReuniaoPresenterListener;
 import br.com.everis.notificacaobeacon.model.ReuniaoVO;
 import br.com.everis.notificacaobeacon.service.impl.ReuniaoServiceImpl;
@@ -294,6 +295,11 @@ public class NotificacaoBeaconService extends Service implements BootstrapNotifi
 
     @Override
     public void reuniaoReady() {
+
+    }
+
+    @Override
+    public void reuniaoFailed(RestException exception) {
 
     }
 }

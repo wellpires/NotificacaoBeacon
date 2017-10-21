@@ -16,6 +16,7 @@ import java.util.List;
 
 import br.com.everis.notificacaobeacon.R;
 import br.com.everis.notificacaobeacon.bd.UsuarioDAO;
+import br.com.everis.notificacaobeacon.exception.RestException;
 import br.com.everis.notificacaobeacon.listener.ReuniaoPresenterListener;
 import br.com.everis.notificacaobeacon.model.ReuniaoVO;
 
@@ -79,6 +80,11 @@ public class AdicionarEditarReuniaoActivity extends AppCompatActivity implements
 
     @Override
     public void reuniaoReady() {
+
+    }
+
+    @Override
+    public void reuniaoFailed(RestException exception) {
 
     }
 

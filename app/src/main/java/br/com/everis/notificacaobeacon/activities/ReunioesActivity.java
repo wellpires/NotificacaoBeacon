@@ -26,6 +26,7 @@ import java.util.List;
 import br.com.everis.notificacaobeacon.R;
 import br.com.everis.notificacaobeacon.adapter.ReunioesAdapter;
 import br.com.everis.notificacaobeacon.bd.ReuniaoDAO;
+import br.com.everis.notificacaobeacon.exception.RestException;
 import br.com.everis.notificacaobeacon.listener.ReuniaoPresenterListener;
 import br.com.everis.notificacaobeacon.model.ReuniaoVO;
 import br.com.everis.notificacaobeacon.service.impl.ReuniaoServiceImpl;
@@ -180,5 +181,11 @@ public class ReunioesActivity extends AppCompatActivity implements View.OnTouchL
     @Override
     public void reuniaoReady() {
 
+    }
+
+    @Override
+    public void reuniaoFailed(RestException exception) {
+        barraProgresso.dismiss();
+        ReuniaoUtils.mostrarAvisoDialogo(getApplicationContext(),exception.getMessage());
     }
 }

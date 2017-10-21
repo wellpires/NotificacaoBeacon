@@ -50,6 +50,7 @@ import java.util.List;
 import br.com.everis.notificacaobeacon.R;
 import br.com.everis.notificacaobeacon.adapter.GooglePlacesAutocompleteAdapter;
 import br.com.everis.notificacaobeacon.bd.DAOHelper;
+import br.com.everis.notificacaobeacon.exception.RestException;
 import br.com.everis.notificacaobeacon.listener.ReuniaoPresenterListener;
 import br.com.everis.notificacaobeacon.model.ReuniaoVO;
 import br.com.everis.notificacaobeacon.utils.Constants;
@@ -156,73 +157,75 @@ public class ReuniaoFragment extends Fragment implements View.OnTouchListener, R
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == R.id.btnSalvar){
+            try {
+                if (ReuniaoUtils.isEmptyOrNull(txtAssunto.getText().toString())) {
+                    Toast.makeText(context, Constants.ERRO_ASSUNTO_REUNIAO, Toast.LENGTH_SHORT).show();
+                    return false;
+                } else if (ReuniaoUtils.isEmptyOrNull(txtDtInicio.getText().toString())) {
+                    Toast.makeText(context, Constants.ERRO_DATA_INICIO_REUNIAO, Toast.LENGTH_SHORT).show();
+                    return false;
+                } else if (ReuniaoUtils.isEmptyOrNull(txtHrInicio.getText().toString())) {
+                    Toast.makeText(context, Constants.ERRO_HORA_INICIO_REUNIAO, Toast.LENGTH_SHORT).show();
+                    return false;
+                } else if (ReuniaoUtils.isEmptyOrNull(txtDtTermino.getText().toString())) {
+                    Toast.makeText(context, Constants.ERRO_DATA_TERMINO_REUNIAO, Toast.LENGTH_SHORT).show();
+                    return false;
+                } else if (ReuniaoUtils.isEmptyOrNull(txtHrTermino.getText().toString())) {
+                    Toast.makeText(context, Constants.ERRO_HORA_TERMINO_REUNIAO, Toast.LENGTH_SHORT).show();
+                    return false;
+                } else if (ReuniaoUtils.isEmptyOrNull(txtEndereco.getText().toString())) {
+                    Toast.makeText(context, Constants.ERRO_LOCAL_REUNIAO_REUNIAO, Toast.LENGTH_SHORT).show();
+                    return false;
+                } else if (ReuniaoUtils.isEmptyOrNull(txtDescricao.getText().toString())) {
+                    Toast.makeText(context, Constants.ERRO_DESCRICAO_REUNIAO, Toast.LENGTH_SHORT).show();
+                    return false;
+                }
 
-        try {
-            if (ReuniaoUtils.isEmptyOrNull(txtAssunto.getText().toString())) {
-                Toast.makeText(context, Constants.ERRO_ASSUNTO_REUNIAO, Toast.LENGTH_SHORT).show();
-                return false;
-            } else if (ReuniaoUtils.isEmptyOrNull(txtDtInicio.getText().toString())) {
-                Toast.makeText(context, Constants.ERRO_DATA_INICIO_REUNIAO, Toast.LENGTH_SHORT).show();
-                return false;
-            } else if (ReuniaoUtils.isEmptyOrNull(txtHrInicio.getText().toString())) {
-                Toast.makeText(context, Constants.ERRO_HORA_INICIO_REUNIAO, Toast.LENGTH_SHORT).show();
-                return false;
-            } else if (ReuniaoUtils.isEmptyOrNull(txtDtTermino.getText().toString())) {
-                Toast.makeText(context, Constants.ERRO_DATA_TERMINO_REUNIAO, Toast.LENGTH_SHORT).show();
-                return false;
-            } else if (ReuniaoUtils.isEmptyOrNull(txtHrTermino.getText().toString())) {
-                Toast.makeText(context, Constants.ERRO_HORA_TERMINO_REUNIAO, Toast.LENGTH_SHORT).show();
-                return false;
-            } else if (ReuniaoUtils.isEmptyOrNull(txtEndereco.getText().toString())) {
-                Toast.makeText(context, Constants.ERRO_LOCAL_REUNIAO_REUNIAO, Toast.LENGTH_SHORT).show();
-                return false;
-            } else if (ReuniaoUtils.isEmptyOrNull(txtDescricao.getText().toString())) {
-                Toast.makeText(context, Constants.ERRO_DESCRICAO_REUNIAO, Toast.LENGTH_SHORT).show();
-                return false;
+                String horaInicio = txtDtInicio.getText().toString() + " " + txtHrInicio.getText().toString();
+                String horaTermino = txtDtTermino.getText().toString() + " " + txtHrTermino.getText().toString();
+
+                DateTime dtInicio = null;
+                dtInicio = new DateTime(ReuniaoUtils.stringToDateTime(horaInicio));
+                DateTime dtTermino = new DateTime(ReuniaoUtils.stringToDateTime(horaTermino));
+
+
+                if (dtInicio.isEqual(dtTermino)) {
+                    Toast.makeText(context, Constants.ERRO_DATA_HORA_INICIO_TERMINO_DIFERENTES, Toast.LENGTH_SHORT).show();
+                    return false;
+                } else if (dtInicio.isAfter(dtTermino)) {
+                    Toast.makeText(context, Constants.ERRO_DATA_INICIO_MENOR_TERMINO, Toast.LENGTH_SHORT).show();
+                    return false;
+                }
+
+                ReuniaoVO vo = new ReuniaoVO();
+                if (voExistente != null) {
+                    vo = voExistente;
+                    daoHelper.open();
+                }
+                vo.setIdReuniao(Integer.parseInt(daoHelper.getNextId(ReuniaoVO.class).toString()));
+                vo.setAssunto(txtAssunto.getText().toString());
+                vo.setDtInicio(txtDtInicio.getText().toString() + " " + txtHrInicio.getText().toString());
+                vo.setDtTermino(txtDtTermino.getText().toString() + " " + txtHrTermino.getText().toString());
+                vo.setEndereco(txtEndereco.getText().toString());
+                vo.setSala(txtSala.getText().toString());
+                vo.setPauta(txtDescricao.getText().toString());
+                daoHelper.insert(vo);
+
+                daoHelper.close();
+
+                buscarRegistroAdicionado();
+
+                AdicionarEditarReuniaoActivity adicionarEditarReuniaoActivity = (AdicionarEditarReuniaoActivity) getActivity();
+                BottomNavigationView bnvNavegacao = (BottomNavigationView) adicionarEditarReuniaoActivity.findViewById(R.id.navigation);
+                bnvNavegacao.setSelectedItemId(R.id.navigation_participantes);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-
-            String horaInicio = txtDtInicio.getText().toString() + " " + txtHrInicio.getText().toString();
-            String horaTermino = txtDtTermino.getText().toString() + " " + txtHrTermino.getText().toString();
-
-            DateTime dtInicio = null;
-            dtInicio = new DateTime(ReuniaoUtils.stringToDateTime(horaInicio));
-            DateTime dtTermino = new DateTime(ReuniaoUtils.stringToDateTime(horaTermino));
-
-
-            if (dtInicio.isEqual(dtTermino)) {
-                Toast.makeText(context, Constants.ERRO_DATA_HORA_INICIO_TERMINO_DIFERENTES, Toast.LENGTH_SHORT).show();
-                return false;
-            } else if (dtInicio.isAfter(dtTermino)) {
-                Toast.makeText(context, Constants.ERRO_DATA_INICIO_MENOR_TERMINO, Toast.LENGTH_SHORT).show();
-                return false;
-            }
-
-            ReuniaoVO vo = new ReuniaoVO();
-            if (voExistente != null) {
-                vo = voExistente;
-                daoHelper.open();
-            }
-            vo.setIdReuniao(Integer.parseInt(daoHelper.getNextId(ReuniaoVO.class).toString()));
-            vo.setAssunto(txtAssunto.getText().toString());
-            vo.setDtInicio(txtDtInicio.getText().toString() + " " + txtHrInicio.getText().toString());
-            vo.setDtTermino(txtDtTermino.getText().toString() + " " + txtHrTermino.getText().toString());
-            vo.setEndereco(txtEndereco.getText().toString());
-            vo.setSala(txtSala.getText().toString());
-            vo.setPauta(txtDescricao.getText().toString());
-            daoHelper.insert(vo);
-
-            daoHelper.close();
-
-            buscarRegistroAdicionado();
-
-            AdicionarEditarReuniaoActivity adicionarEditarReuniaoActivity = (AdicionarEditarReuniaoActivity) getActivity();
-            BottomNavigationView bnvNavegacao = (BottomNavigationView) adicionarEditarReuniaoActivity.findViewById(R.id.navigation);
-            bnvNavegacao.setSelectedItemId(R.id.navigation_participantes);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
         }
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -449,5 +452,9 @@ public class ReuniaoFragment extends Fragment implements View.OnTouchListener, R
     @Override
     public void reuniaoReady() {
 
+    }
+
+    @Override
+    public void reuniaoFailed(RestException exception) {
     }
 }

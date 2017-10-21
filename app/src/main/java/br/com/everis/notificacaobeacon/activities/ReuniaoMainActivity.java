@@ -33,6 +33,7 @@ import java.util.List;
 import br.com.everis.notificacaobeacon.R;
 import br.com.everis.notificacaobeacon.adapter.ReunioesHojeAdapter;
 import br.com.everis.notificacaobeacon.bd.ReuniaoDAO;
+import br.com.everis.notificacaobeacon.exception.RestException;
 import br.com.everis.notificacaobeacon.listener.ReuniaoPresenterListener;
 import br.com.everis.notificacaobeacon.model.ReuniaoVO;
 import br.com.everis.notificacaobeacon.service.NotificacaoBeaconService;
@@ -276,5 +277,11 @@ public class ReuniaoMainActivity extends AppCompatActivity
     @Override
     public void reuniaoReady() {
         buscarReunioes();
+    }
+
+    @Override
+    public void reuniaoFailed(RestException exception) {
+        barraProgresso.dismiss();
+        Toast.makeText(this, exception.getMessage(), Toast.LENGTH_SHORT).show();
     }
 }

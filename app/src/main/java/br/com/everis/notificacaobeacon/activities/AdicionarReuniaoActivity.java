@@ -49,6 +49,7 @@ import java.util.List;
 import br.com.everis.notificacaobeacon.R;
 import br.com.everis.notificacaobeacon.adapter.GooglePlacesAutocompleteAdapter;
 import br.com.everis.notificacaobeacon.bd.ReuniaoDAO;
+import br.com.everis.notificacaobeacon.exception.RestException;
 import br.com.everis.notificacaobeacon.listener.ReuniaoPresenterListener;
 import br.com.everis.notificacaobeacon.model.ReuniaoVO;
 import br.com.everis.notificacaobeacon.service.IReuniaoService;
@@ -545,5 +546,10 @@ public class AdicionarReuniaoActivity extends AppCompatActivity implements View.
             e.printStackTrace();
         }
         finalizarAcao();
+    }
+
+    @Override
+    public void reuniaoFailed(RestException exception) {
+
     }
 }
