@@ -136,10 +136,6 @@ public class ReunioesActivity extends AppCompatActivity implements View.OnTouchL
     }
 
     private void filtrarLista(String filtro) throws Exception {
-        barraProgresso = new ProgressDialog(this);
-        barraProgresso.setMessage("Aguarde!");
-        barraProgresso.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        barraProgresso.setIndeterminate(true);
         barraProgresso.show();
         ReuniaoVO r = new ReuniaoVO();
         Date dateTime = new DateTime(ReuniaoUtils.stringToDate(filtro)).withTimeAtStartOfDay().toDate();
