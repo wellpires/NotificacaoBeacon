@@ -155,7 +155,7 @@ public class ReuniaoUtils {
 
     public static void mostrarNotificacao(Context context, int icon, String title, String content, PendingIntent pendingIntent, int idNotificacao, boolean isNotificacaoFixa) {
 
-        NotificationCompat.Builder notificationBuilder = (NotificationCompat.Builder) new NotificationCompat.Builder(context);
+        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(context);
         notificationBuilder.setSmallIcon(icon);
         notificationBuilder.setContentTitle(title);
         notificationBuilder.setContentText(content);

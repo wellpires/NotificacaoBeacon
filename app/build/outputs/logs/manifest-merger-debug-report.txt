@@ -267,10 +267,10 @@ ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src
 		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:99:13-73
 	android:name
 		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:97:13-70
-activity#br.com.everis.notificacaobeacon.activities.ReuniaoMarcada
-ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:104:9-72
+activity#br.com.everis.notificacaobeacon.activities.ReuniaoMarcadaActivity
+ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:104:9-80
 	android:name
-		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:104:19-60
+		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:104:19-68
 meta-data#android.support.VERSION
 ADDED from [com.android.support:design:25.3.1] C:\Users\wgoncalv\.android\build-cache\985498013d4f89c44568b1364256c5b8058c9a56\output\AndroidManifest.xml:25:5-27:34
 MERGED from [com.android.support:transition:25.3.1] C:\Users\wgoncalv\.android\build-cache\fd08c003ac8ff804c25ee3f3b718c541dd3f7ffc\output\AndroidManifest.xml:22:5-24:34

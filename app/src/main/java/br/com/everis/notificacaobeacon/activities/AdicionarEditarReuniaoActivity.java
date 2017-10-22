@@ -22,10 +22,6 @@ import br.com.everis.notificacaobeacon.model.ReuniaoVO;
 
 public class AdicionarEditarReuniaoActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener,View.OnClickListener, ReuniaoPresenterListener{
 
-    private Menu menu = null;
-
-    private UsuarioDAO usuarioDAO = null;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,7 +60,6 @@ public class AdicionarEditarReuniaoActivity extends AppCompatActivity implements
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.save_button_actionbar, menu);
-        this.menu = menu;
         return super.onCreateOptionsMenu(menu);
     }
 

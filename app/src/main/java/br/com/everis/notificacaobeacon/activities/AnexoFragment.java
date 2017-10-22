@@ -141,7 +141,7 @@ public class AnexoFragment extends Fragment implements DialogSelectionListener, 
                 arquivoDAO.deleteAll(ArquivoVO.class);
 
                 for (int i = 0; i < anexosAdapter.getCount(); i++) {
-                    ArquivoVO vo = (ArquivoVO) anexosAdapter.getItem(i);
+                    ArquivoVO vo = anexosAdapter.getItem(i);
                     File arquivoEnviado = fsUtils.uploadFile(new File(vo.getCaminhoArquivo()), AnexoFragment.this, AnexoFragment.this);
                     hmArquivosEnviados.put(arquivoEnviado.getName(), false);
                     hmCaminhoArquivos.put(arquivoEnviado.getName(), arquivoEnviado.getAbsolutePath());
@@ -326,7 +326,7 @@ public class AnexoFragment extends Fragment implements DialogSelectionListener, 
             public void reuniaoReady() {
                 arquivoDAO.deleteAll();
                 barraProgresso.dismiss();
-                Intent i = new Intent(context, ReuniaoMarcada.class);
+                Intent i = new Intent(context, ReuniaoMarcadaActivity.class);
                 startActivity(i);
             }
 

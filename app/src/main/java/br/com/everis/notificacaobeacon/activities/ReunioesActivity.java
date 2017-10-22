@@ -29,6 +29,7 @@ import br.com.everis.notificacaobeacon.bd.ReuniaoDAO;
 import br.com.everis.notificacaobeacon.exception.RestException;
 import br.com.everis.notificacaobeacon.listener.ReuniaoPresenterListener;
 import br.com.everis.notificacaobeacon.model.ReuniaoVO;
+import br.com.everis.notificacaobeacon.service.IReuniaoService;
 import br.com.everis.notificacaobeacon.service.impl.ReuniaoServiceImpl;
 import br.com.everis.notificacaobeacon.utils.Constants;
 import br.com.everis.notificacaobeacon.utils.ReuniaoUtils;
@@ -42,9 +43,7 @@ public class ReunioesActivity extends AppCompatActivity implements View.OnTouchL
 
     private ProgressDialog barraProgresso = null;
 
-    private ReuniaoDAO reuniaoDAO = null;
-
-    private ReuniaoServiceImpl reuniaoService = null;
+    private IReuniaoService reuniaoService = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,7 +78,6 @@ public class ReunioesActivity extends AppCompatActivity implements View.OnTouchL
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     @Override
@@ -127,6 +125,8 @@ public class ReunioesActivity extends AppCompatActivity implements View.OnTouchL
             filtrarLista(s.toString());
         } catch (ParseException e) {
             e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -135,7 +135,12 @@ public class ReunioesActivity extends AppCompatActivity implements View.OnTouchL
 
     }
 
-    private void filtrarLista(String filtro) throws ParseException {
+    private void filtrarLista(String filtro) throws Exception {
+        barraProgresso = new ProgressDialog(this);
+        barraProgresso.setMessage("Aguarde!");
+        barraProgresso.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        barraProgresso.setIndeterminate(true);
+        barraProgresso.show();
         ReuniaoVO r = new ReuniaoVO();
         Date dateTime = new DateTime(ReuniaoUtils.stringToDate(filtro)).withTimeAtStartOfDay().toDate();
         r.setDtInicio(ReuniaoUtils.dateTimeToString(dateTime));

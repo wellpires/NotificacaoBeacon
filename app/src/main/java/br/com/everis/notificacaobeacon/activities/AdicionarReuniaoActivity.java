@@ -71,12 +71,8 @@ public class AdicionarReuniaoActivity extends AppCompatActivity implements View.
 
     private ProgressDialog barraProgresso = null;
 
-    private ReuniaoDAO datasource = null;
-
     private Integer idReuniao = null;
     private String flagTipo = null;
-
-    private LocationManager mLocationManager;
 
     private IReuniaoService reuniaoService = null;
 
@@ -434,8 +430,8 @@ public class AdicionarReuniaoActivity extends AppCompatActivity implements View.
 
                                         if (lstEnderecos.size() > 0) {
 
-                                            Double lat = (double) (lstEnderecos.get(0).getLatitude());
-                                            Double lon = (double) (lstEnderecos.get(0).getLongitude());
+                                            Double lat = lstEnderecos.get(0).getLatitude();
+                                            Double lon = lstEnderecos.get(0).getLongitude();
 
                                             final LatLng user = new LatLng(lat, lon);
 

@@ -8,7 +8,7 @@ import android.widget.Button;
 
 import br.com.everis.notificacaobeacon.R;
 
-public class ReuniaoMarcada extends AppCompatActivity implements View.OnClickListener {
+public class ReuniaoMarcadaActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button btnVoltarSucesso = null;
 

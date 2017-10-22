@@ -78,6 +78,7 @@ public class ReuniaoServiceImpl implements IReuniaoService {
 
             @Override
             public void onFailure(Call call, Throwable t) {
+                reuniaoListener.reuniaoFailed(new RestException(t.getMessage(), t));
 
             }
         });

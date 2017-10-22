@@ -123,7 +123,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="br.com.everis.notificacaobeacon.activities.ReuniaoMainActivity" />
         </activity>
-        <activity android:name="br.com.everis.notificacaobeacon.activities.ReuniaoMarcada" />
+        <activity android:name="br.com.everis.notificacaobeacon.activities.ReuniaoMarcadaActivity" />
         <activity
             android:name="com.google.android.gms.common.api.GoogleApiActivity"
             android:exported="false"

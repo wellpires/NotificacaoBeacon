@@ -403,8 +403,8 @@ public class ReuniaoFragment extends Fragment implements View.OnTouchListener, R
 
                                         if (lstEnderecos.size() > 0) {
 
-                                            Double lat = (double) (lstEnderecos.get(0).getLatitude());
-                                            Double lon = (double) (lstEnderecos.get(0).getLongitude());
+                                            Double lat = lstEnderecos.get(0).getLatitude();
+                                            Double lon = lstEnderecos.get(0).getLongitude();
 
                                             final LatLng user = new LatLng(lat, lon);
 

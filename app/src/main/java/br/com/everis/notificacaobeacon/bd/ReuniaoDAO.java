@@ -10,7 +10,6 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.everis.notificacaobeacon.activities.AdicionarReuniaoActivity;
 import br.com.everis.notificacaobeacon.model.ReuniaoVO;
 
 /**

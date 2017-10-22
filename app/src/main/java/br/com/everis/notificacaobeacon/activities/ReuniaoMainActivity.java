@@ -18,7 +18,6 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,10 +31,10 @@ import java.util.List;
 
 import br.com.everis.notificacaobeacon.R;
 import br.com.everis.notificacaobeacon.adapter.ReunioesHojeAdapter;
-import br.com.everis.notificacaobeacon.bd.ReuniaoDAO;
 import br.com.everis.notificacaobeacon.exception.RestException;
 import br.com.everis.notificacaobeacon.listener.ReuniaoPresenterListener;
 import br.com.everis.notificacaobeacon.model.ReuniaoVO;
+import br.com.everis.notificacaobeacon.service.IReuniaoService;
 import br.com.everis.notificacaobeacon.service.NotificacaoBeaconService;
 import br.com.everis.notificacaobeacon.service.impl.ReuniaoServiceImpl;
 import br.com.everis.notificacaobeacon.utils.Constants;
@@ -50,9 +49,6 @@ public class ReuniaoMainActivity extends AppCompatActivity
 
     private TextView lblEmptyListMain = null;
 
-    private Button btnEnviar = null;
-    private Button btnBeacon = null;
-
     private FloatingActionButton fabNovaReuniao = null;
     private FloatingActionButton fabNotificacaoReuniao = null;
 
@@ -60,11 +56,9 @@ public class ReuniaoMainActivity extends AppCompatActivity
 
     private ProgressDialog barraProgresso = null;
 
-    private ReuniaoDAO datasource = null;
-
     static final int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
 
-    private ReuniaoServiceImpl reuniaoService = null;
+    private IReuniaoService reuniaoService = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,7 +115,11 @@ public class ReuniaoMainActivity extends AppCompatActivity
         barraProgresso.setIndeterminate(true);
         barraProgresso.show();
 
-        buscarReunioes();
+        try {
+            buscarReunioes();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         Branch.setPlayStoreReferrerCheckTimeout(0);
         Branch.getAutoInstance(this);
@@ -154,7 +152,6 @@ public class ReuniaoMainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
@@ -186,13 +183,6 @@ public class ReuniaoMainActivity extends AppCompatActivity
                 Toast.makeText(this, Constants.SEM_REUNIAO_ATUAL, Toast.LENGTH_LONG).show();
             }
         }
-    }
-
-    public void alterarRegistro(View view) {
-        Intent i = new Intent(ReuniaoMainActivity.this, AdicionarReuniaoActivity.class);
-        i.putExtra(Constants.ID_REUNIAO_KEY, view.getTag().toString());
-        i.putExtra(Constants.NOVA_REUNIAO_KEY, Constants.FLAG_ALTERAR_REUNIAO);
-        startActivity(i);
     }
 
     public void excluirRegistro(final View view) {
@@ -234,7 +224,7 @@ public class ReuniaoMainActivity extends AppCompatActivity
         }
     }
 
-    private void buscarReunioes() {
+    private void buscarReunioes() throws Exception {
         ReuniaoVO r = new ReuniaoVO();
         r.setDtInicio(ReuniaoUtils.dateTimeToString(new Date()));
         reuniaoService = new ReuniaoServiceImpl(this, this);
@@ -276,12 +266,16 @@ public class ReuniaoMainActivity extends AppCompatActivity
 
     @Override
     public void reuniaoReady() {
-        buscarReunioes();
+        try {
+            buscarReunioes();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void reuniaoFailed(RestException exception) {
         barraProgresso.dismiss();
-        Toast.makeText(this, exception.getMessage(), Toast.LENGTH_SHORT).show();
+        ReuniaoUtils.mostrarAvisoDialogo(this, exception.getMessage());
     }
 }
