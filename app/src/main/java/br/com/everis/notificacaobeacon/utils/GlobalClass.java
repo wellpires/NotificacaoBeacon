@@ -3,6 +3,7 @@ package br.com.everis.notificacaobeacon.utils;
 import android.app.Application;
 
 import br.com.everis.notificacaobeacon.model.ReuniaoVO;
+import io.branch.referral.Branch;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 
@@ -45,6 +46,7 @@ public class GlobalClass extends Application {
         super.onCreate();
         RealmConfiguration config = new RealmConfiguration.Builder(this).deleteRealmIfMigrationNeeded().build();
         Realm.setDefaultConfiguration(config);
+//        Branch.getInstance(this);
     }
 
 }

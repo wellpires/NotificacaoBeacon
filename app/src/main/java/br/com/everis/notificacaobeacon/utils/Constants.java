@@ -85,4 +85,9 @@ public interface Constants {
     String ERRO_FALTA_ANEXO = "Selecione ao menos um anexo";
     String LABEL_FINALIZAR = "Finalizar";
     String LABEL_PROXIMO = "Próximo";
+    String LABEL_AGUARDE = "Aguarde!";
+    String MENSAGEM_CONFIRMACAO = "Olá Sr(a) ${nome}.Você foi convidado para a reunião sobre ${assunto}." +
+            " Favor cadastrar um usuário e senha para ter acesso ao aplicativo";
+    int CODIGO_CONFIRMADO = 1;
+    int CODIGO_NAO_CONFIRMADO = 2;
 }

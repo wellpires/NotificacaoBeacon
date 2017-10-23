@@ -22,4 +22,8 @@ public interface APIUrls {
     //CARGOS
     String GET_CARGO_LISTAR = "cargo/listarCargos";
 
+    //USUARIOS
+    String GET_BUSCAR_DADOS_USUARIOS = "usuario/buscarDadosUsuario";
+    String PUT_GRAVAR_USUARIO = "usuario/gravarUsuario";
+
 }

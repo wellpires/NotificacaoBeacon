@@ -256,6 +256,10 @@
         "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\53d6b259b10dbb60a8be601361a972314c119b61\\output\\res\\layout\\notification_action_tombstone.xml"
     },
     {
+        "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_confirmar_reuniao.xml",
+        "source": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\src\\main\\res\\layout\\activity_confirmar_reuniao.xml"
+    },
+    {
         "merged": "C:\\Users\\wgoncalv\\Documents\\AndroidProjects\\NotificacaoBeacon\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_expanded_menu_layout.xml",
         "source": "C:\\Users\\wgoncalv\\.android\\build-cache\\53d6b259b10dbb60a8be601361a972314c119b61\\output\\res\\layout\\abc_expanded_menu_layout.xml"
     },

@@ -41,8 +41,6 @@ import br.com.everis.notificacaobeacon.utils.Constants;
 import br.com.everis.notificacaobeacon.utils.GlobalClass;
 import br.com.everis.notificacaobeacon.utils.ReuniaoUtils;
 import br.com.everis.notificacaobeacon.utils.UpdateGUI;
-import io.branch.referral.Branch;
-import io.branch.referral.BranchError;
 
 public class ReuniaoMainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener, ReuniaoPresenterListener {
@@ -120,9 +118,6 @@ public class ReuniaoMainActivity extends AppCompatActivity
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        Branch.setPlayStoreReferrerCheckTimeout(0);
-        Branch.getAutoInstance(this);
 
     }
 
@@ -229,24 +224,6 @@ public class ReuniaoMainActivity extends AppCompatActivity
         r.setDtInicio(ReuniaoUtils.dateTimeToString(new Date()));
         reuniaoService = new ReuniaoServiceImpl(this, this);
         reuniaoService.buscarReunioes(r);
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        Branch b = Branch.getInstance();
-
-        b.initSession(new Branch.BranchReferralInitListener() {
-            @Override
-            public void onInitFinished(JSONObject referringParams, BranchError error) {
-                if (error == null) {
-                    Log.i("MyApp", referringParams.toString());
-                } else {
-                    Log.i("MyApp", error.getMessage());
-                }
-
-            }
-        }, getIntent().getData(), this);
     }
 
     @Override

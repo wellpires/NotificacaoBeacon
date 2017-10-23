@@ -49,18 +49,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
-        <meta-data
-            android:name="io.branch.sdk.BranchKey"
-            android:value="key_live_cmyUnP8hqHRDrxA5ulDTHagbxya0t69W" />
-
-        <receiver
-            android:name="io.branch.referral.InstallListener"
-            android:exported="true" >
-            <intent-filter>
-                <action android:name="com.android.vending.INSTALL_REFERRER" />
-            </intent-filter>
-        </receiver>
-
         <service
             android:name="br.com.everis.notificacaobeacon.service.NotificacaoBeaconService"
             android:enabled="true"
@@ -96,17 +84,6 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="br.com.everis.notificacaobeacon.activities.ReuniaoMainActivity" />
-
-            <intent-filter>
-                <data
-                    android:host="open"
-                    android:scheme="reuniaoapp" />
-
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-            </intent-filter>
         </activity>
         <activity
             android:name="br.com.everis.notificacaobeacon.activities.ReunioesActivity"
@@ -124,6 +101,36 @@
                 android:value="br.com.everis.notificacaobeacon.activities.ReuniaoMainActivity" />
         </activity>
         <activity android:name="br.com.everis.notificacaobeacon.activities.ReuniaoMarcadaActivity" />
+        <activity
+            android:name="br.com.everis.notificacaobeacon.activities.ConfirmarReuniao"
+            android:launchMode="singleTask" >
+            <intent-filter>
+                <data
+                    android:host="open"
+                    android:scheme="reuniaoapp" />
+
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+            </intent-filter>
+        </activity>
+
+        <receiver
+            android:name="io.branch.referral.InstallListener"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="com.android.vending.INSTALL_REFERRER" />
+            </intent-filter>
+        </receiver>
+
+        <meta-data
+            android:name="io.branch.sdk.BranchKey"
+            android:value="key_live_cmyUnP8hqHRDrxA5ulDTHagbxya0t69W" />
+        <meta-data
+            android:name="io.branch.sdk.BranchKey.test"
+            android:value="key_test_nlqVnL4fuIKAyAB3qdwQYjdmAwe7Mnbg" />
+
         <activity
             android:name="com.google.android.gms.common.api.GoogleApiActivity"
             android:exported="false"
