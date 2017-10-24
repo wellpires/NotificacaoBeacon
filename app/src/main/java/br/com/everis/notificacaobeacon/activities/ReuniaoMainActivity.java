@@ -15,15 +15,13 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
+import com.google.gson.JsonArray;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -243,7 +241,7 @@ public class ReuniaoMainActivity extends AppCompatActivity
     }
 
     @Override
-    public void reuniaoReady(JSONArray usuarios) {
+    public void reuniaoReady(JsonArray usuarios) {
 
     }
 

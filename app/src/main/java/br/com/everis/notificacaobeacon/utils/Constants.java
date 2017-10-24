@@ -91,6 +91,8 @@ public interface Constants {
     int CODIGO_CONFIRMADO = 1;
     int CODIGO_NAO_CONFIRMADO = 2;
 
-    String TEMPLATE_DEEP_LINK = "https://appreuniao.test-app.link/WaXVADL8sH?idUsuario={idUsuario}";
+    String TEMPLATE_DEEP_LINK = "https://appreuniao.test-app.link/WaXVADL8sH?idUsuario=${idUsuario}";
+
+    String MENSAGEM_EMAIL_CONVITE = "Olá Sr(a). ${nome}. Você foi convidado para a reunião sobre ${assunto}, que acontecerá dia ${dataFormatada}. Clique no link abaixo para baixar e ter acesso aos detalhes da sua reunião:";
 
 }

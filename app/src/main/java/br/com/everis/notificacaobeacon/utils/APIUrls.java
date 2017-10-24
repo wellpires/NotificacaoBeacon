@@ -6,7 +6,7 @@ package br.com.everis.notificacaobeacon.utils;
 
 public interface APIUrls {
 
-    String BASE_URL = "http://192.168.0.25:8080/ControleReunioesWS/";
+    String BASE_URL = "http://10.213.118.109:8080/ControleReunioesWS/";
 
     //REUNIÃO
     String POST_GRAVAR_REUNIAO = "reuniao/gravarReuniao";

@@ -6,12 +6,15 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Build;
 import android.service.notification.StatusBarNotification;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.NotificationCompat;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import org.joda.time.DateTime;
 
@@ -217,6 +220,13 @@ public class ReuniaoUtils {
         return Long.valueOf(value);
     }
 
+    public static String longToString(Long value) {
+        if (value == null) {
+            value = 0L;
+        }
+        return String.valueOf(value);
+    }
+
     public static void popularBancoLocal(Context c, List<ReuniaoVO> lstReunioes) throws ParseException {
         ReuniaoDAO datasource = new ReuniaoDAO(c);
         datasource.deleteReuniao();
@@ -225,8 +235,7 @@ public class ReuniaoUtils {
         }
     }
 
-    public static String generateStorngPasswordHash(String password) throws NoSuchAlgorithmException, InvalidKeySpecException
-    {
+    public static String generateStorngPasswordHash(String password) throws NoSuchAlgorithmException, InvalidKeySpecException {
         int iterations = 1000;
         char[] chars = password.toCharArray();
         byte[] salt = getSalt();
@@ -237,31 +246,26 @@ public class ReuniaoUtils {
         return iterations + ":" + toHex(salt) + ":" + toHex(hash);
     }
 
-    public static byte[] getSalt() throws NoSuchAlgorithmException
-    {
+    public static byte[] getSalt() throws NoSuchAlgorithmException {
         SecureRandom sr = SecureRandom.getInstance("SHA1PRNG");
         byte[] salt = new byte[16];
         sr.nextBytes(salt);
         return salt;
     }
 
-    public static String toHex(byte[] array) throws NoSuchAlgorithmException
-    {
+    public static String toHex(byte[] array) throws NoSuchAlgorithmException {
         BigInteger bi = new BigInteger(1, array);
         String hex = bi.toString(16);
         int paddingLength = (array.length * 2) - hex.length();
-        if(paddingLength > 0)
-        {
-            return String.format("%0"  +paddingLength + "d", 0) + hex;
-        }else{
+        if (paddingLength > 0) {
+            return String.format("%0" + paddingLength + "d", 0) + hex;
+        } else {
             return hex;
         }
     }
 
 
-
-    public static boolean validatePassword(String originalPassword, String storedPassword) throws NoSuchAlgorithmException, InvalidKeySpecException
-    {
+    public static boolean validatePassword(String originalPassword, String storedPassword) throws NoSuchAlgorithmException, InvalidKeySpecException {
         String[] parts = storedPassword.split(":");
         int iterations = Integer.parseInt(parts[0]);
         byte[] salt = fromHex(parts[1]);
@@ -272,20 +276,29 @@ public class ReuniaoUtils {
         byte[] testHash = skf.generateSecret(spec).getEncoded();
 
         int diff = hash.length ^ testHash.length;
-        for(int i = 0; i < hash.length && i < testHash.length; i++)
-        {
+        for (int i = 0; i < hash.length && i < testHash.length; i++) {
             diff |= hash[i] ^ testHash[i];
         }
         return diff == 0;
     }
-    public static byte[] fromHex(String hex) throws NoSuchAlgorithmException
-    {
+
+    public static byte[] fromHex(String hex) throws NoSuchAlgorithmException {
         byte[] bytes = new byte[hex.length() / 2];
-        for(int i = 0; i<bytes.length ;i++)
-        {
-            bytes[i] = (byte)Integer.parseInt(hex.substring(2 * i, 2 * i + 2), 16);
+        for (int i = 0; i < bytes.length; i++) {
+            bytes[i] = (byte) Integer.parseInt(hex.substring(2 * i, 2 * i + 2), 16);
         }
         return bytes;
     }
 
+    public static boolean isOnline(Context context) {
+        try {
+            ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo netInfo = cm.getActiveNetworkInfo();
+            return netInfo != null && netInfo.isConnectedOrConnecting();
+        }
+        catch(Exception ex){
+            Toast.makeText(context, "Erro ao verificar se estava online! (" + ex.getMessage() + ")", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+    }
 }

@@ -35,7 +35,9 @@ import com.github.angads25.filepicker.view.FilePickerDialog;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.UploadTask;
+import com.google.gson.Gson;
 import com.google.gson.JsonArray;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -329,6 +331,13 @@ public class AnexoFragment extends Fragment implements DialogSelectionListener, 
                         barraProgresso.dismiss();
                         return;
                     }
+
+                    List<UsuarioVO> lstUsuarios = new Gson().fromJson(usuarios, new TypeToken<List<UsuarioVO>>(){}.getType());
+
+                    ReuniaoVO reuniao = reuniaoDAO.find(ReuniaoVO.class);
+                    reuniao = reuniaoDAO.detachFromRealm(reuniao);
+                    EnviarEmail emailActivity = new EnviarEmail();
+                    emailActivity.enviarEmail(context, lstUsuarios, reuniao);
 
                     //TODO TERMINAR ESSA PARTE. ENVIAR EMAIL PARA OS PARTICIPANTES COM O Constants.TEMPLATE_DEEP_LINK
 
