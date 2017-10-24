@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:2:1-113:12
+ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:2:1-110:12
 	package
 		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:3:5-46
 		INJECTED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml
@@ -20,6 +20,7 @@ ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src
 MERGED from [io.realm:realm-android-library:1.2.0] C:\Users\wgoncalv\.android\build-cache\1d72b723efd2e9b7cd89ff0b50a60afa7a81d0ad\output\AndroidManifest.xml:5:5-7:41
 MERGED from [com.getkeepsafe.relinker:relinker:1.2.1] C:\Users\wgoncalv\.android\build-cache\eb23fb7e19d90346c932998fca6b9808c9d51608\output\AndroidManifest.xml:7:5-43
 MERGED from [io.branch.sdk.android:library:2.12.2] C:\Users\wgoncalv\.android\build-cache\e55783233eb7733b5f7dd660ef88835383892bb6\output\AndroidManifest.xml:7:5-9:41
+MERGED from [com.crashlytics.sdk.android:answers-shim:0.0.6] C:\Users\wgoncalv\.android\build-cache\c11563d2f5a53d0c3cd76b60cb2d5ebe41e12d4f\output\AndroidManifest.xml:7:5-9:41
 MERGED from [com.android.support:design:25.3.1] C:\Users\wgoncalv\.android\build-cache\985498013d4f89c44568b1364256c5b8058c9a56\output\AndroidManifest.xml:21:5-23:62
 MERGED from [com.android.support:transition:25.3.1] C:\Users\wgoncalv\.android\build-cache\fd08c003ac8ff804c25ee3f3b718c541dd3f7ffc\output\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\wgoncalv\.android\build-cache\128c6f6844add61e1fb1424acac11ea1fae79c83\output\AndroidManifest.xml:5:5-7:41
@@ -32,13 +33,14 @@ MERGED from [com.android.support:support-vector-drawable:25.3.1] C:\Users\wgonca
 MERGED from [com.android.support:palette-v7:25.2.0] C:\Users\wgoncalv\.android\build-cache\515f496dcf054affcbd49420b746141cc64d3004\output\AndroidManifest.xml:20:5-43
 MERGED from [com.google.android.gms:play-services-maps:11.4.0] C:\Users\wgoncalv\.android\build-cache\1404848c7fd5cab676c477ffda7356718850e968\output\AndroidManifest.xml:23:5-43
 MERGED from [com.google.android.gms:play-services-location:11.4.0] C:\Users\wgoncalv\.android\build-cache\469a80aa2994527f8602a2ec60a1e908af2bd435\output\AndroidManifest.xml:3:5-43
-MERGED from [com.google.android.gms:play-services-base:11.4.0] C:\Users\wgoncalv\.android\build-cache\204f9450603310d6994f7664edf1aea8c4ddc8ce\output\AndroidManifest.xml:17:5-43
 MERGED from [com.google.android.gms:play-services-ads:11.4.0] C:\Users\wgoncalv\.android\build-cache\0c52069cdff75c614e93e02e81c006767690d168\output\AndroidManifest.xml:17:5-94
 MERGED from [com.google.android.gms:play-services-ads-lite:11.4.0] C:\Users\wgoncalv\.android\build-cache\f556893208855dc8e5a09a29da0fc8d6705cca64\output\AndroidManifest.xml:22:5-43
 MERGED from [com.google.android.gms:play-services-gass:11.4.0] C:\Users\wgoncalv\.android\build-cache\948fcd0dacd73f8a6e3db3c24153d43cec462f24\output\AndroidManifest.xml:3:5-43
 MERGED from [com.google.firebase:firebase-messaging:11.4.0] C:\Users\wgoncalv\.android\build-cache\87d6e8ca2c2ab4ef488ee41d8f509fb27f5b789e\output\AndroidManifest.xml:17:5-43
 MERGED from [com.google.firebase:firebase-storage:11.4.0] C:\Users\wgoncalv\.android\build-cache\6c74a879bcea3487da1dedf67b526275fa5e5b25\output\AndroidManifest.xml:3:5-43
 MERGED from [com.google.firebase:firebase-storage-common:11.4.0] C:\Users\wgoncalv\.android\build-cache\0662b183eedfc459e5b7abb0e7d84f4316ec596a\output\AndroidManifest.xml:3:5-43
+MERGED from [com.google.firebase:firebase-appindexing:11.4.0] C:\Users\wgoncalv\.android\build-cache\bcadb0f2d4af6dbd9209b9274aa9c4fe7f73806f\output\AndroidManifest.xml:17:5-43
+MERGED from [com.google.android.gms:play-services-base:11.4.0] C:\Users\wgoncalv\.android\build-cache\204f9450603310d6994f7664edf1aea8c4ddc8ce\output\AndroidManifest.xml:17:5-43
 MERGED from [org.altbeacon:android-beacon-library:2.7] C:\Users\wgoncalv\.android\build-cache\68ce2ef0fb8e33206c10fd19ab3033034aff6f23\output\AndroidManifest.xml:7:5-9:41
 MERGED from [com.github.angads25:filepicker:1.1.1] C:\Users\wgoncalv\.android\build-cache\263b9965a8788f83300ecda3b67bf4f429d09b0d\output\AndroidManifest.xml:7:5-9:41
 MERGED from [com.google.firebase:firebase-core:11.4.0] C:\Users\wgoncalv\.android\build-cache\b6f81d95d504b482d4b05aa4f437a331213b7d49\output\AndroidManifest.xml:4:5-43
@@ -113,7 +115,8 @@ ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src
 	android:name
 		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:20:22-62
 application
-ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:22:5-110:19
+ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:22:5-109:19
+MERGED from [com.crashlytics.sdk.android:answers-shim:0.0.6] C:\Users\wgoncalv\.android\build-cache\c11563d2f5a53d0c3cd76b60cb2d5ebe41e12d4f\output\AndroidManifest.xml:11:5-20
 MERGED from [com.android.support:design:25.3.1] C:\Users\wgoncalv\.android\build-cache\985498013d4f89c44568b1364256c5b8058c9a56\output\AndroidManifest.xml:29:5-20
 MERGED from [com.android.support:transition:25.3.1] C:\Users\wgoncalv\.android\build-cache\fd08c003ac8ff804c25ee3f3b718c541dd3f7ffc\output\AndroidManifest.xml:26:5-20
 MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\wgoncalv\.android\build-cache\128c6f6844add61e1fb1424acac11ea1fae79c83\output\AndroidManifest.xml:9:5-20
@@ -125,10 +128,11 @@ MERGED from [com.android.support:support-vector-drawable:25.3.1] C:\Users\wgonca
 MERGED from [com.android.support:palette-v7:25.2.0] C:\Users\wgoncalv\.android\build-cache\515f496dcf054affcbd49420b746141cc64d3004\output\AndroidManifest.xml:22:5-23:19
 MERGED from [com.google.android.gms:play-services-maps:11.4.0] C:\Users\wgoncalv\.android\build-cache\1404848c7fd5cab676c477ffda7356718850e968\output\AndroidManifest.xml:24:5-19
 MERGED from [com.google.android.gms:play-services-location:11.4.0] C:\Users\wgoncalv\.android\build-cache\469a80aa2994527f8602a2ec60a1e908af2bd435\output\AndroidManifest.xml:4:5-19
-MERGED from [com.google.android.gms:play-services-base:11.4.0] C:\Users\wgoncalv\.android\build-cache\204f9450603310d6994f7664edf1aea8c4ddc8ce\output\AndroidManifest.xml:18:5-20:19
 MERGED from [com.google.android.gms:play-services-ads-lite:11.4.0] C:\Users\wgoncalv\.android\build-cache\f556893208855dc8e5a09a29da0fc8d6705cca64\output\AndroidManifest.xml:23:5-26:19
 MERGED from [com.google.android.gms:play-services-gass:11.4.0] C:\Users\wgoncalv\.android\build-cache\948fcd0dacd73f8a6e3db3c24153d43cec462f24\output\AndroidManifest.xml:4:5-19
 MERGED from [com.google.firebase:firebase-messaging:11.4.0] C:\Users\wgoncalv\.android\build-cache\87d6e8ca2c2ab4ef488ee41d8f509fb27f5b789e\output\AndroidManifest.xml:19:5-29:19
+MERGED from [com.google.firebase:firebase-appindexing:11.4.0] C:\Users\wgoncalv\.android\build-cache\bcadb0f2d4af6dbd9209b9274aa9c4fe7f73806f\output\AndroidManifest.xml:18:5-19
+MERGED from [com.google.android.gms:play-services-base:11.4.0] C:\Users\wgoncalv\.android\build-cache\204f9450603310d6994f7664edf1aea8c4ddc8ce\output\AndroidManifest.xml:18:5-20:19
 MERGED from [org.altbeacon:android-beacon-library:2.7] C:\Users\wgoncalv\.android\build-cache\68ce2ef0fb8e33206c10fd19ab3033034aff6f23\output\AndroidManifest.xml:17:5-36:19
 MERGED from [com.google.firebase:firebase-core:11.4.0] C:\Users\wgoncalv\.android\build-cache\b6f81d95d504b482d4b05aa4f437a331213b7d49\output\AndroidManifest.xml:5:5-20
 MERGED from [com.google.firebase:firebase-analytics:11.4.0] C:\Users\wgoncalv\.android\build-cache\f847aec647c1209b73db376f9f76bf1c98d87503\output\AndroidManifest.xml:24:5-34:19
@@ -233,18 +237,20 @@ activity#br.com.everis.notificacaobeacon.activities.ReuniaoMarcadaActivity
 ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:82:9-71
 	android:name
 		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:82:19-68
-activity#br.com.everis.notificacaobeacon.activities.ConfirmarReuniao
-ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:83:9-93:20
+activity#br.com.everis.notificacaobeacon.activities.ConfirmarReuniaoActivity
+ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:84:9-92:20
 	android:launchMode
-		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:84:13-44
+		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:85:13-44
 	android:name
-		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:83:19-62
+		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:84:19-70
 intent-filter#android.intent.action.VIEW+android.intent.category.BROWSABLE+android.intent.category.DEFAULT
 ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:86:13-91:29
+	android:label
+		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:86:28-60
+	android:autoVerify
+		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:86:61-86
 data
-ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:87:17-73
-	android:host
-		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:87:51-70
+ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:87:17-52
 	android:scheme
 		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:87:23-50
 action#android.intent.action.VIEW
@@ -259,30 +265,36 @@ category#android.intent.category.BROWSABLE
 ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:90:17-78
 	android:name
 		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:90:27-75
-receiver#io.branch.referral.InstallListener
-ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:95:9-101:20
-	android:exported
-		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:97:13-36
-	android:name
-		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:96:13-62
-intent-filter#com.android.vending.INSTALL_REFERRER
-ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:98:13-100:29
-action#com.android.vending.INSTALL_REFERRER
-ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:99:17-79
-	android:name
-		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:99:25-76
 meta-data#io.branch.sdk.BranchKey
-ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:103:9-105:73
+ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:95:9-78
 	android:value
-		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:105:13-70
+		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:95:59-75
 	android:name
-		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:104:13-51
+		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:95:20-58
 meta-data#io.branch.sdk.BranchKey.test
-ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:107:9-109:73
+ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:96:9-124
 	android:value
-		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:109:13-70
+		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:96:64-121
 	android:name
-		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:108:13-56
+		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:96:20-63
+meta-data#io.branch.sdk.TestMode
+ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:97:9-81
+	android:value
+		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:97:58-78
+	android:name
+		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:97:20-57
+receiver#io.branch.referral.InstallListener
+ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:103:9-107:20
+	android:exported
+		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:103:69-92
+	android:name
+		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:103:19-68
+intent-filter#com.android.vending.INSTALL_REFERRER
+ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:104:13-106:29
+action#com.android.vending.INSTALL_REFERRER
+ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:105:17-79
+	android:name
+		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:105:25-76
 meta-data#android.support.VERSION
 ADDED from [com.android.support:design:25.3.1] C:\Users\wgoncalv\.android\build-cache\985498013d4f89c44568b1364256c5b8058c9a56\output\AndroidManifest.xml:25:5-27:34
 MERGED from [com.android.support:transition:25.3.1] C:\Users\wgoncalv\.android\build-cache\fd08c003ac8ff804c25ee3f3b718c541dd3f7ffc\output\AndroidManifest.xml:22:5-24:34
@@ -314,14 +326,6 @@ ADDED from [com.google.android.gms:play-services-maps:11.4.0] C:\Users\wgoncalv\
 		ADDED from [com.google.android.gms:play-services-maps:11.4.0] C:\Users\wgoncalv\.android\build-cache\1404848c7fd5cab676c477ffda7356718850e968\output\AndroidManifest.xml:21:19-51
 	android:required
 		ADDED from [com.google.android.gms:play-services-maps:11.4.0] C:\Users\wgoncalv\.android\build-cache\1404848c7fd5cab676c477ffda7356718850e968\output\AndroidManifest.xml:21:52-75
-activity#com.google.android.gms.common.api.GoogleApiActivity
-ADDED from [com.google.android.gms:play-services-base:11.4.0] C:\Users\wgoncalv\.android\build-cache\204f9450603310d6994f7664edf1aea8c4ddc8ce\output\AndroidManifest.xml:19:9-172
-	android:exported
-		ADDED from [com.google.android.gms:play-services-base:11.4.0] C:\Users\wgoncalv\.android\build-cache\204f9450603310d6994f7664edf1aea8c4ddc8ce\output\AndroidManifest.xml:19:146-170
-	android:theme
-		ADDED from [com.google.android.gms:play-services-base:11.4.0] C:\Users\wgoncalv\.android\build-cache\204f9450603310d6994f7664edf1aea8c4ddc8ce\output\AndroidManifest.xml:19:86-145
-	android:name
-		ADDED from [com.google.android.gms:play-services-base:11.4.0] C:\Users\wgoncalv\.android\build-cache\204f9450603310d6994f7664edf1aea8c4ddc8ce\output\AndroidManifest.xml:19:19-85
 activity#com.google.android.gms.ads.AdActivity
 ADDED from [com.google.android.gms:play-services-ads-lite:11.4.0] C:\Users\wgoncalv\.android\build-cache\f556893208855dc8e5a09a29da0fc8d6705cca64\output\AndroidManifest.xml:25:9-257
 	android:exported
@@ -346,6 +350,14 @@ action#com.google.firebase.MESSAGING_EVENT
 ADDED from [com.google.firebase:firebase-messaging:11.4.0] C:\Users\wgoncalv\.android\build-cache\87d6e8ca2c2ab4ef488ee41d8f509fb27f5b789e\output\AndroidManifest.xml:25:17-77
 	android:name
 		ADDED from [com.google.firebase:firebase-messaging:11.4.0] C:\Users\wgoncalv\.android\build-cache\87d6e8ca2c2ab4ef488ee41d8f509fb27f5b789e\output\AndroidManifest.xml:25:25-75
+activity#com.google.android.gms.common.api.GoogleApiActivity
+ADDED from [com.google.android.gms:play-services-base:11.4.0] C:\Users\wgoncalv\.android\build-cache\204f9450603310d6994f7664edf1aea8c4ddc8ce\output\AndroidManifest.xml:19:9-172
+	android:exported
+		ADDED from [com.google.android.gms:play-services-base:11.4.0] C:\Users\wgoncalv\.android\build-cache\204f9450603310d6994f7664edf1aea8c4ddc8ce\output\AndroidManifest.xml:19:146-170
+	android:theme
+		ADDED from [com.google.android.gms:play-services-base:11.4.0] C:\Users\wgoncalv\.android\build-cache\204f9450603310d6994f7664edf1aea8c4ddc8ce\output\AndroidManifest.xml:19:86-145
+	android:name
+		ADDED from [com.google.android.gms:play-services-base:11.4.0] C:\Users\wgoncalv\.android\build-cache\204f9450603310d6994f7664edf1aea8c4ddc8ce\output\AndroidManifest.xml:19:19-85
 uses-permission#android.permission.RECEIVE_BOOT_COMPLETED
 ADDED from [org.altbeacon:android-beacon-library:2.7] C:\Users\wgoncalv\.android\build-cache\68ce2ef0fb8e33206c10fd19ab3033034aff6f23\output\AndroidManifest.xml:13:5-81
 	android:name

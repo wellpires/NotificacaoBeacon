@@ -22,6 +22,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -238,6 +239,11 @@ public class ReuniaoMainActivity extends AppCompatActivity
 
     @Override
     public void reuniaoReady(ReuniaoVO reuniaoVO) {
+
+    }
+
+    @Override
+    public void reuniaoReady(JSONArray usuarios) {
 
     }
 

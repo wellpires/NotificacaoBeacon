@@ -1,5 +1,7 @@
 package br.com.everis.notificacaobeacon.service.api;
 
+import com.google.gson.JsonArray;
+
 import java.util.List;
 
 import br.com.everis.notificacaobeacon.model.ReuniaoArquivoUsuarioVO;
@@ -22,7 +24,7 @@ import retrofit2.http.Query;
 public interface ReuniaoAPI {
 
     @POST(APIUrls.POST_GRAVAR_REUNIAO)
-    Call<Void> criarReuniao(@Body ReuniaoArquivoUsuarioVO rauVO);
+    Call<JsonArray> criarReuniao(@Body ReuniaoArquivoUsuarioVO rauVO);
 
     @PUT(APIUrls.PUT_EDITAR_REUNIAO + "/{idReuniao}")
     Call<Void> editarReuniao(@Path("idReuniao") long idReuniao, @Body ReuniaoVO reuniaoVO);

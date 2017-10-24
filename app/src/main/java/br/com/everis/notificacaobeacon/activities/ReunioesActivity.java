@@ -16,6 +16,8 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.gson.JsonArray;
+
 import org.joda.time.DateTime;
 
 import java.text.ParseException;
@@ -25,7 +27,6 @@ import java.util.List;
 
 import br.com.everis.notificacaobeacon.R;
 import br.com.everis.notificacaobeacon.adapter.ReunioesAdapter;
-import br.com.everis.notificacaobeacon.bd.ReuniaoDAO;
 import br.com.everis.notificacaobeacon.exception.RestException;
 import br.com.everis.notificacaobeacon.listener.ReuniaoPresenterListener;
 import br.com.everis.notificacaobeacon.model.ReuniaoVO;
@@ -176,6 +177,11 @@ public class ReunioesActivity extends AppCompatActivity implements View.OnTouchL
 
     @Override
     public void reuniaoReady(ReuniaoVO reuniaoVO) {
+
+    }
+
+    @Override
+    public void reuniaoReady(JsonArray usuarios) {
 
     }
 

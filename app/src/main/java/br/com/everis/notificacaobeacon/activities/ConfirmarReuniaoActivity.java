@@ -2,27 +2,24 @@ package br.com.everis.notificacaobeacon.activities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import org.apache.commons.lang3.text.StrSubstitutor;
+import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.util.HashMap;
@@ -39,7 +36,7 @@ import br.com.everis.notificacaobeacon.utils.ReuniaoUtils;
 import io.branch.referral.Branch;
 import io.branch.referral.BranchError;
 
-public class ConfirmarReuniao extends AppCompatActivity implements UsuarioPresenterListener, View.OnClickListener {
+public class ConfirmarReuniaoActivity extends AppCompatActivity implements UsuarioPresenterListener, View.OnClickListener, Branch.BranchReferralInitListener {
 
     private TextView lblMensagem = null;
     private EditText txtUsuario = null;
@@ -57,10 +54,7 @@ public class ConfirmarReuniao extends AppCompatActivity implements UsuarioPresen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_confirmar_reuniao);
 
-        Branch.setPlayStoreReferrerCheckTimeout(0);
-        Branch.getAutoInstance(this);
-
-        Intent intent = getIntent();
+        onNewIntent(getIntent());
 
         lblMensagem = (TextView) findViewById(R.id.lblMensagem);
         txtUsuario = (EditText) findViewById(R.id.txtUsuario);
@@ -73,28 +67,20 @@ public class ConfirmarReuniao extends AppCompatActivity implements UsuarioPresen
         barraProgresso.setMessage(Constants.LABEL_AGUARDE);
         barraProgresso.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         barraProgresso.setIndeterminate(true);
-        barraProgresso.show();
 
-        usuarioService = new UsuarioServiceImpl(this);
-        usuarioService.buscarDadosUsuario(1L);
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
 
-        Branch branch = Branch.getInstance();
-        branch.initSession(new Branch.BranchReferralInitListener() {
-            @Override
-            public void onInitFinished(JSONObject referringParams, BranchError error) {
-                if(error == null){
-
-                }else {
-                    Log.i("MyApp", error.getMessage());
-                }
-            }
-        }, this.getIntent().getData(), this);
+        // Branch init
+        Branch.getInstance().initSession(this, this.getIntent().getData(), this);
 
     }
 
@@ -105,6 +91,12 @@ public class ConfirmarReuniao extends AppCompatActivity implements UsuarioPresen
 
     @Override
     public void usuarioReady(JsonArray dados) {
+
+        if(dados.size() == 0){
+            barraProgresso.dismiss();
+            finish();
+            return;
+        }
 
         usuario = new Gson().fromJson(dados.get(0), UsuarioVO.class);
         reuniao = new Gson().fromJson(dados.get(1), ReuniaoVO.class);
@@ -164,6 +156,25 @@ public class ConfirmarReuniao extends AppCompatActivity implements UsuarioPresen
             } catch (Exception e){
                 e.printStackTrace();
             }
+        }
+    }
+
+    @Override
+    public void onInitFinished(JSONObject referringParams, BranchError error) {
+        barraProgresso.show();
+        if (error == null) {
+            try {
+                String pIdUsuario = referringParams.getString("idUsuario");
+                Long idUsuario = ReuniaoUtils.stringToLong(pIdUsuario);
+                usuarioService = new UsuarioServiceImpl(this);
+                usuarioService.buscarDadosUsuario(idUsuario);
+                Log.i("BRANCH SDK", referringParams.getString("idUsuario"));
+                Log.i("PASSOU AQUI PORRA", "TESTE PORRA");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        } else {
+            Log.i("BRANCH SDK", error.getMessage());
         }
     }
 }

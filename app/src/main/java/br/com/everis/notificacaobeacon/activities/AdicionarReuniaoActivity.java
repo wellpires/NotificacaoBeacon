@@ -38,8 +38,10 @@ import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.gson.JsonArray;
 
 import org.joda.time.DateTime;
+import org.json.JSONArray;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -532,6 +534,11 @@ public class AdicionarReuniaoActivity extends AppCompatActivity implements View.
         } catch (ParseException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void reuniaoReady(JsonArray usuarios) {
+
     }
 
     @Override

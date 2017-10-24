@@ -8,6 +8,8 @@ import android.os.IBinder;
 import android.os.RemoteException;
 import android.util.Log;
 
+import com.google.gson.JsonArray;
+
 import org.altbeacon.beacon.BeaconManager;
 import org.altbeacon.beacon.BeaconParser;
 import org.altbeacon.beacon.Identifier;
@@ -17,6 +19,7 @@ import org.altbeacon.beacon.startup.RegionBootstrap;
 import org.joda.time.DateTime;
 import org.joda.time.Duration;
 import org.joda.time.Minutes;
+import org.json.JSONArray;
 
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -290,6 +293,11 @@ public class NotificacaoBeaconService extends Service implements BootstrapNotifi
 
     @Override
     public void reuniaoReady(ReuniaoVO reuniaoVO) {
+
+    }
+
+    @Override
+    public void reuniaoReady(JsonArray usuarios) {
 
     }
 

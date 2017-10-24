@@ -90,4 +90,7 @@ public interface Constants {
             " Favor cadastrar um usuário e senha para ter acesso ao aplicativo";
     int CODIGO_CONFIRMADO = 1;
     int CODIGO_NAO_CONFIRMADO = 2;
+
+    String TEMPLATE_DEEP_LINK = "https://appreuniao.test-app.link/WaXVADL8sH?idUsuario={idUsuario}";
+
 }

@@ -2,6 +2,8 @@ package br.com.everis.notificacaobeacon.service.impl;
 
 import android.content.Context;
 
+import com.google.gson.JsonArray;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -35,15 +37,15 @@ public class ReuniaoServiceImpl implements IReuniaoService {
 
     @Override
     public void gravarReuniao(ReuniaoArquivoUsuarioVO reuniao) throws IOException {
-        Call<Void> call = reuniaoAPI.criarReuniao(reuniao);
-        call.enqueue(new Callback<Void>() {
+        Call<JsonArray> call = reuniaoAPI.criarReuniao(reuniao);
+        call.enqueue(new Callback<JsonArray>() {
             @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {
-                reuniaoListener.reuniaoReady();
+            public void onResponse(Call<JsonArray> call, Response<JsonArray> response) {
+                reuniaoListener.reuniaoReady(response.body());
             }
 
             @Override
-            public void onFailure(Call<Void> call, Throwable t) {
+            public void onFailure(Call<JsonArray> call, Throwable t) {
                 reuniaoListener.reuniaoFailed(new RestException(t.getMessage()));
             }
         });

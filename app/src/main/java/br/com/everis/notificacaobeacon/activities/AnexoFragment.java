@@ -35,6 +35,7 @@ import com.github.angads25.filepicker.view.FilePickerDialog;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.UploadTask;
+import com.google.gson.JsonArray;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -59,7 +60,7 @@ import br.com.everis.notificacaobeacon.service.impl.ReuniaoServiceImpl;
 import br.com.everis.notificacaobeacon.utils.Constants;
 import br.com.everis.notificacaobeacon.utils.FirebaseUtils;
 
-public class AnexoFragment extends Fragment implements DialogSelectionListener, AdapterView.OnItemLongClickListener, View.OnClickListener, OnSuccessListener<UploadTask.TaskSnapshot>, OnFailureListener{
+public class AnexoFragment extends Fragment implements DialogSelectionListener, AdapterView.OnItemLongClickListener, View.OnClickListener, OnSuccessListener<UploadTask.TaskSnapshot>, OnFailureListener {
     private static final int CAMERA_REQUEST = 1888;
 
     private View view = null;
@@ -257,88 +258,102 @@ public class AnexoFragment extends Fragment implements DialogSelectionListener, 
 
     @Override
     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-        ArquivoVO vo = new ArquivoVO();
-        vo.setIdArquivo(arquivoDAO.getNextId(ArquivoVO.class));
-        vo.setArquivo(String.valueOf(taskSnapshot.getDownloadUrl()));
-        for (Map.Entry<String, String> entry : hmCaminhoArquivos.entrySet()) {
-            if(entry.getKey().equals(taskSnapshot.getStorage().getName())){
-                vo.setCaminhoArquivo(entry.getValue());
-                break;
-            }
-        }
-        arquivoDAO.insert(vo);
-        for (Map.Entry<String, Boolean> entry : hmArquivosEnviados.entrySet()) {
-            if(entry.getKey().equals(taskSnapshot.getStorage().getName())){
-                entry.setValue(true);
-            }
-        }
-
-        for (Map.Entry<String, Boolean> entry : hmArquivosEnviados.entrySet()) {
-            if(!entry.getValue()){
-                return;
-            }
-        }
-
-        final DAOHelper<ReuniaoVO> reuniaoDAO = new DAOHelper<>();
-        DAOHelper<UsuarioVO> usuarioDAO = new DAOHelper<>();
-
-        ReuniaoVO reuniao = reuniaoDAO.find(ReuniaoVO.class);
-        List<UsuarioVO> usuarios = usuarioDAO.findAll(UsuarioVO.class);
-        List<ArquivoVO> arquivos = arquivoDAO.findAll(ArquivoVO.class);
-
-
-        usuarios = usuarioDAO.detachFromRealm(usuarios);
-        arquivos = arquivoDAO.detachFromRealm(arquivos);
-        reuniao = reuniaoDAO.detachFromRealm(reuniao);
-
-        for (UsuarioVO usuario : usuarios) {
-            usuario.setPermissao(new PermissaoVO(usuario.getPermissaoFK(), ""));
-            usuario.setCargo(new CargoVO(usuario.getCargoFK(), ""));
-        }
-
-        ReuniaoArquivoUsuarioVO rau = new ReuniaoArquivoUsuarioVO();
-        rau.setListUsuarios(usuarios);
-        rau.setListArquivos(arquivos);
-        rau.setReuniao(reuniao);
-
-        for (UsuarioVO usuarioVO : rau.getListUsuarios()) {
-            usuarioVO.setIdUsuario(0L);
-        }
-
-        for (ArquivoVO arquivoVO : rau.getListArquivos()) {
-            arquivoVO.setIdArquivo(0L);
-        }
-
-        rau.getReuniao().setIdReuniao(0);
-
-        reuniaoService = new ReuniaoServiceImpl(context, new ReuniaoPresenterListener() {
-            @Override
-            public void reunioesReady(List<ReuniaoVO> lstReunioes) {
-
-            }
-
-            @Override
-            public void reuniaoReady(ReuniaoVO reuniaoVO) {
-
-            }
-
-            @Override
-            public void reuniaoReady() {
-                arquivoDAO.deleteAll();
-                barraProgresso.dismiss();
-                Intent i = new Intent(context, ReuniaoMarcadaActivity.class);
-                startActivity(i);
-            }
-
-            @Override
-            public void reuniaoFailed(RestException exception) {
-                barraProgresso.dismiss();
-                Toast.makeText(context, exception.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
         try {
+            ArquivoVO vo = new ArquivoVO();
+            vo.setIdArquivo(arquivoDAO.getNextId(ArquivoVO.class));
+            vo.setArquivo(String.valueOf(taskSnapshot.getDownloadUrl()));
+            for (Map.Entry<String, String> entry : hmCaminhoArquivos.entrySet()) {
+                if (entry.getKey().equals(taskSnapshot.getStorage().getName())) {
+                    vo.setCaminhoArquivo(entry.getValue());
+                    break;
+                }
+            }
+            arquivoDAO.insert(vo);
+            for (Map.Entry<String, Boolean> entry : hmArquivosEnviados.entrySet()) {
+                if (entry.getKey().equals(taskSnapshot.getStorage().getName())) {
+                    entry.setValue(true);
+                }
+            }
+
+            for (Map.Entry<String, Boolean> entry : hmArquivosEnviados.entrySet()) {
+                if (!entry.getValue()) {
+                    return;
+                }
+            }
+
+            final DAOHelper<ReuniaoVO> reuniaoDAO = new DAOHelper<>();
+            DAOHelper<UsuarioVO> usuarioDAO = new DAOHelper<>();
+
+            ReuniaoVO reuniao = reuniaoDAO.find(ReuniaoVO.class);
+            List<UsuarioVO> usuarios = usuarioDAO.findAll(UsuarioVO.class);
+            List<ArquivoVO> arquivos = arquivoDAO.findAll(ArquivoVO.class);
+
+
+            usuarios = usuarioDAO.detachFromRealm(usuarios);
+            arquivos = arquivoDAO.detachFromRealm(arquivos);
+            reuniao = reuniaoDAO.detachFromRealm(reuniao);
+
+            for (UsuarioVO usuario : usuarios) {
+                usuario.setPermissao(new PermissaoVO(usuario.getPermissaoFK(), ""));
+                usuario.setCargo(new CargoVO(usuario.getCargoFK(), ""));
+            }
+
+            ReuniaoArquivoUsuarioVO rau = new ReuniaoArquivoUsuarioVO();
+            rau.setListUsuarios(usuarios);
+            rau.setListArquivos(arquivos);
+            rau.setReuniao(reuniao);
+
+            for (UsuarioVO usuarioVO : rau.getListUsuarios()) {
+                usuarioVO.setIdUsuario(0L);
+            }
+
+            for (ArquivoVO arquivoVO : rau.getListArquivos()) {
+                arquivoVO.setIdArquivo(0L);
+            }
+
+            rau.getReuniao().setIdReuniao(0);
+
+            reuniaoService = new ReuniaoServiceImpl(context, new ReuniaoPresenterListener() {
+                @Override
+                public void reunioesReady(List<ReuniaoVO> lstReunioes) {
+                }
+
+                @Override
+                public void reuniaoReady(ReuniaoVO reuniaoVO) {
+
+                }
+
+                @Override
+                public void reuniaoReady(JsonArray usuarios) {
+                    if(usuarios.size() == 0){
+                        barraProgresso.dismiss();
+                        return;
+                    }
+
+                    //TODO TERMINAR ESSA PARTE. ENVIAR EMAIL PARA OS PARTICIPANTES COM O Constants.TEMPLATE_DEEP_LINK
+
+                    arquivoDAO.deleteAll();
+                    barraProgresso.dismiss();
+                    Intent i = new Intent(context, ReuniaoMarcadaActivity.class);
+                    startActivity(i);
+                }
+
+                @Override
+                public void reuniaoReady() {
+                }
+
+                @Override
+                public void reuniaoFailed(RestException exception) {
+                    barraProgresso.dismiss();
+                    Toast.makeText(context, exception.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+
             reuniaoService.gravarReuniao(rau);
+
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e){
             e.printStackTrace();
         }
     }

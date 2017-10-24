@@ -39,6 +39,7 @@ import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.gson.JsonArray;
 
 import org.joda.time.DateTime;
 
@@ -446,6 +447,11 @@ public class ReuniaoFragment extends Fragment implements View.OnTouchListener, R
 
     @Override
     public void reuniaoReady(ReuniaoVO reuniaoVO) {
+
+    }
+
+    @Override
+    public void reuniaoReady(JsonArray usuarios) {
 
     }
 
