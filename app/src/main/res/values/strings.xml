@@ -17,6 +17,7 @@
     <string name="item_delete_label">Excluir</string>
 
     <string name="google_android_map_api_key">AIzaSyDolaITfO1wAceu9vAbC4zD10O8ibw3FPg</string>
+    <string name="google_android_matrix_api_key">AIzaSyBJMHiMFBv11gMo9cUJ-PKv5FksAn36YBc</string>
 
     <string name="salvar_label">Salvar</string>
     <string name="todas_reunioes">Reuniões marcadas</string>

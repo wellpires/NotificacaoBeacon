@@ -60,6 +60,7 @@ import br.com.everis.notificacaobeacon.model.UsuarioVO;
 import br.com.everis.notificacaobeacon.service.IReuniaoService;
 import br.com.everis.notificacaobeacon.service.impl.ReuniaoServiceImpl;
 import br.com.everis.notificacaobeacon.utils.Constants;
+import br.com.everis.notificacaobeacon.utils.EnviarEmail;
 import br.com.everis.notificacaobeacon.utils.FirebaseUtils;
 
 public class AnexoFragment extends Fragment implements DialogSelectionListener, AdapterView.OnItemLongClickListener, View.OnClickListener, OnSuccessListener<UploadTask.TaskSnapshot>, OnFailureListener {

@@ -19,10 +19,8 @@ import org.altbeacon.beacon.startup.RegionBootstrap;
 import org.joda.time.DateTime;
 import org.joda.time.Duration;
 import org.joda.time.Minutes;
-import org.json.JSONArray;
 
 import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -30,7 +28,7 @@ import br.com.everis.notificacaobeacon.activities.DetalhesReuniaoActivity;
 import br.com.everis.notificacaobeacon.activities.ReuniaoMainActivity;
 import br.com.everis.notificacaobeacon.R;
 import br.com.everis.notificacaobeacon.activities.ReuniaoNotificacaoActivity;
-import br.com.everis.notificacaobeacon.bd.ReuniaoDAO;
+import br.com.everis.notificacaobeacon.bd.DAOHelper;
 import br.com.everis.notificacaobeacon.exception.RestException;
 import br.com.everis.notificacaobeacon.listener.ReuniaoPresenterListener;
 import br.com.everis.notificacaobeacon.model.ReuniaoVO;
@@ -44,15 +42,14 @@ public class NotificacaoBeaconService extends Service implements BootstrapNotifi
     protected static final String TAG = "NotificacaoActivity";
     private BeaconManager beaconManager = null;
     private Region region = null;
-    private RegionBootstrap regionBootstrap = null;
 
-    private ReuniaoDAO datasource = null;
+    private DAOHelper<ReuniaoVO> reuniaoDAO = null;
 
     private Thread threadNotificacao = null;
 
     private boolean pararWhileTrue = false;
 
-    private ReuniaoServiceImpl reuniaoService = null;
+    private IReuniaoService reuniaoService = null;
 
     public NotificacaoBeaconService() {
     }
@@ -84,8 +81,8 @@ public class NotificacaoBeaconService extends Service implements BootstrapNotifi
             public void run() {
                 while (true) {
                     try {
-                        //5 MINUTOS
-                        Thread.sleep(300000);
+                        //10 SEGUNDOS
+                        Thread.sleep(10000);
                         reuniaoService.listarReunioes();
                     } catch (InterruptedException e) {
                         e.printStackTrace();
@@ -96,7 +93,7 @@ public class NotificacaoBeaconService extends Service implements BootstrapNotifi
             }
         }).start();
 
-        regionBootstrap = new RegionBootstrap(this, region);
+        RegionBootstrap regionBootstrap = new RegionBootstrap(this, region);
 
         new Thread(new Runnable() {
             @Override
@@ -106,11 +103,9 @@ public class NotificacaoBeaconService extends Service implements BootstrapNotifi
                     try {
                         Thread.sleep(5000);
 
-                        datasource = new ReuniaoDAO(getApplicationContext());
-                        List<ReuniaoVO> lstReunioes = new ArrayList<>();
-//                        List<ReuniaoVO> lstReunioes = datasource.getReunioes();
+                        reuniaoDAO = new DAOHelper<>() ;
+                        List<ReuniaoVO> lstReunioes = reuniaoDAO.detachFromRealm(reuniaoDAO.findAll(ReuniaoVO.class));
 
-                        List<ReuniaoVO> lstReunioesHoje = new ArrayList<>();
                         for (ReuniaoVO vo : lstReunioes) {
 
                             DateTime dtAgora = new DateTime(new Date());

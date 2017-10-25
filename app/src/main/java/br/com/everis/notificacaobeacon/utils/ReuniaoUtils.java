@@ -34,6 +34,7 @@ import javax.crypto.spec.PBEKeySpec;
 
 import br.com.everis.notificacaobeacon.R;
 import br.com.everis.notificacaobeacon.adapter.ReunioesHojeAdapter;
+import br.com.everis.notificacaobeacon.bd.DAOHelper;
 import br.com.everis.notificacaobeacon.bd.ReuniaoDAO;
 import br.com.everis.notificacaobeacon.model.ReuniaoVO;
 
@@ -183,34 +184,34 @@ public class ReuniaoUtils {
     }
 
     public static void listarReunioes(Context context) {
-        try {
-            ReuniaoDAO datasource = new ReuniaoDAO(context);
-            List<ReuniaoVO> reunioes = datasource.getReunioes();
-            List<ReuniaoVO> reunioesFiltradas = new ArrayList<>();
-
-            for (ReuniaoVO vo : reunioes) {
-                DateTime dtInicio = new DateTime(stringToDateTime(vo.getDtInicio()));
-                DateTime dtTermino = new DateTime(stringToDateTime(vo.getDtTermino()));
-                DateTime dtAgora = new DateTime(new Date());
-                if (dtInicio.withTimeAtStartOfDay().isEqual(dtAgora.withTimeAtStartOfDay()) && dtAgora.isBefore(dtTermino)) {
-                    reunioesFiltradas.add(vo);
-                }
-            }
-
-            ReunioesHojeAdapter adapter = new ReunioesHojeAdapter(reunioesFiltradas, (Activity) context);
-
-            ListView lvReunioes = (ListView) ((Activity) context).findViewById(R.id.lvReunioes);
-            lvReunioes.setAdapter(adapter);
-
-            if (lvReunioes.getAdapter().getCount() <= 0) {
-                GlobalClass gc = (GlobalClass) context.getApplicationContext();
-                gc.setReuniaoAcontecera(false);
-                cancelarTodasNotificacoes(context);
-            }
-
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            ReuniaoDAO datasource = new ReuniaoDAO(context);
+//            List<ReuniaoVO> reunioes = datasource.getReunioes();
+//            List<ReuniaoVO> reunioesFiltradas = new ArrayList<>();
+//
+//            for (ReuniaoVO vo : reunioes) {
+//                DateTime dtInicio = new DateTime(stringToDateTime(vo.getDtInicio()));
+//                DateTime dtTermino = new DateTime(stringToDateTime(vo.getDtTermino()));
+//                DateTime dtAgora = new DateTime(new Date());
+//                if (dtInicio.withTimeAtStartOfDay().isEqual(dtAgora.withTimeAtStartOfDay()) && dtAgora.isBefore(dtTermino)) {
+//                    reunioesFiltradas.add(vo);
+//                }
+//            }
+//
+//            ReunioesHojeAdapter adapter = new ReunioesHojeAdapter(reunioesFiltradas, (Activity) context);
+//
+//            ListView lvReunioes = (ListView) ((Activity) context).findViewById(R.id.lvReunioes);
+//            lvReunioes.setAdapter(adapter);
+//
+//            if (lvReunioes.getAdapter().getCount() <= 0) {
+//                GlobalClass gc = (GlobalClass) context.getApplicationContext();
+//                gc.setReuniaoAcontecera(false);
+//                cancelarTodasNotificacoes(context);
+//            }
+//
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
     }
 
     public static Long stringToLong(String value) {
@@ -228,10 +229,10 @@ public class ReuniaoUtils {
     }
 
     public static void popularBancoLocal(Context c, List<ReuniaoVO> lstReunioes) throws ParseException {
-        ReuniaoDAO datasource = new ReuniaoDAO(c);
-        datasource.deleteReuniao();
+        DAOHelper<ReuniaoVO> reuniaoDAO = new DAOHelper<>();
+        reuniaoDAO.deleteAll();
         for (ReuniaoVO vo : lstReunioes) {
-            datasource.createReuniao(vo);
+            reuniaoDAO.insert(vo);
         }
     }
 

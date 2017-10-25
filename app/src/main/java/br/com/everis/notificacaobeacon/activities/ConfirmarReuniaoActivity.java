@@ -67,6 +67,7 @@ public class ConfirmarReuniaoActivity extends AppCompatActivity implements Usuar
         barraProgresso.setMessage(Constants.LABEL_AGUARDE);
         barraProgresso.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         barraProgresso.setIndeterminate(true);
+        barraProgresso.show();
 
     }
 
@@ -161,7 +162,6 @@ public class ConfirmarReuniaoActivity extends AppCompatActivity implements Usuar
 
     @Override
     public void onInitFinished(JSONObject referringParams, BranchError error) {
-        barraProgresso.show();
         if (error == null) {
             try {
                 String pIdUsuario = referringParams.getString("idUsuario");

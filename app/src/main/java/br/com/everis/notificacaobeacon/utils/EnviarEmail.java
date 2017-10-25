@@ -1,4 +1,4 @@
-package br.com.everis.notificacaobeacon.activities;
+package br.com.everis.notificacaobeacon.utils;
 
 import android.app.ProgressDialog;
 import android.content.Context;
