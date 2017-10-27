@@ -5,9 +5,7 @@ import android.app.Service;
 import android.app.TaskStackBuilder;
 import android.content.Intent;
 import android.location.Location;
-import android.os.Handler;
 import android.os.IBinder;
-import android.os.Message;
 import android.os.RemoteException;
 import android.util.Log;
 
@@ -27,9 +25,9 @@ import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 
+import br.com.everis.notificacaobeacon.R;
 import br.com.everis.notificacaobeacon.activities.DetalhesReuniaoActivity;
 import br.com.everis.notificacaobeacon.activities.ReuniaoMainActivity;
-import br.com.everis.notificacaobeacon.R;
 import br.com.everis.notificacaobeacon.activities.ReuniaoNotificacaoActivity;
 import br.com.everis.notificacaobeacon.bd.DAOHelper;
 import br.com.everis.notificacaobeacon.exception.RestException;
@@ -110,6 +108,7 @@ public class NotificacaoBeaconService extends Service implements BootstrapNotifi
                         List<ReuniaoVO> lstReunioes = reuniaoDAO.detachFromRealm(reuniaoDAO.findAll(ReuniaoVO.class));
 
                         for (ReuniaoVO vo : lstReunioes) {
+
 
                             DateTime dtAgora = new DateTime(new Date());
                             DateTime dtInicio = new DateTime(ReuniaoUtils.stringToDateTime(vo.getDtInicio()));

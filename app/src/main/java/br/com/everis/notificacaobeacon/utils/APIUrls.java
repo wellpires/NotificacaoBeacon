@@ -7,6 +7,7 @@ package br.com.everis.notificacaobeacon.utils;
 public interface APIUrls {
 
     String BASE_URL = "http://10.213.118.84:8080/ControleReunioesWS/";
+    String GOOGLE_BASE_URL = "http://10.213.118.84:8080/ControleReunioesWS/";
 
     //REUNIÃO
     String POST_GRAVAR_REUNIAO = "reuniao/gravarReuniao";
@@ -25,5 +26,8 @@ public interface APIUrls {
     //USUARIOS
     String GET_BUSCAR_DADOS_USUARIOS = "usuario/buscarDadosUsuario";
     String PUT_GRAVAR_USUARIO = "usuario/gravarUsuario";
+
+    //GOOGLE APIS
+    String GET_BUSCAR_TEMPO_DISTANCIA = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=-23.5574688,-46.8271516&destinations=-23.623495,-46.7004119&key=AIzaSyBJMHiMFBv11gMo9cUJ-PKv5FksAn36YBc";
 
 }

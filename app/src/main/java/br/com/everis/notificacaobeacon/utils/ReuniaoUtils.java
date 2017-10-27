@@ -1,14 +1,17 @@
 package br.com.everis.notificacaobeacon.utils;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
+import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
@@ -16,6 +19,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.service.notification.StatusBarNotification;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.NotificationCompat;
 import android.util.Log;
@@ -237,7 +241,7 @@ public class ReuniaoUtils {
         return String.valueOf(value);
     }
 
-    public static Double stringToDouble(String value){
+    public static Double stringToDouble(String value) {
         if (isEmptyOrNull(value)) {
             value = "0";
         }
@@ -312,15 +316,16 @@ public class ReuniaoUtils {
             ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
             NetworkInfo netInfo = cm.getActiveNetworkInfo();
             return netInfo != null && netInfo.isConnectedOrConnecting();
-        }
-        catch(Exception ex){
+        } catch (Exception ex) {
             Toast.makeText(context, "Erro ao verificar se estava online! (" + ex.getMessage() + ")", Toast.LENGTH_SHORT).show();
             return false;
         }
     }
+
     public static void getAddressFromLocation(final Location location, final Context context, final Handler handler) {
         Thread thread = new Thread() {
-            @Override public void run() {
+            @Override
+            public void run() {
                 Geocoder geocoder = new Geocoder(context, Locale.getDefault());
                 String result = null;
                 try {
@@ -348,4 +353,16 @@ public class ReuniaoUtils {
         };
         thread.start();
     }
+
+    public static Location getCurrentLocation(LocationManager lm, Context context) {
+        if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return null;
+        }
+        Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        if (location == null) {
+            location = lm.getLastKnownLocation(LocationManager.PASSIVE_PROVIDER);
+        }
+        return location;
+    }
+
 }

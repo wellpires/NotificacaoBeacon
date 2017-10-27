@@ -22,12 +22,20 @@ public class APIClient {
     private static Retrofit retrofit = null;
 
     public static Retrofit getClient() {
+        return createClient(APIUrls.BASE_URL);
+    }
+
+    public static Retrofit getGoogleClient() {
+        return createClient(APIUrls.GOOGLE_BASE_URL);
+    }
+
+    private static Retrofit createClient(String baseUrl){
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).connectTimeout(60, TimeUnit.SECONDS).readTimeout(60, TimeUnit.SECONDS).build();
 
         retrofit = new Retrofit.Builder()
-                .baseUrl(APIUrls.BASE_URL)
+                .baseUrl(baseUrl)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build();
