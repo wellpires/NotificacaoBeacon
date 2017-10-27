@@ -15,6 +15,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.JsonArray;
 
@@ -164,10 +165,11 @@ public class ReunioesActivity extends AppCompatActivity implements View.OnTouchL
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Intent i = new Intent(getApplicationContext(), AdicionarReuniaoActivity.class);
-        i.putExtra(Constants.NOVA_REUNIAO_KEY, Constants.FLAG_DETALHES_REUNIAO);
-        i.putExtra(Constants.ID_REUNIAO_KEY, String.valueOf(id));
-        startActivity(i);
+//        Intent i = new Intent(getApplicationContext(), AdicionarReuniaoActivity.class);
+//        i.putExtra(Constants.NOVA_REUNIAO_KEY, Constants.FLAG_DETALHES_REUNIAO);
+//        i.putExtra(Constants.ID_REUNIAO_KEY, String.valueOf(id));
+//        startActivity(i);
+        Toast.makeText(this, "FUNÇÃO DESATIVADA POR ENQUANTO", Toast.LENGTH_SHORT).show();
     }
 
     @Override

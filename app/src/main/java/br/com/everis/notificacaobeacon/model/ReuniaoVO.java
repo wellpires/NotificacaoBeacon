@@ -2,6 +2,8 @@ package br.com.everis.notificacaobeacon.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Calendar;
+import java.util.Date;
 
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
@@ -18,6 +20,8 @@ public class ReuniaoVO extends RealmObject {
     private String dtInicio = null;
     private String dtTermino = null;
     private String endereco = null;
+    private Double latitude = null;
+    private Double longitude = null;
     private String sala = null;
     private String pauta = null;
 
@@ -44,7 +48,7 @@ public class ReuniaoVO extends RealmObject {
         this.assunto = assunto;
     }
 
-    public String getDtInicio() {
+        public String getDtInicio() {
         return dtInicio;
     }
 
@@ -60,12 +64,28 @@ public class ReuniaoVO extends RealmObject {
         this.dtTermino = dtTermino;
     }
 
-    public String getEndereco() {
+    public String getEndereco_OLD() {
         return endereco;
     }
 
-    public void setEndereco(String endereco) {
+    public void setEndereco_OLD(String endereco) {
         this.endereco = endereco;
+    }
+
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
     }
 
     public String getSala() {

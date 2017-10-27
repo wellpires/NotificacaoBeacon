@@ -111,8 +111,8 @@ public class AnexoFragment extends Fragment implements DialogSelectionListener, 
 
         arquivoDAO = new DAOHelper<>();
 
-        List<ArquivoVO> all = arquivoDAO.findAll(ArquivoVO.class);
-        anexosAdapter.addAll(all);
+//        List<ArquivoVO> all = arquivoDAO.findAll(ArquivoVO.class);
+//        anexosAdapter.addAll(all);
 
         return view;
     }
@@ -339,8 +339,6 @@ public class AnexoFragment extends Fragment implements DialogSelectionListener, 
                     reuniao = reuniaoDAO.detachFromRealm(reuniao);
                     EnviarEmail emailActivity = new EnviarEmail();
                     emailActivity.enviarEmail(context, lstUsuarios, reuniao);
-
-                    //TODO TERMINAR ESSA PARTE. ENVIAR EMAIL PARA OS PARTICIPANTES COM O Constants.TEMPLATE_DEEP_LINK
 
                     arquivoDAO.deleteAll();
                     barraProgresso.dismiss();

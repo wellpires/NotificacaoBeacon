@@ -41,7 +41,6 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.JsonArray;
 
 import org.joda.time.DateTime;
-import org.json.JSONArray;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -50,7 +49,6 @@ import java.util.List;
 
 import br.com.everis.notificacaobeacon.R;
 import br.com.everis.notificacaobeacon.adapter.GooglePlacesAutocompleteAdapter;
-import br.com.everis.notificacaobeacon.bd.ReuniaoDAO;
 import br.com.everis.notificacaobeacon.exception.RestException;
 import br.com.everis.notificacaobeacon.listener.ReuniaoPresenterListener;
 import br.com.everis.notificacaobeacon.model.ReuniaoVO;
@@ -208,7 +206,7 @@ public class AdicionarReuniaoActivity extends AppCompatActivity implements View.
                 r.setAssunto(txtAssunto.getText().toString());
                 r.setDtInicio(horaInicio);
                 r.setDtTermino(horaTermino);
-                r.setEndereco(txtLocal.getText().toString());
+//                r.setEndereco(txtLocal.getText().toString());
                 r.setSala(txtSala.getText().toString());
                 r.setPauta(txtDescricao.getText().toString());
 
@@ -528,7 +526,7 @@ public class AdicionarReuniaoActivity extends AppCompatActivity implements View.
             txtHoraInicio.setText(ReuniaoUtils.timeToString(dtInicio.toDate()));
             txtDataTermino.setText(ReuniaoUtils.dateToString(dtTermino.toDate()));
             txtHoraTermino.setText(ReuniaoUtils.timeToString(dtTermino.toDate()));
-            txtLocal.setText(reuniaoVO.getEndereco());
+//            txtLocal.setText(reuniaoVO.getEndereco());
             txtSala.setText(reuniaoVO.getSala());
             txtDescricao.setText(reuniaoVO.getPauta());
         } catch (ParseException e) {

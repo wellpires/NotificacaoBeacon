@@ -100,7 +100,7 @@ public class ReuniaoFragment extends Fragment implements View.OnTouchListener, R
         txtHrInicio.setText(ReuniaoUtils.timeToString(dtInicio.toDate()));
         txtDtTermino.setText(ReuniaoUtils.dateToString(dtTermino.toDate()));
         txtHrTermino.setText(ReuniaoUtils.timeToString(dtTermino.toDate()));
-        txtEndereco.setText(voExistente.getEndereco());
+//        txtEndereco.setText(voExistente.getEndereco());
         txtSala.setText(voExistente.getSala());
         txtDescricao.setText(voExistente.getPauta());
     }
@@ -114,38 +114,34 @@ public class ReuniaoFragment extends Fragment implements View.OnTouchListener, R
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        try {
-            view = inflater.inflate(R.layout.fragment_reuniao, container, false);
-            context = view.getContext();
-            txtAssunto = (EditText) view.findViewById(R.id.txtAssunto);
-            txtDtInicio = (EditText) view.findViewById(R.id.txtDataInicio);
-            txtHrInicio = (EditText) view.findViewById(R.id.txtHoraInicio);
-            txtDtTermino = (EditText) view.findViewById(R.id.txtDataTermino);
-            txtHrTermino = (EditText) view.findViewById(R.id.txtHoraTermino);
-            txtEndereco = (EditText) view.findViewById(R.id.txtOnde);
-            txtSala = (EditText) view.findViewById(R.id.txtSala);
-            txtDescricao = (EditText) view.findViewById(R.id.txtDescricao);
+        view = inflater.inflate(R.layout.fragment_reuniao, container, false);
+        context = view.getContext();
+        txtAssunto = (EditText) view.findViewById(R.id.txtAssunto);
+        txtDtInicio = (EditText) view.findViewById(R.id.txtDataInicio);
+        txtHrInicio = (EditText) view.findViewById(R.id.txtHoraInicio);
+        txtDtTermino = (EditText) view.findViewById(R.id.txtDataTermino);
+        txtHrTermino = (EditText) view.findViewById(R.id.txtHoraTermino);
+        txtEndereco = (EditText) view.findViewById(R.id.txtOnde);
+        txtSala = (EditText) view.findViewById(R.id.txtSala);
+        txtDescricao = (EditText) view.findViewById(R.id.txtDescricao);
 
-            txtDtInicio.setOnTouchListener(this);
-            txtDtInicio.setKeyListener(null);
+        txtDtInicio.setOnTouchListener(this);
+        txtDtInicio.setKeyListener(null);
 
-            txtHrInicio.setOnTouchListener(this);
-            txtHrInicio.setKeyListener(null);
+        txtHrInicio.setOnTouchListener(this);
+        txtHrInicio.setKeyListener(null);
 
-            txtDtTermino.setOnTouchListener(this);
-            txtDtTermino.setKeyListener(null);
+        txtDtTermino.setOnTouchListener(this);
+        txtDtTermino.setKeyListener(null);
 
-            txtHrTermino.setOnTouchListener(this);
-            txtHrTermino.setKeyListener(null);
+        txtHrTermino.setOnTouchListener(this);
+        txtHrTermino.setKeyListener(null);
 
-            txtEndereco.setOnTouchListener(this);
-            txtEndereco.setKeyListener(null);
+        txtEndereco.setOnTouchListener(this);
+        txtEndereco.setKeyListener(null);
 
-            daoHelper = new DAOHelper<>();
-            buscarRegistroAdicionado();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        daoHelper = new DAOHelper<>();
+//            buscarRegistroAdicionado();
         return view;
     }
 
@@ -208,7 +204,9 @@ public class ReuniaoFragment extends Fragment implements View.OnTouchListener, R
                 vo.setAssunto(txtAssunto.getText().toString());
                 vo.setDtInicio(txtDtInicio.getText().toString() + " " + txtHrInicio.getText().toString());
                 vo.setDtTermino(txtDtTermino.getText().toString() + " " + txtHrTermino.getText().toString());
-                vo.setEndereco(txtEndereco.getText().toString());
+//                vo.setEndereco(txtEndereco.getText().toString());
+                vo.setLatitude(ReuniaoUtils.stringToDouble(txtEndereco.getTag(R.string.ID_LATITUDE).toString()));
+                vo.setLongitude(ReuniaoUtils.stringToDouble(txtEndereco.getTag(R.string.ID_LONGITUDE).toString()));
                 vo.setSala(txtSala.getText().toString());
                 vo.setPauta(txtDescricao.getText().toString());
                 daoHelper.insert(vo);
@@ -404,13 +402,16 @@ public class ReuniaoFragment extends Fragment implements View.OnTouchListener, R
 
                                         if (lstEnderecos.size() > 0) {
 
-                                            Double lat = lstEnderecos.get(0).getLatitude();
-                                            Double lon = lstEnderecos.get(0).getLongitude();
+                                            Double latitude = lstEnderecos.get(0).getLatitude();
+                                            Double longitude = lstEnderecos.get(0).getLongitude();
 
-                                            final LatLng user = new LatLng(lat, lon);
+                                            txtEndereco.setTag(R.string.ID_LATITUDE, latitude);
+                                            txtEndereco.setTag(R.string.ID_LONGITUDE, longitude);
 
-                                            LatLng posisiabsen = new LatLng(lat, lon); ////your lat lng
-                                            map.addMarker(new MarkerOptions().position(posisiabsen).title("Yout title"));
+                                            final LatLng user = new LatLng(latitude, longitude);
+
+                                            LatLng posisiabsen = new LatLng(latitude, longitude); ////your latitude lng
+                                            map.addMarker(new MarkerOptions().position(posisiabsen));
                                             map.moveCamera(CameraUpdateFactory.newLatLng(posisiabsen));
                                             map.getUiSettings().setZoomControlsEnabled(true);
                                             map.animateCamera(CameraUpdateFactory.zoomTo(15), 2000, null);

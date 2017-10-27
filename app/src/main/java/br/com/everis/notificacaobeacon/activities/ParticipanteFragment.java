@@ -87,8 +87,8 @@ public class ParticipanteFragment extends Fragment implements PermissaoPresenter
         fabAddParticipante.setOnClickListener(this);
         lvParticipantes.setAdapter(usuarioAdapter);
 
-        List<UsuarioVO> usuarios = usuarioDAO.findAll(UsuarioVO.class);
-        usuarioAdapter.addAll(usuarios);
+//        List<UsuarioVO> usuarios = usuarioDAO.findAll(UsuarioVO.class);
+//        usuarioAdapter.addAll(usuarios);
 
         return v;
     }

@@ -45,7 +45,8 @@ public class GlobalClass extends Application {
     public void onCreate() {
         super.onCreate();
 
-        RealmConfiguration config = new RealmConfiguration.Builder(this).deleteRealmIfMigrationNeeded().build();
+        Realm.init(this);
+        RealmConfiguration config = new RealmConfiguration.Builder().deleteRealmIfMigrationNeeded().build();
         Realm.setDefaultConfiguration(config);
 
         // Branch logging for debugging
