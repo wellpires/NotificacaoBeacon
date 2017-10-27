@@ -95,4 +95,5 @@ public interface Constants {
 
     String MENSAGEM_EMAIL_CONVITE = "Olá Sr(a). ${nome}. Você foi convidado para a reunião sobre ${assunto}, que acontecerá dia ${dataFormatada}. Clique no link abaixo para baixar e ter acesso aos detalhes da sua reunião:";
 
+    String WAZE_DEEP_LINK = "https://waze.com/ul?ll=${latitude},${longitude}";
 }

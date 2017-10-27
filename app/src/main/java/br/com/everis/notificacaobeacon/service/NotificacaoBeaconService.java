@@ -246,26 +246,19 @@ public class NotificacaoBeaconService extends Service implements BootstrapNotifi
         location.setLatitude(vo.getLatitude());
         location.setLongitude(vo.getLongitude());
 
-        ReuniaoUtils.getAddressFromLocation(location, getApplicationContext(),  new Handler(){
-            @Override
-            public void handleMessage(Message msg) {
-                super.handleMessage(msg);
-                String address = String.valueOf(msg.getData().get("address"));
+        String mensagem = formatarMensagem((int) (qtdeMinutos), Constants.MENSAGEM_REUNIAO);
 
-                String mensagem = formatarMensagem((int) (qtdeMinutos), Constants.MENSAGEM_REUNIAO);
+        Intent intent = new Intent(getApplicationContext(), ReuniaoNotificacaoActivity.class);
+        intent.putExtra(Constants.TEMPO_RESTANTE_KEY, qtdeMinutos);
+        intent.putExtra(Constants.MENSAGEM_KEY, mensagem);
+        intent.putExtra(Constants.LOCAL_KEY, location);
+        TaskStackBuilder stackBuilder = TaskStackBuilder.create(getApplicationContext());
+        stackBuilder.addParentStack(ReuniaoMainActivity.class);
+        stackBuilder.addNextIntent(intent);
+        PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
 
-                Intent intent = new Intent(getApplicationContext(), ReuniaoNotificacaoActivity.class);
-                intent.putExtra(Constants.TEMPO_RESTANTE_KEY, qtdeMinutos);
-                intent.putExtra(Constants.MENSAGEM_KEY, mensagem);
-                intent.putExtra(Constants.LOCAL_KEY, address);
-                TaskStackBuilder stackBuilder = TaskStackBuilder.create(getApplicationContext());
-                stackBuilder.addParentStack(ReuniaoMainActivity.class);
-                stackBuilder.addNextIntent(intent);
-                PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+        ReuniaoUtils.mostrarNotificacao(getApplicationContext(), R.mipmap.stock_new_meeting, Constants.REUNIAO, mensagem, resultPendingIntent, Constants.ID_NOTIFICACAO_REUNIAO, !Constants.NOTIFICACAO_FIXA);
 
-                ReuniaoUtils.mostrarNotificacao(getApplicationContext(), R.mipmap.stock_new_meeting, Constants.REUNIAO, mensagem, resultPendingIntent, Constants.ID_NOTIFICACAO_REUNIAO, !Constants.NOTIFICACAO_FIXA);
-            }
-        });
     }
 
     private String formatarMensagem(int m, String mensagem) {
