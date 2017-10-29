@@ -220,7 +220,7 @@ public class ReuniaoMainActivity extends AppCompatActivity
 
     private void buscarReunioes() throws Exception {
         ReuniaoVO r = new ReuniaoVO();
-        r.setDtInicio(ReuniaoUtils.dateTimeToString(new Date()));
+        r.setDtInicio(new Date());
         reuniaoService = new ReuniaoServiceImpl(this, this);
         reuniaoService.buscarReunioes(r);
     }

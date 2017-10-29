@@ -57,14 +57,9 @@ public class ReunioesHojeAdapter extends BaseAdapter {
             imgBtnExcluir.setTag(vo.getIdReuniao());
             view.setTag(vo.getIdReuniao());
 
-            Date horaInicio = ReuniaoUtils.stringToDateTime(vo.getDtInicio());
-            Date horaTermino = ReuniaoUtils.stringToDateTime(vo.getDtTermino());
-
             lblAssunto.setText(vo.getAssunto());
-            lblHorario.setText(ReuniaoUtils.timeToString(horaInicio) + " - " + ReuniaoUtils.timeToString(horaTermino));
+            lblHorario.setText(ReuniaoUtils.timeToString(vo.getDtInicio()) + " - " + ReuniaoUtils.timeToString(vo.getDtTermino()));
 
-        } catch (ParseException e) {
-            e.printStackTrace();
         }catch (Exception e) {
             e.printStackTrace();
         }

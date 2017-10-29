@@ -191,8 +191,8 @@ public class AdicionarReuniaoActivity extends AppCompatActivity implements View.
                 String horaInicio = txtDataInicio.getText().toString() + " " + txtHoraInicio.getText().toString();
                 String horaTermino = txtDataTermino.getText().toString() + " " + txtHoraTermino.getText().toString();
 
-                DateTime dtInicio = new DateTime(ReuniaoUtils.stringToDateTime(horaInicio));
-                DateTime dtTermino = new DateTime(ReuniaoUtils.stringToDateTime(horaTermino));
+                DateTime dtInicio = new DateTime(ReuniaoUtils.formatStringDate(Constants.SCREEN_DATETIME_PATTERN, horaInicio));
+                DateTime dtTermino = new DateTime(ReuniaoUtils.formatStringDate(Constants.SCREEN_DATETIME_PATTERN, horaTermino));
 
                 if (dtInicio.isEqual(dtTermino)) {
                     ReuniaoUtils.mostrarAvisoDialogo(this, Constants.ERRO_DATA_HORA_INICIO_TERMINO_DIFERENTES);
@@ -204,8 +204,8 @@ public class AdicionarReuniaoActivity extends AppCompatActivity implements View.
 
                 final ReuniaoVO r = new ReuniaoVO();
                 r.setAssunto(txtAssunto.getText().toString());
-                r.setDtInicio(horaInicio);
-                r.setDtTermino(horaTermino);
+                r.setDtInicio(dtInicio.toDate());
+                r.setDtTermino(dtTermino.toDate());
 //                r.setEndereco(txtLocal.getText().toString());
                 r.setSala(txtSala.getText().toString());
                 r.setPauta(txtDescricao.getText().toString());
@@ -373,7 +373,7 @@ public class AdicionarReuniaoActivity extends AppCompatActivity implements View.
                             }
 
                             Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-                            if(location == null){
+                            if (location == null) {
                                 location = lm.getLastKnownLocation(LocationManager.PASSIVE_PROVIDER);
                             }
 
@@ -509,7 +509,7 @@ public class AdicionarReuniaoActivity extends AppCompatActivity implements View.
     @Override
     public void reunioesReady(List<ReuniaoVO> lstReunioes) {
         try {
-            ReuniaoUtils.popularBancoLocal(getApplicationContext(),lstReunioes);
+            ReuniaoUtils.popularBancoLocal(getApplicationContext(), lstReunioes);
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -517,21 +517,17 @@ public class AdicionarReuniaoActivity extends AppCompatActivity implements View.
 
     @Override
     public void reuniaoReady(ReuniaoVO reuniaoVO) {
-        try {
-            DateTime dtInicio = new DateTime(ReuniaoUtils.stringToDateTime(reuniaoVO.getDtInicio()));
-            DateTime dtTermino = new DateTime(ReuniaoUtils.stringToDateTime(reuniaoVO.getDtTermino()));
+        DateTime dtInicio = new DateTime(reuniaoVO.getDtInicio());
+        DateTime dtTermino = new DateTime(reuniaoVO.getDtTermino());
 
-            txtAssunto.setText(reuniaoVO.getAssunto());
-            txtDataInicio.setText(ReuniaoUtils.dateToString(dtInicio.toDate()));
-            txtHoraInicio.setText(ReuniaoUtils.timeToString(dtInicio.toDate()));
-            txtDataTermino.setText(ReuniaoUtils.dateToString(dtTermino.toDate()));
-            txtHoraTermino.setText(ReuniaoUtils.timeToString(dtTermino.toDate()));
+        txtAssunto.setText(reuniaoVO.getAssunto());
+        txtDataInicio.setText(ReuniaoUtils.dateToString(dtInicio.toDate()));
+        txtHoraInicio.setText(ReuniaoUtils.timeToString(dtInicio.toDate()));
+        txtDataTermino.setText(ReuniaoUtils.dateToString(dtTermino.toDate()));
+        txtHoraTermino.setText(ReuniaoUtils.timeToString(dtTermino.toDate()));
 //            txtLocal.setText(reuniaoVO.getEndereco());
-            txtSala.setText(reuniaoVO.getSala());
-            txtDescricao.setText(reuniaoVO.getPauta());
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        txtSala.setText(reuniaoVO.getSala());
+        txtDescricao.setText(reuniaoVO.getPauta());
     }
 
     @Override

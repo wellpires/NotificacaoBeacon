@@ -5,6 +5,7 @@ import android.content.Context;
 import com.google.gson.JsonArray;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.List;
 
 import br.com.everis.notificacaobeacon.exception.RestException;
@@ -14,6 +15,7 @@ import br.com.everis.notificacaobeacon.listener.ReuniaoPresenterListener;
 import br.com.everis.notificacaobeacon.service.IReuniaoService;
 import br.com.everis.notificacaobeacon.service.api.ReuniaoAPI;
 import br.com.everis.notificacaobeacon.utils.APIClient;
+import br.com.everis.notificacaobeacon.utils.Constants;
 import br.com.everis.notificacaobeacon.utils.ReuniaoUtils;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -107,9 +109,8 @@ public class ReuniaoServiceImpl implements IReuniaoService {
     }
 
     @Override
-    public void buscarReunioes(ReuniaoVO reuniao) {
-        String data = reuniao.getDtInicio();
-        Call<List<ReuniaoVO>> call = reuniaoAPI.buscarReunioes(data);
+    public void buscarReunioes(ReuniaoVO reuniao) throws ParseException {
+        Call<List<ReuniaoVO>> call = reuniaoAPI.buscarReunioes(ReuniaoUtils.formatDate(Constants.DATETIME_PATTERN,reuniao.getDtInicio()));
         call.enqueue(new Callback<List<ReuniaoVO>>() {
             @Override
             public void onResponse(Call<List<ReuniaoVO>> call, Response<List<ReuniaoVO>> response) {

@@ -51,7 +51,7 @@ public class EnviarEmail {
                         HashMap<String, String> hmValores = new HashMap<>();
                         try {
                             hmValores.put("nome", usuarioVO.getNomeCompleto());
-                            hmValores.put("dataFormatada", ReuniaoUtils.formatDate(Constants.DATETIME_CUSTOM_PATTERN, ReuniaoUtils.stringToDateTime(reuniao.getDtInicio())));
+                            hmValores.put("dataFormatada", ReuniaoUtils.formatDate(Constants.DATETIME_CUSTOM_PATTERN, reuniao.getDtInicio()));
                             hmValores.put("assunto", reuniao.getAssunto());
                             hmValores.put("idUsuario", usuarioVO.getIdUsuario() + "");
                             String mensagemFinal = substitutor.replace(Constants.MENSAGEM_EMAIL_CONVITE, hmValores) + "\n\n\n\n" + substitutor.replace(Constants.TEMPLATE_DEEP_LINK, hmValores);
@@ -60,7 +60,6 @@ public class EnviarEmail {
 
                             m.setBody(mensagemFinal);
 
-                            //m.addAttachment("pathDoAnexo");//anexo opcional
                             Bundle b = new Bundle();
                             b.putString("Mensagem", "Enviando " + ++contador + "º email ...");
                             Message message = new Message();

@@ -141,7 +141,7 @@ public class ReunioesActivity extends AppCompatActivity implements View.OnTouchL
         barraProgresso.show();
         ReuniaoVO r = new ReuniaoVO();
         Date dateTime = new DateTime(ReuniaoUtils.stringToDate(filtro)).withTimeAtStartOfDay().toDate();
-        r.setDtInicio(ReuniaoUtils.dateTimeToString(dateTime));
+        r.setDtInicio(dateTime);
         reuniaoService.buscarReunioes(r);
     }
 

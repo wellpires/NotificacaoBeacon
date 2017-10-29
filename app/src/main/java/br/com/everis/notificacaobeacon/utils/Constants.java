@@ -6,10 +6,15 @@ package br.com.everis.notificacaobeacon.utils;
 
 public interface Constants {
 
-    String DATETIME_PATTERN = "dd/MM/yyyy HH:mm";
-    String DATE_PATTERN = "dd/MM/yyyy";
+    String DATETIME_PATTERN = "MMM dd, yyyy HH:mm";
+    String DATE_PATTERN = "MMM dd, yyyy";
     String TIME_PATTERN = "HH:mm";
     String DATETIME_CUSTOM_PATTERN = "dd/MM/yyyy 'ás' HH:mm";
+    String SCREEN_DATETIME_PATTERN = "dd/MM/yyyy HH:mm";
+    String SCREEN_DATE_PATTERN = "dd/MM/yyyy";
+    String SCREEN_TIME_PATTERN = "HH:mm";
+
+
     String TIMEZONE = "America/Sao_Paulo";
     String REUNIAO = "Reunião";
     String MENSAGEM_REUNIAO = "Sua reunião começará em ";
@@ -71,7 +76,7 @@ public interface Constants {
     String REUNIÃO_FINALIZADA = "A reunião finalizou";
 
     String VOLTE_SEMPRE = "Volte sempre!";
-    int TEMPO_LIMITE_MINUTOS = 60;
+//    int TEMPO_LIMITE_MINUTOS = 60;
     String ACTION_SERVICE = "br.com.everis.notificacaobeacon.service.NOTIFICATION_LISTENER_SERVICE_EXAMPLE";
     String LABEL_ADICIONAR_PARTI = "Adicionar";
     String TITULO_PARTICIPANTE = "Participantes";
@@ -95,5 +100,10 @@ public interface Constants {
 
     String MENSAGEM_EMAIL_CONVITE = "Olá Sr(a). ${nome}. Você foi convidado para a reunião sobre ${assunto}, que acontecerá dia ${dataFormatada}. Clique no link abaixo para baixar e ter acesso aos detalhes da sua reunião:";
 
+    String MENSAGEM_DETALHE_REUNIAO = "Sua reunião é sobre ${assunto}, começa em ${minutos} minutos e tem previsão de término a partir das ${dataTermino}. Por favor, dirija-se à sala ${sala}.";
+
     String WAZE_DEEP_LINK = "https://waze.com/ul?ll=${latitude},${longitude}";
+    String API_KEY = "AIzaSyBJMHiMFBv11gMo9cUJ-PKv5FksAn36YBc";
+
+    int MINUTOS_ANTECEDENCIA = 20;
 }

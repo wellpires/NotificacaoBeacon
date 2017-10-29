@@ -68,7 +68,7 @@ public class ReuniaoFragment extends Fragment implements View.OnTouchListener, R
     private EditText txtSala = null;
     private EditText txtDescricao = null;
 
-    private DAOHelper<ReuniaoVO> daoHelper = null;
+    private DAOHelper<ReuniaoVO> reuniaoDAO = null;
 
     private ReuniaoVO voExistente = null;
 
@@ -85,15 +85,15 @@ public class ReuniaoFragment extends Fragment implements View.OnTouchListener, R
     }
 
     private void buscarRegistroAdicionado() throws ParseException {
-        ReuniaoVO reuniaoVO = daoHelper.find(ReuniaoVO.class);
+        ReuniaoVO reuniaoVO = reuniaoDAO.find(ReuniaoVO.class);
         if (reuniaoVO == null) {
             voExistente = null;
             return;
         }
         voExistente = reuniaoVO;
 
-        DateTime dtInicio = new DateTime(ReuniaoUtils.stringToDateTime(voExistente.getDtInicio()));
-        DateTime dtTermino = new DateTime(ReuniaoUtils.stringToDateTime(voExistente.getDtTermino()));
+        DateTime dtInicio = new DateTime(voExistente.getDtInicio());
+        DateTime dtTermino = new DateTime(voExistente.getDtTermino());
 
         txtAssunto.setText(voExistente.getAssunto());
         txtDtInicio.setText(ReuniaoUtils.dateToString(dtInicio.toDate()));
@@ -140,7 +140,7 @@ public class ReuniaoFragment extends Fragment implements View.OnTouchListener, R
         txtEndereco.setOnTouchListener(this);
         txtEndereco.setKeyListener(null);
 
-        daoHelper = new DAOHelper<>();
+        reuniaoDAO = new DAOHelper<>();
 //            buscarRegistroAdicionado();
         return view;
     }
@@ -182,9 +182,8 @@ public class ReuniaoFragment extends Fragment implements View.OnTouchListener, R
                 String horaInicio = txtDtInicio.getText().toString() + " " + txtHrInicio.getText().toString();
                 String horaTermino = txtDtTermino.getText().toString() + " " + txtHrTermino.getText().toString();
 
-                DateTime dtInicio = null;
-                dtInicio = new DateTime(ReuniaoUtils.stringToDateTime(horaInicio));
-                DateTime dtTermino = new DateTime(ReuniaoUtils.stringToDateTime(horaTermino));
+                DateTime dtInicio = new DateTime(ReuniaoUtils.formatStringDate(Constants.SCREEN_DATETIME_PATTERN, horaInicio));
+                DateTime dtTermino = new DateTime(ReuniaoUtils.formatStringDate(Constants.SCREEN_DATETIME_PATTERN,horaTermino));
 
 
                 if (dtInicio.isEqual(dtTermino)) {
@@ -198,20 +197,21 @@ public class ReuniaoFragment extends Fragment implements View.OnTouchListener, R
                 ReuniaoVO vo = new ReuniaoVO();
                 if (voExistente != null) {
                     vo = voExistente;
-                    daoHelper.open();
+                    reuniaoDAO.open();
                 }
-                vo.setIdReuniao(Integer.parseInt(daoHelper.getNextId(ReuniaoVO.class).toString()));
+
+                vo.setIdReuniao(Integer.parseInt(reuniaoDAO.getNextId(ReuniaoVO.class).toString()));
                 vo.setAssunto(txtAssunto.getText().toString());
-                vo.setDtInicio(txtDtInicio.getText().toString() + " " + txtHrInicio.getText().toString());
-                vo.setDtTermino(txtDtTermino.getText().toString() + " " + txtHrTermino.getText().toString());
+                vo.setDtInicio(ReuniaoUtils.formatStringDate(Constants.SCREEN_DATETIME_PATTERN,horaInicio));
+                vo.setDtTermino(ReuniaoUtils.formatStringDate(Constants.SCREEN_DATETIME_PATTERN,horaTermino));
 //                vo.setEndereco(txtEndereco.getText().toString());
                 vo.setLatitude(ReuniaoUtils.stringToDouble(txtEndereco.getTag(R.string.ID_LATITUDE).toString()));
                 vo.setLongitude(ReuniaoUtils.stringToDouble(txtEndereco.getTag(R.string.ID_LONGITUDE).toString()));
                 vo.setSala(txtSala.getText().toString());
                 vo.setPauta(txtDescricao.getText().toString());
-                daoHelper.insert(vo);
+                reuniaoDAO.insert(vo);
 
-                daoHelper.close();
+                reuniaoDAO.close();
 
                 buscarRegistroAdicionado();
 

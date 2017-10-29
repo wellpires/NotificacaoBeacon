@@ -53,7 +53,7 @@ public class ReunioesAdapter extends BaseAdapter {
             TextView lblHorario = (TextView) view.findViewById(R.id.lblHorario);
 
             lblAssunto.setText(vo.getAssunto());
-            lblHorario.setText(ReuniaoUtils.formatDate(Constants.DATETIME_CUSTOM_PATTERN, ReuniaoUtils.stringToDateTime(vo.getDtInicio())));
+            lblHorario.setText(ReuniaoUtils.formatDate(Constants.DATETIME_CUSTOM_PATTERN, vo.getDtInicio()));
 
         }catch (Exception e){
 

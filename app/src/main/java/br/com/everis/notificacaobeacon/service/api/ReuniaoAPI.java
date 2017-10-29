@@ -2,6 +2,7 @@ package br.com.everis.notificacaobeacon.service.api;
 
 import com.google.gson.JsonArray;
 
+import java.util.Date;
 import java.util.List;
 
 import br.com.everis.notificacaobeacon.model.ReuniaoArquivoUsuarioVO;

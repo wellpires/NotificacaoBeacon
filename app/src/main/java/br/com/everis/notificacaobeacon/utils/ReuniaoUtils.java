@@ -2,9 +2,11 @@ package br.com.everis.notificacaobeacon.utils;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
@@ -24,10 +26,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.NotificationCompat;
 import android.util.Log;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.ListView;
 import android.widget.Toast;
-
-import org.joda.time.DateTime;
 
 import java.io.IOException;
 import java.math.BigInteger;
@@ -36,7 +35,6 @@ import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -45,10 +43,8 @@ import java.util.TimeZone;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 
-import br.com.everis.notificacaobeacon.R;
-import br.com.everis.notificacaobeacon.adapter.ReunioesHojeAdapter;
+import br.com.everis.notificacaobeacon.activities.ReuniaoMainActivity;
 import br.com.everis.notificacaobeacon.bd.DAOHelper;
-import br.com.everis.notificacaobeacon.bd.ReuniaoDAO;
 import br.com.everis.notificacaobeacon.model.ReuniaoVO;
 
 /**
@@ -65,32 +61,32 @@ public class ReuniaoUtils {
     }
 
     public static Date stringToDateTime(String data) throws ParseException {
-        SimpleDateFormat sdf = new SimpleDateFormat(Constants.DATETIME_PATTERN);
+        SimpleDateFormat sdf = new SimpleDateFormat(Constants.DATETIME_PATTERN, Locale.US);
         return new Date(sdf.parse(data).getTime());
     }
 
     public static String dateTimeToString(Date data) {
-        SimpleDateFormat sdf = new SimpleDateFormat(Constants.DATETIME_PATTERN);
+        SimpleDateFormat sdf = new SimpleDateFormat(Constants.SCREEN_DATETIME_PATTERN, Locale.US);
         return sdf.format(data);
     }
 
     public static String timeToString(Date hora) {
-        SimpleDateFormat sdf = new SimpleDateFormat(Constants.TIME_PATTERN);
+        SimpleDateFormat sdf = new SimpleDateFormat(Constants.SCREEN_TIME_PATTERN, Locale.US);
         return sdf.format(hora);
     }
 
-    public static Date stringToTime(String hora) throws ParseException {
-        SimpleDateFormat sdf = new SimpleDateFormat(Constants.TIME_PATTERN);
-        sdf.setTimeZone(TimeZone.getTimeZone(Constants.TIMEZONE));
-        return new Date(sdf.parse(hora).getTime());
+    public static String dateToString(Date data) {
+        return new SimpleDateFormat(Constants.SCREEN_DATE_PATTERN, Locale.US).format(data);
     }
 
     public static Date stringToDate(String data) throws ParseException {
-        return new Date(formatStringDate(Constants.DATE_PATTERN, data).getTime());
+        return new Date(formatStringDate(Constants.SCREEN_DATE_PATTERN, data).getTime());
     }
 
-    public static String dateToString(Date data) {
-        return new SimpleDateFormat(Constants.DATE_PATTERN).format(data);
+    public static Date stringToTime(String hora) throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat(Constants.TIME_PATTERN, Locale.US);
+        sdf.setTimeZone(TimeZone.getTimeZone(Constants.TIMEZONE));
+        return new Date(sdf.parse(hora).getTime());
     }
 
     public static Date formatHour(String pattern, String hora) throws ParseException {
@@ -102,7 +98,7 @@ public class ReuniaoUtils {
     }
 
     public static String formatDate(String pattern, Date date) throws ParseException {
-        return new SimpleDateFormat(pattern).format(date);
+        return new SimpleDateFormat(pattern, Locale.US).format(date);
     }
 
     public static String zeroAEsquerda(int numero) {
@@ -354,7 +350,8 @@ public class ReuniaoUtils {
         thread.start();
     }
 
-    public static Location getCurrentLocation(LocationManager lm, Context context) {
+    public static Location getCurrentLocation(Context context) {
+        LocationManager lm = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
         if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return null;
         }
@@ -363,6 +360,13 @@ public class ReuniaoUtils {
             location = lm.getLastKnownLocation(LocationManager.PASSIVE_PROVIDER);
         }
         return location;
+    }
+
+    public static boolean checkCurrentActivity(Context context, Class clazz){
+        ActivityManager am = (ActivityManager) context.getSystemService(context.ACTIVITY_SERVICE);
+        List<ActivityManager.RunningTaskInfo> taskInfo = am.getRunningTasks(1);
+        ComponentName componentInfo = taskInfo.get(0).topActivity;
+        return componentInfo.getShortClassName().endsWith(clazz.getSimpleName());
     }
 
 }

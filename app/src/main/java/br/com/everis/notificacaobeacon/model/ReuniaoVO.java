@@ -17,8 +17,8 @@ public class ReuniaoVO extends RealmObject {
     @PrimaryKey
     private Integer idReuniao = null;
     private String assunto = null;
-    private String dtInicio = null;
-    private String dtTermino = null;
+    private Date dtInicio = null;
+    private Date dtTermino = null;
     private String endereco = null;
     private Double latitude = null;
     private Double longitude = null;
@@ -48,19 +48,19 @@ public class ReuniaoVO extends RealmObject {
         this.assunto = assunto;
     }
 
-        public String getDtInicio() {
+    public Date getDtInicio() {
         return dtInicio;
     }
 
-    public void setDtInicio(String dtInicio) {
+    public void setDtInicio(Date dtInicio) {
         this.dtInicio = dtInicio;
     }
 
-    public String getDtTermino() {
+    public Date getDtTermino() {
         return dtTermino;
     }
 
-    public void setDtTermino(String dtTermino) {
+    public void setDtTermino(Date dtTermino) {
         this.dtTermino = dtTermino;
     }
 

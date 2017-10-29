@@ -1,13 +1,20 @@
 package br.com.everis.notificacaobeacon.bd;
 
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeField;
+import org.joda.time.DateTimeFieldType;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import io.realm.Realm;
 import io.realm.RealmModel;
 import io.realm.RealmObject;
+import io.realm.RealmQuery;
 import io.realm.RealmResults;
 import io.realm.annotations.PrimaryKey;
 
@@ -81,7 +88,13 @@ public class DAOHelper<E> {
         E result = (E) realm.where(clazz).findFirst();
         return result;
     }
-    
+
+    public List<E> findByDate(Class<? extends RealmModel> clazz, Date dateInicio){
+        DateTime dtInicio = new DateTime(dateInicio);
+        List<E> results = (List<E>) realm.where(clazz).greaterThan("dtInicio",  dtInicio.withTimeAtStartOfDay().toDate()).findAll();
+        return results;
+    }
+
     public List<E> findAll(Class<? extends RealmModel> clazz){
         List<E> results = (List<E>) realm.where(clazz).findAll();
         return results;

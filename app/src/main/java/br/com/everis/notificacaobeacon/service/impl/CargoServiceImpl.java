@@ -31,7 +31,6 @@ public class CargoServiceImpl implements ICargoService {
 
     @Override
     public void listarCargos() {
-
         Call<List<CargoVO>> call = cargoAPI.listarCargos();
         call.enqueue(new Callback<List<CargoVO>>() {
             @Override

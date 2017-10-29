@@ -5,14 +5,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
 
+import org.apache.commons.lang3.text.StrSubstitutor;
 import org.joda.time.DateTime;
 import org.joda.time.Minutes;
 
 import java.text.ParseException;
 import java.util.Date;
+import java.util.HashMap;
 
 import br.com.everis.notificacaobeacon.R;
 import br.com.everis.notificacaobeacon.model.ReuniaoVO;
+import br.com.everis.notificacaobeacon.utils.Constants;
 import br.com.everis.notificacaobeacon.utils.GlobalClass;
 import br.com.everis.notificacaobeacon.utils.ReuniaoUtils;
 
@@ -31,27 +34,26 @@ public class DetalhesReuniaoActivity extends AppCompatActivity {
         lblInformacoes = (TextView) findViewById(R.id.lblInformacoes);
 
         ReuniaoVO vo = ((GlobalClass) getApplicationContext()).getReuniaoVO();
-        if(vo == null){
+        if (vo == null) {
             return;
         }
 
         Minutes minutos = null;
         DateTime dtTermino = null;
-        try {
-            DateTime dtHoje = new DateTime(new Date());
-            DateTime dtInicio = new DateTime(ReuniaoUtils.stringToDateTime(vo.getDtInicio()));
-            dtTermino = new DateTime(ReuniaoUtils.stringToDateTime(vo.getDtTermino()));
+        DateTime dtHoje = new DateTime(new Date());
+        DateTime dtInicio = new DateTime(vo.getDtInicio());
+        dtTermino = new DateTime(vo.getDtTermino());
 
-            minutos = Minutes.minutesBetween(dtHoje, dtInicio);
+        minutos = Minutes.minutesBetween(dtHoje, dtInicio);
 
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        HashMap<String, Object> hmValores = new HashMap<>();
+        hmValores.put("assunto", vo.getAssunto());
+        hmValores.put("minutos", minutos.getMinutes());
+        hmValores.put("dataTermino", ReuniaoUtils.timeToString(dtTermino.toDate()));
+        hmValores.put("sala", vo.getSala());
 
-        lblInformacoes.setText("Sua reunião é sobre " + vo.getAssunto() + ", começa em " +
-                minutos.getMinutes() + " minutos e tem previsão de término a partir das " +
-                ReuniaoUtils.timeToString(dtTermino.toDate()) +
-                ". Por favor, dirija-se à sala " + vo.getSala() + ".");
+        StrSubstitutor substitutor = new StrSubstitutor(hmValores);
+        lblInformacoes.setText(substitutor.replace(Constants.MENSAGEM_DETALHE_REUNIAO, hmValores));
 
     }
 
