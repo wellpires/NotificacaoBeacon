@@ -14,12 +14,14 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.io.Console;
 import java.util.List;
 
 import br.com.everis.notificacaobeacon.R;
@@ -190,7 +192,9 @@ public class ParticipanteFragment extends Fragment implements PermissaoPresenter
 
             cargoService = new CargoServiceImpl(getContext(), this);
             cargoService.listarCargos();
+
             v.setEnabled(true);
+
         }
     }
 }
