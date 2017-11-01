@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:2:1-117:12
-INJECTED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:2:1-117:12
-INJECTED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:2:1-117:12
-INJECTED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:2:1-117:12
+ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:2:1-138:12
+INJECTED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:2:1-138:12
+INJECTED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:2:1-138:12
+INJECTED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:2:1-138:12
 MERGED from [io.realm:realm-android-library:4.0.0] C:\Users\wgoncalv\.gradle\caches\transforms-1\files-1.1\realm-android-library-4.0.0.aar\31bb57b0bc4d5fe4c55958176cd1426d\AndroidManifest.xml:2:1-11:12
 MERGED from [io.branch.sdk.android:library:2.13.0] C:\Users\wgoncalv\.gradle\caches\transforms-1\files-1.1\library-2.13.0.aar\6964e2043b4cffa6c91339b4ef964d84\AndroidManifest.xml:2:1-11:12
 MERGED from [com.android.support:design:25.4.0] C:\Users\wgoncalv\.gradle\caches\transforms-1\files-1.1\design-25.4.0.aar\ee50cbf80b36dd34f1b180f684be5620\AndroidManifest.xml:17:1-31:12
@@ -60,9 +60,9 @@ MERGED from [com.google.firebase:firebase-common-license:11.4.2] C:\Users\wgonca
 MERGED from [com.google.firebase:firebase-storage-common-license:11.4.2] C:\Users\wgoncalv\.gradle\caches\transforms-1\files-1.1\firebase-storage-common-license-11.4.2.aar\64d23d5370b49458aaf0feb9fb23ce9e\AndroidManifest.xml:2:1-6:12
 MERGED from [com.google.firebase:firebase-analytics-license:11.4.2] C:\Users\wgoncalv\.gradle\caches\transforms-1\files-1.1\firebase-analytics-license-11.4.2.aar\b0c26744d67cec06ef581d79bdb75b2d\AndroidManifest.xml:2:1-6:12
 MERGED from [com.google.firebase:firebase-analytics-impl-license:11.4.2] C:\Users\wgoncalv\.gradle\caches\transforms-1\files-1.1\firebase-analytics-impl-license-11.4.2.aar\6073cb0a09bc883c9da85e4e8475af1c\AndroidManifest.xml:2:1-6:12
-INJECTED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:2:1-117:12
-INJECTED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:2:1-117:12
-INJECTED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:2:1-117:12
+INJECTED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:2:1-138:12
+INJECTED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:2:1-138:12
+INJECTED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:2:1-138:12
 	package
 		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:3:5-46
 		INJECTED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml
@@ -262,11 +262,11 @@ ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src
 	android:name
 		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:20:22-62
 uses-permission#android.permission.ACCESS_WIFI_STATE
-ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:21:5-75
+ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:21:5-76
 	android:name
 		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:21:22-73
 uses-permission#android.permission.ACCESS_NETWORK_STATE
-ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:22:5-78
+ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:22:5-79
 MERGED from [com.google.android.gms:play-services-maps:11.4.2] C:\Users\wgoncalv\.gradle\caches\transforms-1\files-1.1\play-services-maps-11.4.2.aar\fc05e50e8837d0481d2cf2c5fff305e8\AndroidManifest.xml:19:5-78
 MERGED from [com.google.android.gms:play-services-maps:11.4.2] C:\Users\wgoncalv\.gradle\caches\transforms-1\files-1.1\play-services-maps-11.4.2.aar\fc05e50e8837d0481d2cf2c5fff305e8\AndroidManifest.xml:19:5-78
 MERGED from [com.google.firebase:firebase-analytics:11.4.2] C:\Users\wgoncalv\.gradle\caches\transforms-1\files-1.1\firebase-analytics-11.4.2.aar\2f9bd2d2e4ba467df7bf8363da9535b9\AndroidManifest.xml:21:5-78
@@ -279,8 +279,24 @@ MERGED from [com.google.android.gms:play-services-ads-lite:11.4.2] C:\Users\wgon
 MERGED from [com.google.android.gms:play-services-ads-lite:11.4.2] C:\Users\wgoncalv\.gradle\caches\transforms-1\files-1.1\play-services-ads-lite-11.4.2.aar\faeb8144378d924c9bc2fbe4d64aafa8\AndroidManifest.xml:20:5-78
 	android:name
 		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:22:22-76
+uses-permission#android.permission.GET_ACCOUNTS
+ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:24:5-71
+	android:name
+		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:24:22-68
+uses-permission#android.permission.READ_PROFILE
+ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:25:5-71
+	android:name
+		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:25:22-68
+uses-permission#android.permission.READ_CONTACTS
+ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:26:5-72
+	android:name
+		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:26:22-69
+uses-permission#android.permission.READ_CALL_LOG
+ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:27:5-72
+	android:name
+		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:27:22-69
 application
-ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:24:5-116:19
+ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:29:5-136:19
 MERGED from [com.android.support:design:25.4.0] C:\Users\wgoncalv\.gradle\caches\transforms-1\files-1.1\design-25.4.0.aar\ee50cbf80b36dd34f1b180f684be5620\AndroidManifest.xml:25:5-29:19
 MERGED from [com.android.support:design:25.4.0] C:\Users\wgoncalv\.gradle\caches\transforms-1\files-1.1\design-25.4.0.aar\ee50cbf80b36dd34f1b180f684be5620\AndroidManifest.xml:25:5-29:19
 MERGED from [com.google.android.gms:play-services-cast:11.4.2] C:\Users\wgoncalv\.gradle\caches\transforms-1\files-1.1\play-services-cast-11.4.2.aar\7a815e81d6e84b5bc36fde6930cdff30\AndroidManifest.xml:18:5-19
@@ -380,153 +396,159 @@ MERGED from [com.google.firebase:firebase-analytics-license:11.4.2] C:\Users\wgo
 MERGED from [com.google.firebase:firebase-analytics-impl-license:11.4.2] C:\Users\wgoncalv\.gradle\caches\transforms-1\files-1.1\firebase-analytics-impl-license-11.4.2.aar\6073cb0a09bc883c9da85e4e8475af1c\AndroidManifest.xml:5:5-20
 MERGED from [com.google.firebase:firebase-analytics-impl-license:11.4.2] C:\Users\wgoncalv\.gradle\caches\transforms-1\files-1.1\firebase-analytics-impl-license-11.4.2.aar\6073cb0a09bc883c9da85e4e8475af1c\AndroidManifest.xml:5:5-20
 	android:supportsRtl
-		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:30:9-35
+		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:35:9-35
 	android:label
-		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:28:9-41
+		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:33:9-41
 	android:roundIcon
-		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:29:9-54
+		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:34:9-54
 	android:icon
-		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:27:9-43
+		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:32:9-43
 	android:allowBackup
-		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:26:9-35
+		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:31:9-35
 	android:theme
-		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:31:9-40
+		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:36:9-40
 	android:name
-		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:25:9-42
+		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:30:9-42
 service#br.com.everis.notificacaobeacon.service.NotificacaoBeaconService
-ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:33:9-36:39
+ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:37:9-40:39
 	android:enabled
-		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:35:13-35
+		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:39:13-35
 	android:exported
-		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:36:13-36
+		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:40:13-36
 	android:name
-		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:34:13-61
+		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:38:13-61
 meta-data#com.google.android.geo.API_KEY
-ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:38:9-40:66
+ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:42:9-44:66
 	android:value
-		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:40:13-63
+		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:44:13-63
 	android:name
-		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:39:13-58
-activity#br.com.everis.notificacaobeacon.activities.ReuniaoMainActivity
-ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:47:9-56:20
+		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:43:13-58
+activity#br.com.everis.notificacaobeacon.activities.LoginActivity
+ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:49:9-57:20
 	android:label
-		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:49:13-45
-	android:theme
-		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:50:13-56
+		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:51:13-57
 	android:name
-		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:48:13-59
+		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:50:13-53
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
-ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:51:13-55:29
+ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:52:13-56:29
 action#android.intent.action.MAIN
-ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:52:17-69
+ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:53:17-69
 	android:name
-		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:52:25-66
+		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:53:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:54:17-77
+ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:55:17-77
 	android:name
-		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:54:27-74
-activity#br.com.everis.notificacaobeacon.activities.ReuniaoNotificacaoActivity
-ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:57:9-59:48
+		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:55:27-74
+activity#br.com.everis.notificacaobeacon.activities.ReuniaoMainActivity
+ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:59:9-63:20
 	android:label
-		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:59:13-45
-	android:name
-		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:58:13-66
-activity#br.com.everis.notificacaobeacon.activities.DetalhesReuniaoActivity
-ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:60:9-68:20
-	android:parentActivityName
-		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:63:13-73
-	android:label
-		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:62:13-68
+		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:61:13-45
 	android:theme
-		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:64:13-56
+		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:62:13-56
 	android:name
-		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:61:13-63
-meta-data#android.support.PARENT_ACTIVITY
-ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:65:13-67:98
-	android:value
-		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:67:17-95
-	android:name
-		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:66:17-63
-activity#br.com.everis.notificacaobeacon.activities.AdicionarReuniaoActivity
-ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:69:9-73:20
-	android:name
-		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:69:19-70
-activity#br.com.everis.notificacaobeacon.activities.ReunioesActivity
-ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:74:9-80:20
+		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:60:13-59
+activity#br.com.everis.notificacaobeacon.activities.ReuniaoNotificacaoActivity
+ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:64:9-66:48
 	android:label
-		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:76:13-60
+		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:66:13-45
 	android:name
-		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:75:13-56
-activity#br.com.everis.notificacaobeacon.activities.AdicionarEditarReuniaoActivity
-ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:81:9-88:20
+		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:65:13-66
+activity#br.com.everis.notificacaobeacon.activities.DetalhesReuniaoActivity
+ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:67:9-75:20
 	android:parentActivityName
-		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:84:13-73
+		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:70:13-73
 	android:label
-		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:83:13-76
+		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:69:13-68
+	android:theme
+		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:71:13-56
 	android:name
-		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:82:13-70
+		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:68:13-63
+meta-data#android.support.PARENT_ACTIVITY
+ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:72:13-74:98
+	android:value
+		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:74:17-95
+	android:name
+		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:73:17-63
+activity#br.com.everis.notificacaobeacon.activities.AdicionarReuniaoActivity
+ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:76:9-80:20
+	android:name
+		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:76:19-70
+activity#br.com.everis.notificacaobeacon.activities.ReunioesActivity
+ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:81:9-87:20
+	android:label
+		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:83:13-60
+	android:name
+		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:82:13-56
+activity#br.com.everis.notificacaobeacon.activities.AdicionarEditarReuniaoActivity
+ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:88:9-95:20
+	android:parentActivityName
+		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:91:13-73
+	android:label
+		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:90:13-76
+	android:name
+		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:89:13-70
 activity#br.com.everis.notificacaobeacon.activities.ReuniaoMarcadaActivity
-ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:89:9-71
+ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:96:9-71
 	android:name
-		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:89:19-68
+		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:96:19-68
 activity#br.com.everis.notificacaobeacon.activities.ConfirmarReuniaoActivity
-ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:91:9-99:20
+ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:97:9-110:20
 	android:launchMode
-		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:92:13-44
+		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:99:13-44
 	android:name
-		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:91:19-70
+		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:98:13-64
 intent-filter#android.intent.action.VIEW+android.intent.category.BROWSABLE+android.intent.category.DEFAULT
-ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:93:13-98:29
+ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:100:13-109:29
 	android:label
-		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:93:28-60
+		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:102:17-49
 	android:autoVerify
-		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:93:61-86
+		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:101:17-42
 data
-ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:94:17-52
+ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:103:17-53
 	android:scheme
-		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:94:23-50
+		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:103:23-50
 action#android.intent.action.VIEW
-ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:95:17-69
+ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:105:17-69
 	android:name
-		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:95:25-66
+		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:105:25-66
 category#android.intent.category.DEFAULT
-ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:96:17-76
+ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:107:17-76
 	android:name
-		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:96:27-73
+		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:107:27-73
 category#android.intent.category.BROWSABLE
-ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:97:17-78
+ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:108:17-78
 	android:name
-		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:97:27-75
+		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:108:27-75
 meta-data#io.branch.sdk.BranchKey
-ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:102:9-78
+ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:113:9-115:32
 	android:value
-		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:102:59-75
+		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:115:13-29
 	android:name
-		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:102:20-58
+		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:114:13-51
 meta-data#io.branch.sdk.BranchKey.test
-ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:103:9-124
+ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:116:9-118:73
 	android:value
-		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:103:64-121
+		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:118:13-70
 	android:name
-		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:103:20-63
+		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:117:13-56
 meta-data#io.branch.sdk.TestMode
-ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:104:9-81
+ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:119:9-121:36
 	android:value
-		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:104:58-78
+		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:121:13-33
 	android:name
-		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:104:20-57
+		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:120:13-50
 receiver#io.branch.referral.InstallListener
-ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:110:9-114:20
+ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:128:9-134:20
 	android:exported
-		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:110:69-92
+		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:130:13-36
 	android:name
-		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:110:19-68
+		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:129:13-62
 intent-filter#com.android.vending.INSTALL_REFERRER
-ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:111:13-113:29
+ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:131:13-133:29
 action#com.android.vending.INSTALL_REFERRER
-ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:112:17-79
+ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:132:17-79
 	android:name
-		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:112:25-76
+		ADDED from C:\Users\wgoncalv\Documents\AndroidProjects\NotificacaoBeacon\app\src\main\AndroidManifest.xml:132:25-76
 meta-data#android.support.VERSION
 ADDED from [com.android.support:design:25.4.0] C:\Users\wgoncalv\.gradle\caches\transforms-1\files-1.1\design-25.4.0.aar\ee50cbf80b36dd34f1b180f684be5620\AndroidManifest.xml:26:9-28:38
 MERGED from [com.android.support:appcompat-v7:25.4.0] C:\Users\wgoncalv\.gradle\caches\transforms-1\files-1.1\appcompat-v7-25.4.0.aar\33fc71214ade6d2ef1548e4d461267f1\AndroidManifest.xml:26:9-28:38
